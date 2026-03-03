@@ -101,7 +101,50 @@ footer {
   color: #9ca3af;
   padding-bottom: 30px;
 }
-  </style>
+ .section-wrap {
+    max-width: 1100px;
+    margin: 34px auto 0;
+    padding: 0 20px;
+  }
+
+  .section-title {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 0 0 12px;
+  }
+
+  .section-title h2 {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+  }
+
+  .section-title p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 0.9rem;
+  }
+
+  /* Slightly different accents per section */
+  .card.brief { border-left-color: #10b981; }     /* green */
+  .card.tech  { border-left-color: #7c3aed; }     /* purple */
+
+  .meta .pill {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: #f3f4f6;
+    color: #6b7280;
+    margin-right: 6px;
+    font-weight: 650;
+    font-size: 0.75rem;
+  }
+
+  .links a { margin-right: 12px; }
+</style>
 </head>
 <body>
   <header>
@@ -111,37 +154,106 @@ footer {
 
   <main>
 
-    <section class="cards-grid">
+   <!-- A) REPORTS -->
+<section class="section-wrap">
+  <div class="section-title">
+    <h2>Reports</h2>
+    <p>Flagship analyses with narrative + visuals.</p>
+  </div>
 
-      <!-- REPORT CARD 1 -->
-      <article class="card">
-        <h2>East Africa Electricity Generation</h2>
-        <p class="tagline">How power production varies across countries and over time.</p>
-        <p class="meta">Report type: Energy | Data source: Ember Energy</p>
+  <div class="cards-grid">
+
+    <article class="card">
+      <h2>East Africa Electricity Generation</h2>
+      <p class="tagline">Generation mix, concentration risk, and regional trade (2017–2022).</p>
+      <p class="meta">
+        <span class="pill">Report</span>
+        <span class="pill">Ember Energy</span>
+      </p>
+      <div class="links">
         <a href="East Africa Electricity Generation.html" target="_blank">View report</a>
-      </article>
+        <!-- Optional: if you have it -->
+        <!-- <a href="https://github.com/..." target="_blank">Code</a> -->
+      </div>
+    </article>
 
-      <!-- REPORT CARD 2 
-      <article class="card">
-        <h2>Electricity Access in East Africa</h2>
-        <p class="tagline">Key developments in electrification across East Africa.</p>
-        <p class="meta">Report type: Energy & Economics | Data source: World Bank Group</p>
-        <a href="electricity_access_ea.html" target="_blank">View report</a>
-      </article> -->
+    <!-- Add future reports here -->
 
-      
-      <!-- REPORT CARD 3
-      <article class="card">
-        <h2>Government Investment and Spending</h2>
-        <p class="tagline">Investment and spending patterns in the public sector</p>
-        <p class="meta">Report type: Energy & Economics | Data source: African Development Bank Group</p>
-        <a href="op_vs_ivst.html" target="_blank">View report</a>
-      </article>  -->
+  </div>
+</section>
 
-      <!-- To add a new report later, copy one <article> block above,
-           change the title, text, and href="YOUR_REPORT_FILE.html" -->
+<!-- B) MARKET INSIGHTS -->
+<section class="section-wrap">
+  <div class="section-title">
+    <h2>Market Insights</h2>
+    <p>Short notes: one system question, one chart set, short implications.</p>
+  </div>
 
-    </section>
+  <div class="cards-grid">
+
+    <article class="card brief">
+      <!--h2>Alberta Cold Snap: System Response</h2>
+      <p class="tagline">How weather stress propagates through generation mix and prices.</p>
+      <p class="meta">
+        <span class="pill">Brief</span>
+        <span class="pill">AESO</span>
+      </p>
+      <div class="links">
+        <a href="AB_Cold_Snap_Brief.html" target="_blank">View brief</a>
+      </div>
+    </article-->
+
+    <!--article class="card brief">
+      <h2>East African Power Pool: Day-Ahead Market</h2>
+      <p class="tagline">What integration changes, and what infrastructure constraints remain.</p>
+      <p class="meta">
+        <span class="pill">Brief</span>
+        <span class="pill">EAPP</span>
+      </p>
+      <div class="links">
+        <a href="EAPP_DAM_Brief.html" target="_blank">View brief</a>
+      </div>
+    </article-->
+
+  </div>
+</section>
+
+<!-- C) TECHNICAL APPENDIX -->
+<section class="section-wrap">
+  <div class="section-title">
+    <h2>Technical Appendix</h2>
+    <p>Reproducible work: notebooks, code, and data preparation notes.</p>
+  </div>
+
+  <div class="cards-grid">
+
+    <!--article class="card tech">
+      <h2>Alberta Market Data Pipeline</h2>
+      <p class="tagline">API ingestion, time alignment, merges, and validation checks.</p>
+      <p class="meta">
+        <span class="pill">Notebook</span>
+        <span class="pill">Python / SQL</span>
+      </p>
+      <div class="links">
+        <a href="Alberta_Pipeline_Notebook.html" target="_blank">Open notebook</a>
+        <a href="https://github.com/YOURUSER/YOURREPO" target="_blank">GitHub</a>
+      </div>
+    </article-->
+
+    <!--article class="card tech">
+      <h2>Metrics: Variability & Ramping</h2>
+      <p class="tagline">Definitions + implementation used across projects.</p>
+      <p class="meta">
+        <span class="pill">Reference</span>
+        <span class="pill">Time-series</span>
+      </p>
+      <div class="links">
+        <a href="Metrics_Variability_Ramping.html" target="_blank">View notes</a>
+      </div>
+    </article-->
+
+  </div>
+</section>
   </main>
 
   <footer>
