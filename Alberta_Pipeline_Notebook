@@ -1,182 +1,182 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Alberta Market Data Pipeline</title>
-  <style>
-    :root{
-      --bg:#0c111b;
-      --panel:#111a2a;
-      --panel2:#0f1726;
-      --text:#e8eef7;
-      --muted:#a9b7cc;
-      --line:#23314a;
-      --accent:#6aa6ff;
-      --code:#0b1322;
-      --ok:#8ee3a5;
-      --warn:#ffd27a;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      background:var(--bg);
-      color:var(--text);
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;
-      line-height:1.6;
-    }
-    a{color:var(--accent);text-decoration:none}
-    a:hover{text-decoration:underline}
-    .wrap{max-width:980px;margin:0 auto;padding:28px 18px 64px}
-    header{
-      padding:18px 18px 16px;
-      background:linear-gradient(180deg, rgba(106,166,255,0.10), rgba(17,26,42,0.0));
-      border:1px solid var(--line);
-      border-radius:16px;
-      margin-bottom:18px;
-    }
-    h1{margin:0 0 6px;font-size:26px;letter-spacing:-0.2px}
-    .sub{margin:0;color:var(--muted);max-width:78ch}
-    .toplinks{margin-top:12px;display:flex;flex-wrap:wrap;gap:10px}
-    .btn{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:8px 12px;border-radius:12px;
-      background:rgba(106,166,255,0.12);
-      border:1px solid rgba(106,166,255,0.25);
-      color:var(--text);
-      font-size:14px;
-    }
-    .btn.secondary{
-      background:rgba(255,255,255,0.06);
-      border:1px solid var(--line);
-      color:var(--muted);
-    }
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Alberta Market Data Pipeline</title>
 
-    .grid{display:grid;grid-template-columns:1fr;gap:14px}
-    @media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
-    section{
-      background:var(--panel);
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:16px 16px;
-    }
-    h2{margin:0 0 10px;font-size:18px}
-    h3{margin:14px 0 8px;font-size:14px;color:var(--muted);font-weight:650;text-transform:uppercase;letter-spacing:0.06em}
-    p{margin:8px 0}
-    ul,ol{margin:8px 0 0 18px}
-    li{margin:6px 0}
-    .callout{
-      margin-top:12px;
-      background:var(--panel2);
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:12px 12px;
-    }
-    .callout strong{color:var(--text)}
-    .tag{
-      display:inline-block;
-      padding:2px 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,0.05);
-      color:var(--muted);
-      font-size:12px;
-      margin-right:8px;
-    }
-    .tag.ok{border-color:rgba(142,227,165,0.35);background:rgba(142,227,165,0.08);color:var(--ok)}
-    .tag.warn{border-color:rgba(255,210,122,0.35);background:rgba(255,210,122,0.08);color:var(--warn)}
-    pre{
-      background:var(--code);
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:12px;
-      overflow:auto;
-      margin:10px 0 0;
-    }
-    code{
-      font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
-      font-size:13px;
-      color:#d9e7ff;
-    }
-    .small{font-size:13px;color:var(--muted)}
-    .footer{margin-top:16px;color:var(--muted);font-size:13px;text-align:center}
-    .divider{height:1px;background:var(--line);margin:12px 0}
-  </style>
-</head>
+    <style>
+      :root {
+        --bg: #0c111b;
+        --panel: #111a2a;
+        --panel2: #0f1726;
+        --text: #e8eef7;
+        --muted: #a9b7cc;
+        --line: #23314a;
+        --accent: #6aa6ff;
+        --code: #0b1322;
+        --ok: #8ee3a5;
+        --warn: #ffd27a;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
+        line-height: 1.6;
+      }
+      a { color: var(--accent); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .wrap { max-width: 980px; margin: 0 auto; padding: 28px 18px 64px; }
 
-<body>
-  <div class="wrap">
+      header {
+        padding: 18px 18px 16px;
+        background: linear-gradient(180deg, rgba(106,166,255,0.10), rgba(17,26,42,0.0));
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        margin-bottom: 18px;
+      }
+      h1 { margin: 0 0 6px; font-size: 26px; letter-spacing: -0.2px; }
+      .sub { margin: 0; color: var(--muted); max-width: 78ch; }
 
-    <header>
-      <h1>Alberta Market Data Pipeline</h1>
-      <p class="sub">
-        Technical appendix for the Alberta case study. This page documents how the January 2026 hourly dataset
-        was collected from AESO public APIs, merged across sources, and validated (time coverage + missing hours).
-      </p>
+      .grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+      @media (min-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } }
 
-      <div class="toplinks">
-        <!-- Replace these with your real files/links -->
-        <!-- <a class="btn" href="alberta_market_data.csv" target="_blank">Download dataset (CSV)</a> -->
-        <!-- <a class="btn secondary" href="https://public.tableau.com/views/YOUR_DASHBOARD" target="_blank">View Tableau dashboard</a> -->
-        <!-- Optional -->
-        <!-- <a class="btn secondary" href="https://github.com/YOURUSER/YOURREPO" target="_blank">GitHub</a> -->
-      </div>
-    </header>
+      section {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 16px 16px;
+      }
+      h2 { margin: 0 0 10px; font-size: 18px; }
+      h3 {
+        margin: 14px 0 8px;
+        font-size: 14px;
+        color: var(--muted);
+        font-weight: 650;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      p { margin: 8px 0; }
+      ul, ol { margin: 8px 0 0 18px; }
+      li { margin: 6px 0; }
 
-    <div class="grid">
+      .callout {
+        margin-top: 12px;
+        background: var(--panel2);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 12px 12px;
+      }
+      .callout strong { color: var(--text); }
 
-      <section>
-        <h2>1) Goal</h2>
-        <p>
-          Build a single table with <strong>one row per hour</strong> for:
-          <strong>2026-01-01 00:00 → 2026-01-31 23:00 (MPT)</strong>.
-          The table is designed for Tableau so charts can be filtered by week/day.
+      .tag {
+        display: inline-block;
+        padding: 2px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: rgba(255,255,255,0.05);
+        color: var(--muted);
+        font-size: 12px;
+        margin-right: 8px;
+      }
+      .tag.ok {
+        border-color: rgba(142,227,165,0.35);
+        background: rgba(142,227,165,0.08);
+        color: var(--ok);
+      }
+      .tag.warn {
+        border-color: rgba(255,210,122,0.35);
+        background: rgba(255,210,122,0.08);
+        color: var(--warn);
+      }
+
+      pre {
+        background: var(--code);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 12px;
+        overflow: auto;
+        margin: 10px 0 0;
+      }
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-size: 13px;
+        color: #d9e7ff;
+      }
+      .small { font-size: 13px; color: var(--muted); }
+      .footer { margin-top: 16px; color: var(--muted); font-size: 13px; text-align: center; }
+      .divider { height: 1px; background: var(--line); margin: 12px 0; }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <header>
+        <h1>Alberta Market Data Pipeline</h1>
+        <p class="sub">
+          Technical appendix for the Alberta case study. This page documents how the January 2026 hourly dataset
+          was collected from AESO public APIs, merged across sources, and validated (time coverage + missing hours).
         </p>
-        <div class="callout">
-          <span class="tag ok">Output</span>
-          <span class="tag">Date (MPT)</span>
-          <span class="tag">pool_price</span>
-          <span class="tag">GAS / WIND / HYDRO / SOLAR_daytime</span>
-          <span class="tag">ac</span>
-          <span class="tag">IMPORTER / EXPORTER</span>
-          <p class="small" style="margin-top:8px;">
-            <strong>Metered volume</strong> = actual generation in the settlement hour (MW).<br/>
-            <strong>AC</strong> = available capability (MW), defined by AESO as <code>MC − (MBO OUT + OP OUT)</code>.
+      </header>
+
+      <div class="grid">
+        <section>
+          <h2>1) Goal</h2>
+          <p>
+            Build a single table with <strong>one row per hour</strong> for:
+            <strong>2026-01-01 00:00 → 2026-01-31 23:00 (MPT)</strong>.
+            The table is designed for Tableau so charts can be filtered by week/day.
           </p>
-        </div>
-      </section>
 
-      <section>
-        <h2>2) Data sources</h2>
-        <ul>
-          <li><strong>Pool Price</strong> (hourly): Alberta pool price time series.</li>
-          <li><strong>Metered Volume</strong> (hourly): generation aggregated by fuel type; asset classes used for importer/exporter.</li>
-          <li><strong>AIES Generation Capacity</strong> (hourly): MC, MBO OUT, OP OUT, AC (system capability proxy).</li>
-        </ul>
-        <div class="divider"></div>
-        <p class="small">
-          All datasets are aligned on <strong>Date (MPT)</strong> and merged into a single “analysis table” for visualization.
-        </p>
-      </section>
+          <div class="callout">
+            <span class="tag ok">Output</span>
+            <span class="tag">Date (MPT)</span>
+            <span class="tag">pool_price</span>
+            <span class="tag">GAS / WIND / HYDRO / SOLAR_daytime</span>
+            <span class="tag">ac</span>
+            <span class="tag">IMPORTER / EXPORTER</span>
 
-    </div>
+            <p class="small" style="margin-top: 8px;">
+              <strong>Metered volume</strong> = actual generation in the settlement hour (MW).<br />
+              <strong>AC</strong> = available capability (MW), defined by AESO as <code>MC − (MBO OUT + OP OUT)</code>.
+            </p>
+          </div>
+        </section>
 
-    <section style="margin-top:14px;">
-      <h2>3) Pipeline summary</h2>
+        <section>
+          <h2>2) Data sources</h2>
+          <ul>
+            <li><strong>Pool Price</strong> (hourly): Alberta pool price time series.</li>
+            <li>
+              <strong>Metered Volume</strong> (hourly): generation aggregated by fuel type; asset classes used for importer/exporter.
+            </li>
+            <li><strong>AIES Generation Capacity</strong> (hourly): MC, MBO OUT, OP OUT, AC (system capability proxy).</li>
+          </ul>
 
-      <h3>Steps</h3>
-      <ol>
-        <li>Pull each dataset for January 2026 (some endpoints require split calls due to range limits).</li>
-        <!-- <li>Parse JSON to tidy tables keyed on <code>Date (MPT)</code>.</li> -->
-        <li>Aggregate to hourly totals and pivot to wide format (fuel columns; asset-type columns).</li>
-        <li>Merge: price + fuel generation + AC + importer/exporter.</li>
-        <!-- <li>Create derived fields used in Tableau (total generation; net interchange).</li> -->
-        <li>Run validation checks (expected hours, missing timestamps, boundary effects).</li>
-        <li>Export the final CSV.</li>
-      </ol>
+          <div class="divider"></div>
 
-      <h3>Core merge (reference)</h3>
-      <pre><code># price + fuel generation
+          <p class="small">
+            All datasets are aligned on <strong>Date (MPT)</strong> and merged into a single “analysis table” for visualization.
+          </p>
+        </section>
+      </div>
+
+      <section style="margin-top: 14px;">
+        <h2>3) Pipeline summary</h2>
+
+        <h3>Steps</h3>
+        <ol>
+          <li>Pull each dataset for January 2026 (some endpoints require split calls due to range limits).</li>
+          <li>Aggregate to hourly totals and pivot to wide format (fuel columns; asset-type columns).</li>
+          <li>Merge: price + fuel generation + AC + importer/exporter.</li>
+          <li>Run validation checks (expected hours, missing timestamps, boundary effects).</li>
+          <li>Export the final CSV.</li>
+        </ol>
+
+        <h3>Core merge (reference)</h3>
+        <pre><code># price + fuel generation
 price_vol = pd.merge(
     pool_price,
     wide_vol[['GAS','WIND','HYDRO','SOLAR_daytime']].reset_index(),
@@ -201,21 +201,21 @@ final = pd.merge(
 final['total_generation'] = final[['GAS','WIND','HYDRO','SOLAR_daytime']].sum(axis=1)
 final['net_interchange'] = final['EXPORTER'] - final['IMPORTER']</code></pre>
 
-      <p class="small">
-        Note: merges should be done carefully (inner vs left) to avoid dropping hours when one source is missing.
-      </p>
-    </section>
+        <p class="small">
+          Note: merges should be done carefully (inner vs left) to avoid dropping hours when one source is missing.
+        </p>
+      </section>
 
-    <section>
-      <h2>4) Data validation</h2>
+      <section>
+        <h2>4) Data validation</h2>
 
-      <h3>Completeness check</h3>
-      <p>
-        Expected <strong>744</strong> hourly timestamps in January (31 × 24). Validation compares an expected hourly index
-        against the final dataset’s <code>Date (MPT)</code>.
-      </p>
+        <h3>Completeness check</h3>
+        <p>
+          Expected <strong>744</strong> hourly timestamps in January (31 × 24). Validation compares an expected hourly index
+          against the final dataset’s <code>Date (MPT)</code>.
+        </p>
 
-      <pre><code>expected = pd.date_range("2026-01-01 00:00", "2026-01-31 23:00", freq="H")
+        <pre><code>expected = pd.date_range("2026-01-01 00:00", "2026-01-31 23:00", freq="H")
 actual = pd.to_datetime(final["Date (MPT)"]).drop_duplicates()
 
 missing = expected.difference(actual)
@@ -225,39 +225,37 @@ print("Actual:", len(actual))
 print("Missing hours:", len(missing))
 print(missing)</code></pre>
 
-      <div class="callout">
-        <span class="tag warn">Lesson learned</span>
-        <p style="margin:8px 0 0;">
-          When an API forces split calls (e.g., due to a date-range cap), boundary handling can exclude a full day if the
-          endpoint treats <code>endDate</code> as exclusive.
-        </p>
-        <p class="small" style="margin-top:8px;">
-          <strong>Observed gap (example):</strong> all hours for <code>2026-01-17 00:00 → 2026-01-17 23:00</code> missing due to split-call boundary.
-          <br/>
-          <strong>Mitigation:</strong> overlap the boundary day (end first call on Jan 18), then drop duplicate timestamps.
-        </p>
-      </div>
+        <div class="callout">
+          <span class="tag warn">Lesson learned</span>
+          <p style="margin: 8px 0 0;">
+            When an API forces split calls (e.g., due to a date-range cap), boundary handling can exclude a full day if the
+            endpoint treats <code>endDate</code> as exclusive.
+          </p>
+          <p class="small" style="margin-top: 8px;">
+            <strong>Observed gap (example):</strong> all hours for <code>2026-01-17 00:00 → 2026-01-17 23:00</code> missing due to split-call boundary.<br />
+            <strong>Mitigation:</strong> overlap the boundary day (end first call on Jan 18), then drop duplicate timestamps.
+          </p>
+        </div>
 
-      <h3>Boundary overlap pattern (mitigation)</h3>
-      <pre><code># Overlap boundary and de-duplicate by timestamp
+        <h3>Boundary overlap pattern (mitigation)</h3>
+        <pre><code># Overlap boundary and de-duplicate by timestamp
 df_all = pd.concat([df_part1, df_part2], ignore_index=True)
 df_all["Date (MPT)"] = pd.to_datetime(df_all["Date (MPT)"])
 df_all = df_all.drop_duplicates(subset=["Date (MPT)"]).sort_values("Date (MPT)")</code></pre>
-    </section>
+      </section>
 
-    <section>
-      <h2>5) Output</h2>
-      <p>Final table exported for Tableau:</p>
-      <pre><code>final.to_csv("alberta_market_data.csv", index=False)</code></pre>
-      <p class="small">
-        Tableau tip: set <code>Date (MPT)</code> to “Date &amp; Time” and filter by week to explore cold snap periods.
-      </p>
-    </section>
+      <section>
+        <h2>5) Output</h2>
+        <p>Final table exported for Tableau:</p>
+        <pre><code>final.to_csv("alberta_market_data.csv", index=False)</code></pre>
+        <p class="small">
+          Tableau tip: set <code>Date (MPT)</code> to “Date &amp; Time” and filter by week to explore cold snap periods.
+        </p>
+      </section>
 
-    <div class="footer">
-      Built for reproducibility: sources → pipeline → validation → export.
+      <div class="footer">
+        Built for reproducibility: sources → pipeline → validation → export.
+      </div>
     </div>
-
-  </div>
-</body>
+  </body>
 </html>
