@@ -116,8 +116,8 @@
 
       <div class="toplinks">
         <!-- Replace these with your real files/links -->
-        <!--a class="btn" href="alberta_market_data.csv" target="_blank">Download dataset (CSV)</a-->
-        <!--a class="btn secondary" href="https://public.tableau.com/views/YOUR_DASHBOARD" target="_blank">View Tableau dashboard</a-->
+        <!-- <a class="btn" href="alberta_market_data.csv" target="_blank">Download dataset (CSV)</a> -->
+        <!-- <a class="btn secondary" href="https://public.tableau.com/views/YOUR_DASHBOARD" target="_blank">View Tableau dashboard</a> -->
         <!-- Optional -->
         <!-- <a class="btn secondary" href="https://github.com/YOURUSER/YOURREPO" target="_blank">GitHub</a> -->
       </div>
@@ -167,10 +167,10 @@
       <h3>Steps</h3>
       <ol>
         <li>Pull each dataset for January 2026 (some endpoints require split calls due to range limits).</li>
-        <!--li>Parse JSON to tidy tables keyed on <code>Date (MPT)</code>.</li-->
+        <!-- <li>Parse JSON to tidy tables keyed on <code>Date (MPT)</code>.</li> -->
         <li>Aggregate to hourly totals and pivot to wide format (fuel columns; asset-type columns).</li>
         <li>Merge: price + fuel generation + AC + importer/exporter.</li>
-        <!--li>Create derived fields used in Tableau (total generation; net interchange).</li-->
+        <!-- <li>Create derived fields used in Tableau (total generation; net interchange).</li> -->
         <li>Run validation checks (expected hours, missing timestamps, boundary effects).</li>
         <li>Export the final CSV.</li>
       </ol>
