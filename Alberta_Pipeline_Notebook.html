@@ -1,187 +1,293 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Alberta Market Data Pipeline</title>
-  <style>
-    :root{
-      --bg:#0c111b;
-      --panel:#111a2a;
-      --panel2:#0f1726;
-      --text:#e8eef7;
-      --muted:#a9b7cc;
-      --line:#23314a;
-      --accent:#6aa6ff;
-      --code:#0b1322;
-      --ok:#8ee3a5;
-      --warn:#ffd27a;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      background:var(--bg);
-      color:var(--text);
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;
-      line-height:1.6;
-    }
-    a{color:var(--accent);text-decoration:none}
-    a:hover{text-decoration:underline}
-    .wrap{max-width:980px;margin:0 auto;padding:28px 18px 64px}
-    header{
-      padding:18px 18px 16px;
-      background:linear-gradient(180deg, rgba(106,166,255,0.10), rgba(17,26,42,0.0));
-      border:1px solid var(--line);
-      border-radius:16px;
-      margin-bottom:18px;
-    }
-    h1{margin:0 0 6px;font-size:26px;letter-spacing:-0.2px}
-    .sub{margin:0;color:var(--muted);max-width:78ch}
-    .grid{display:grid;grid-template-columns:1fr;gap:14px}
-    @media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
-    section{
-      background:var(--panel);
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:16px 16px;
-    }
-    h2{margin:0 0 10px;font-size:18px}
-    h3{margin:14px 0 8px;font-size:14px;color:var(--muted);font-weight:650;text-transform:uppercase;letter-spacing:0.06em}
-    p{margin:8px 0}
-    ul,ol{margin:8px 0 0 18px}
-    li{margin:6px 0}
-    .callout{
-      margin-top:12px;
-      background:var(--panel2);
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:12px 12px;
-    }
-    .tag{
-      display:inline-block;
-      padding:2px 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,0.05);
-      color:var(--muted);
-      font-size:12px;
-      margin-right:8px;
-    }
-    .tag.ok{border-color:rgba(142,227,165,0.35);background:rgba(142,227,165,0.08);color:var(--ok)}
-    .tag.warn{border-color:rgba(255,210,122,0.35);background:rgba(255,210,122,0.08);color:var(--warn)}
-    pre{
-      background:var(--code);
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:12px;
-      overflow:auto;
-      margin:10px 0 0;
-    }
-    code{
-      font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
-      font-size:13px;
-      color:#d9e7ff;
-    }
-    .small{font-size:13px;color:var(--muted)}
-    .footer{margin-top:16px;color:var(--muted);font-size:13px;text-align:center}
-    .divider{height:1px;background:var(--line);margin:12px 0}
-  </style>
+<meta charset="UTF-8" />
+<title>Alberta Market Data Pipeline</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<style>
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  margin: 0;
+  background: #f4f5f7;
+  color: #111827;
+}
+
+header {
+  text-align: center;
+  padding: 70px 20px 35px;
+  background: #f4f5f7;
+  position: relative;
+}
+
+header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 4px;
+  background: #7c3aed;
+  border-radius: 2px;
+}
+
+header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0 0 8px;
+}
+
+header p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 0.95rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-wrap {
+  max-width: 1100px;
+  margin: 22px auto 0;
+  padding: 0 20px;
+}
+
+.cards-grid {
+  display: grid;
+  gap: 18px;
+  margin: 18px 0 30px;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 22px;
+  border-left: 6px solid #7c3aed;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.card h2 {
+  margin: 0 0 8px;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.card p {
+  margin: 8px 0;
+  color: #374151;
+  line-height: 1.6;
+}
+
+.muted {
+  color: #6b7280;
+  font-size: 0.92rem;
+}
+
+ul, ol {
+  margin: 10px 0 0 20px;
+  color: #374151;
+}
+
+li { margin: 6px 0; }
+
+.kpi-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.kpi {
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+pre {
+  margin: 12px 0 0;
+  padding: 14px;
+  border-radius: 10px;
+  background: #0b1020;
+  color: #e5e7eb;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+code {
+  font-family: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+}
+
+.callout {
+  margin-top: 12px;
+  padding: 14px;
+  border-radius: 10px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+}
+
+.callout strong {
+  color: #111827;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #9ca3af;
+  padding: 22px 0 30px;
+}
+</style>
 </head>
 
 <body>
-  <div class="wrap">
 
-    <header>
-      <h1>Alberta Market Data Pipeline</h1>
-      <p class="sub">
-        Technical appendix for the Alberta case study. This page documents how the January 2026 hourly dataset
-        was collected from AESO public APIs, merged across sources, and validated (time coverage + missing hours).
-      </p>
-    </header>
+<header>
+<h1>Alberta Market Data Pipeline</h1>
+<p>
+Technical appendix documenting how the January 2026 hourly dataset
+was collected from AESO public APIs, merged across sources,
+and validated for time coverage.
+</p>
+</header>
 
-    <div class="grid">
-      <section>
-        <h2>1) Goal</h2>
-        <p>
-          Build a single table with <strong>one row per hour</strong> for:
-          <strong>2026-01-01 00:00 → 2026-01-31 23:00 (MPT)</strong>.
-        </p>
-        <div class="callout">
-          <span class="tag ok">Output</span>
-          <span class="tag">Date (MPT)</span>
-          <span class="tag">pool_price</span>
-          <span class="tag">GAS / WIND / HYDRO / SOLAR_daytime</span>
-          <span class="tag">ac</span>
-          <span class="tag">IMPORTER / EXPORTER</span>
-          <p class="small" style="margin-top:8px;">
-            <strong>Metered volume</strong> = actual generation in the settlement hour (MW).<br/>
-            <strong>AC</strong> = available capability (MW): <code>MC - (MBO OUT + OP OUT)</code>.
-          </p>
-        </div>
-      </section>
+<main class="section-wrap">
 
-      <section>
-        <h2>2) Data sources</h2>
-        <ul>
-          <li><strong>Pool Price</strong> (hourly).</li>
-          <li><strong>Metered Volume</strong> (hourly) aggregated by fuel type; asset classes used for importer/exporter.</li>
-          <li><strong>AIES Generation Capacity</strong> (hourly): MC, MBO OUT, OP OUT, AC.</li>
-        </ul>
-        <div class="divider"></div>
-        <p class="small">
-          All datasets are aligned on <strong>Date (MPT)</strong> and merged into a single “analysis table”.
-        </p>
-      </section>
-    </div>
+<div class="cards-grid">
 
-    <section style="margin-top:14px;">
-      <h2>3) Pipeline summary</h2>
+<article class="card">
+<h2>1) Goal</h2>
 
-      <h3>Steps</h3>
-      <ol>
-        <li>Pull each dataset for January 2026 (split calls where required).</li>
-        <li>Aggregate to hourly totals and pivot to wide format.</li>
-        <li>Merge: price + fuel generation + AC + importer/exporter.</li>
-        <li>Validate expected hourly coverage and identify missing timestamps.</li>
-        <li>Export final CSV.</li>
-      </ol>
+<p class="muted">
+Build a single analysis table with <strong>one row per hour</strong> for
+<strong>2026-01-01 00:00 → 2026-01-31 23:00 (MPT)</strong>.
+</p>
 
-      <h3>Core merge (reference)</h3>
-      <pre><code>price_vol = pd.merge(
-    pool_price,
-    wide_vol[['GAS','WIND','HYDRO','SOLAR_daytime']].reset_index(),
-    on='Date (MPT)'
+<div class="kpi-row">
+<div class="kpi"><strong>Date</strong>: Date (MPT)</div>
+<div class="kpi"><strong>Price</strong>: pool_price</div>
+<div class="kpi"><strong>Generation</strong>: GAS / WIND / HYDRO / SOLAR_daytime</div>
+<div class="kpi"><strong>Capability</strong>: ac</div>
+<div class="kpi"><strong>Interchange proxy</strong>: IMPORTER / EXPORTER</div>
+</div>
+
+<div class="callout">
+<p class="muted" style="margin:0;">
+<strong>Metered volume</strong> = actual generation in the settlement hour (MW).<br>
+<strong>AC</strong> = available capability (MW): <code>MC − (MBO OUT + OP OUT)</code>.
+</p>
+</div>
+
+</article>
+
+<article class="card">
+
+<h2>2) Data sources</h2>
+
+<ul>
+<li><strong>Pool Price</strong> (hourly).</li>
+<li><strong>Metered Volume</strong> (hourly), aggregated by fuel type.</li>
+<li><strong>AIES Generation Capacity</strong> (hourly): MC, MBO OUT, OP OUT, AC.</li>
+</ul>
+
+</article>
+
+<article class="card">
+
+<h2>3) Core merge</h2>
+
+<p class="muted">
+Datasets are aligned on <strong>Date (MPT)</strong> and merged into a single analysis table.
+</p>
+
+<pre><code>
+price_vol = pd.merge(
+pool_price,
+wide_vol[['GAS','WIND','HYDRO','SOLAR_daytime']].reset_index(),
+on='Date (MPT)'
 )
 
 price_vol_ac = pd.merge(
-    price_vol,
-    aies[['ac']].reset_index(),
-    on='Date (MPT)'
+price_vol,
+aies[['ac']].reset_index(),
+on='Date (MPT)'
 )
 
 final = pd.merge(
-    price_vol_ac,
-    wide_asset_vol[['IMPORTER','EXPORTER']].reset_index(),
-    on='Date (MPT)'
-)</code></pre>
-    </section>
+price_vol_ac,
+wide_asset_vol[['IMPORTER','EXPORTER']].reset_index(),
+on='Date (MPT)'
+)
 
-    <section>
-      <h2>4) Data validation</h2>
-      <pre><code>expected = pd.date_range("2026-01-01 00:00", "2026-01-31 23:00", freq="H")
+final['total_generation'] =
+final[['GAS','WIND','HYDRO','SOLAR_daytime']].sum(axis=1)
+
+final['net_interchange'] =
+final['EXPORTER'] - final['IMPORTER']
+</code></pre>
+
+</article>
+
+<article class="card">
+
+<h2>4) Data validation</h2>
+
+<p class="muted">
+January should contain <strong>744 hourly observations</strong> (31 × 24).
+The pipeline verifies completeness by comparing expected timestamps
+to the merged dataset.
+</p>
+
+<pre><code>
+expected = pd.date_range(
+"2026-01-01 00:00",
+"2026-01-31 23:00",
+freq="H"
+)
+
 actual = pd.to_datetime(final["Date (MPT)"]).drop_duplicates()
-missing = expected.difference(actual)</code></pre>
-    </section>
 
-    <section>
-      <h2>5) Output</h2>
-      <pre><code>final.to_csv("alberta_market_data.csv", index=False)</code></pre>
-    </section>
+missing = expected.difference(actual)
 
-    <div class="footer">
-      Built for reproducibility: sources → pipeline → validation → export.
-    </div>
+print("Expected:", len(expected))
+print("Actual:", len(actual))
+print("Missing:", len(missing))
+</code></pre>
 
-  </div>
+<div class="callout">
+<p style="margin:0;" class="muted">
+Missing hours can occur when API calls are split across date ranges.
+Overlapping boundary days and removing duplicate timestamps
+prevents accidental gaps in the time series.
+</p>
+</div>
+
+</article>
+
+<article class="card">
+
+<h2>5) Output</h2>
+
+<pre><code>
+final.to_csv("alberta_market_data.csv", index=False)
+</code></pre>
+
+<p class="muted">
+This CSV contains the final hourly dataset produced by the pipeline.
+</p>
+
+</article>
+
+</div>
+
+</main>
+
+<footer>
+© Name
+</footer>
+
 </body>
 </html>
