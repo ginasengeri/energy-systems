@@ -19,6 +19,18 @@ text-align:center;
 padding:70px 20px 20px;
 }
 
+header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 4px;
+  background: #7c3aed;
+  border-radius: 2px;
+}
+
 .cards-grid{
 max-width:1000px;
 margin:auto;
