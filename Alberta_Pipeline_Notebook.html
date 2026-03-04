@@ -90,8 +90,8 @@ padding:30px 0;
 This appendix documents the process used to construct the dataset used in the analysis.
 Data were collected from publicly available AESO API endpoints and transformed into a
 single hourly table containing system price, generation by fuel type, system capability,
-and interchange indicators. The pipeline follows a sequence of API retrieval,
-data parsing, aggregation, merging, validation, and final export.
+and interchange. The pipeline begins with API retrieval followed by
+data flattening, aggregation, merging, validation, and final export.
 </p>
 
 <h2>Data sources</h2>
@@ -105,9 +105,7 @@ data parsing, aggregation, merging, validation, and final export.
 </ul>
 
 <p>
-These reports are retrieved as JSON responses and converted into tabular format for
-subsequent processing.
-</p>
+These reports are retrieved as JSON responses and converted into table format.
 
 <pre><code>import requests
 import pandas as pd
@@ -123,7 +121,7 @@ data = response.json()</code></pre>
 
 <p>
 Metered volume responses contain nested structures where each participant includes
-multiple assets and each asset includes a list of hourly observations. These nested
+multiple assets and each asset includes a list of hourly volumes. These nested
 records are flattened into a row-level table.
 </p>
 
@@ -213,7 +211,7 @@ are split across multiple date ranges.
 <p>
 The final dataset contains one row per hour and combines price, generation,
 system capability, and interchange indicators. The table is exported as a CSV file
-for downstream analysis and visualization.
+for analysis and visualization.
 </p>
 
 <pre><code>price_vol_ac_interchange.to_csv(
