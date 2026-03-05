@@ -1,232 +1,242 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Alberta's January Price Spike Was Not Caused by Cold</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      margin: 0;
-      background: #f4f5f7;
-      color: #111827;
-    }
+    * { box-sizing: border-box; }
 
-    header {
-      text-align: center;
-      padding: 70px 20px 30px;
-      background: #f4f5f7;
-    }
+```
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  margin: 0;
+  padding: 32px 16px;
+  background: #f4f5f7;
+  color: #111827;
+}
 
-    header .label {
-      font-size: 0.75rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #6b7280;
-      margin-bottom: 12px;
-    }
+.report-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 28px 32px 36px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+}
 
-    header h1 {
-      font-size: 1.9rem;
-      font-weight: 800;
-      margin: 0 0 12px;
-      line-height: 1.25;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+header {
+  text-align: center;
+  padding: 20px 0 30px;
+}
 
-    header p {
-      margin: 0 auto;
-      color: #6b7280;
-      font-size: 0.95rem;
-      max-width: 600px;
-    }
+header .label {
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #6b7280;
+  margin-bottom: 12px;
+}
 
-    .meta {
-      text-align: center;
-      font-size: 0.8rem;
-      color: #9ca3af;
-      margin-top: 10px;
-    }
+header h1 {
+  font-size: 1.9rem;
+  font-weight: 800;
+  margin: 0 0 12px;
+  line-height: 1.25;
+}
 
-    .content {
-      max-width: 740px;
-      margin: 40px auto 80px;
-      padding: 0 20px;
-    }
+header p {
+  margin: 0 auto;
+  color: #6b7280;
+  font-size: 0.95rem;
+}
 
-    .section {
-      margin-bottom: 40px;
-    }
+.meta {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #9ca3af;
+  margin-top: 10px;
+}
 
-    .section h2 {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #111827;
-      margin: 0 0 10px;
-    }
+.section {
+  margin-bottom: 32px;
+}
 
-    .section p {
-      font-size: 0.97rem;
-      line-height: 1.75;
-      color: #374151;
-      margin: 0 0 12px;
-    }
+.section h2 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 10px;
+  border-bottom: 1px solid #e0e3e8;
+  padding-bottom: 4px;
+}
 
-    .viz-block {
-      background: #ffffff;
-      border-radius: 10px;
-      padding: 24px;
-      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.07);
-      margin: 24px 0;
-    }
+.section p {
+  font-size: 0.97rem;
+  line-height: 1.75;
+  color: #374151;
+  margin: 0 0 12px;
+}
 
-    .viz-block .viz-title {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: #9ca3af;
-      margin-bottom: 16px;
-    }
+.viz-block {
+  background: #f9fafb;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid #e0e3e8;
+  margin: 16px 0;
+}
 
-    .callout {
-      background: #ecfdf5;
-      border-left: 4px solid #10b981;
-      border-radius: 6px;
-      padding: 16px 20px;
-      margin: 20px 0;
-      font-size: 0.95rem;
-      color: #065f46;
-      line-height: 1.65;
-    }
+.viz-title {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9ca3af;
+  margin-bottom: 12px;
+}
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.88rem;
-      margin: 16px 0 24px;
-      background: #ffffff;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.07);
-    }
+.callout {
+  background: #ecfdf5;
+  border-left: 4px solid #10b981;
+  border-radius: 6px;
+  padding: 16px 20px;
+  margin: 20px 0;
+  font-size: 0.95rem;
+  color: #065f46;
+  line-height: 1.65;
+}
 
-    th {
-      background: #f3f4f6;
-      padding: 10px 14px;
-      text-align: left;
-      font-weight: 600;
-      border-bottom: 1px solid #e5e7eb;
-      font-size: 0.82rem;
-    }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  margin: 16px 0;
+}
 
-    td {
-      padding: 10px 14px;
-      border-bottom: 1px solid #f3f4f6;
-      color: #374151;
-    }
+th {
+  background: #f3f4f6;
+  padding: 8px 12px;
+  text-align: left;
+  font-weight: 600;
+  border: 1px solid #e0e3e8;
+}
 
-    tr.highlight td {
-      background: #ecfdf5;
-      font-weight: 600;
-      color: #065f46;
-    }
+td {
+  padding: 8px 12px;
+  border: 1px solid #e0e3e8;
+  color: #374151;
+}
 
-    tr:last-child td { border-bottom: none; }
+tr.highlight td {
+  background: #ecfdf5;
+  font-weight: 600;
+  color: #065f46;
+}
 
-    .closing-box {
-      background: #374151;
-      color: #f9fafb;
-      border-radius: 10px;
-      padding: 24px 28px;
-      margin-top: 36px;
-    }
+.table-note {
+  font-size: 0.82rem;
+  color: #9ca3af;
+  margin-top: 4px;
+  font-style: italic;
+}
 
-    .closing-box h3 {
-      margin: 0 0 10px;
-      font-size: 1rem;
-      font-weight: 700;
-      color: #f9fafb;
-    }
+.closing-box {
+  background: #374151;
+  color: #f9fafb;
+  border-radius: 10px;
+  padding: 24px 28px;
+  margin-top: 36px;
+}
 
-    .closing-box p {
-      margin: 0;
-      font-size: 0.95rem;
-      line-height: 1.75;
-      color: #e5e7eb;
-    }
+.closing-box h3 {
+  margin: 0 0 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f9fafb;
+}
 
-    footer {
-      text-align: center;
-      font-size: 0.75rem;
-      color: #9ca3af;
-      padding-bottom: 30px;
-    }
+.closing-box p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: #e5e7eb;
+}
 
-    footer a {
-      color: #2563eb;
-      text-decoration: none;
-    }
+footer {
+  margin-top: 28px;
+  padding-top: 16px;
+  border-top: 1px solid #e0e3e8;
+  text-align: center;
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
 
-    footer a:hover { text-decoration: underline; }
+footer a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+footer a:hover { text-decoration: underline; }
+```
+
   </style>
 </head>
 <body>
+<div class="report-container">
 
-<header>
-  <div class="label">Market Insight · Alberta · January 2026</div>
-  <h1>Alberta's January Price Spike Was Not Caused by Cold</h1>
-  <p>During the first week of January 2026, wind primarily determined when prices spiked, rather than temperature.</p>
-  <div class="meta">Data: AESO · Analysis: Independent · Published March 2026</div>
-</header>
-
-<div class="content">
+  <header>
+    <div class="label">Market Insight · Alberta · January 2026</div>
+    <h1>Alberta's January Price Spike Was Not Caused by Cold</h1>
+    <p>During the first week of January 2026, wind primarily determined when prices spiked, rather than temperature.</p>
+    <div class="meta">Data: AESO · Analysis: Independent · Published March 2026</div>
+  </header>
 
   <div class="section">
     <h2>What happened</h2>
     <p>On January 4th, Alberta recorded temperatures as low as −31°C, 10°C lower than previous days. Prices remained relatively low throughout the drop as wind generation climbed during the day.</p>
     <p>The price spike came the following morning, as temperatures began to recover and wind generation fell. At 11am on January 5th, Alberta's pool price reached $858 CAD/MWh — the highest of the month.</p>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Temperature range</th>
-          <th>Wind at 11am (MW)</th>
-          <th>Pool price at 11am (CAD/MWh)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Jan 4</td>
-          <td>−31°C to −12°C</td>
-          <td>261 MW</td>
-          <td>$52.84</td>
-        </tr>
-        <tr class="highlight">
-          <td>Jan 5</td>
-          <td>−13°C to +2°C</td>
-          <td>353 MW</td>
-          <td>$858.44</td>
-        </tr>
-        <tr>
-          <td>Jan 6</td>
-          <td>−9°C to +1°C</td>
-          <td>3,782 MW</td>
-          <td>$0.00</td>
-        </tr>
-      </tbody>
-    </table>
-    <p style="font-size:0.82rem; color:#9ca3af; margin-top:-16px;">All figures at 11am MPT. Jan 4 had low wind but low price — demand context and time-of-day factors also influence outcomes. Jan 5 and Jan 6 illustrate the wind-price relationship most directly.</p>
+```
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Temperature range</th>
+      <th>Wind at 11am (MW)</th>
+      <th>Pool price at 11am (CAD/MWh)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Jan 4</td>
+      <td>−31°C to −12°C</td>
+      <td>261 MW</td>
+      <td>$52.84</td>
+    </tr>
+    <tr class="highlight">
+      <td>Jan 5</td>
+      <td>−13°C to +2°C</td>
+      <td>353 MW</td>
+      <td>$858.44</td>
+    </tr>
+    <tr>
+      <td>Jan 6</td>
+      <td>−9°C to +1°C</td>
+      <td>3,782 MW</td>
+      <td>$0.00</td>
+    </tr>
+  </tbody>
+</table>
+<p class="table-note">All figures at 11am MPT. Jan 4 had low wind but low price — demand context and time-of-day factors also influence outcomes.</p>
+```
+
   </div>
 
   <div class="section">
     <h2>The data</h2>
-
     <div class="viz-block">
       <div class="viz-title">Fig. 1 — Wind metered volume and pool price, Jan 2–6 2026</div>
-      <div class='tableauPlaceholder' style='position:relative;width:100%;'>
+      <div class='tableauPlaceholder' id='viz1' style='position:relative'>
         <object class='tableauViz' style='display:none;'>
           <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
           <param name='embed_code_version' value='3' />
@@ -238,9 +248,12 @@
       </div>
     </div>
 
-    <div class="callout">
-      When wind was high on January 4th, prices stayed low at −31°C. When wind dropped on January 5th, prices spiked to $858, even at warmer temperatures.
-    </div>
+```
+<div class="callout">
+  When wind was high on January 4th, prices stayed low at −31°C. When wind dropped on January 5th, prices spiked to $858, even at warmer temperatures.
+</div>
+```
+
   </div>
 
   <div class="section">
@@ -251,27 +264,23 @@
 
   <div class="closing-box">
     <h3>The broader point</h3>
-    <p>The January 5th event illustrates a pattern where price reflect wind availability sometimes more than demand conditions. This means that a market designed around 
-      dispatchable generation — where demand largely determined price — faces new dynamics that a single uniform price cannot fully capture. This is part of what motivates 
-      Alberta's ongoing debate about market redesign.</p>
+    <p>The January 5th event illustrates a pattern where prices reflect wind availability sometimes more than demand conditions. This means that a market designed around dispatchable generation — where demand largely determined price — faces new dynamics that a single uniform price cannot fully capture. This is part of what motivates Alberta's ongoing debate about market redesign.</p>
   </div>
+
+  <footer>
+    <p>Data source: Alberta Electric System Operator (AESO) · January 2026</p>
+    <a href="market_insights.html">← Back to Market Insights</a>
+  </footer>
 
 </div>
 
-<footer>
-  <p>Data source: Alberta Electric System Operator (AESO) · January 2026</p>
-  <a href="market_insights.html">← Back to Market Insights</a>
-</footer>
-
 <script type='text/javascript'>
-  document.querySelectorAll('.tableauPlaceholder').forEach(function(placeholder) {
-    var viz = placeholder.getElementsByTagName('object')[0];
-    viz.style.width = '100%';
-    viz.style.height = '500px';
-  });
+  var viz = document.getElementById('viz1').getElementsByTagName('object')[0];
+  viz.style.width = '100%';
+  viz.style.height = '600px';
   var script = document.createElement('script');
   script.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-  document.body.appendChild(script);
+  viz.parentNode.insertBefore(script, viz);
 </script>
 
 </body>
