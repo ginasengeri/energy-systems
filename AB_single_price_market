@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wind Volatility and Alberta's Single-Price Market</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 0;
+      background: #f4f5f7;
+      color: #111827;
+    }
+
+    header {
+      text-align: center;
+      padding: 70px 20px 30px;
+      background: #f4f5f7;
+    }
+
+    header .label {
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #6b7280;
+      margin-bottom: 12px;
+    }
+
+    header h1 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      margin: 0 0 12px;
+      line-height: 1.25;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    header p {
+      margin: 0 auto;
+      color: #6b7280;
+      font-size: 0.95rem;
+      max-width: 600px;
+    }
+
+    .meta {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-top: 10px;
+    }
+
+    .content {
+      max-width: 740px;
+      margin: 40px auto 80px;
+      padding: 0 20px;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section h2 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #111827;
+      margin: 0 0 10px;
+    }
+
+    .section p {
+      font-size: 0.97rem;
+      line-height: 1.75;
+      color: #374151;
+      margin: 0 0 12px;
+    }
+
+    .viz-block {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 24px;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.07);
+      margin: 24px 0;
+    }
+
+    .viz-block .viz-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #9ca3af;
+      margin-bottom: 16px;
+    }
+
+    .callout {
+      background: #ecfdf5;
+      border-left: 4px solid #10b981;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+      color: #065f46;
+      line-height: 1.65;
+    }
+
+    .closing-box {
+      background: #374151;
+      color: #f9fafb;
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin-top: 36px;
+    }
+
+    .closing-box h3 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #f9fafb;
+    }
+
+    .closing-box p {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: #e5e7eb;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.75rem;
+      color: #9ca3af;
+      padding-bottom: 30px;
+    }
+
+    footer a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="label">Market Insight · Alberta · January 2026</div>
+  <h1>Wind Volatility and the Limits of Alberta's Single-Price Market</h1>
+  <p>As renewables grow, uniform electricity pricing struggles to reflect real system conditions. Here is what January 2026 data shows.</p>
+  <div class="meta">Data: AESO · Analysis: Independent · Published March 2026</div>
+</header>
+
+<div class="content">
+
+  <div class="section">
+    <h2>The variability problem</h2>
+    <p>Unlike dispatchable generation, wind produces power on the resource's schedule, not the market's. In January 2026, wind output varied at four times the rate of gas — not as an anomaly, but as a structural characteristic of the fuel type.</p>
+    <p>Gas supplies roughly 75% of Alberta's generation and moves the most in raw megawatt terms, but remains the most stable relative to its size. Wind, at around 19% of generation, fluctuates far more relative to its contribution. The two move in opposite directions: a correlation of −0.65 means that when wind rises, gas typically falls, and vice versa.</p>
+
+    <div class="viz-block">
+      <div class="viz-title">Fig. 1 — Relative variability by fuel type, January 2026</div>
+      <div class='tableauPlaceholder' style='position:relative;width:100%;'>
+        <object class='tableauViz' style='display:none;'>
+          <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+          <param name='embed_code_version' value='3' />
+          <param name='site_root' value='' />
+          <param name='name' value='RelativeVariability/RelativeVariability' />
+          <param name='tabs' value='no' />
+          <param name='toolbar' value='yes' />
+        </object>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Price suppression</h2>
+    <p>Because wind bids at near-zero marginal cost, high wind output hours systematically suppress pool prices. As wind generation increases, higher-cost gas peakers are displaced from the merit order and the system clearing price falls toward zero.</p>
+
+    <div class="viz-block">
+      <div class="viz-title">Fig. 2 — Pool price vs wind metered volume, January 2026 (daily averages)</div>
+      <div class='tableauPlaceholder' style='position:relative;width:100%;'>
+        <object class='tableauViz' style='display:none;'>
+          <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+          <param name='embed_code_version' value='3' />
+          <param name='site_root' value='' />
+          <param name='name' value='WindvPriceScatter/WindvPriceDash' />
+          <param name='tabs' value='no' />
+          <param name='toolbar' value='yes' />
+        </object>
+      </div>
+    </div>
+
+    <div class="callout">
+      The same variability that suppresses prices during high wind creates sharp spikes when output drops. On January 5th at 11am, with wind at just 353 MW, Alberta's pool price reached $858 CAD/MWh.
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>The investment signal problem</h2>
+    <p>Dispatchable capacity — the gas peakers Alberta needs for backup — recovers its fixed costs in high-price hours. A market where prices are either suppressed or spiking unpredictably makes it difficult to underwrite that investment with confidence.</p>
+    <p>A uniform province-wide price cannot distinguish between cheap power that is genuinely useful and cheap power that is overwhelming the system. As renewables grow, that distinction matters more, not less.</p>
+  </div>
+
+  <div class="closing-box">
+    <h3>Why this points to market redesign</h3>
+    <p>Alberta is actively debating a transition to Locational Marginal Pricing — a fundamental redesign of how electricity is priced across the grid. LMP would more accurately reflect real-time scarcity and system conditions, giving both generators and investors clearer signals about when and where capacity is actually needed. The data above does not prove LMP is the answer. It does show that the structural dynamics motivating the debate are already observable in Alberta's system today.</p>
+  </div>
+
+</div>
+
+<footer>
+  <p>Data source: Alberta Electric System Operator (AESO) · January 2026</p>
+  <a href="market_insights.html">← Back to Market Insights</a>
+</footer>
+
+<script type='text/javascript'>
+  document.querySelectorAll('.tableauPlaceholder').forEach(function(placeholder) {
+    var viz = placeholder.getElementsByTagName('object')[0];
+    viz.style.width = '100%';
+    viz.style.height = '500px';
+  });
+  var script = document.createElement('script');
+  script.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+  document.body.appendChild(script);
+</script>
+
+</body>
