@@ -109,21 +109,26 @@ header p {
 table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.85rem;
-  margin: 16px 0;
+  font-size: 0.88rem;
+  margin: 16px 0 24px;
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.07);
 }
 
 th {
   background: #f3f4f6;
-  padding: 8px 12px;
+  padding: 10px 14px;
   text-align: left;
   font-weight: 600;
-  border: 1px solid #e0e3e8;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 0.82rem;
 }
 
 td {
-  padding: 8px 12px;
-  border: 1px solid #e0e3e8;
+  padding: 10px 14px;
+  border-bottom: 1px solid #f3f4f6;
   color: #374151;
 }
 
@@ -133,12 +138,7 @@ tr.highlight td {
   color: #065f46;
 }
 
-.table-note {
-  font-size: 0.82rem;
-  color: #9ca3af;
-  margin-top: 4px;
-  font-style: italic;
-}
+tr:last-child td { border-bottom: none; }
 
 .closing-box {
   background: #374151;
@@ -188,7 +188,7 @@ footer a:hover { text-decoration: underline; }
     <div class="label">Market Insight · Alberta · January 2026</div>
     <h1>Alberta's January Price Spike Was Not Caused by Cold</h1>
     <p>During the first week of January 2026, wind primarily determined when prices spiked, rather than temperature.</p>
-    <div class="meta">Data: AESO · Analysis: Independent · Published March 2026</div>
+    <div class="meta">Data: AESO</div>
   </header>
 
   <div class="section">
@@ -227,28 +227,29 @@ footer a:hover { text-decoration: underline; }
     </tr>
   </tbody>
 </table>
-<p class="table-note">All figures at 11am MPT. Jan 4 had low wind but low price — demand context and time-of-day factors also influence outcomes.</p>
+<p style="font-size:0.82rem; color:#9ca3af; margin-top:-16px;">All figures at 11am MPT. Jan 4 had low wind but low price — demand context and time-of-day factors also influence outcomes. Jan 5 and Jan 6 illustrate the wind-price relationship most directly.</p>
 ```
 
   </div>
 
   <div class="section">
     <h2>The data</h2>
-    <div class="viz-block">
-      <div class="viz-title">Fig. 1 — Wind metered volume and pool price, Jan 2–6 2026</div>
-      <div class='tableauPlaceholder' id='viz1' style='position:relative'>
-        <object class='tableauViz' style='display:none;'>
-          <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-          <param name='embed_code_version' value='3' />
-          <param name='site_root' value='' />
-          <param name='name' value='Jan2-5PricevWind/Jan2-5PricevWind' />
-          <param name='tabs' value='no' />
-          <param name='toolbar' value='yes' />
-        </object>
-      </div>
-    </div>
 
 ```
+<div class="viz-block">
+  <div class="viz-title">Fig. 1 — Wind metered volume and pool price, Jan 2–6 2026</div>
+  <div class='tableauPlaceholder' id='viz1' style='position:relative'>
+    <object class='tableauViz' style='display:none;'>
+      <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+      <param name='embed_code_version' value='3' />
+      <param name='site_root' value='' />
+      <param name='name' value='Jan2-5PricevWind/Jan2-5PricevWind' />
+      <param name='tabs' value='no' />
+      <param name='toolbar' value='yes' />
+    </object>
+  </div>
+</div>
+
 <div class="callout">
   When wind was high on January 4th, prices stayed low at −31°C. When wind dropped on January 5th, prices spiked to $858, even at warmer temperatures.
 </div>
