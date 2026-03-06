@@ -143,25 +143,6 @@ footer a {
 
 footer a:hover { text-decoration: underline; }
 
-#viz1, #viz2 {
-  width: 100%;
-  overflow: hidden;
-}
-
-#viz1 {
-  aspect-ratio: 1000 / 480;
-}
-
-#viz2 {
-  aspect-ratio: 1000 / 500;
-}
-
-#viz1 object, #viz2 object,
-#viz1 iframe, #viz2 iframe {
-  width: 100% !important;
-  height: 100% !important;
-  display: block;
-}
   </style>
 </head>
 <body>
@@ -179,22 +160,10 @@ footer a:hover { text-decoration: underline; }
     <p>Unlike dispatchable generation, wind produces power on the resource's schedule. In January 2026, wind output varied at four times the rate of gas, which characterizes the nature of this fuel type.</p>
     <p>Gas supplies roughly 75% of Alberta's total output and is the most stable relative to its size. Wind, at around 19% of generation, fluctuates more relative to its contribution. Gas is used to balance wind fluctuations, with a correlation of −0.65 between the two.</p>
 
-
-<div class="viz-block">
-  <div class="viz-title">Fig. 1 — Relative variability by fuel type, January 2026</div>
-  <div class='tableauPlaceholder' id='viz1' style='position:relative'>
-    <object class='tableauViz'>
-      <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-      <param name='embed_code_version' value='3' />
-      <param name='site_root' value='' />
-      <param name='name' value='RelativeVariability/RelativeVariabilityDash' />
-      <param name='tabs' value='no' />
-      <param name='toolbar' value='no' />
-    </object>
-  </div>
-</div>
-<p style="font-size:0.82rem; color:#9ca3af; margin-top:4px;">Solar and hydro are included for completeness. 
-  The primary comparison for this analysis is wind and gas, which make up over 94% of Alberta's generation mix.</p>
+    <div class="viz-block">
+      <div class="viz-title">Fig. 1 — Relative variability by fuel type, January 2026</div>
+      <img src="fig1.png" style="width:100%; display:block; border-radius:6px;" alt="Relative variability by fuel type">
+    </div>
 
   </div>
 
@@ -202,25 +171,14 @@ footer a:hover { text-decoration: underline; }
     <h2>Price suppression</h2>
     <p>With wind at near-zero marginal cost, high wind output hours tend to suppress pool prices. As wind generation increases, higher-cost gas generators are forced to sell at low market prices, sometimes below their fixed costs.</p>
 
+    <div class="viz-block">
+      <div class="viz-title">Fig. 2 — Pool price vs wind metered volume, January 2026 (daily averages)</div>
+      <img src="fig2.png" style="width:100%; display:block; border-radius:6px;" alt="Pool price vs wind metered volume">
+    </div>
 
-<div class="viz-block">
-  <div class="viz-title">Fig. 2 — Pool price vs wind metered volume, January 2026 (daily averages)</div>
-  <div class='tableauPlaceholder' id='viz2' style='position:relative'>
-    <object class='tableauViz'>
-      <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-      <param name='embed_code_version' value='3' />
-      <param name='site_root' value='' />
-      <param name='name' value='WindvPriceScatter/WindvPriceScatterDash' />
-      <param name='tabs' value='no' />
-      <param name='toolbar' value='no' />
-    </object>
-  </div>
-</div>
-
-<div class="callout">
-The same variability that suppresses prices during high wind creates price spikes when output drops. On January 5th at 11am, pool price reached $858 CAD/MWh with wind at 353 MW.
-</div>
-
+    <div class="callout">
+      The same variability that suppresses prices during high wind creates price spikes when output drops. On January 5th at 11am, pool price reached $858 CAD/MWh with wind at 353 MW.
+    </div>
 
   </div>
 
@@ -238,7 +196,7 @@ The same variability that suppresses prices during high wind creates price spike
     <h3>Introduction of Locational Marginal Pricing</h3>
     <p>The Alberta Electric System Operator (AESO) is implementing 
       Locational Marginal Pricing — a pricing 
-      model that  determines electricity prices 
+      model that determines electricity prices 
       based on local supply, demand, and transmission 
       constraints. 
       Under LMP, prices vary by location, allowing the 
@@ -247,7 +205,7 @@ The same variability that suppresses prices during high wind creates price spike
       This system could provide clearer 
       signals to both generators and investors 
       about when and where capacity is needed.
-        </p>
+    </p>
   </div>
 
   <footer>
@@ -256,19 +214,5 @@ The same variability that suppresses prices during high wind creates price spike
   </footer>
 
 </div>
-
-<script type='text/javascript'>
-  ['viz1', 'viz2'].forEach(function(id) {
-  var placeholder = document.getElementById(id);
-  var obj = placeholder.getElementsByTagName('object')[0];
-  obj.style.width = '100%';
-  obj.style.height = '100%';
-  obj.style.display = 'block';
-});
-  var script = document.createElement('script');
-  script.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-  document.body.appendChild(script);
-</script>
-
 </body>
 </html>
