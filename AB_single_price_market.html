@@ -143,6 +143,25 @@ footer a {
 
 footer a:hover { text-decoration: underline; }
 
+#viz1, #viz2 {
+  width: 100%;
+  overflow: hidden;
+}
+
+#viz1 {
+  aspect-ratio: 1000 / 480;
+}
+
+#viz2 {
+  aspect-ratio: 1000 / 500;
+}
+
+#viz1 object, #viz2 object,
+#viz1 iframe, #viz2 iframe {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
   </style>
 </head>
 <body>
@@ -164,13 +183,13 @@ footer a:hover { text-decoration: underline; }
 <div class="viz-block">
   <div class="viz-title">Fig. 1 — Relative variability by fuel type, January 2026</div>
   <div class='tableauPlaceholder' id='viz1' style='position:relative'>
-    <object class='tableauViz' style='display:none;'>
+    <object class='tableauViz'>
       <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
       <param name='embed_code_version' value='3' />
       <param name='site_root' value='' />
       <param name='name' value='RelativeVariability/RelativeVariabilityDash' />
       <param name='tabs' value='no' />
-      <param name='toolbar' value='yes' />
+      <param name='toolbar' value='no' />
     </object>
   </div>
 </div>
@@ -187,13 +206,13 @@ footer a:hover { text-decoration: underline; }
 <div class="viz-block">
   <div class="viz-title">Fig. 2 — Pool price vs wind metered volume, January 2026 (daily averages)</div>
   <div class='tableauPlaceholder' id='viz2' style='position:relative'>
-    <object class='tableauViz' style='display:none;'>
+    <object class='tableauViz'>
       <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
       <param name='embed_code_version' value='3' />
       <param name='site_root' value='' />
       <param name='name' value='WindvPriceScatter/WindvPriceScatterDash' />
       <param name='tabs' value='no' />
-      <param name='toolbar' value='yes' />
+      <param name='toolbar' value='no' />
     </object>
   </div>
 </div>
@@ -239,16 +258,13 @@ The same variability that suppresses prices during high wind creates price spike
 </div>
 
 <script type='text/javascript'>
-  var heights = { 'viz1': '480px', 'viz2': '500px' };
-  Object.keys(heights).forEach(function(id) {
-    var placeholder = document.getElementById(id);
-    placeholder.style.width = '100%';
-    placeholder.style.height = heights[id];
-    var obj = placeholder.getElementsByTagName('object')[0];
-    obj.style.width = '100%';
-    obj.style.height = heights[id];
-    obj.style.display = 'block';
-  });
+  ['viz1', 'viz2'].forEach(function(id) {
+  var placeholder = document.getElementById(id);
+  var obj = placeholder.getElementsByTagName('object')[0];
+  obj.style.width = '100%';
+  obj.style.height = '100%';
+  obj.style.display = 'block';
+});
   var script = document.createElement('script');
   script.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
   document.body.appendChild(script);
