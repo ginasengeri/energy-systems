@@ -239,14 +239,14 @@ The same variability that suppresses prices during high wind creates price spike
 </div>
 
 <script type='text/javascript'>
-  var vizIds = ['viz1', 'viz2'];
-  vizIds.forEach(function(id) {
+  var heights = { 'viz1': '350px', 'viz2': '420px' };
+  Object.keys(heights).forEach(function(id) {
     var placeholder = document.getElementById(id);
     placeholder.style.width = '100%';
-    placeholder.style.height = '500px';
+    placeholder.style.height = heights[id];
     var obj = placeholder.getElementsByTagName('object')[0];
     obj.style.width = '100%';
-    obj.style.height = '500px';
+    obj.style.height = heights[id];
     obj.style.display = 'block';
   });
   var script = document.createElement('script');
