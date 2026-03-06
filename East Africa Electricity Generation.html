@@ -159,6 +159,15 @@
       margin-bottom: 8px;
     }
 
+    .limitations {
+      margin-top: 22px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-soft);
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.4;
+    }
+
     footer {
       margin-top: 28px;
       padding-top: 16px;
@@ -335,15 +344,10 @@
   <li>Regional interconnections balances surplus and deficits across countries.</li>
 </ol>
 
-<footer>
+<div class="limitations">
   <strong>Limitations:</strong> This analysis uses aggregated annual generation data and does not capture seasonal variability or
-  short-term reliability events. Reported figures depend on available national reporting and may exclude off-grid
-  generation.
-</footer>
-
-<footer>
-  <a href="reports.html">← Back to Reports</a>
-</footer>
+  short-term reliability events. Reported figures depend on available national reporting and may exclude off-grid generation.
+</div>
 
 <div class="tableau-container">
   <div class='tableauPlaceholder' id='myTableauViz' style='position: relative'>
@@ -413,6 +417,12 @@
     </a>
   </li>
 </ol>
+
+<footer>
+  <p>Data source: Ember Energy · 2017–2022</p>
+  <a href="reports.html">← Back to Reports</a>
+</footer>
+
 
   </div>
 </body>
