@@ -106,11 +106,17 @@ header p {
   line-height: 1.65;
 }
 
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
 table {
   width: 100%;
+  min-width: 480px;
   border-collapse: collapse;
   font-size: 0.88rem;
-  margin: 16px 0 24px;
+  margin: 16px 0 8px;
   background: #ffffff;
   border-radius: 10px;
   overflow: hidden;
@@ -197,37 +203,39 @@ footer a:hover { text-decoration: underline; }
     <p>The price spike came the following morning, as temperatures began to recover and wind generation fell. At 11am on January 5th, Alberta's pool price reached $858 CAD/MWh — the highest of the month.</p>
 
 
-<table>
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Temperature range</th>
-      <th>Wind at 11am (MW)</th>
-      <th>Pool price at 11am (CAD/MWh)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Jan 4</td>
-      <td>−31°C to −12°C</td>
-      <td>261 MW</td>
-      <td>$52.84</td>
-    </tr>
-    <tr class="highlight">
-      <td>Jan 5</td>
-      <td>−13°C to +2°C</td>
-      <td>353 MW</td>
-      <td>$858.44</td>
-    </tr>
-    <tr>
-      <td>Jan 6</td>
-      <td>−9°C to +1°C</td>
-      <td>3,782 MW</td>
-      <td>$0.00</td>
-    </tr>
-  </tbody>
-</table>
-<p style="font-size:0.82rem; color:#9ca3af; margin-top:-16px;">All figures at 11am MPT. Jan 4 had low wind but low price — demand context and time-of-day factors also influence outcomes. Jan 5 and Jan 6 illustrate the wind-price relationship most directly.</p>
+<div class="table-scroll">
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Wind at 11am (MW)</th>
+        <th>Pool price at 11am (CAD/MWh)</th>
+        <th>Temperature range</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Jan 4</td>
+        <td>261 MW</td>
+        <td>$52.84</td>
+        <td>−31°C to −12°C</td>
+      </tr>
+      <tr class="highlight">
+        <td>Jan 5</td>
+        <td>353 MW</td>
+        <td>$858.44</td>
+        <td>−13°C to +2°C</td>
+      </tr>
+      <tr>
+        <td>Jan 6</td>
+        <td>3,782 MW</td>
+        <td>$0.00</td>
+        <td>−9°C to +1°C</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p style="font-size:0.82rem; color:#9ca3af; margin-top:4px;">All figures at 11am MPT. Jan 4 had low wind but low price — demand context and time-of-day factors also influence outcomes. Jan 5 and Jan 6 illustrate the wind-price relationship most directly.</p>
 
 
   </div>
@@ -238,8 +246,8 @@ footer a:hover { text-decoration: underline; }
 
 <div class="viz-block">
   <div class="viz-title">Fig. 1 — Wind metered volume and pool price, Jan 2–6 2026</div>
-  <div class='tableauPlaceholder' id='viz1' style='position:relative'>
-    <object class='tableauViz' style='display:none;'>
+  <div class='tableauPlaceholder' id='viz1' style='position:relative; width:100%; height:500px;'>
+    <object class='tableauViz' style='width:100%; height:100%;'>
       <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
       <param name='embed_code_version' value='3' />
       <param name='site_root' value='' />
@@ -276,12 +284,9 @@ footer a:hover { text-decoration: underline; }
 </div>
 
 <script type='text/javascript'>
-  var viz = document.getElementById('viz1').getElementsByTagName('object')[0];
-  viz.style.width = '100%';
-  viz.style.height = '600px';
   var script = document.createElement('script');
   script.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-  viz.parentNode.insertBefore(script, viz);
+  document.body.appendChild(script);
 </script>
 
 </body>
