@@ -87,12 +87,26 @@ header p {
   max-width: 700px;
 }
 
+@media (max-width: 600px) {
+  .viz-block {
+    max-width: 100%;
+    padding: 12px;
+  }
+  .viz-title {
+    font-size: 0.65rem;
+    letter-spacing: 0.04em;
+  }
+}
+
 .viz-title {
   font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: #9ca3af;
   margin-bottom: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .callout {
