@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -6,15 +7,15 @@
 
   <style>
     :root {
-      --bg-page: #f4f5f7;        /* light grey background */
-      --bg-card: #ffffff;        /* white card background */
-      --border-soft: #e0e3e8;    /* subtle card/table borders */
-      --accent: #2563eb;         /* blue accent for highlights */
-      --accent-soft: #dbeafe;    /* soft blue background */
-      --text-main: #111827;      /* primary text color */
-      --text-muted: #6b7280;     /* secondary text */
-      --table-header: #f3f4f6;   /* soft grey table header */
-      --chip: #eef2ff;           /* chip bg */
+      --bg-page: #f4f5f7;
+      --bg-card: #ffffff;
+      --border-soft: #e0e3e8;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --table-header: #f3f4f6;
+      --chip: #eef2ff;
     }
 
     * { box-sizing: border-box; }
@@ -63,7 +64,6 @@
       margin: 6px 0 10px 0;
     }
 
-    /* ----------- Chips (YOU HAD HTML, CSS WAS MISSING) ----------- */
     .chips {
       display: flex;
       flex-wrap: wrap;
@@ -82,7 +82,6 @@
       white-space: nowrap;
     }
 
-    /* ----------- KPI cards (top stats) ----------- */
     .kpi-grid {
       display: grid;
       justify-content: center;
@@ -97,7 +96,7 @@
       border-radius: 10px;
       padding: 10px 12px;
       text-align: center;
-      border: 1px solid rgba(37, 99, 235, 0.35); /* softer than full accent */
+      border: 1px solid rgba(37, 99, 235, 0.35);
     }
 
     .kpi-label {
@@ -113,7 +112,6 @@
       font-weight: 600;
     }
 
-    /* ----------- Responsive table layout ----------- */
     .tables-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -127,7 +125,7 @@
       border-radius: 10px;
       border: 1px solid var(--border-soft);
       padding: 10px 12px;
-      overflow: auto; /* allow scroll if needed */
+      overflow: auto;
     }
 
     .table-card h3 {
@@ -140,7 +138,7 @@
       width: 100%;
       border-collapse: collapse;
       font-size: 0.85rem;
-      min-width: 640px; /* keeps columns readable; scrolls on small screens */
+      min-width: 640px;
     }
 
     th, td {
@@ -170,43 +168,52 @@
       line-height: 1.4;
     }
 
+    footer a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; }
+
     .tableau-container {
       margin-top: 16px;
     }
 
     ol {
-  margin-top: 14px;
-  margin-bottom: 18px;
-}
+      margin-top: 14px;
+      margin-bottom: 18px;
+    }
 
-ol li {
-  margin-bottom: 8px;
-}
-sup {
-  font-size: 0.75em;
-}
+    ol li {
+      margin-bottom: 8px;
+    }
 
-sup a {
-  text-decoration: none;
-}
+    sup {
+      font-size: 0.75em;
+    }
 
-a:visited {
-  color: #111827;        /* prevents purple */
-}
+    sup a {
+      text-decoration: none;
+    }
 
-a:hover {
-  text-decoration: underline; /* optional hover effect */
-}
+    a:visited {
+      color: #111827;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
   </style>
+
 </head>
 
 <body>
   <div class="report-container">
     <h1>East Africa Electricity Generation</h1>
-<div class="report-meta">
-  <strong>Period:</strong> 2017–2022<br>
-  <strong>Data source:</strong> Ember Energy
-</div>
+    <div class="report-meta">
+      <strong>Period:</strong> 2017–2022<br>
+      <strong>Data source:</strong> Ember Energy
+    </div>
     <div class="chips" aria-label="At-a-glance">
       <span class="chip">Hydro dominance</span>
       <span class="chip">Renewable diversification</span>
@@ -215,31 +222,32 @@ a:hover {
       <span class="chip">East African Power Pool</span>
     </div>
 
-    <p>This report discusses the structure of electricity generation in East Africa and highlights the system’s continued
-      dependence on hydropower alongside gradual diversification into wind and solar.
-    </p>
+<p>This report discusses the structure of electricity generation in East Africa and highlights the system's continued
+  dependence on hydropower alongside gradual diversification into wind and solar.
+</p>
 
-    <h2>Summary</h2>
-    <p>Between 2017 and 2022, East Africa’s electricity generation was consistently dominated by hydropower, accounting for over
-      60% of total output each year. Renewable sources collectively peaked at nearly 86% of the energy mix in 2020, driven by
-      strong hydroelectric performance and stable contributions from geothermal capacity in Kenya. Fossil fuels—primarily
-      gas—contributed around 12–15%, while solar and wind grew gradually but remained minor components. Coal and 
-      nuclear generation remained negligible throughout the period.</p>
+<h2>Summary</h2>
+<p>Between 2017 and 2022, East Africa's electricity generation was consistently dominated by hydropower, accounting for over
+  60% of total output each year. Renewable sources collectively peaked at nearly 86% of the energy mix in 2020, driven by
+  strong hydroelectric performance and stable contributions from geothermal capacity in Kenya. Fossil fuels—primarily
+  gas—contributed around 12–15%, while solar and wind grew gradually but remained minor components. Coal and
+  nuclear generation remained negligible throughout the period.</p>
 
-    <div class="kpi-grid">
-      <div class="kpi-card">
-        <div class="kpi-label">Total Generation (2022)</div>
-        <div class="kpi-value">46.78 TWh</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-label">Renewable Share (2022)</div>
-        <div class="kpi-value">81.03%</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-label">Hydro Generation (2022)</div>
-        <div class="kpi-value">28.17 TWh</div>
-      </div>
-    </div>
+<div class="kpi-grid">
+  <div class="kpi-card">
+    <div class="kpi-label">Total Generation (2022)</div>
+    <div class="kpi-value">46.78 TWh</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Renewable Share (2022)</div>
+    <div class="kpi-value">81.03%</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Hydro Generation (2022)</div>
+    <div class="kpi-value">28.17 TWh</div>
+  </div>
+</div>
+
 <h2>Generation by Source (2017–2022)</h2>
 
 <div class="tables-grid">
@@ -278,129 +286,129 @@ a:hover {
   </div>
 </div>
 
-    <h2>Renewable Energy Sources</h2>
-    <p>Hydroelectric power is the single largest source in the region, with Ethiopia being the major contributor.
-      Geothermal output from Kenya’s fields accounts for an average of 12–13%, providing a stable baseline. Steady growth of wind and solar
-      is largely based in Kenya, despite still contributing to just over 7% of electricity sources combined.</p>
+<h2>Renewable Energy Sources</h2>
+<p>Hydroelectric power is the single largest source in the region, with Ethiopia being the major contributor.
+  Geothermal output from Kenya's fields accounts for an average of 12–13%, providing a stable baseline. Steady growth of wind and solar
+  is largely based in Kenya, despite still contributing to just over 7% of electricity sources combined.</p>
 
-    <h2>Non-Renewable Energy Sources</h2>
-    <p>Natural gas remains the dominant fossil‐based source, making up roughly 12–15% of generation annually. Between 96-98% of gas output comes from Tanzania, where it
-      serves as the primary source of electricity. Other fossils including diesel and heavy fuel oil have declined from 7.5% in 2017 to around 4% in 2022. There are currently
-      no nuclear plants in operation in the region.</p>
+<h2>Non-Renewable Energy Sources</h2>
+<p>Natural gas remains the dominant fossil‐based source, making up roughly 12–15% of generation annually. Between 96-98% of gas output comes from Tanzania, where it
+  serves as the primary source of electricity. Other fossils including diesel and heavy fuel oil have declined from 7.5% in 2017 to around 4% in 2022. There are currently
+  no nuclear plants in operation in the region.</p>
 
-    <h2>Key Insights</h2>
-    <ol>
-      <li>East Africa's electricity system is anchored in hydropower.</li>
-      <li>Wind and solar generation have more than tripled since 2017 (x4.58 and x3.24 respectively).</li>
-      <li>Natural gas generation is concentrated in Tanzania.</li>
-      <li>Other fossils have steadily declined to 4% of annual generation.</li>
-    </ol>
+<h2>Key Insights</h2>
+<ol>
+  <li>East Africa's electricity system is anchored in hydropower.</li>
+  <li>Wind and solar generation have more than tripled since 2017 (x4.58 and x3.24 respectively).</li>
+  <li>Natural gas generation is concentrated in Tanzania.</li>
+  <li>Other fossils have steadily declined to 4% of annual generation.</li>
+</ol>
 
-    <h2>Implications</h2>
-    <p>The region’s generation structure creates both operational advantages and systemic vulnerabilities.</p>
-    <p>Hydro dominance is both a flexibility asset and a concentration risk. Hydro has relatively low marginal costs
-      and can adjust output hourly, or faster. It also creates future storage potential, with pumped-storage hydropower
-      (PSH) being the most widely deployed form of electricity storage globally<sup><a href="#ref1">[1]</a></sup>. However, heavy reliance on hydro
-      exposes the system to drought risk and may struggle to keep pace with growing electricity demand.</p>
-    <p>As wind and solar expand, grid operators must manage added variability and maintain power balance while
-      respecting transmission limits, ramp rates, reserve requirements and capacity constraints. Prices must also create stronger signals to consumers to
-      encourage demand-side response, while protecting revenues that attract investment.</p>
-    <p>Some countries have surplus hydro, others face deficits. The East African Power Pool (EAPP) is establishing
-      a day-ahead market (DAM) to enable regional trading among its 13 member countries, which will improve reliability
-      by the sharing of reserves and enable access to cheaper hydro and renewables regionally<sup><a href="#ref2">[2]</a></sup>. This reduces reliance on thermal generation
-      (coal, oil and gas), which often relies on imported fuels and has higher marginal costs, and lowers the need
-      for countries to maintain costly individual reserve capacity. The DAM creates incentives for cross-border trade, increasing
-      revenue streams for generators and attracting investor support.
-    </p>
-    <p>Energy markets have evolved globally in response to increasing renewable penetration and the operational and investment
-      challenges associated with variability, reliability, and capital formation. This has been seen in reforms such as the UK’s 2013
-      Electricity Market Reform (EMR)<sup><a href="#ref3">[3]</a></sup> and Alberta’s ongoing market restructuring (REM)<sup><a href="#ref4">[4]</a></sup>, both aimed at
-      maintaining reliability and investment under increasing renewable penetration. East Africa’s transition is not isolated,
-      but part of a broader global shift toward redesigning electricity markets to manage renewable variability while
-      safeguarding reliability and investment.
-    </p>
-    <p>
-      In summary, these dynamics imply the following:
-    </p>
-    <ol>
-      <li>Variable renewables reduce concentration but increases flexibility needs.</li>
-      <li>Geothermal expansion along the East African Rift System (EARS) can provide a stable baseload.</li>
-      <li>Seasonal hydro variability may be managed by use of pumped storage solutions.</li>
-      <li>Regional interconnections balances surplus and deficits across countries.</li>
-    </ol>
+<h2>Implications</h2>
+<p>The region's generation structure creates both operational advantages and systemic vulnerabilities.</p>
+<p>Hydro dominance is both a flexibility asset and a concentration risk. Hydro has relatively low marginal costs
+  and can adjust output hourly, or faster. It also creates future storage potential, with pumped-storage hydropower
+  (PSH) being the most widely deployed form of electricity storage globally<sup><a href="#ref1">[1]</a></sup>. However, heavy reliance on hydro
+  exposes the system to drought risk and may struggle to keep pace with growing electricity demand.</p>
+<p>As wind and solar expand, grid operators must manage added variability and maintain power balance while
+  respecting transmission limits, ramp rates, reserve requirements and capacity constraints. Prices must also create stronger signals to consumers to
+  encourage demand-side response, while protecting revenues that attract investment.</p>
+<p>Some countries have surplus hydro, others face deficits. The East African Power Pool (EAPP) is establishing
+  a day-ahead market (DAM) to enable regional trading among its 13 member countries, which will improve reliability
+  by the sharing of reserves and enable access to cheaper hydro and renewables regionally<sup><a href="#ref2">[2]</a></sup>. This reduces reliance on thermal generation
+  (coal, oil and gas), which often relies on imported fuels and has higher marginal costs, and lowers the need
+  for countries to maintain costly individual reserve capacity. The DAM creates incentives for cross-border trade, increasing
+  revenue streams for generators and attracting investor support.
+</p>
+<p>Energy markets have evolved globally in response to increasing renewable penetration and the operational and investment
+  challenges associated with variability, reliability, and capital formation. This has been seen in reforms such as the UK's 2013
+  Electricity Market Reform (EMR)<sup><a href="#ref3">[3]</a></sup> and Alberta's ongoing market restructuring (REM)<sup><a href="#ref4">[4]</a></sup>, both aimed at
+  maintaining reliability and investment under increasing renewable penetration. East Africa's transition is not isolated,
+  but part of a broader global shift toward redesigning electricity markets to manage renewable variability while
+  safeguarding reliability and investment.
+</p>
+<p>In summary, these dynamics imply the following:</p>
+<ol>
+  <li>Variable renewables reduce concentration but increases flexibility needs.</li>
+  <li>Geothermal expansion along the East African Rift System (EARS) can provide a stable baseload.</li>
+  <li>Seasonal hydro variability may be managed by use of pumped storage solutions.</li>
+  <li>Regional interconnections balances surplus and deficits across countries.</li>
+</ol>
 
-    <footer>
-      <strong>Limitations:</strong> This analysis uses aggregated annual generation data and does not capture seasonal variability or
-      short-term reliability events. Reported figures depend on available national reporting and may exclude off-grid
-      generation.
-    </footer>
+<footer>
+  <strong>Limitations:</strong> This analysis uses aggregated annual generation data and does not capture seasonal variability or
+  short-term reliability events. Reported figures depend on available national reporting and may exclude off-grid
+  generation.<br><br>
+  <a href="reports.html">← Back to Reports</a>
+</footer>
 
-    <div class="tableau-container">
-      <div class='tableauPlaceholder' id='myTableauViz' style='position: relative'>
-        <object class='tableauViz' style='display:none;'>
-          <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-          <param name='embed_code_version' value='3' />
-          <param name='site_root' value='' />
-          <param name='name' value='EAElectricityGeneration2017-2022/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link' />
-          <param name='tabs' value='no' />
-          <param name='toolbar' value='yes' />
-        </object>
-      </div>
-    </div>
+<div class="tableau-container">
+  <div class='tableauPlaceholder' id='myTableauViz' style='position: relative'>
+    <object class='tableauViz' style='display:none;'>
+      <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+      <param name='embed_code_version' value='3' />
+      <param name='site_root' value='' />
+      <param name='name' value='EAElectricityGeneration2017-2022/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link' />
+      <param name='tabs' value='no' />
+      <param name='toolbar' value='yes' />
+    </object>
+  </div>
+</div>
 
-    <script type='text/javascript'>
-      var placeholder = document.getElementById('myTableauViz');
-      var viz = placeholder.getElementsByTagName('object')[0];
-      viz.style.width = '100%';
-      viz.style.height = '800px';
-      var script = document.createElement('script');
-      script.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-      viz.parentNode.insertBefore(script, viz);
-    </script>
+<script type='text/javascript'>
+  var placeholder = document.getElementById('myTableauViz');
+  var viz = placeholder.getElementsByTagName('object')[0];
+  viz.style.width = '100%';
+  viz.style.height = '800px';
+  var script = document.createElement('script');
+  script.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+  viz.parentNode.insertBefore(script, viz);
+</script>
 
-    <h2>Data Source</h2>
+<h2>Data Source</h2>
 <p>
-  Ember (2022). <em>Electricity Data Explorer</em>. 
-  Available at: 
+  Ember (2022). <em>Electricity Data Explorer</em>.
+  Available at:
   <a href="https://ember-energy.org/data/electricity-data-explorer/" target="_blank">
     https://ember-energy.org/data/electricity-data-explorer/
   </a>
 </p>
 
-  <h2>References</h2>
-<ol><li id="ref1">
-  International Hydropower Association (2022). 
-  <em>Pumped storage hydropower</em>. 
-  Available at: 
-  <a href="https://www.hydropower.org/factsheets/pumped-storage" target="_blank">
-    https://www.hydropower.org/factsheets/pumped-storage
-  </a>
-</li>
+<h2>References</h2>
+<ol>
+  <li id="ref1">
+    International Hydropower Association (2022).
+    <em>Pumped storage hydropower</em>.
+    Available at:
+    <a href="https://www.hydropower.org/factsheets/pumped-storage" target="_blank">
+      https://www.hydropower.org/factsheets/pumped-storage
+    </a>
+  </li>
   <li id="ref2">
-  ESI Africa (2025). 
-  <em>East Africa: EAPP setting up centralised energy market in 2025</em>. 
-  Available at: 
-  <a href="https://www.esi-africa.com/business-and-markets/east-africa-eapp-setting-up-centralised-energy-market-in-2025/?amp=1" target="_blank">
-    https://www.esi-africa.com/business-and-markets/east-africa-eapp-setting-up-centralised-energy-market-in-2025/
-  </a>
-</li>
-   <li id="ref3">
-    Grubb M, Newbery D (2018). 
-    <em>UK Electricity Market Reform and the Energy Transition: Emerging Lessons</em>. 
-    The Energy Journal, 39(1). 
-    Available at: 
+    ESI Africa (2025).
+    <em>East Africa: EAPP setting up centralised energy market in 2025</em>.
+    Available at:
+    <a href="https://www.esi-africa.com/business-and-markets/east-africa-eapp-setting-up-centralised-energy-market-in-2025/?amp=1" target="_blank">
+      https://www.esi-africa.com/business-and-markets/east-africa-eapp-setting-up-centralised-energy-market-in-2025/
+    </a>
+  </li>
+  <li id="ref3">
+    Grubb M, Newbery D (2018).
+    <em>UK Electricity Market Reform and the Energy Transition: Emerging Lessons</em>.
+    The Energy Journal, 39(1).
+    Available at:
     <a href="https://ceepr.mit.edu/wp-content/uploads/2021/09/2018-004.pdf" target="_blank">
       https://ceepr.mit.edu/wp-content/uploads/2021/09/2018-004.pdf
     </a>
   </li>
   <li id="ref4">
-  Alberta Electric System Operator (AESO) (2026). 
-  <em>Alberta’s Restructured Energy Market: A Modernized Market for Alberta’s Evolving Grid</em>. 
-  Available at: 
-  <a href="https://www.aeso.ca/assets/REM/AESO-REM-Design-Information-Overview.pdf" target="_blank">
-    https://www.aeso.ca/assets/REM/AESO-REM-Design-Information-Overview.pdf
-  </a>
-</li>
+    Alberta Electric System Operator (AESO) (2026).
+    <em>Alberta's Restructured Energy Market: A Modernized Market for Alberta's Evolving Grid</em>.
+    Available at:
+    <a href="https://www.aeso.ca/assets/REM/AESO-REM-Design-Information-Overview.pdf" target="_blank">
+      https://www.aeso.ca/assets/REM/AESO-REM-Design-Information-Overview.pdf
+    </a>
+  </li>
 </ol>
 
   </div>
