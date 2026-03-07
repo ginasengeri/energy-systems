@@ -95,7 +95,8 @@ footer {
 }
 .back-link {
   color: #2563eb;
-}.card-link {
+}
+.card-link {
   text-decoration: none;
   color: inherit;
   display: block;
@@ -103,18 +104,20 @@ footer {
 
 .card {
   cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.card-link:hover .card {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.12);
 }
 
 .back-link {
-  display: inline-block;
   color: #2563eb;
   text-decoration: none;
-  transition: transform 0.15s ease, color 0.15s ease;
 }
 
 .back-link:hover {
-  transform: translateX(-4px);
-  color: #1d4ed8;
   text-decoration: underline;
 }
 </style>
@@ -125,7 +128,7 @@ footer {
   <p>Analysis of electricity systems, generation structures, and power sector development.</p>
 </header>
 <div class="cards-grid">
-<a class="card-link" href="East Africa Electricity Generation.html" target="_blank">
+<a class="card-link" href="East Africa Electricity Generation.html">
   <article class="card">
     <h2>East Africa Electricity Generation</h2>
     <p class="tagline">
