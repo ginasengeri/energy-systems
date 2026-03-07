@@ -79,7 +79,7 @@ margin: 0 0 12px;
 }
 
 .viz-block {
-margin: 16px auto;
+margin: 16px 0;
 max-width: 700px;
 }
 
@@ -93,8 +93,9 @@ text-align: left;
 }
 
 .viz-block img {
-width: 100%;
+width: auto;
 height: auto;
+max-width: 100%;
 display: block;
 }
 
@@ -105,6 +106,7 @@ color: #6b7280;
 margin-top: 8px;
 padding-top: 8px;
 border-top: 1px solid #e0e3e8;
+text-align: left;
 }
 
 .callout {
@@ -200,24 +202,20 @@ color: #2563eb;
 
 footer a:hover { text-decoration: underline; }
 
-/* ── Mobile overrides ── */
 @media (max-width: 600px) {
 .viz-block {
 max-width: 100%;
-padding: 12px;
 }
 
-.viz-block .viz-note {
-font-size: 0.68rem !important;
+.viz-note {
+font-size: 0.68rem;
 margin-top: 4px;
-color: #9ca3af;
 }
 
 .callout {
 max-width: 100%;
 }
 }
-/* ── END mobile overrides ── */
 
   </style>
 </head>
