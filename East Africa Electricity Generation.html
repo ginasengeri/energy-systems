@@ -111,7 +111,12 @@
       font-size: 1.1rem;
       font-weight: 600;
     }
-
+    @media (max-width: 600px) {
+      .viz-block {
+      max-width: 100%;
+      padding: 12px;}
+    }
+    
     .tables-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
