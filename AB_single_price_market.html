@@ -162,7 +162,19 @@ a:visited {
 
 footer a:hover { text-decoration: underline; }
 
+.viz-block img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.viz-note {
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
   </style>
+  
+  
 </head>
 <body>
 <div class="report-container">
@@ -192,8 +204,8 @@ footer a:hover { text-decoration: underline; }
 
 <div class="viz-block">
   <div class="viz-title">Fig. 1 — Relative variability by fuel type, January 2026</div>
-  <img src="fig1.png" style="max-width:100%; display:block; margin:0 auto;" alt="Relative variability by fuel type">
-  <p style="font-size:0.82rem; color:#9ca3af; margin-top:4px;">
+  <img src="fig1.png" alt="Relative variability by fuel type">
+  <p class="viz-note" style="color:#9ca3af; margin-top:4px;">
     Variability is measured as the 
     standard deviation of hourly output 
     divided by mean generation. Solar and 
@@ -211,7 +223,7 @@ footer a:hover { text-decoration: underline; }
 
 <div class="viz-block">
   <div class="viz-title">Fig. 2 — Pool price vs wind metered volume, January 2026 (daily averages)</div>
-  <img src="fig2.png" style="max-width:100%; display:block; margin:0 auto;" alt="Pool price vs wind metered volume">
+  <img src="fig2.png" alt="Pool price vs wind metered volume">
 </div>
 
 <div class="callout">
