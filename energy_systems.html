@@ -95,34 +95,27 @@ footer {
 }
 .back-link {
   color: #2563eb;
-}
-.card-link {
+}.card-link {
   text-decoration: none;
   color: inherit;
   display: block;
 }
-.card { cursor: pointer; }
+
+.card {
+  cursor: pointer;
+}
 
 .back-link {
+  display: inline-block;
   color: #2563eb;
   text-decoration: none;
-  position: relative;
-  transition: color 0.15s ease;
+  transition: transform 0.15s ease, color 0.15s ease;
 }
 
 .back-link:hover {
+  transform: translateX(-4px);
+  color: #1d4ed8;
   text-decoration: underline;
-}
-
-.back-link:hover::before {
-  transform: translateX(-3px);
-}
-
-.back-link::before {
-  content: "←";
-  margin-right: 6px;
-  display: inline-block;
-  transition: transform 0.15s ease;
 }
 </style>
 </head>
