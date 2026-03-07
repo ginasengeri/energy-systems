@@ -8,159 +8,103 @@
   <style>
     * { box-sizing: border-box; }
 
+```
 body {
-font-family: system-ui, -apple-system, BlinkMacSystemFont, “Segoe UI”, sans-serif;
-margin: 0;
-padding: 32px 16px;
-background: #f4f5f7;
-color: #111827;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  margin: 0;
+  padding: 32px 16px;
+  background: #f4f5f7;
+  color: #111827;
 }
 
 .report-container {
-max-width: 1200px;
-margin: 0 auto;
-background: #ffffff;
-border-radius: 12px;
-padding: 28px 32px 36px;
-box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 28px 32px 36px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
 }
 
 header {
-text-align: center;
-padding: 20px 0 30px;
+  text-align: center;
+  padding: 20px 0 30px;
 }
 
 header .label {
-font-size: 0.75rem;
-letter-spacing: 2px;
-text-transform: uppercase;
-color: #6b7280;
-margin-bottom: 12px;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #6b7280;
+  margin-bottom: 12px;
 }
 
 header h1 {
-font-size: 1.9rem;
-font-weight: 800;
-margin: 0 0 12px;
-line-height: 1.25;
+  font-size: 1.9rem;
+  font-weight: 800;
+  margin: 0 0 12px;
+  line-height: 1.25;
 }
 
 header p {
-margin: 0 auto;
-color: #6b7280;
-font-size: 0.95rem;
+  margin: 0 auto;
+  color: #6b7280;
+  font-size: 0.95rem;
 }
 
 .meta {
-text-align: center;
-font-size: 0.8rem;
-color: #9ca3af;
-margin-top: 10px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #9ca3af;
+  margin-top: 10px;
 }
 
 .section {
-margin-bottom: 32px;
+  margin-bottom: 32px;
 }
 
 .section h2 {
-font-size: 0.95rem;
-font-weight: 700;
-color: #111827;
-margin: 0 0 10px;
-border-bottom: 1px solid #e0e3e8;
-padding-bottom: 4px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 10px;
+  border-bottom: 1px solid #e0e3e8;
+  padding-bottom: 4px;
 }
 
 .section p {
-font-size: 0.97rem;
-line-height: 1.75;
-color: #374151;
-margin: 0 0 12px;
+  font-size: 0.97rem;
+  line-height: 1.75;
+  color: #374151;
+  margin: 0 0 12px;
 }
 
 .viz-block {
-background: #f9fafb;
-border-radius: 10px;
-padding: 20px;
-border: 1px solid #e0e3e8;
-margin: 16px auto;
-max-width: 700px;
-}
-
-@media (max-width: 600px) {
-.viz-block {
-max-width: 100%;
-padding: 12px;
+  background: #f9fafb;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid #e0e3e8;
+  margin: 16px auto;
+  max-width: 700px;
 }
 
 .viz-title {
-font-size: 0.78rem;
-text-transform: uppercase;
-letter-spacing: 0.08em;
-color: #9ca3af;
-margin-bottom: 12px;
-white-space: nowrap;
-overflow: hidden;
-text-overflow: ellipsis;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9ca3af;
+  margin-bottom: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-
-.callout {
-background: #ecfdf5;
-border-left: 4px solid #10b981;
-border-radius: 6px;
-padding: 16px 20px;
-margin: 20px 0;
-font-size: 0.95rem;
-color: #065f46;
-line-height: 1.65;
-}
-
-.closing-box {
-background: #374151;
-color: #f9fafb;
-border-radius: 10px;
-padding: 24px 28px;
-margin-top: 36px;
-}
-
-.closing-box h3 {
-margin: 0 0 10px;
-font-size: 1rem;
-font-weight: 700;
-color: #f9fafb;
-}
-
-.closing-box p {
-margin: 0;
-font-size: 0.95rem;
-line-height: 1.75;
-color: #e5e7eb;
-}
-
-footer {
-margin-top: 28px;
-padding-top: 16px;
-border-top: 1px solid #e0e3e8;
-text-align: center;
-font-size: 0.75rem;
-color: #9ca3af;
-}
-
-footer a {
-color: #2563eb;
-text-decoration: none;
-}
-
-a:visited {
-  color: #2563eb;
-}
-
-footer a:hover { text-decoration: underline; }
 
 .viz-block img {
   width: 100%;
   height: auto;
+  min-height: 260px;
   display: block;
+  object-fit: contain;
 }
 
 .viz-note {
@@ -170,9 +114,79 @@ footer a:hover { text-decoration: underline; }
   margin-top: 6px;
 }
 
+.callout {
+  background: #ecfdf5;
+  border-left: 4px solid #10b981;
+  border-radius: 6px;
+  padding: 16px 20px;
+  margin: 20px 0;
+  font-size: 0.95rem;
+  color: #065f46;
+  line-height: 1.65;
+}
+
+.closing-box {
+  background: #374151;
+  color: #f9fafb;
+  border-radius: 10px;
+  padding: 24px 28px;
+  margin-top: 36px;
+}
+
+.closing-box h3 {
+  margin: 0 0 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f9fafb;
+}
+
+.closing-box p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: #e5e7eb;
+}
+
+footer {
+  margin-top: 28px;
+  padding-top: 16px;
+  border-top: 1px solid #e0e3e8;
+  text-align: center;
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+footer a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #2563eb;
+}
+
+footer a:hover { text-decoration: underline; }
+
+/* ── Mobile overrides ── */
+@media (max-width: 600px) {
+  .viz-block {
+    max-width: 100%;
+    padding: 12px;
+  }
+
+  .viz-block img {
+    min-height: 220px;
+  }
+
+  .viz-note {
+    font-size: 0.68rem;
+    margin-top: 4px;
+  }
+}
+/* ── END mobile overrides ── */
+```
+
   </style>
-  
-  
 </head>
 <body>
 <div class="report-container">
@@ -186,32 +200,18 @@ footer a:hover { text-decoration: underline; }
 
   <div class="section">
     <h2>The variability problem</h2>
-    <p>Unlike dispatchable generation, wind
-       produces power on the resource's 
-      schedule. In January 2026, wind generation 
-      was roughly four times more variable than 
-      gas when measured relative to 
-      average output.</p>
-    <p>Gas supplies roughly 75% of Alberta's
-       total output and is the most stable 
-      relative to its size. Wind, at around 
-      19% of generation, fluctuates more 
-      relative to its contribution. Gas is 
-      used to balance wind fluctuations, with 
-      a correlation of −0.65 between the two.</p>
+    <p>Unlike dispatchable generation, wind produces power on the resource's schedule. In January 2026, wind generation was roughly four times more variable than gas when measured relative to average output.</p>
+    <p>Gas supplies roughly 75% of Alberta's total output and is the most stable relative to its size. Wind, at around 19% of generation, fluctuates more relative to its contribution. Gas is used to balance wind fluctuations, with a correlation of −0.65 between the two.</p>
 
+```
 <div class="viz-block">
   <div class="viz-title">Fig. 1 — Relative variability by fuel type, January 2026</div>
   <img src="fig1.png" alt="Relative variability by fuel type">
-  <p class="viz-note" style="color:#9ca3af; margin-top:4px;">
-    Variability is measured as the 
-    standard deviation of hourly output 
-    divided by mean generation. Solar and 
-    hydro are included for completeness; 
-    the primary comparison is between wind 
-    and gas, which make up over 
-    94% of Alberta’s generation mix.</p>
+  <p class="viz-note">
+    Variability is measured as the standard deviation of hourly output divided by mean generation. Solar and hydro are included for completeness; the primary comparison is between wind and gas, which make up over 94% of Alberta's generation mix.
+  </p>
 </div>
+```
 
   </div>
 
@@ -219,6 +219,7 @@ footer a:hover { text-decoration: underline; }
     <h2>Price suppression</h2>
     <p>With wind at near-zero marginal cost, high wind output hours tend to suppress pool prices. As wind generation increases, higher-cost gas generators are forced to sell at low market prices, sometimes below their fixed costs.</p>
 
+```
 <div class="viz-block">
   <div class="viz-title">Fig. 2 — Pool price vs wind metered volume, January 2026 (daily averages)</div>
   <img src="fig2.png" alt="Pool price vs wind metered volume">
@@ -228,37 +229,20 @@ footer a:hover { text-decoration: underline; }
   The same variability that suppresses prices during high wind can also create price spikes when output drops.
 </div>
 
-<p>
-Wind is not the only factor influencing prices; demand and weather conditions also play an important role. 
-On January 5th at 11am, the pool price reached 858 CAD/MWh following the cold conditions on January 4th and the return of weekday demand, with wind generation at 353 MW.
-</p>
+<p>Wind is not the only factor influencing prices; demand and weather conditions also play an important role. On January 5th at 11am, the pool price reached 858 CAD/MWh following the cold conditions on January 4th and the return of weekday demand, with wind generation at 353 MW.</p>
+```
 
   </div>
 
   <div class="section">
     <h2>The investment signal problem</h2>
-    <p>Gas generators provide essential security when wind drops. In a market where prices are suppressed or spike 
-      unpredictably, it becomes difficult to justify building the capacity 
-      the system actually needs.</p>
-    <p>A uniform province-wide price does not always distinguish between cheap power 
-      that is useful and cheap power that is overwhelming the system. 
-      As renewables grow, more precise pricing is required to reflect conditions across the system.</p>
+    <p>Gas generators provide essential security when wind drops. In a market where prices are suppressed or spike unpredictably, it becomes difficult to justify building the capacity the system actually needs.</p>
+    <p>A uniform province-wide price does not always distinguish between cheap power that is useful and cheap power that is overwhelming the system. As renewables grow, more precise pricing is required to reflect conditions across the system.</p>
   </div>
 
   <div class="closing-box">
     <h3>Introduction of Locational Marginal Pricing</h3>
-    <p>The Alberta Electric System Operator (AESO) is implementing 
-      Locational Marginal Pricing — a pricing 
-      model that determines electricity prices 
-      based on local supply, demand, and transmission 
-      constraints. 
-      Under LMP, prices vary by location, allowing the 
-      market to reflect congestion and scarcity 
-      conditions more accurately.
-      This system could provide clearer 
-      signals to both generators and investors 
-      about when and where capacity is needed.
-    </p>
+    <p>The Alberta Electric System Operator (AESO) is implementing Locational Marginal Pricing — a pricing model that determines electricity prices based on local supply, demand, and transmission constraints. Under LMP, prices vary by location, allowing the market to reflect congestion and scarcity conditions more accurately. This system could provide clearer signals to both generators and investors about when and where capacity is needed.</p>
   </div>
 
   <footer>
