@@ -17,6 +17,7 @@
       --table-header: #f3f4f6;
     }
 
+
 * { box-sizing: border-box; }
 
 body {
@@ -130,29 +131,33 @@ header p {
 .table-scroll {
   width: 100%;
   overflow-x: auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.07);
+  margin: 16px 0 8px;
 }
 
 table {
   width: 100%;
+  min-width: 480px;
   border-collapse: collapse;
-  font-size: 0.85rem;
-  min-width: 640px;
-}
-
-th, td {
-  border: 1px solid var(--border-soft);
-  padding: 6px 8px;
-  text-align: left;
-  white-space: nowrap;
+  font-size: 0.88rem;
+  background: #ffffff;
 }
 
 th {
-  background-color: var(--table-header);
+  background: #f3f4f6;
+  padding: 10px 14px;
+  text-align: left;
   font-weight: 600;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 0.82rem;
 }
 
 td {
-  color: var(--text-main);
+  padding: 10px 14px;
+  border-bottom: 1px solid #f3f4f6;
+  color: #374151;
 }
 
 tr.highlight td {
@@ -218,15 +223,17 @@ footer a:hover { text-decoration: underline; }
   }
 }
 
+
   </style>
 </head>
 <body>
 <div class="report-container">
 
   <header>
-    <div class="label">Market Insight · Alberta · January 2026</div>
+
     <h1>Wind Volatility and the Limits of Alberta's Single-Price Market</h1>
     <p>As renewables grow, uniform electricity pricing struggles to reflect real system conditions. Here is what January 2026 data shows.</p>
+    <div class="meta">Period: January 2026</div>
     <div class="meta">Data: AESO</div>
   </header>
 
@@ -249,13 +256,11 @@ footer a:hover { text-decoration: underline; }
   </p>
 </div>
 
-
 <p>
   Wind variability is driven by the nature of the resource itself, while gas variability is largely in response to wind 
   fluctuations, with operators ramping generation up and down to maintain system balance. This dynamic is 
   reflected in the −0.65 correlation between the two.
 </p>
-
 
   </div>
 
