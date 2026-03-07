@@ -96,6 +96,30 @@ footer {
 .back-link {
   color: #2563eb;
 }
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.card {
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.card-link:hover .card {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.12);
+}
+
+.back-link {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
 </style>
 </head>
 
@@ -108,17 +132,13 @@ footer {
 
 <div class="cards-grid">
 
+<a class="card-link" href="Alberta_Pipeline_Notebook.html">
 <article class="card">
 <h2>Alberta Market Data Pipeline (AESO)</h2>
-
 <p>
 API ingestion, generation aggregation, and validation of the January 2026 Alberta market dataset.
 </p>
-
-<a class="appendix-link" href="Alberta_Pipeline_Notebook.html">
-  Open appendix
 </a>
-
 </article>
 
 </div>
