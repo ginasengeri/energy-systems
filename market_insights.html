@@ -100,6 +100,30 @@ footer {
 .back-link {
   color: #2563eb;
 }
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.card {
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.card-link:hover .card {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.12);
+}
+
+.back-link {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
 
 </style>
 </head>
@@ -113,26 +137,13 @@ footer {
 
 <div class="cards-grid">
 
-  <!--article class="card">
-    <h2>Alberta's January Price Spike</h2>
-    <p class="tagline">
-      How weather conditions affect generation and
-      market prices.
-    </p>
-
-    <a class="insights-link" href="AB_Cold_Snap.html" target="_blank">
-  View insight
-</a>
-  </article-->
-
+<a class="card-link" href="AB_single_price_market.html">
 <article class="card">
   <h2>Wind Volatility and Alberta's Single-Price Market</h2>
   <p class="tagline">
     How variable renewables create structural challenges for uniform electricity pricing.
   </p>
-  <a class="insights-link" href="AB_single_price_market.html" target="_blank">
-    View insight
-  </a>
+</a>
 </article>
 
 </div>
