@@ -111,12 +111,14 @@
       font-size: 1.1rem;
       font-weight: 600;
     }
+
     @media (max-width: 600px) {
       .viz-block {
-      max-width: 100%;
-      padding: 12px;}
+        max-width: 100%;
+        padding: 12px;
+      }
     }
-    
+
     .tables-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -181,6 +183,7 @@
       font-size: 0.75rem;
       color: #9ca3af;
     }
+
     footer a {
       color: #2563eb;
       text-decoration: none;
@@ -211,6 +214,10 @@
 
     a:hover {
       text-decoration: underline;
+    }
+
+    a:visited {
+      color: #2563eb;
     }
   </style>
 
@@ -420,9 +427,8 @@
 
 <footer>
   <p>Data source: Ember Energy · 2017–2022</p>
-  <a href="reports.html">← Back to Reports</a>
+  <p><a href="reports.html">← Back to Reports</a></p>
 </footer>
-
 
   </div>
 </body>
