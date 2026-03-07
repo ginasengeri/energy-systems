@@ -6,223 +6,222 @@
   <title>Wind Volatility and Alberta's Single-Price Market</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    :root {
-      --bg-page: #f4f5f7;
-      --bg-card: #ffffff;
-      --border-soft: #e0e3e8;
-      --accent: #2563eb;
-      --accent-soft: #dbeafe;
-      --text-main: #111827;
-      --text-muted: #6b7280;
-      --table-header: #f3f4f6;
-    }
-
-
-* { box-sizing: border-box; }
+    * { box-sizing: border-box; }
 
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  margin: 0;
-  padding: 32px 16px;
-  background-color: var(--bg-page);
-  color: var(--text-main);
+font-family: system-ui, -apple-system, BlinkMacSystemFont, “Segoe UI”, sans-serif;
+margin: 0;
+padding: 32px 16px;
+background: #f4f5f7;
+color: #111827;
 }
 
 .report-container {
-  max-width: 1100px;
-  margin: 0 auto;
-  background: var(--bg-card);
-  border-radius: 12px;
-  padding: 28px 32px 36px;
-  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+max-width: 1200px;
+margin: 0 auto;
+background: #ffffff;
+border-radius: 12px;
+padding: 28px 32px 36px;
+box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
 }
 
-header h1 {
-  margin-top: 0;
-  margin-bottom: 4px;
-  font-size: 1.9rem;
-  letter-spacing: 0.02em;
+header {
+text-align: center;
+padding: 20px 0 30px;
 }
 
 header .label {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  margin-bottom: 16px;
-  line-height: 1.35;
+font-size: 0.75rem;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: #6b7280;
+margin-bottom: 12px;
+}
+
+header h1 {
+font-size: 1.9rem;
+font-weight: 800;
+margin: 0 0 12px;
+line-height: 1.25;
 }
 
 header p {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  line-height: 1.35;
-  margin: 0 0 16px;
+margin: 0 auto;
+color: #6b7280;
+font-size: 0.95rem;
 }
 
 .meta {
-  font-size: 0.8rem;
-  color: #9ca3af;
-  margin-top: 10px;
+text-align: center;
+font-size: 0.8rem;
+color: #9ca3af;
+margin-top: 10px;
 }
 
 .section {
-  margin-bottom: 32px;
+margin-bottom: 32px;
 }
 
 .section h2 {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--text-main);
-  margin: 24px 0 8px;
-  border-bottom: 1px solid var(--border-soft);
-  padding-bottom: 4px;
+font-size: 0.95rem;
+font-weight: 700;
+color: #111827;
+margin: 0 0 10px;
+border-bottom: 1px solid #e0e3e8;
+padding-bottom: 4px;
 }
 
 .section p {
-  font-size: 0.9rem;
-  line-height: 1.5;
-  color: var(--text-main);
-  margin: 6px 0 10px;
+font-size: 0.97rem;
+line-height: 1.75;
+color: #374151;
+margin: 0 0 12px;
 }
 
 .viz-block {
-  background: #f9fafb;
-  border-radius: 10px;
-  padding: 20px;
-  border: 1px solid var(--border-soft);
-  margin: 16px auto;
-  max-width: 700px;
+background: #f9fafb;
+border-radius: 10px;
+padding: 20px;
+border: 1px solid #e0e3e8;
+margin: 16px auto;
+max-width: 700px;
 }
 
 .viz-title {
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #9ca3af;
-  margin-bottom: 12px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+font-size: 0.78rem;
+text-transform: uppercase;
+letter-spacing: 0.08em;
+color: #9ca3af;
+margin-bottom: 12px;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
 }
 
 .viz-block img {
-  width: 100%;
-  height: auto;
-  display: block;
+width: 100%;
+height: auto;
+display: block;
 }
 
 .viz-block .viz-note {
-  font-size: 0.80rem !important;
-  line-height: 1.35 !important;
-  color: #9ca3af;
-  margin-top: 6px;
+font-size: 0.80rem !important;
+line-height: 1.35 !important;
+color: #9ca3af;
+margin-top: 6px;
 }
 
 .callout {
-  background: #ecfdf5;
-  border-left: 4px solid #10b981;
-  border-radius: 6px;
-  padding: 16px 20px;
-  margin: 20px 0;
-  font-size: 0.95rem;
-  color: #065f46;
-  line-height: 1.65;
+background: #ecfdf5;
+border-left: 4px solid #10b981;
+border-radius: 6px;
+padding: 16px 20px;
+margin: 20px 0;
+font-size: 0.95rem;
+color: #065f46;
+line-height: 1.65;
 }
 
 .table-scroll {
-  width: 100%;
-  overflow-x: auto;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.07);
-  margin: 16px 0 8px;
+width: 100%;
+overflow-x: auto;
 }
 
 table {
-  width: 100%;
-  min-width: 480px;
-  border-collapse: collapse;
-  font-size: 0.88rem;
-  background: #ffffff;
+width: 100%;
+min-width: 480px;
+border-collapse: collapse;
+font-size: 0.88rem;
+margin: 16px 0 8px;
+background: #ffffff;
+border-radius: 10px;
+overflow: hidden;
+box-shadow: 0 4px 16px rgba(15, 23, 42, 0.07);
 }
 
 th {
-  background: #f3f4f6;
-  padding: 10px 14px;
-  text-align: left;
-  font-weight: 600;
-  border-bottom: 1px solid #e5e7eb;
-  font-size: 0.82rem;
+background: #f3f4f6;
+padding: 10px 14px;
+text-align: left;
+font-weight: 600;
+border-bottom: 1px solid #e5e7eb;
+font-size: 0.82rem;
 }
 
 td {
-  padding: 10px 14px;
-  border-bottom: 1px solid #f3f4f6;
-  color: #374151;
+padding: 10px 14px;
+border-bottom: 1px solid #f3f4f6;
+color: #374151;
 }
 
 tr.highlight td {
-  background: #ecfdf5;
-  font-weight: 600;
-  color: #065f46;
+background: #ecfdf5;
+font-weight: 600;
+color: #065f46;
 }
 
 tr:last-child td { border-bottom: none; }
 
 .closing-box {
-  background: #374151;
-  color: #f9fafb;
-  border-radius: 10px;
-  padding: 24px 28px;
-  margin-top: 36px;
+background: #374151;
+color: #f9fafb;
+border-radius: 10px;
+padding: 24px 28px;
+margin-top: 36px;
 }
 
 .closing-box h3 {
-  margin: 0 0 10px;
-  font-size: 1rem;
-  font-weight: 700;
-  color: #f9fafb;
+margin: 0 0 10px;
+font-size: 1rem;
+font-weight: 700;
+color: #f9fafb;
 }
 
 .closing-box p {
-  margin: 0;
-  font-size: 0.95rem;
-  line-height: 1.75;
-  color: #e5e7eb;
+margin: 0;
+font-size: 0.95rem;
+line-height: 1.75;
+color: #e5e7eb;
 }
 
 footer {
-  margin-top: 28px;
-  padding-top: 16px;
-  border-top: 1px solid var(--border-soft);
-  text-align: center;
-  font-size: 0.75rem;
-  color: #9ca3af;
+margin-top: 28px;
+padding-top: 16px;
+border-top: 1px solid #e0e3e8;
+text-align: center;
+font-size: 0.75rem;
+color: #9ca3af;
 }
 
-footer a, a, a:visited, a:hover, a:active {
-  color: #2563eb;
-  text-decoration: none;
+footer a {
+color: #2563eb;
+text-decoration: none;
+}
+
+a:visited {
+color: #2563eb;
 }
 
 footer a:hover { text-decoration: underline; }
 
+/* ── Mobile overrides ── */
 @media (max-width: 600px) {
-  .viz-block {
-    max-width: 100%;
-    padding: 12px;
-  }
-
-  .viz-block .viz-note {
-    font-size: 0.68rem !important;
-    margin-top: 4px;
-    color: #9ca3af;
-  }
-
-  .callout {
-    max-width: 100%;
-  }
+.viz-block {
+max-width: 100%;
+padding: 12px;
 }
 
+.viz-block .viz-note {
+font-size: 0.68rem !important;
+margin-top: 4px;
+color: #9ca3af;
+}
+
+.callout {
+max-width: 100%;
+}
+}
+/* ── END mobile overrides ── */
 
   </style>
 </head>
@@ -230,10 +229,9 @@ footer a:hover { text-decoration: underline; }
 <div class="report-container">
 
   <header>
-
+    <div class="label">Market Insight · Alberta · January 2026</div>
     <h1>Wind Volatility and the Limits of Alberta's Single-Price Market</h1>
     <p>As renewables grow, uniform electricity pricing struggles to reflect real system conditions. Here is what January 2026 data shows.</p>
-    <div class="meta">Period: January 2026</div>
     <div class="meta">Data: AESO</div>
   </header>
 
@@ -242,11 +240,11 @@ footer a:hover { text-decoration: underline; }
     <p>Alberta operates in an energy-only market, where generators are paid a single uniform price only for power
       they produce. This design faces new pressures as wind generation grows.</p>
 
-
+```
 <p>Unlike dispatchable generation, wind produces power on the resource's schedule. In January 2026, wind generation was roughly four times more variable than gas when measured relative to average output.
   Gas supplies roughly 75% of Alberta's total output and is the most stable relative to its size. Wind, at around 19% of 
   generation, fluctuates more relative to its contribution.</p> 
-
+```
 
 <div class="viz-block">
   <div class="viz-title">Fig. 1 — Relative variability by fuel type, January 2026</div>
@@ -256,11 +254,13 @@ footer a:hover { text-decoration: underline; }
   </p>
 </div>
 
+```
 <p>
   Wind variability is driven by the nature of the resource itself, while gas variability is largely in response to wind 
   fluctuations, with operators ramping generation up and down to maintain system balance. This dynamic is 
   reflected in the −0.65 correlation between the two.
 </p>
+```
 
   </div>
 
