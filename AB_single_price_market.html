@@ -112,15 +112,56 @@ margin-top: 6px;
 }
 
 .callout {
-  background: #ecfdf5;
-  border-left: 4px solid #10b981;
-  border-radius: 6px;
-  padding: 16px 20px;
-  margin: 20px 0;
-  font-size: 0.95rem;
-  color: #065f46;
-  line-height: 1.65;
+background: #ecfdf5;
+border-left: 4px solid #10b981;
+border-radius: 6px;
+padding: 16px 20px;
+margin: 20px 0;
+max-width: fit-content;
+font-size: 0.95rem;
+color: #065f46;
+line-height: 1.65;
 }
+
+.table-scroll {
+width: 100%;
+overflow-x: auto;
+}
+
+table {
+width: 100%;
+min-width: 480px;
+border-collapse: collapse;
+font-size: 0.88rem;
+margin: 16px 0 8px;
+background: #ffffff;
+border-radius: 10px;
+overflow: hidden;
+box-shadow: 0 4px 16px rgba(15, 23, 42, 0.07);
+}
+
+th {
+background: #f3f4f6;
+padding: 10px 14px;
+text-align: left;
+font-weight: 600;
+border-bottom: 1px solid #e5e7eb;
+font-size: 0.82rem;
+}
+
+td {
+padding: 10px 14px;
+border-bottom: 1px solid #f3f4f6;
+color: #374151;
+}
+
+tr.highlight td {
+background: #ecfdf5;
+font-weight: 600;
+color: #065f46;
+}
+
+tr:last-child td { border-bottom: none; }
 
 .closing-box {
 background: #374151;
@@ -176,6 +217,10 @@ font-size: 0.68rem !important;
 margin-top: 4px;
 color: #9ca3af;
 }
+
+.callout {
+max-width: 100%;
+}
 }
 /* ── END mobile overrides ── */
 
@@ -216,10 +261,44 @@ color: #9ca3af;
 </div>
 
 <div class="callout">
-  The same variability that suppresses prices during high wind can also create price spikes when output drops.
+  On Sunday January 4th, prices stayed low despite the drop in temperatures and low wind generation, likely due to lower weekend demand. When wind dropped the following morning, prices spiked to $858 CAD/MWh — the same variability that suppresses prices during high wind can also create price spikes when output drops.
 </div>
 
-<p>Wind is not the only factor influencing prices; demand and weather conditions also play an important role. On January 5th at 11am, the pool price reached 858 CAD/MWh following the cold conditions on January 4th and the return of weekday demand, with wind generation at 353 MW.</p>
+<p>Wind is not the only factor influencing prices; demand and weather conditions also play an important role. On January 5th at 11am, the pool price reached $858 CAD/MWh following the cold conditions on January 4th and the return of weekday demand, with wind generation at 353 MW.</p>
+
+<div class="table-scroll">
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Wind at 11am (MW)</th>
+        <th>Pool price at 11am (CAD/MWh)</th>
+        <th>Temperature range</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Jan 4</td>
+        <td>261 MW</td>
+        <td>$52.84</td>
+        <td>−31°C to −12°C</td>
+      </tr>
+      <tr class="highlight">
+        <td>Jan 5</td>
+        <td>353 MW</td>
+        <td>$858.44</td>
+        <td>−13°C to +2°C</td>
+      </tr>
+      <tr>
+        <td>Jan 6</td>
+        <td>3,782 MW</td>
+        <td>$0.00</td>
+        <td>−9°C to +1°C</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p style="font-size:0.82rem; color:#9ca3af; margin-top:4px;">All figures at 11am MPT. Sunday Jan 4 had low wind but low price — demand context paired with wind causes complex price signals.</p>
 
   </div>
 
@@ -230,18 +309,8 @@ color: #9ca3af;
   </div>
 
   <div class="closing-box">
-    <h3>Introduction of Locational Marginal
-       Pricing (LMP)</h3>
-    <p>The Alberta Electric System Operator (AESO) 
-      is implementing a pricing model that determines 
-      electricity prices based on local supply, 
-      demand, and transmission constraints. Under 
-      LMP, prices vary by location, allowing the 
-      market to reflect congestion and scarcity 
-      conditions more accurately. This system 
-      could provide clearer signals to both 
-      generators and investors about when and 
-      where capacity is needed.</p>
+    <h3>Introduction of Locational Marginal Pricing (LMP)</h3>
+    <p>The January 5th event illustrates a pattern where prices reflect wind availability sometimes more than demand conditions. This means that a market designed around dispatchable generation — where demand largely determined price — faces new dynamics that a single uniform price cannot fully capture. The Alberta Electric System Operator (AESO) is implementing Locational Marginal Pricing, a model that determines electricity prices based on local supply, demand, and transmission constraints, and could provide clearer signals to both generators and investors about when and where capacity is needed.</p>
   </div>
 
   <footer>
