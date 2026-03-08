@@ -79,8 +79,7 @@ margin: 0 0 12px;
 }
 
 .viz-block {
-margin: 16px auto;
-max-width: 700px;
+margin: 16px 0;
 }
 
 .viz-title {
@@ -93,9 +92,9 @@ text-align: left;
 }
 
 .viz-block img {
-width: auto;
+max-width: 600px;
+width: 100%;
 height: auto;
-max-width: 100%;
 display: block;
 margin: 0 auto;
 }
@@ -197,18 +196,19 @@ color: #2563eb;
 text-decoration: none;
 }
 
-a:visited {
+a, a:visited, a:hover, a:active {
 color: #2563eb;
 }
 
 footer a:hover { text-decoration: underline; }
 
 @media (max-width: 600px) {
-.viz-block {
+.viz-block img {
 max-width: 100%;
 }
 
 .viz-note {
+max-width: 100%;
 font-size: 0.68rem;
 margin-top: 4px;
 }
@@ -239,13 +239,13 @@ max-width: 100%;
       Gas supplies roughly 75% of Alberta's total output and is the most stable relative to its size. Wind, at around 19% of 
       generation, fluctuates more relative to its contribution.</p> 
 
-<div class="viz-block">
-  <div class="viz-title">Fig. 1 — Relative variability by fuel type, January 2026</div>
-  <img src="fig1.png" alt="Relative variability by fuel type">
-  <p class="viz-note">
-    Variability is measured as the standard deviation of hourly output divided by mean generation. Solar and hydro are included for completeness; the primary comparison is between wind and gas, which make up over 94% of Alberta's generation mix.
-  </p>
-</div>
+    <div class="viz-block">
+      <div class="viz-title">Fig. 1 — Relative variability by fuel type, January 2026</div>
+      <img src="fig1.png" alt="Relative variability by fuel type">
+      <p class="viz-note">
+        Variability is measured as the standard deviation of hourly output divided by mean generation. Solar and hydro are included for completeness; the primary comparison is between wind and gas, which make up over 94% of Alberta's generation mix.
+      </p>
+    </div>
 
     <p>
       Wind variability is driven by the nature of the resource itself, while gas variability is largely in response to wind 
@@ -259,57 +259,57 @@ max-width: 100%;
     <h2>Price suppression</h2>
     <p>With wind at near-zero marginal cost, high wind output hours tend to suppress pool prices. As wind generation increases, higher-cost gas generators are forced to sell at low market prices, sometimes below their fixed costs.</p>
 
-<div class="viz-block">
-  <div class="viz-title">Fig. 2 — Pool price vs wind metered volume, January 2026 (daily averages)</div>
-  <img src="fig2.png" alt="Pool price vs wind metered volume">
-</div>
+    <div class="viz-block">
+      <div class="viz-title">Fig. 2 — Pool price vs wind metered volume, January 2026 (daily averages)</div>
+      <img src="fig2.png" alt="Pool price vs wind metered volume">
+    </div>
 
-<div class="callout">
-  The same variability that suppresses prices during high wind can also create price spikes when output drops.
-</div>
+    <div class="callout">
+      The same variability that suppresses prices during high wind can also create price spikes when output drops.
+    </div>
 
-<p>Wind is not the only factor influencing prices; demand and weather conditions also play an important role. On January 5th at 11am, the pool price reached $858 CAD/MWh following the cold conditions on January 4th and the return of weekday demand, with wind generation at 353 MW.</p>
+    <p>Wind is not the only factor influencing prices; demand and weather conditions also play an important role. On January 5th at 11am, the pool price reached $858 CAD/MWh following the cold conditions on January 4th and the return of weekday demand, with wind generation at 353 MW.</p>
 
-<div class="table-scroll">
-  <table>
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Wind at 11am (MW)</th>
-        <th>Pool price at 11am (CAD/MWh)</th>
-        <th>Temperature range</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Jan 4</td>
-        <td>261 MW</td>
-        <td>$52.84</td>
-        <td>−31°C to −12°C</td>
-      </tr>
-      <tr class="highlight">
-        <td>Jan 5</td>
-        <td>353 MW</td>
-        <td>$858.44</td>
-        <td>−13°C to +2°C</td>
-      </tr>
-      <tr>
-        <td>Jan 6</td>
-        <td>3,782 MW</td>
-        <td>$0.00</td>
-        <td>−9°C to +1°C</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<p style="font-size:0.82rem; color:#9ca3af; margin-top:4px;">All figures at 11am MPT. Sunday Jan 4 had low wind but low price. Demand context paired with wind cause complex price signals.</p>
-<p>The table shows how volatile prices can be in Alberta's market. Despite cold temperatures and low wind generation on Sunday
-    January 4, prices remained relatively low, likely due to lower weekend demand. The highest pool price of the month was
-    seen on January 5, with similar wind conditions but warmer temperatures than the previous day. By January 6 prices fell
-    to $0.00 as wind generation increased significantly. </p>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Wind at 11am (MW)</th>
+            <th>Pool price at 11am (CAD/MWh)</th>
+            <th>Temperature range</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Jan 4</td>
+            <td>261 MW</td>
+            <td>$52.84</td>
+            <td>−31°C to −12°C</td>
+          </tr>
+          <tr class="highlight">
+            <td>Jan 5</td>
+            <td>353 MW</td>
+            <td>$858.44</td>
+            <td>−13°C to +2°C</td>
+          </tr>
+          <tr>
+            <td>Jan 6</td>
+            <td>3,782 MW</td>
+            <td>$0.00</td>
+            <td>−9°C to +1°C</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:0.82rem; color:#9ca3af; margin-top:4px;">All figures at 11am MPT. Sunday Jan 4 had low wind but low price. Demand context paired with wind cause complex price signals.</p>
+    <p>The table shows how volatile prices can be in Alberta's market. Despite cold temperatures and low wind generation on Sunday
+        January 4, prices remained relatively low, likely due to lower weekend demand. The highest pool price of the month was
+        seen on January 5, with similar wind conditions but warmer temperatures than the previous day. By January 6 prices fell
+        to $0.00 as wind generation increased significantly.</p>
   
-  <p>This type of volatility was also seen during the January 2024 cold
-    snap, when wind generation was low and pool prices reached the market cap of $999.99/MWh several times. </p>
+    <p>This type of volatility was also seen during the January 2024 cold
+      snap, when wind generation was low and pool prices reached the market cap of $999.99/MWh several times.</p>
   </div>
 
   <div class="section">
