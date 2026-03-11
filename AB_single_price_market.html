@@ -8,7 +8,7 @@
     * { box-sizing: border-box; }
 
 body {
-font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+font-family: system-ui, -apple-system, BlinkMacSystemFont, “Segoe UI”, sans-serif;
 margin: 0;
 padding: 32px 16px;
 background: #f4f5f7;
@@ -45,36 +45,29 @@ line-height: 1.25;
 }
 
 header p {
-  margin: 0 auto;
-  color: #6b7280;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  max-width: 600px;
+margin: 0 auto;
+color: #6b7280;
+font-size: 0.95rem;
 }
 
-
-
 .meta {
-  text-align: center;
-  font-size: 0.8rem;
-  color: #9ca3af;
-  margin-top: 6px;
-  line-height: 1.4;
-  font-weight: 400;
+text-align: center;
+font-size: 0.8rem;
+color: #9ca3af;
+margin-top: 10px;
 }
 
 .section ol {
-  font-size: 0.97rem;
-  line-height: 1.75;
-  color: #374151;
-  padding-left: 40px;
-  margin: 0;
+font-size: 0.97rem;
+line-height: 1.75;
+color: #374151;
+padding-left: 40px;
+margin: 0;
 }
 
 .section ol li {
-  margin-bottom: 8px;
+margin-bottom: 8px;
 }
-
 
 .section {
 margin-bottom: 32px;
@@ -213,7 +206,6 @@ color: #2563eb;
 text-decoration: none;
 }
 
-
 a, a:visited, a:hover, a:active {
 color: #2563eb;
 }
@@ -248,8 +240,11 @@ max-width: 100%;
     <div class="meta">Data: AESO</div>
     <div class="meta">Period: January 2026</div>
   </header>
-  
-      <div class="section" style="margin-bottom: 32;">
+
+```
+  <div class="section" style="margin-bottom: 32;">
+```
+
   <p>Alberta operates in an energy-only 
     electricity market where generators 
     receive a single uniform price only 
@@ -272,34 +267,35 @@ max-width: 100%;
   </ol>
 </div>
 
-
   <div class="section">
     <h2>The Variability Problem</h2>
 
-    <p>Unlike dispatchable generation, wind produces power on 
-      the resource’s schedule. In January 2026, 
-      wind generation was roughly four times more
-       variable than gas when measured relative 
-      to average output. Gas supplied roughly 75% 
-      of Alberta’s total output and was the most 
-      stable source given its share of generation. 
-      Wind, at around 19%, fluctuated much more 
-      relative to its contribution.
-    </p> 
-    
-    <div class="viz-block">
-      <div class="viz-title">Fig. 1 — Relative variability by fuel type, January 2026</div>
-      <img src="fig1.png" alt="Relative variability by fuel type">
-      <p class="viz-note">
-        Variability is measured as the standard deviation of hourly output divided by mean generation (coefficient of variation). Solar and hydro are included for completeness; the primary comparison is between wind and gas, which make up over 94% of Alberta's generation mix.
-      </p>
-    </div>
+```
+<p>Unlike dispatchable generation, wind produces power on 
+  the resource's schedule. In January 2026, 
+  wind generation was roughly four times more
+   variable than gas when measured relative 
+  to average output. Gas supplied roughly 75% 
+  of Alberta's total output and was the most 
+  stable source given its share of generation. 
+  Wind, at around 19%, fluctuated much more 
+  relative to its contribution.
+</p> 
 
-    <p>
-      Wind variability is driven by the nature of the resource itself, while gas variability is largely in response to wind 
-      fluctuations, with operators ramping generation up and down to maintain system balance. This dynamic is 
-      reflected in the −0.65 correlation between the two.
-    </p>
+<div class="viz-block">
+  <div class="viz-title">Fig. 1 — Relative variability by fuel type, January 2026</div>
+  <img src="fig1.png" alt="Relative variability by fuel type">
+  <p class="viz-note">
+    Variability is measured as the standard deviation of hourly output divided by mean generation (coefficient of variation). Solar and hydro are included for completeness; the primary comparison is between wind and gas, which make up over 94% of Alberta's generation mix.
+  </p>
+</div>
+
+<p>
+  Wind variability is driven by the nature of the resource itself, while gas variability is largely in response to wind 
+  fluctuations, with operators ramping generation up and down to maintain system balance. This dynamic is 
+  reflected in the −0.65 correlation between the two.
+</p>
+```
 
   </div>
 
@@ -314,61 +310,64 @@ max-width: 100%;
       91 hours with pool prices at 0 CAD/MWh.
       </p>
 
-    <div class="viz-block">
-      <div class="viz-title">Fig. 2 — Pool price vs wind metered volume, January 2026 (daily averages)</div>
-      <img src="fig2.png" alt="Pool price vs wind metered volume">
-    </div>
+```
+<div class="viz-block">
+  <div class="viz-title">Fig. 2 — Pool price vs wind metered volume, January 2026 (daily averages)</div>
+  <img src="fig2.png" alt="Pool price vs wind metered volume">
+</div>
 
-    <div class="callout">
-      The same variability that suppresses prices during high wind can also create price spikes when output drops.
-    </div>
+<div class="callout">
+  The same variability that suppresses prices during high wind can also create price spikes when output drops.
+</div>
 
-    <p>Wind is not the only factor influencing prices; demand and weather conditions also play an important role. 
-      On January 5th at 11 a.m., the pool price reached 858 CAD/MWh following the cold conditions on January 4th and 
-      the return of weekday demand, with wind generation at 353 MW.</p>
+<p>Wind is not the only factor influencing prices; demand and weather conditions also play an important role. 
+  On January 5th at 11 a.m., the pool price reached 858 CAD/MWh following the cold conditions on January 4th and 
+  the return of weekday demand, with wind generation at 353 MW.</p>
 
-    <div class="viz-block">
-    <div class="viz-title">Table 1 — Pool price, wind metered volume, 11 a.m. (MPT)</div>
-    <div class="table-scroll">
-      <table>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Wind at 11 a.m. (MW)</th>
-            <th>Pool price at 11 a.m. (CAD/MWh)</th>
-            <th>Temperature range</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Jan 4</td>
-            <td>261 MW</td>
-            <td>52.84</td>
-            <td>−31°C to −12°C</td>
-          </tr>
-          <tr class="highlight">
-            <td>Jan 5</td>
-            <td>353 MW</td>
-            <td>858.44</td>
-            <td>−13°C to +2°C</td>
-          </tr>
-          <tr>
-            <td>Jan 6</td>
-            <td>3,782 MW</td>
-            <td>0.00</td>
-            <td>−9°C to +1°C</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    </div>
-    <p style="font-size:0.82rem; color:#9ca3af; margin-top:4px;">
-    <p>The table compares conditions across three consecutive days. Despite low wind generation and very cold temperatures on
-        January 4, prices remained relatively low. The highest pool price of the month was
-        seen on January 5, while by January 6 prices fell to 0 CAD/MWh as wind generation increased significantly.</p>
-  
-    <p>Similar price spikes have occurred during other periods of system stress. During the January 2024 cold
-      snap, for example, wind generation was low and pool prices reached the market cap of 999.99 CAD/MWh several times.</p>
+<div class="viz-block">
+<div class="viz-title">Table 1 — Pool price, wind metered volume, 11 a.m. (MPT)</div>
+<div class="table-scroll">
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Wind at 11 a.m. (MW)</th>
+        <th>Pool price at 11 a.m. (CAD/MWh)</th>
+        <th>Temperature range</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Jan 4</td>
+        <td>261 MW</td>
+        <td>52.84</td>
+        <td>−31°C to −12°C</td>
+      </tr>
+      <tr class="highlight">
+        <td>Jan 5</td>
+        <td>353 MW</td>
+        <td>858.44</td>
+        <td>−13°C to +2°C</td>
+      </tr>
+      <tr>
+        <td>Jan 6</td>
+        <td>3,782 MW</td>
+        <td>0.00</td>
+        <td>−9°C to +1°C</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+<p style="font-size:0.82rem; color:#9ca3af; margin-top:4px;">
+<p>The table compares conditions across three consecutive days. Despite low wind generation and very cold temperatures on
+    January 4, prices remained relatively low. The highest pool price of the month was
+    seen on January 5, while by January 6 prices fell to 0 CAD/MWh as wind generation increased significantly.</p>
+
+<p>Similar price spikes have occurred during other periods of system stress. During the January 2024 cold
+  snap, for example, wind generation was low and pool prices reached the market cap of 999.99 CAD/MWh several times.</p>
+```
+
   </div>
 
   <div class="section">
@@ -377,7 +376,6 @@ max-width: 100%;
     <p>A uniform province-wide price does not always distinguish between cheap power that is useful and cheap power that is overwhelming the system. As renewables grow, more precise pricing is required to reflect conditions across the system.</p>
   </div>
 
-  
   <div class="section">
     <h2>Restructuring Alberta's Energy-Only Market</h2>
     <p>In 2016, Alberta began transitioning from an energy-only to a capacity market, where generators are paid to be available regardless
@@ -391,12 +389,15 @@ max-width: 100%;
       These adjustments aim to improve efficiency and reliability while maintaining investor support and keeping electricity affordable.
     </p>
 
-      <div class="closing-box">
-    <h3>Locational Marginal Pricing (LMP)</h3>
-    <p> Locational Marginal Pricing is a pricing model 
-      that determines electricity prices based on local supply, demand, and transmission constraints. Under LMP, prices
-      vary by location, allowing the market to reflect congestion and scarcity conditions more accurately. This system 
-      could provide clearer signals to both generators and investors about when and where capacity is needed.</p>
+```
+  <div class="closing-box">
+<h3>Locational Marginal Pricing (LMP)</h3>
+<p> Locational Marginal Pricing is a pricing model 
+  that determines electricity prices based on local supply, demand, and transmission constraints. Under LMP, prices
+  vary by location, allowing the market to reflect congestion and scarcity conditions more accurately. This system 
+  could provide clearer signals to both generators and investors about when and where capacity is needed.</p>
+```
+
   </div>
 </div>
 
