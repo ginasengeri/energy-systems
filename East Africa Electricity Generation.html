@@ -36,13 +36,39 @@
       padding: 28px 32px 36px;
       box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
     }
+    
+    header {
+  text-align: center;
+  padding: 20px 0 30px;
+}
 
-    h1 {
-      margin-top: 0;
-      margin-bottom: 4px;
-      font-size: 1.9rem;
-      letter-spacing: 0.02em;
-    }
+header .label {
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #6b7280;
+  margin-bottom: 12px;
+}
+
+header h1 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin: 0 0 12px;
+  line-height: 1.25;
+}
+
+header p {
+  margin: 0 auto;
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+.meta {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #9ca3af;
+  margin-top: 10px;
+}
 
     .report-meta {
       font-size: 0.9rem;
@@ -215,11 +241,14 @@
 
 <body>
   <div class="report-container">
-    <h1>East Africa Electricity Generation</h1>
-    <div class="report-meta">
-      <strong>Period:</strong> 2017–2022<br>
-      <strong>Data source:</strong> Ember Energy
-    </div>
+      <header>
+      <div class="label">Energy Systems Report</div>
+      <h1>East Africa Electricity Generation</h1>
+      <p>2017–2022 data shows how East Africa's electricity mix is structured, with hydropower dominance and gradual diversification into wind and solar.</p>
+      <div class="meta">Data: Ember Energy</div>
+      <div class="meta">Period: 2017–2022</div>
+    </header>
+
     <div class="chips" aria-label="At-a-glance">
       <span class="chip">Hydro dominance</span>
       <span class="chip">Renewable diversification</span>
