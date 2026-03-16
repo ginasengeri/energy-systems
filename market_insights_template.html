@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Work in Progress</title>
+  <style>
+    * { box-sizing: border-box; }
+
+body {
+font-family: system-ui, -apple-system, BlinkMacSystemFont, “Segoe UI”, sans-serif;
+margin: 0;
+padding: 32px 16px;
+background: #f4f5f7;
+color: #111827;
+}
+
+.report-container {
+max-width: 1100px;
+margin: 0 auto;
+background: #ffffff;
+border-radius: 12px;
+padding: 28px 32px 36px;
+box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+}
+
+header {
+text-align: center;
+padding: 20px 0 30px;
+}
+
+header .label {
+font-size: 0.75rem;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: #6b7280;
+margin-bottom: 12px;
+}
+
+header h1 {
+font-size: 1.4rem;
+font-weight: 800;
+margin: 0 0 12px;
+line-height: 1.25;
+}
+
+header p {
+margin: 0 auto 4px;
+color: #6b7280;
+font-size: 0.95rem;
+}
+
+.meta {
+text-align: center;
+font-size: 0.85rem;
+color: #9ca3af;
+margin-top: 10px;
+margin-bottom: 0;
+font-weight: 600;
+}
+
+.section ol {
+font-size: 0.97rem;
+line-height: 1.75;
+color: #374151;
+padding-left: 40px;
+margin: 0;
+}
+
+.section ol li {
+margin-bottom: 8px;
+}
+
+.section {
+margin-bottom: 32px;
+}
+
+.section h2 {
+font-size: 0.95rem;
+font-weight: 700;
+color: #111827;
+margin: 0 0 10px;
+border-bottom: 1px solid #e0e3e8;
+padding-bottom: 4px;
+}
+
+.section p {
+font-size: 0.97rem;
+line-height: 1.75;
+color: #374151;
+margin: 0 0 12px;
+}
+
+.viz-block {
+margin: 16px 0;
+}
+
+.viz-title {
+font-size: 0.78rem;
+letter-spacing: 0.08em;
+color: #9ca3af;
+margin-bottom: 8px;
+text-align: left;
+}
+
+.viz-block img {
+max-width: 500px;
+width: 100%;
+height: auto;
+display: block;
+margin: 0 auto;
+}
+
+.viz-note {
+font-size: 0.92rem !important;
+line-height: 1.5;
+color: #9ca3af !important;
+margin-top: 8px;
+padding-top: 8px;
+text-align: left;
+}
+
+.callout {
+background: #ecfdf5;
+border-left: 4px solid #10b981;
+border-radius: 6px;
+padding: 16px 20px;
+margin: 20px 0;
+font-size: 0.95rem;
+color: #374151;
+line-height: 1.65;
+}
+
+.table-scroll {
+width: 100%;
+overflow-x: auto;
+}
+
+table {
+width: 100%;
+min-width: 480px;
+border-collapse: collapse;
+font-size: 0.88rem;
+margin: 16px 0 8px;
+background: #ffffff;
+border-radius: 10px;
+overflow: hidden;
+box-shadow: 0 4px 16px rgba(15, 23, 42, 0.07);
+}
+
+th {
+background: #f3f4f6;
+padding: 10px 14px;
+text-align: left;
+font-weight: 600;
+border-bottom: 1px solid #e5e7eb;
+font-size: 0.82rem;
+}
+
+td {
+padding: 10px 14px;
+border-bottom: 1px solid #f3f4f6;
+color: #374151;
+}
+
+tr.highlight td {
+background: #ecfdf5;
+font-weight: 600;
+color: #065f46;
+}
+
+tr:last-child td { border-bottom: none; }
+
+.closing-box {
+background: #475569;
+color: #f9fafb;
+border-radius: 10px;
+padding: 24px 28px;
+margin-top: 36px;
+margin-bottom: 36px;
+}
+
+.closing-box h3 {
+margin: 0 0 10px;
+font-size: 1.1rem;
+font-weight: 700;
+color: #f9fafb;
+}
+
+.closing-box p {
+margin: 0;
+font-size: 1rem;
+line-height: 1.75;
+color: #e5e7eb;
+}
+
+footer {
+margin-top: 28px;
+padding-top: 16px;
+border-top: 1px solid #e0e3e8;
+text-align: center;
+font-size: 0.75rem;
+color: #9ca3af;
+}
+
+footer a {
+color: #2563eb;
+text-decoration: none;
+}
+
+a, a:visited, a:hover, a:active {
+color: #2563eb;
+}
+
+footer a:hover { text-decoration: underline; }
+
+@media (max-width: 800px) {
+.viz-block img {
+max-width: 100%;
+}
+
+.viz-note {
+max-width: 100%;
+font-size: 0.68rem;
+margin-top: 4px;
+}
+
+.callout {
+max-width: 100%;
+}
+}
+
+.tableau-container {
+  margin-top: 16px;
+  text-align: center;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+</style>
+  
+</head>
+  
+<body>
+<div class="report-container">
+  
+  <header>
+  <div class="label">Market Insights</div>
+  <h1>Work in Progress</h1>
+  <p>Summary line</p>
+  <div class="meta">Data Source &bull; Period</div>
+</header>
+
+<div class="section" style="margin-bottom: 32;">
+  <p></p>
+</div>
+
+<div class="section">
+  <h2>Key Market Insights</h2>
+  <!--
+  <ol>
+    <li></li>
+  </ol>
+  -->
+</div>
+
+<div class="section">
+<h2>Case Problem (e.g. Three Days in January)</h2>
+<p></p>
+    
+<div class="viz-block">
+  <div class="viz-title">Table 1 — </div>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr class="highlight">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+
+<p></p>
+</div>
+  
+<div class="section">
+<h2>Root Problem 1 (e.g. The Variability Problem)</h2>
+
+<p></p> 
+
+<!--
+<div class="viz-block">
+  <div class="viz-title">Fig. 1 — </div>
+  <img src="fig1.png" alt="Description">
+  <p class="viz-note">
+  </p>
+</div>
+-->
+
+<p></p>
+
+</div>
+
+<div class="section">
+<h2>Root Problem 2 (e.g. The Investment Signal Problem)</h2>
+<p></p>
+
+<!--
+<div class="viz-block">
+  <div class="viz-title">Fig. 2 </div>
+  <img src="fig2.png" alt="Description">
+</div>
+-->
+
+<div class="callout">
+callout
+</div>
+    
+<p></p>
+
+</div>
+
+<div class="section">
+<h2>Market Changes (e.g. Restructuring Alberta's Energy-Only Market)</h2>
+<p></p>
+  
+</div>
+
+<div class="section">
+  <h2>Data & Sources</h2>
+<!--
+  <p>
+    Alberta Electric System Operator (AESO). <em>API Products</em>.
+    Available at: 
+    <a href="https://developer-apim.aeso.ca/apis" target="_blank">
+      https://developer-apim.aeso.ca/apis
+    </a>
+  </p>
+
+  <p>
+    Alberta Electric System Operator (AESO). <em>Restructured Energy Market (REM) Design Information Overview</em>.
+    Available at:
+    <a href="https://www.aeso.ca/assets/REM/AESO-REM-Design-Information-Overview.pdf" target="_blank">
+      https://www.aeso.ca/assets/REM/AESO-REM-Design-Information-Overview.pdf
+    </a>
+  </p>
+-->
+</div>
+
+<div class="section">
+  <h2>Technical Appendix</h2>
+  <!--
+  <p> 
+    Alberta Electricity Market Data Pipeline 
+    (data collection and processing methodology).
+    Available at: 
+    <a href="AESO Data Pipeline.html" target="_blank">
+      AESO Data Pipeline.html
+    </a>
+  </p>
+  
+<p>Pool Price and Wind Generation — January 2026</p>
+<div class="tableau-container">
+  <div class='tableauPlaceholder' id='myTableauViz2' style='position: relative'>
+    <object class='tableauViz' style='display:none;'>
+      <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+      <param name='embed_code_version' value='3' />
+      <param name='site_root' value='' />
+      <param name='name' value='WindvPriceScatter/Jan2-5PricevWindDash' />
+      <param name='tabs' value='no' />
+      <param name='toolbar' value='yes' />
+    </object>
+  </div>
+</div>
+-->
+</div>
+  
+<!--
+<script type='text/javascript'>
+  var placeholder = document.getElementById('myTableauViz2');
+  var viz = placeholder.getElementsByTagName('object')[0];
+  viz.style.width = '100%';
+  viz.style.height = '550px';
+  var script = document.createElement('script');
+  script.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+  viz.parentNode.insertBefore(script, viz);
+</script>
+-->
+  
+</div>
+
+<footer>
+  <p>Data source · Period</p>
+  <a href="market_insights.html">← Back to Market Insights</a>
+</footer>
+
+</body>
+</html>
