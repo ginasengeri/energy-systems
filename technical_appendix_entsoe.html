@@ -88,17 +88,17 @@ text-decoration: none;
 <body>
 
 <header>
-<h1>ENTSO-E Data Pipeline</h1>
+<h1>Work in Progress: ENTSO-E Data Pipeline</h1>
 <p>Technical appendix describing the retrieval and processing of hourly price and cross-border flow data for February 2026.</p>
 </header>
 
 <main>
 
 <p>
-Market data were collected from the ENTSO-E Transparency Platform API and transformed
-into hourly time series datasets containing cross-border physical flows and zonal
+Transmission and market data were collected from the ENTSO-E Transparency Platform API and transformed
+into time-series datasets containing cross-border physical flows and zonal
 day-ahead electricity prices. The pipeline retrieves XML responses from the API,
-parses the hierarchical structure, reconstructs timestamps, and converts the data
+parses the structure, reconstructs timestamps, and converts the data
 into tabular format for analysis.
 </p>
 
@@ -143,9 +143,9 @@ response = requests.get(url, params=params)</code></pre>
 <h2>Parsing XML responses</h2>
 
 <p>
-ENTSO-E API responses are returned in XML format. Each response contains one or
+Each response contains one or
 more <code>Period</code> blocks describing a time interval, its temporal resolution,
-and a list of hourly observations. These nested structures are parsed using the
+and a list of 15 minute observations. These nested structures are parsed using the
 Python XML ElementTree library.
 </p>
 
@@ -159,16 +159,16 @@ for period in root.findall(".//{*}Period"):
 
 <p>
 Each period contains a sequence of <code>Point</code> elements where the position
-indicates the hour within the interval and the value represents either the
-electricity flow or price for that hour.
+indicates the minute within the interval and the value represents either the
+electricity flow or price for that interval.
 </p>
 
 <h2>Reconstructing timestamps</h2>
 
 <p>
-Hourly timestamps are reconstructed from the period start time, the position of
-each observation, and the temporal resolution. This approach converts the
-period-based XML structure into explicit hourly records.
+Timestamps are reconstructed from the period start time, the position of
+each observation, and the 15 minute resolution. This approach converts the
+period-based XML structure into explicit time records.
 </p>
 
 <pre><code>for point in period.findall("{*}Point"):
@@ -236,21 +236,20 @@ pd.to_datetime(df["time"], utc=True)
   .dt.tz_localize(None)
 )</code></pre>
 
-<h2>Final datasets</h2>
-
 <p>
 Two structured tables are produced:
 </p>
 
 <ul>
-<li><strong>flows_df</strong> – hourly cross-border electricity flows by direction</li>
-<li><strong>prices_df</strong> – hourly day-ahead electricity prices by bidding zone</li>
+<li><strong>flows_df</strong> – cross-border electricity flows by direction</li>
+<li><strong>prices_df</strong> – day-ahead electricity prices by bidding zone</li>
 </ul>
 
-<p>
-These datasets form the basis for the empirical analysis and can be merged
-or aggregated depending on the requirements of the model or visualization.
-</p>
+<h2>Merging & Aggregation</h2>
+
+<h2>Validation</h2>
+
+<h2>Final Dataset</h2>
 
 <footer>
 <p>Data source: ENTSO-E Transparency Platform · February 2026</p>
