@@ -166,15 +166,10 @@ response = requests.get(url, params=params)</code></pre>
 <h2>Parsing XML responses</h2>
 
 <p>
-Each response contains
-<code>Period</code> blocks
-describing time intervals and
-their resolution, along with a
-value representing either electricity
-flow or price for that interval. The data
-is extracted by iterating
-through these periods and their
-values.
+Each response contains <code>Period</code> blocks. Each period specifies a start
+time and a resolution. Within each period, individual <code>Point</code> elements
+record a position and a measurement value representing the physical flow or price
+for that interval.
 </p>
 
 <pre><code>import xml.etree.ElementTree as ET
@@ -215,75 +210,75 @@ and importing domains.
 </p>
 
 <pre><code>flows = {
-"FR->DE-LU": ("10YFR-RTE------C","10Y1001A1001A82H"),
-"DE-LU->FR": ("10Y1001A1001A82H","10YFR-RTE------C"),
-"DE-LU->NL": ("10Y1001A1001A82H","10YNL----------L"),
-"NL->DE-LU": ("10YNL----------L","10Y1001A1001A82H"),
+    "FR->DE-LU":  ("10YFR-RTE------C", "10Y1001A1001A82H"),
+    "DE-LU->FR":  ("10Y1001A1001A82H", "10YFR-RTE------C"),
+    ...
 }</code></pre>
 
 <p>
-Each observation records the
-flow direction, timestamp, and
-physical electricity flow value,
-which are combined into a
-structured dataset.
+Each observation records the flow direction, timestamp, and physical electricity
+flow value, which are combined into a structured dataset.
 </p>
 
 <p>
-With the SDAC 15-minute MTU transition on 
-October 1, 2025, observations switch from 
-hourly to every 15 minutes on this date. 
-Means are calculated over each hour following
-the transition to maintain a consistent interval
-throughout the dataset.
+With the SDAC 15-minute MTU transition on October 1, 2025, observations switch from
+hourly to every 15 minutes. Hourly means are calculated following the transition
+to maintain a consistent interval throughout the dataset.
 </p>
 
 <h2>Constructing the price dataset</h2>
 
 <p>
 Day-ahead prices are retrieved for each bidding zone using a separate API query (documentType = "A44").
+In Germany–Luxembourg, the API returns two TimeSeries: sequence 1 contains the main SDAC
+day-ahead price and sequence 2 contains the EXAA early auction result. For France, a sequence 2
+series also appears in the weeks following the SDAC 15-minute MTU transition on 1 October 2025.
+Only sequence 1 is retained.
 </p>
 
 <pre><code>zones = {
-"FR": "10YFR-RTE------C",
-"DE-LU": "10Y1001A1001A82H",
-"NL": "10YNL----------L",
-"NO2": "10YNO-2--------T"
+    "FR":   "10YFR-RTE------C",
+    "DE-LU":"10Y1001A1001A82H",
+    "NL":   "10YNL----------L",
+    "NO2":  "10YNO-2--------T"
 }</code></pre>
-
-<p>
-The resulting dataset contains zonal prices aligned with the same
-timestamp structure used for the flow data.
-</p>
 
 <h2>Timezone conversion</h2>
 
 <p>
-ENTSO-E timestamps are returned in Coordinated Universal Time (UTC). For
-consistency with European market conventions, timestamps are converted to
-Central European Time (CET/CEST) using the Brussels timezone.
+ENTSO-E timestamps are returned in UTC and converted to German market time
+(Europe/Berlin). The daylight saving transition on 26 October 2025 causes the local
+hour between 02:00 and 03:00 to occur twice, producing duplicate rows in both
+datasets. The duplicate is dropped, keeping the first occurrence.
 </p>
-
-<pre><code>df["time"] = (
-pd.to_datetime(df["time"], utc=True)
-  .dt.tz_convert("Europe/Brussels")
-  .dt.tz_localize(None)
-)</code></pre>
-
-<p>
-Two structured tables are produced:
-</p>
-
-<ul>
-<li><strong>flows_df</strong> – cross-border electricity flows by direction</li>
-<li><strong>prices_df</strong> – day-ahead electricity prices by bidding zone</li>
-</ul>
-
-<h2>Merging &amp; Aggregation</h2>
 
 <h2>Validation</h2>
 
-<h2>Final Dataset</h2>
+<p>
+Both datasets are inspected before aggregation. The time range, unique zones and
+directions, and row counts per series are checked. Daily observation counts confirm
+the switch from 24 to 96 observations per day on 1 October 2025 when the SDAC moved
+to 15-minute resolution. Any rows with missing prices are removed, as net flows
+cannot be calculated with incomplete values. Missing physical flow values are filled
+with zero — inspection confirmed these correspond to hours where flow in the opposite
+direction is non-zero, indicating no flow occurred in that direction.
+</p>
+
+<h2>Final dataset</h2>
+
+<p>
+Prices and flows are kept in long format and combined into a single table, where
+each row represents one hourly observation for one series. A <code>dataset</code>
+field distinguishes price observations from flow observations, and a
+<code>series</code> field identifies the bidding zone or flow direction. Calendar
+fields — month, week, hour, weekday, and others — are added to support filtering
+and aggregation in Tableau.
+</p>
+
+<p>
+Three CSV files are exported: the hourly price table, the hourly flow table, and
+the combined long-format dataset used for visualization.
+</p>
 
 <section class="sources-section">
   <h2>API Documentation &amp; Sources</h2>
