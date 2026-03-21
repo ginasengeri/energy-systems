@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head> 
 <meta charset="UTF-8">
@@ -66,6 +67,48 @@ code{
 font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
 line-height: 1.5;
 font-size: 0.9rem;
+}
+
+/* API Documentation & Sources section */
+.sources-section {
+  margin-top: 30px;
+}
+
+.sources-section h2 {
+  margin-top: 0;
+}
+
+.source-entry {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-top: 12px;
+}
+
+.source-entry .source-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.source-entry p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.source-entry a {
+  color: #2563eb;
+  text-decoration: none;
+  word-break: break-all;
+  font-size: 0.85rem;
+}
+
+.source-entry a:hover {
+  text-decoration: underline;
 }
 
 footer {
@@ -167,7 +210,6 @@ for period in root.findall(".//{*}Period"):
         position = int(point.find("{*}position").text)
         value = float(point.find("{*}quantity").text)</code></pre>
 
-
 <h2>Reconstructing timestamps</h2>
 
 <p>
@@ -217,7 +259,6 @@ the transition to maintain a consistent interval
 throughout the dataset.
 </p>
 
-
 <h2>Constructing the price dataset</h2>
 
 <p>
@@ -259,29 +300,31 @@ Two structured tables are produced:
 <li><strong>prices_df</strong> – day-ahead electricity prices by bidding zone</li>
 </ul>
 
-<h2>Merging & Aggregation</h2>
+<h2>Merging &amp; Aggregation</h2>
 
 <h2>Validation</h2>
 
 <h2>Final Dataset</h2>
 
-<h2 Sources & API Documentation </h2>
-  <p>
-    ENTSO-E Transparency Platform RESTful API
-    Available at: 
+<section class="sources-section">
+  <h2>API Documentation &amp; Sources</h2>
+
+  <div class="source-entry">
+    <div class="source-label">ENTSO-E Transparency Platform RESTful API</div>
+    <p>ENTSO-E Transparency Platform RESTful API</p>
     <a href="https://documenter.getpostman.com/view/7009892/2s93JtP3F6" target="_blank">
       https://documenter.getpostman.com/view/7009892/2s93JtP3F6
     </a>
-  </p>
-  
-  <p>
-    SDAC 15-minute MTU transition
-    Available at: 
+  </div>
+
+  <div class="source-entry">
+    <div class="source-label">SDAC 15-minute MTU transition</div>
+    <p>SDAC 15-minute MTU transition</p>
     <a href="https://dexterenergy.ai/news/sdac-15-minute-mtu-transition/" target="_blank">
       https://dexterenergy.ai/news/sdac-15-minute-mtu-transition/
     </a>
-  </p>
-
+  </div>
+</section>
 
 <footer>
 <p>Data source: ENTSO-E Transparency Platform · February 2026</p>
@@ -291,7 +334,5 @@ Two structured tables are produced:
 </main>
 
 </body>
-
-
 
 </html>
