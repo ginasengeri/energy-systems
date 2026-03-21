@@ -143,10 +143,15 @@ response = requests.get(url, params=params)</code></pre>
 <h2>Parsing XML responses</h2>
 
 <p>
-Each response contains one or
-more <code>Period</code> blocks describing a time interval, its resolution,
-and a list of 15 minute observations. These nested structures are parsed using the
-Python XML ElementTree library.
+Each response contains
+<code>Period</code> blocks
+describing time intervals and
+their resolution, along with a
+value representing either electricity
+flow or price for that interval. The data
+is extracted by iterating
+through these periods and their
+values.
 </p>
 
 <pre><code>import xml.etree.ElementTree as ET
@@ -155,32 +160,29 @@ root = ET.fromstring(response.content)
 
 for period in root.findall(".//{*}Period"):
     start = period.find("{*}timeInterval/{*}start").text
-    resolution = period.find("{*}resolution").text</code></pre>
+    resolution = period.find("{*}resolution").text
 
-<p>
-Each period contains a sequence of <code>Point</code> elements where the position
-indicates the minute within the interval and the value represents either the
-electricity flow or price for that interval.
-</p>
+    for point in period.findall("{*}Point"):
+        position = int(point.find("{*}position").text)
+        value = float(point.find("{*}quantity").text)</code></pre>
+
 
 <h2>Reconstructing timestamps</h2>
 
 <p>
 Timestamps are reconstructed from the period start time, the position of
-each observation, and the 15 minute resolution. This approach converts the
-period-based XML structure into explicit time records.
+each observation, and the resolution of the period. This approach converts the
+period-based XML structure into explicit timestamps.
 </p>
 
-<pre><code>for point in period.findall("{*}Point"):
-    position = int(point.find("{*}position").text)
-    value = float(point.find("{*}quantity").text)
+<pre><code>for period in root.findall(".//{*}Period"):
+    start = pd.Timestamp(period.find("{*}timeInterval/{*}start").text)
+    resolution = isodate.parse_duration(period.find("{*}resolution").text)
 
-    timestamp = start + (position - 1) * resolution</code></pre>
+    for point in period.findall("{*}Point"):
+        position = int(point.find("{*}position").text)
 
-<p>
-Each observation is stored as a row in a list which is later converted into a
-pandas DataFrame.
-</p>
+        timestamp = start + (position - 1) * resolution</code></pre>
 
 <h2>Constructing the flow dataset</h2>
 
@@ -198,9 +200,22 @@ and importing domains.
 }</code></pre>
 
 <p>
-Each observation records the flow direction, timestamp, and physical
-electricity flow value.
+Each observation records the
+flow direction, timestamp, and
+physical electricity flow value,
+which are combined into a
+structured dataset.
 </p>
+
+<p>
+With the SDAC 15-minute MTU transition on 
+October 1, 2025, observations switch from 
+hourly to every 15 minutes on this date. 
+Means are calculated over each hour following
+the transition to maintain a consistent interval
+throughout the dataset.
+</p>
+
 
 <h2>Constructing the price dataset</h2>
 
@@ -225,8 +240,7 @@ timestamp structure used for the flow data.
 <p>
 ENTSO-E timestamps are returned in Coordinated Universal Time (UTC). For
 consistency with European market conventions, timestamps are converted to
-Central European Time (CET/CEST) using the Brussels timezone and stored as
-naive local datetimes.
+Central European Time (CET/CEST) using the Brussels timezone.
 </p>
 
 <pre><code>df["time"] = (
@@ -251,7 +265,7 @@ Two structured tables are produced:
 <h2>Final Dataset</h2>
 
 <h2 Sources & API Documentation </h2>
-  
+
 
 <footer>
 <p>Data source: ENTSO-E Transparency Platform · February 2026</p>
