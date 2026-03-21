@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
 <html lang="en">
-<head> 
+<head>
 <meta charset="UTF-8">
-<title>ENTSO-E Market Data Pipeline – Technical Appendix</title>
+<title>Alberta Market Data Pipeline – Technical Appendix</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -111,195 +111,157 @@ text-decoration: none;
 <body>
 
 <header>
-<h1>Work in Progress: ENTSO-E Data Pipeline</h1>
-<p>Technical appendix describing the retrieval and processing of hourly price and cross-border flow data for February 2026.</p>
+<h1>AESO Data Pipeline</h1>
+<p>Technical appendix describing the data collection, processing, and validation steps used to construct the January 2026 hourly dataset.</p>
 </header>
 
 <main>
 
 <p>
-Transmission and market data were collected from the ENTSO-E Transparency Platform API and transformed
-into time-series datasets containing cross-border physical flows and zonal
-day-ahead electricity prices. The pipeline retrieves XML responses from the API,
-parses the structure, reconstructs timestamps, and converts the data
-into tabular format for analysis.
+Data were collected from publicly available AESO API endpoints and transformed into a
+single hourly table containing system price, generation by fuel type, system capability,
+and interchange. The pipeline begins with API retrieval followed by
+data flattening, aggregation, merging, validation, and final export.
 </p>
 
 <h2>Data sources</h2>
 
-<p>
-Two datasets are retrieved from the ENTSO-E API:
-</p>
+<p>The dataset combines several hourly reports from the AESO public API.</p>
 
 <ul>
-<li>Cross-border physical electricity flows between bidding zones</li>
-<li>Day-ahead electricity prices for each zone</li>
+<li>Pool Price – hourly Alberta pool price</li>
+<li>Metered Volume – hourly generation reported at the asset level</li>
+<li>AIES Generation Capability – system capability and outage values</li>
 </ul>
 
 <p>
-The following bidding zones are included in the dataset:
-</p>
-
-<ul>
-<li>France (FR)</li>
-<li>Germany–Luxembourg (DE-LU)</li>
-<li>Netherlands (NL)</li>
-<li>Norway Zone 2 (NO2)</li>
-</ul>
-
-<p>
-All data are retrieved using authenticated requests to the ENTSO-E Transparency Platform API.
-</p>
+These reports are retrieved as JSON responses and converted into table format.
 
 <pre><code>import requests
 import pandas as pd
 
-url = "https://web-api.tp.entsoe.eu/api"
+headers = {"API-KEY": "YOUR_KEY"}
 
-params = {
-    "securityToken": API_KEY,
-    "documentType": "A11"
-}
+url = "AESO_API_ENDPOINT"
 
-response = requests.get(url, params=params)</code></pre>
+response = requests.get(url, headers=headers)
+data = response.json()</code></pre>
 
-<h2>Parsing XML responses</h2>
+<h2>Flattening nested JSON structures</h2>
 
 <p>
-Each response contains
-<code>Period</code> blocks
-describing time intervals and
-their resolution, along with a
-value representing either electricity
-flow or price for that interval. The data
-is extracted by iterating
-through these periods and their
-values.
+Metered volume responses contain nested structures where each participant includes
+multiple assets and each asset includes a list of hourly volumes. These nested
+records are flattened into a row-level table.
 </p>
 
-<pre><code>import xml.etree.ElementTree as ET
+<pre><code>volume_rows = []
 
-root = ET.fromstring(response.content)
+for participant_block in combined_ret:
+    participant = participant_block["pool_participant_ID"]
 
-for period in root.findall(".//{*}Period"):
-    start = period.find("{*}timeInterval/{*}start").text
-    resolution = period.find("{*}resolution").text
+    for asset in participant_block["asset_list"]:
+        asset_id = asset["asset_ID"]
 
-    for point in period.findall("{*}Point"):
-        position = int(point.find("{*}position").text)
-        value = float(point.find("{*}quantity").text)</code></pre>
+        for v in asset["metered_volume_list"]:
+            v["pool_participant_ID"] = participant
+            v["asset_ID"] = asset_id
+            volume_rows.append(v)
 
-<h2>Reconstructing timestamps</h2>
+metered_vol = pd.DataFrame(volume_rows)</code></pre>
+
+<h2>Aggregation and reshaping</h2>
 
 <p>
-Timestamps are reconstructed from the period start time, the position of
-each observation, and the resolution of the period. This approach converts the
-period-based XML structure into explicit timestamps.
+Asset-level metered volume data is aggregated by fuel type and timestamp. The resulting
+table is reshaped into wide format so each fuel type appears as a column.
 </p>
 
-<pre><code>for period in root.findall(".//{*}Period"):
-    start = pd.Timestamp(period.find("{*}timeInterval/{*}start").text)
-    resolution = isodate.parse_duration(period.find("{*}resolution").text)
+<pre><code>fuel_hourly = (
+metered_vol
+.groupby(["Date (MPT)", "fuel_type"])["metered_volume"]
+.sum()
+.reset_index()
+)
 
-    for point in period.findall("{*}Point"):
-        position = int(point.find("{*}position").text)
+wide_vol = fuel_hourly.pivot(
+index="Date (MPT)",
+columns="fuel_type",
+values="metered_volume"
+).reset_index()</code></pre>
 
-        timestamp = start + (position - 1) * resolution</code></pre>
-
-<h2>Constructing the flow dataset</h2>
+<h2>Merging datasets</h2>
 
 <p>
-Cross-border physical flows are retrieved for multiple directional pairs
-between bidding zones. For each pair, the API query specifies the exporting
-and importing domains.
+After aggregation, the generation data is merged with pool price and system capability
+datasets using the hourly timestamp as the common key.
 </p>
 
-<pre><code>flows = {
-"FR->DE-LU": ("10YFR-RTE------C","10Y1001A1001A82H"),
-"DE-LU->FR": ("10Y1001A1001A82H","10YFR-RTE------C"),
-"DE-LU->NL": ("10Y1001A1001A82H","10YNL----------L"),
-"NL->DE-LU": ("10YNL----------L","10Y1001A1001A82H"),
-}</code></pre>
+<pre><code>price_vol = pd.merge(
+pool_price,
+wide_vol[['GAS','WIND','HYDRO','SOLAR_daytime']].reset_index(),
+on='Date (MPT)'
+)
 
-<p>
-Each observation records the
-flow direction, timestamp, and
-physical electricity flow value,
-which are combined into a
-structured dataset.
-</p>
-
-<p>
-With the SDAC 15-minute MTU transition on 
-October 1, 2025, observations switch from 
-hourly to every 15 minutes on this date. 
-Means are calculated over each hour following
-the transition to maintain a consistent interval
-throughout the dataset.
-</p>
-
-<h2>Constructing the price dataset</h2>
-
-<p>
-Day-ahead prices are retrieved for each bidding zone using a separate API query (documentType = "A44").
-</p>
-
-<pre><code>zones = {
-"FR": "10YFR-RTE------C",
-"DE-LU": "10Y1001A1001A82H",
-"NL": "10YNL----------L",
-"NO2": "10YNO-2--------T"
-}</code></pre>
-
-<p>
-The resulting dataset contains zonal prices aligned with the same
-timestamp structure used for the flow data.
-</p>
-
-<h2>Timezone conversion</h2>
-
-<p>
-ENTSO-E timestamps are returned in Coordinated Universal Time (UTC). For
-consistency with European market conventions, timestamps are converted to
-Central European Time (CET/CEST) using the Brussels timezone.
-</p>
-
-<pre><code>df["time"] = (
-pd.to_datetime(df["time"], utc=True)
-  .dt.tz_convert("Europe/Brussels")
-  .dt.tz_localize(None)
+price_vol_ac = pd.merge(
+price_vol,
+aies[['ac']].reset_index(),
+on='Date (MPT)'
 )</code></pre>
 
+<h2>Data validation</h2>
+
 <p>
-Two structured tables are produced:
+A validation step checks whether the expected number of hourly observations is present.
+January contains 744 hours (31 × 24). Missing timestamps are identified by comparing
+the dataset against a complete hourly index.
 </p>
 
-<ul>
-<li><strong>flows_df</strong> – cross-border electricity flows by direction</li>
-<li><strong>prices_df</strong> – day-ahead electricity prices by bidding zone</li>
-</ul>
+<pre><code>expected = pd.date_range(
+"2026-01-01 00:00",
+"2026-01-31 23:00",
+freq="H"
+)
 
-<h2>Merging &amp; Aggregation</h2>
+actual = pd.to_datetime(price_vol_ac["Date (MPT)"]).drop_duplicates()
 
-<h2>Validation</h2>
+missing = expected.difference(actual)
 
-<h2>Final Dataset</h2>
+print(len(expected))
+print(len(actual))
+print(missing)</code></pre>
+
+<p>
+This check makes it possible to identify missing hours that can occur when API queries
+are split across multiple date ranges.
+</p>
+
+<h2>Final dataset</h2>
+
+<p>
+The final dataset contains one row per hour and combines price, generation,
+system capability, and interchange indicators. The table is exported as a CSV file
+for analysis and visualization.
+</p>
+
+<pre><code>price_vol_ac_interchange.to_csv(
+"alberta_market_data.csv",
+index=False
+)</code></pre>
 
 <section class="sources-section">
   <h2>API Documentation &amp; Sources</h2>
   <ol>
-    <li>ENTSO-E Transparency Platform RESTful API – <a href="https://documenter.getpostman.com/view/7009892/2s93JtP3F6" target="_blank">https://documenter.getpostman.com/view/7009892/2s93JtP3F6</a></li>
-    <li>SDAC 15-minute MTU transition – <a href="https://dexterenergy.ai/news/sdac-15-minute-mtu-transition/" target="_blank">https://dexterenergy.ai/news/sdac-15-minute-mtu-transition/</a></li>
+    <li>Alberta Electric System Operator – Public API – <a href="https://api.aeso.ca" target="_blank">https://api.aeso.ca</a></li>
   </ol>
 </section>
 
 <footer>
-<p>Data source: ENTSO-E Transparency Platform · February 2026</p>
-<a href="technical_appendix.html">← Back to Technical Appendix</a>
+  <p>Data source: Alberta Electric System Operator (AESO) · January 2026</p>
+  <a href="technical_appendix.html">← Back to Technical Appendix</a>
 </footer>
 
 </main>
 
 </body>
-
 </html>
