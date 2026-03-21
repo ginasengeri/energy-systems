@@ -70,44 +70,23 @@ font-size: 0.9rem;
 }
 
 /* API Documentation & Sources section */
-.sources-section {
-  margin-top: 30px;
+.sources-section ol {
+  margin: 10px 0 0 0;
+  padding-left: 0;
+  list-style: none;
 }
 
-.sources-section h2 {
-  margin-top: 0;
+.sources-section li {
+  margin-bottom: 6px;
+  word-break: break-word;
 }
 
-.source-entry {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-  padding: 14px 18px;
-  margin-top: 12px;
-}
-
-.source-entry .source-label {
-  font-size: 0.78rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #6b7280;
-  margin-bottom: 4px;
-}
-
-.source-entry p {
-  margin: 0;
-  font-size: 0.9rem;
-}
-
-.source-entry a {
+.sources-section a {
   color: #2563eb;
   text-decoration: none;
-  word-break: break-all;
-  font-size: 0.85rem;
 }
 
-.source-entry a:hover {
+.sources-section a:hover {
   text-decoration: underline;
 }
 
@@ -308,22 +287,10 @@ Two structured tables are produced:
 
 <section class="sources-section">
   <h2>API Documentation &amp; Sources</h2>
-
-  <div class="source-entry">
-    <div class="source-label">ENTSO-E Transparency Platform RESTful API</div>
-    <p>ENTSO-E Transparency Platform RESTful API</p>
-    <a href="https://documenter.getpostman.com/view/7009892/2s93JtP3F6" target="_blank">
-      https://documenter.getpostman.com/view/7009892/2s93JtP3F6
-    </a>
-  </div>
-
-  <div class="source-entry">
-    <div class="source-label">SDAC 15-minute MTU transition</div>
-    <p>SDAC 15-minute MTU transition</p>
-    <a href="https://dexterenergy.ai/news/sdac-15-minute-mtu-transition/" target="_blank">
-      https://dexterenergy.ai/news/sdac-15-minute-mtu-transition/
-    </a>
-  </div>
+  <ol>
+    <li>ENTSO-E Transparency Platform RESTful API – <a href="https://documenter.getpostman.com/view/7009892/2s93JtP3F6" target="_blank">https://documenter.getpostman.com/view/7009892/2s93JtP3F6</a></li>
+    <li>SDAC 15-minute MTU transition – <a href="https://dexterenergy.ai/news/sdac-15-minute-mtu-transition/" target="_blank">https://dexterenergy.ai/news/sdac-15-minute-mtu-transition/</a></li>
+  </ol>
 </section>
 
 <footer>
