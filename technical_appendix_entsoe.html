@@ -258,7 +258,7 @@ datasets. The duplicate is dropped, keeping the first occurrence.
 Both datasets are inspected before aggregation. The time range, unique zones and
 directions, and row counts per series are checked. Daily observation counts confirm
 the switch from 24 to 96 observations per day on 1 October 2025 when the SDAC moved
-to 15-minute resolution. Any rows with missing prices are removed, as net flows
+to 15-minute resolution. Any rows with missing prices are removed, as price spreads
 cannot be calculated with incomplete values. Missing physical flow values are filled
 with zero — inspection confirmed these correspond to hours where flow in the opposite
 direction is non-zero, indicating no flow occurred in that direction.
