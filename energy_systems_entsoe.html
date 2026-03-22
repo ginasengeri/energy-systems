@@ -86,6 +86,14 @@ sup a { text-decoration: none; }
 .custom-legend { display: flex; flex-wrap: wrap; gap: 6px 24px; justify-content: center; margin-top: 12px; }
 .cl-item { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: #374151; }
 .cl-line { width: 22px; height: 2.5px; border-radius: 2px; flex-shrink: 0; }
+.price-wrap { position: relative; width: 65%; margin: 12px auto 0; height: 340px; }
+.price-wrap canvas { display: block; }
+.dual-filter { display: flex; gap: 6px; }
+.df-btn { padding: 4px 14px; border-radius: 999px; font-size: 0.78rem; font-weight: 600; cursor: pointer; border: 1px solid var(--border-soft); background: var(--table-header); color: var(--text-muted); transition: all .15s; font-family: inherit; }
+.df-btn.active[data-zone="FR"]  { background: #fff0eb; border-color: #dc6030; color: #dc6030; }
+.df-btn.active[data-zone="NL"]  { background: #eff6ff; border-color: #2563eb; color: #2563eb; }
+.df-btn.active[data-zone="NO2"] { background: #f0fdf4; border-color: #2d7d46; color: #2d7d46; }
+.dual-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0; }
 
   </style>
 </head>
@@ -144,16 +152,37 @@ sup a { text-decoration: none; }
     </div>
 
     <h2>Weekly Average Net Flow (MW)</h2>
-    <p>The chart below shows the weekly average net flow magnitude between DE-LU and each zone throughout 2025. </p>
+    <p>The chart below shows the weekly average net flow magnitude between DE-LU and each zone throughout 2025. Where flow is into DE-LU the line is shown in the zone colour; where DE-LU is a net exporter to that zone the segment turns black.</p>
+
     <p class="chart-fig">Fig. 1 — Weekly average net flow (MW) between DE-LU and neighbouring zones, 2025.</p>
     <div class="chart-wrap">
       <canvas id="flowChart"></canvas>
     </div>
     <div class="custom-legend" id="customLegend"></div>
 
+    <h2>Price spread and net flow by corridor</h2>
+    <p>
+      Electricity flows from lower-price zones into higher-price ones. Germany's day-ahead prices sit structurally above those of France and Norway, reflecting higher marginal generation costs from gas and coal following the nuclear phase-out. The Netherlands, with a similar generation mix, trades close to parity.
+    </p>
+
+    <div class="dual-header">
+      <p class="chart-fig" id="dualFig">Fig. 2 — Weekly avg net flow (MW, left) and price spread (€/MWh, right) for FR → DE-LU, 2025.</p>
+      <div class="dual-filter">
+        <button class="df-btn active" data-zone="FR"  onclick="setZone('FR')">FR</button>
+        <button class="df-btn"        data-zone="NL"  onclick="setZone('NL')">NL</button>
+        <button class="df-btn"        data-zone="NO2" onclick="setZone('NO2')">NO2</button>
+      </div>
+    </div>
+    <div class="price-wrap">
+      <canvas id="dualChart"></canvas>
+    </div>
+    <div class="custom-legend">
+      <div class="cl-item"><div class="cl-line" id="dualFlowLine" style="background:#dc6030;"></div><span>Avg net flow (MW)</span></div>
+      <div class="cl-item"><div class="cl-line" style="border-top:2px dashed #9ca3af;height:0;width:22px;background:none;"></div><span>Price spread (€/MWh)</span></div>
+    </div>
+
     <h2>Implications</h2>
     <p>
-        
     </p>
 
     <h2>Data Source</h2>
@@ -401,6 +430,133 @@ sup a { text-decoration: none; }
       cardsEl.appendChild(card);
     });
   })();
+  </script>
+  <script>
+    const dualWeeks = Array.from({length:52}, (_,i) => i+1);
+    const ZONE_COLORS = { FR: '#dc6030', NL: '#2563eb', NO2: '#2d7d46' };
+    const ZONE_LABELS = { FR: 'FR → DE-LU', NL: 'NL → DE-LU', NO2: 'NO2 → DE-LU' };
+
+    const dualData = {
+      FR:  {
+        net_flow: [-1337.89,-1844.99,-2147.9,-2618.0,-2643.27,-508.56,-1612.14,-2071.4,-2474.63,-1149.08,-1514.31,-1230.43,-1671.37,-1624.57,-1675.18,-1454.43,-1791.12,-1762.98,-2793.72,-1901.23,-2205.87,-2385.05,-2606.4,-2070.62,-1870.39,-1210.36,-1600.69,-2741.73,-2963.85,-3192.81,-2937.68,-2231.43,-2475.42,-2363.25,-2894.4,-2439.36,-2769.79,-1981.86,-2504.77,-2311.78,-2160.39,-2577.36,-2507.35,-2803.18,-3137.22,-3205.82,-2909.66,-3420.93,-3600.67,-3492.79,-3541.2,-2961.46],
+        spread:   [-4.298,1.03,10.548,22.21,25.373,-2.791,4.406,6.133,18.43,17.313,9.984,21.793,20.73,35.598,39.348,45.412,24.923,35.063,67.338,46.005,51.972,34.987,48.217,25.786,22.818,2.578,14.815,36.745,28.143,32.8,29.132,18.853,16.187,21.629,34.989,57.355,70.531,19.519,43.747,36.647,24.764,37.863,24.14,29.201,47.619,62.396,17.757,43.861,46.392,27.188,21.889,13.591]
+      },
+      NL:  {
+        net_flow: [690.95,1058.04,-2280.85,-460.2,94.81,-984.48,-1030.41,-1128.3,-1646.18,-162.63,-2194.21,-253.87,-255.4,-36.71,-470.62,781.3,-51.98,-426.51,-898.17,-676.6,-318.71,-573.33,-563.87,-339.55,-573.67,-452.48,-672.67,-698.27,-1591.33,-1315.91,-681.73,-816.16,-1376.81,-1254.09,-1649.14,-1170.19,-695.04,147.53,-734.53,-309.54,154.31,-1025.79,836.25,66.96,-855.43,-347.65,-1270.79,-2004.56,-2322.2,-1470.81,-1170.56,397.71],
+        spread:   [-11.955,-9.536,4.896,3.764,3.463,3.079,1.052,-0.061,7.369,4.488,4.419,-2.562,3.743,7.535,4.315,1.904,0.662,0.227,6.046,3.002,2.878,1.751,1.743,-9.265,-3.956,-4.399,-2.132,-0.781,1.453,1.433,1.648,1.525,0.291,0.893,7.536,13.007,7.332,-1.356,3.519,3.736,1.528,7.683,-0.403,2.028,5.723,7.916,3.679,15.533,16.359,4.897,3.444,1.137]
+      },
+      NO2: {
+        net_flow: [-686.31,-460.03,-1290.41,-1104.84,-984.28,-1185.39,-1169.02,-1052.22,-1198.82,-634.3,-857.88,-478.69,-737.6,-544.79,-647.89,-656.5,-873.11,-481.52,-560.66,-419.92,-631.2,-566.05,-475.05,-157.1,-363.24,-490.13,-889.49,-927.84,-695.08,-639.21,-653.83,-621.75,-591.05,-369.14,-655.43,-1009.18,-1146.7,-346.16,-746.63,-964.79,-1123.97,-1192.05,-446.38,-886.9,-1171.34,-1182.07,-765.94,-1253.12,-1129.71,-1146.48,-1198.66,-1030.53],
+        spread:   [11.851,29.625,102.138,44.751,37.614,52.999,36.109,25.278,63.964,58.101,38.173,36.533,46.43,20.618,28.693,34.898,14.319,10.277,-4.14,0.962,10.067,10.479,10.555,-1.166,14.191,15.72,33.474,21.685,15.319,11.049,8.368,11.94,6.739,2.618,5.223,21.339,37.412,13.25,19.889,29.567,36.662,41.911,9.741,13.346,31.221,26.431,5.702,25.736,33.44,24.934,28.155,13.792]
+      }
+    };
+
+    let currentZone = 'FR';
+    let dualChart;
+
+    function buildDualChart(zone) {
+      const color = ZONE_COLORS[zone];
+      const d = dualData[zone];
+
+      if (dualChart) dualChart.destroy();
+
+      dualChart = new Chart(document.getElementById('dualChart'), {
+        type: 'line',
+        data: {
+          labels: dualWeeks,
+          datasets: [
+            {
+              label: 'Avg net flow (MW)',
+              data: d.net_flow,
+              borderColor: color,
+              borderWidth: 2,
+              pointRadius: 0,
+              pointHoverRadius: 3,
+              tension: 0.3,
+              fill: false,
+              yAxisID: 'yFlow',
+            },
+            {
+              label: 'Price spread (€/MWh)',
+              data: d.spread,
+              borderColor: '#9ca3af',
+              borderWidth: 1.5,
+              borderDash: [4, 3],
+              pointRadius: 0,
+              pointHoverRadius: 3,
+              tension: 0.3,
+              fill: false,
+              yAxisID: 'ySpread',
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#ffffff',
+              borderColor: '#e0e3e8',
+              borderWidth: 1,
+              titleColor: '#111827',
+              bodyColor: '#374151',
+              padding: 10,
+              boxWidth: 5, boxHeight: 5,
+              usePointStyle: true,
+              callbacks: {
+                title: items => `Week ${dualWeeks[items[0].dataIndex]} · 2025`,
+                label: ctx => ctx.datasetIndex === 0
+                  ? ` Net flow: ${ctx.parsed.y.toLocaleString('en-GB', {maximumFractionDigits:0})} MW`
+                  : ` Price spread: €${ctx.parsed.y.toFixed(2)}/MWh`,
+                labelColor: ctx => {
+                  const c = ctx.datasetIndex === 0 ? color : '#9ca3af';
+                  return { borderColor: c, backgroundColor: c };
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              border: { color: '#e0e3e8' },
+              title: { display: true, text: 'Week', color: '#9ca3af', font: { size: 11 } },
+              ticks: { color: '#6b7280', font: { size: 11 }, maxTicksLimit: 13, callback: (v,i) => i % 4 === 0 ? dualWeeks[i] : '' }
+            },
+            yFlow: {
+              type: 'linear', position: 'left',
+              grid: { display: false },
+              border: { color: '#e0e3e8' },
+              title: { display: true, text: 'Net flow (MW)', color: '#9ca3af', font: { size: 11 } },
+              ticks: { color: '#6b7280', font: { size: 11 }, callback: v => v.toLocaleString('en-GB') }
+            },
+            ySpread: {
+              type: 'linear', position: 'right',
+              grid: { display: false },
+              border: { color: '#e0e3e8' },
+              title: { display: true, text: 'Price spread (€/MWh)', color: '#9ca3af', font: { size: 11 } },
+              ticks: { color: '#6b7280', font: { size: 11 }, callback: v => '€' + v.toFixed(0) }
+            }
+          }
+        }
+      });
+
+      // update fig caption and legend line colour
+      document.getElementById('dualFig').textContent =
+        `Fig. 2 — Weekly avg net flow (MW, left) and price spread (€/MWh, right) for ${ZONE_LABELS[zone]}, 2025.`;
+      document.getElementById('dualFlowLine').style.background = color;
+    }
+
+    function setZone(zone) {
+      currentZone = zone;
+      document.querySelectorAll('.df-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.zone === zone);
+      });
+      buildDualChart(zone);
+    }
+
+    buildDualChart('FR');
   </script>
 </body>
 </html>
