@@ -17,7 +17,7 @@ header .label { font-size: 0.75rem; letter-spacing: 2px; text-transform: upperca
 header h1 { font-size: 1.4rem; font-weight: 800; margin: 0 0 12px; line-height: 1.25; }
 header p { margin: 0 auto; color: #6b7280; font-size: 0.95rem; }
 .meta { text-align: center; font-size: 0.8rem; color: #9ca3af; margin-top: 10px; margin-bottom: 0; font-weight: 600; }
-h2 { margin-top: 24px; margin-bottom: 8px; font-size: 0.95rem; font-weight: 700; border-bottom: 1px solid var(--border-soft); padding-bottom: 4px; }
+h2 { margin-top: 24px; margin-bottom: 8px; font-size: 1.05rem; font-weight: 700; border-bottom: 1px solid var(--border-soft); padding-bottom: 4px; }
 .section p { font-size: 0.97rem; line-height: 1.75; color: #374151; margin: 0 0 12px; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0px 0 16px; justify-content: center; }
 .chip { background: var(--chip); border: 1px solid rgba(37, 99, 235, 0.15); color: #1f2a5a; padding: 6px 10px; border-radius: 999px; font-size: 0.82rem; font-weight: 650; white-space: nowrap; }
@@ -64,27 +64,23 @@ sup a { text-decoration: none; }
 .map-embed #m-total .tv { font-size: 16px; font-weight: 700; letter-spacing: -1px; color: #111827; line-height: 1.1; margin-top: 1px; }
 .map-embed #m-total .ts { font-size: 9px; color: #9ca3af; }
 .map-embed #m-src { position: absolute; bottom: 14px; left: 16px; z-index: 10; font-size: 10px; color: #d1d5db; opacity: 0; animation: mup .35s .6s ease forwards; }
-
 .zone-table { min-width: unset; width: auto; margin: 10px 0 16px; }
 .zone-table td code { font-family: ui-monospace, monospace; font-size: 0.8rem; background: var(--table-header); border: 1px solid var(--border-soft); border-radius: 4px; padding: 1px 6px; }
-
 .zone-legend { display: flex; flex-direction: column; gap: 5px; margin: 10px 0 16px; }
 .zl-item { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; }
 .zl-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 .zl-item code { font-family: ui-monospace, monospace; font-size: 0.8rem; background: var(--table-header); border: 1px solid var(--border-soft); border-radius: 4px; padding: 1px 6px; color: var(--text-main); }
 .zl-desc { color: var(--text-muted); }
-
 @keyframes mup { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
 .zone-grid { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 10px 0 16px; }
 .zone-item { display: flex; align-items: baseline; gap: 8px; }
 .zone-code { font-size: 0.8rem; font-weight: 700; font-family: ui-monospace, monospace; color: var(--text-main); background: var(--table-header); border: 1px solid var(--border-soft); border-radius: 4px; padding: 1px 6px; }
 .zone-name { font-size: 0.9rem; color: var(--text-muted); }
-
 .chart-wrap { position: relative; width: 65%; margin: 12px auto 0; height: 380px; }
 .chart-wrap canvas { display: block; }
-.chart-fig { font-size: 0.75rem; color: #9ca3af; text-align: left; margin-bottom: 6px; margin-top: 0; }
+.chart-fig { font-size: 0.85rem; color: #9ca3af; text-align: left; margin-bottom: 6px; margin-top: 0; }
 .custom-legend { display: flex; flex-wrap: wrap; gap: 6px 24px; justify-content: center; margin-top: 12px; }
-.cl-item { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: #374151; }
+.cl-item { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: #374151; }
 .cl-line { width: 22px; height: 2.5px; border-radius: 2px; flex-shrink: 0; }
 .price-wrap { position: relative; width: 65%; margin: 12px auto 0; height: 340px; }
 .price-wrap canvas { display: block; }
@@ -94,7 +90,7 @@ sup a { text-decoration: none; }
 .df-btn.active[data-zone="NL"]  { background: #eff6ff; border-color: #2563eb; color: #2563eb; }
 .df-btn.active[data-zone="NO2"] { background: #f0fdf4; border-color: #2d7d46; color: #2d7d46; }
 .dual-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0; }
-
+p { font-size: 1.05rem; line-height: 1.75; color: #374151; margin: 0 0 12px; }
   </style>
 </head>
 <body>
@@ -111,7 +107,7 @@ sup a { text-decoration: none; }
         <span class="chip"><span style="width:8px;height:8px;border-radius:50%;background:#dc6030;display:inline-block;vertical-align:middle;margin-right:6px;"></span>FR · France</span>
         <span class="chip"><span style="width:8px;height:8px;border-radius:50%;background:#2d7d46;display:inline-block;vertical-align:middle;margin-right:6px;"></span>NO2 · Norway South</span>
         <span class="chip"><span style="width:8px;height:8px;border-radius:50%;background:#2563eb;display:inline-block;vertical-align:middle;margin-right:6px;"></span>NL · Netherlands</span>
-    </div>      
+    </div>
 
     <h2>System Overview</h2>
     <p>
@@ -119,14 +115,14 @@ sup a { text-decoration: none; }
         36 countries in Europe, ensuring energy security and market efficiency for its member countries<sup><a href="#ref1">[1]</a></sup>.
         Germany sits between several different power systems in Europe, and connects a diverse set of generation systems. This allows for
         observation of a range of trade patterns in one place. The focus of this
-        analysis is on electricity transmission between the Germany-Luxembourg bidding zone (DE-LU), France (FR), Netherlands (NL), 
+        analysis is on electricity transmission between the Germany-Luxembourg bidding zone (DE-LU), France (FR), Netherlands (NL),
         and Norway South (NO2).
-        This combines a nuclear-heavy system in France, a hydro-dominated system in Norway, and a gas/wind mix in the Netherlands. 
+        This combines a nuclear-heavy system in France, a hydro-dominated system in Norway, and a gas/wind mix in the Netherlands.
     </p>
 
     <h2>Key Insights</h2>
     <p>There are three main roles observed in the Germany-Luxembourg zone:</p>
-    <ol> 
+    <ol>
       <li>Major importing corridor — France's nuclear power is the main source of imports.</li>
       <li>Alternating flows — gas and wind power from the Netherlands provides balancing support to cover short-term gaps on either side.</li>
       <li>Prolonged flow reversals — Norway's hydro provides seasonal balancing depending on reservoir levels.</li>
@@ -139,14 +135,14 @@ sup a { text-decoration: none; }
       <div id="m-panel">
         <div>
           <h3>DE-LU Net Electricity Imports</h3>
-          <p>Cross-border flows · 2025 · GWh</p>
+          <p>Cross-border flows · 2025 · TWh</p>
         </div>
         <div id="m-cards"></div>
       </div>
       <div id="m-total">
         <div class="tl">Total net imports</div>
-        <div class="tv">32,783</div>
-        <div class="ts">GWh into DE-LU</div>
+        <div class="tv">32.8</div>
+        <div class="ts"><strong style="color:#111827;">TWh</strong> into DE-LU</div>
       </div>
       <div id="m-src">ENTSO-E Transparency Platform</div>
     </div>
@@ -154,15 +150,15 @@ sup a { text-decoration: none; }
     <h2>Weekly Average Net Flow (MW)</h2>
     <p>The chart below shows the weekly average net flow magnitude between DE-LU and each zone throughout 2025. Where flow is into DE-LU the line is shown in the zone colour; where DE-LU is a net exporter to that zone the segment turns black.</p>
 
-    <p class="chart-fig">Fig. 1 — Weekly average net flow (MW) between DE-LU and neighbouring zones, 2025.</p>
+    <p class="chart-fig">Fig. 1 — Weekly average net flow magnitude (MW) between DE-LU and neighbouring zones, 2025.</p>
     <div class="chart-wrap">
       <canvas id="flowChart"></canvas>
     </div>
     <div class="custom-legend" id="customLegend"></div>
 
-    <h2>Price spread and net flow by corridor</h2>
+    <h2>Price Spread and Net Flow by Corridor</h2>
     <p>
-      Electricity flows from lower-price zones into higher-price ones. Germany's day-ahead prices are consistently above those of France and Norway, reflecting higher 
+      Electricity flows from lower-price zones into higher-price ones. Germany's day-ahead prices are consistently above those of France and Norway, reflecting higher
       marginal generation costs from gas and coal following the nuclear phase-out. The Netherlands, with a similar generation mix, trades close to Germany.
     </p>
 
@@ -174,17 +170,21 @@ sup a { text-decoration: none; }
         <button class="df-btn"        data-zone="NO2" onclick="setZone('NO2')">NO2</button>
       </div>
     </div>
-    <div class="price-wrap">
+    <div class="price-wrap" style="position:relative;">
       <canvas id="dualChart"></canvas>
+      <div id="corrBadge" style="position:absolute;top:12px;right:60px;background:#fff;border:1px solid #e0e3e8;border-radius:6px;padding:5px 10px;font-size:0.75rem;color:#6b7280;pointer-events:none;">r = <span id="corrValue" style="font-weight:700;color:#111827;">−0.48</span></div>
     </div>
     <div class="custom-legend">
       <div class="cl-item"><div class="cl-line" id="dualFlowLine" style="background:#dc6030;"></div><span>Avg net flow (MW)</span></div>
       <div class="cl-item"><div class="cl-line" style="border-top:2px dashed #9ca3af;height:0;width:22px;background:none;"></div><span>Price spread (€/MWh)</span></div>
     </div>
 
-    <h2>Implications</h2>
-    <p>
-    </p>
+    <h2>Generation Mix</h2>
+    <p>The price differences above reflect the structural composition of each zone's generation fleet. France's nuclear dominance keeps marginal costs low year-round.
+         Norway's near-total reliance on hydro is similarly low-cost but subject to seasonal reservoir levels. The Netherlands mirrors 
+         Germany's mix of wind and solar with thermal generation coming from gas, explaining why their prices track closely.</p>
+    <p class="chart-fig">Fig. 3 — Top three generation sources by share of total output, 2025.</p>
+    <div id="mixChart" style="width:100%;margin-top:8px;"></div>
 
     <h2>Data Source</h2>
     <p>
@@ -194,17 +194,16 @@ sup a { text-decoration: none; }
         https://transparency.entsoe.eu/
       </a>
     </p>
-    
-     <h2>Technical Appendix</h2>
+
+    <h2>Technical Appendix</h2>
     <p>
-        ENTSO-E Data Pipeline.
-        Available at:
-        <a href="https://ginasengeri.github.io/Electricity-and-the-Economy/technical_appendix_entsoe.html" target="_blank">
+      ENTSO-E Data Pipeline.
+      Available at:
+      <a href="https://ginasengeri.github.io/Electricity-and-the-Economy/technical_appendix_entsoe.html" target="_blank">
         technical_appendix_entsoe.html
-        </a>
-      </li>
+      </a>
     </p>
-    
+
     <h2>References</h2>
     <ol>
       <li id="ref1">
@@ -319,7 +318,7 @@ sup a { text-decoration: none; }
               stepSize: 1000,
               callback: v => v.toLocaleString('en-GB') + ' MW'
             },
-            title: { display: true, text: 'Avg net flow (MW)', color: '#9ca3af', font: { size: 11 } }
+            title: { display: true, text: 'Avg net flow magnitude (MW)', color: '#9ca3af', font: { size: 11 } }
           }
         }
       }
@@ -343,9 +342,9 @@ sup a { text-decoration: none; }
   <script>
   (async () => {
     const FLOWS = [
-      { id:'fr',  code:'FR',  country:'France',      sub:'nuclear',    lat:46.2, lon:2.3,  gwh:20029, label:'20,029', color:'#dc6030', delay:.1 },
-      { id:'no2', code:'NO2', country:'Norway',      sub:'hydro',      lat:60.5, lon:8.5,  gwh:6873,  label:'6,873',  color:'#2d7d46', delay:.2 },
-      { id:'nl',  code:'NL',  country:'Netherlands', sub:'gas & wind', lat:52.3, lon:5.3,  gwh:5881,  label:'5,881',  color:'#2563eb', delay:.3 },
+      { id:'fr',  code:'FR',  country:'France',      sub:'nuclear',    lat:46.2, lon:2.3,  gwh:20029, label:'20.0', color:'#dc6030', delay:.1 },
+      { id:'no2', code:'NO2', country:'Norway',      sub:'hydro',      lat:60.5, lon:8.5,  gwh:6873,  label:'6.9',  color:'#2d7d46', delay:.2 },
+      { id:'nl',  code:'NL',  country:'Netherlands', sub:'gas & wind', lat:52.3, lon:5.3,  gwh:5881,  label:'5.9',  color:'#2563eb', delay:.3 },
     ];
     const DELU = { lat:50.7, lon:10.2 };
     const maxGwh = 20029;
@@ -353,31 +352,20 @@ sup a { text-decoration: none; }
     const W = container.clientWidth;
     const H = container.clientHeight;
     const svg = d3.select('#flow-map').attr('viewBox', `0 0 ${W} ${H}`);
-
-    const proj = d3.geoNaturalEarth1()
-      .center([5, 52])
-      .scale(Math.min(W, H) * 2.6)
-      .translate([W * 0.45, H * 0.5]);
-
+    const proj = d3.geoNaturalEarth1().center([5, 52]).scale(Math.min(W, H) * 2.6).translate([W * 0.45, H * 0.5]);
     const geoPath = d3.geoPath().projection(proj);
     const world = await d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json');
     const features = topojson.feature(world, world.objects.countries).features;
     const activeIds = new Set(['250','528','578','276','442']);
-
-    svg.append('g').selectAll('path')
-      .data(features).join('path')
-      .attr('class', d => 'mc' + (activeIds.has(d.id) ? ' active' : ''))
-      .attr('d', geoPath);
-
+    svg.append('g').selectAll('path').data(features).join('path')
+      .attr('class', d => 'mc' + (activeIds.has(d.id) ? ' active' : '')).attr('d', geoPath);
     const px = (lat, lon) => proj([lon, lat]);
     const deluPx = px(DELU.lat, DELU.lon);
-
     function ctrlPt(src, dst) {
       const mx = (src[0]+dst[0])/2, my = (src[1]+dst[1])/2;
       const dx = dst[0]-src[0], dy = dst[1]-src[1];
       return [mx + dy*0.22, my - dx*0.22];
     }
-
     FLOWS.forEach((d, i) => {
       const src = px(d.lat, d.lon);
       const c = ctrlPt(src, deluPx);
@@ -387,42 +375,33 @@ sup a { text-decoration: none; }
         .attr('stroke', d.color).attr('stroke-width', w).attr('opacity', 0.65);
       const len = arcEl.node().getTotalLength();
       arcEl.attr('stroke-dasharray', len).attr('stroke-dashoffset', len)
-        .transition().delay(250 + i*100).duration(750).ease(d3.easeCubicInOut)
-        .attr('stroke-dashoffset', 0);
+        .transition().delay(250 + i*100).duration(750).ease(d3.easeCubicInOut).attr('stroke-dashoffset', 0);
       const dot = svg.append('circle').attr('r', 3).attr('fill', d.color).attr('opacity', 0);
       const dur = 1500 + i*180;
       function loop(extra) {
-        dot.attr('opacity', 0)
-          .transition().delay(extra).duration(60).attr('opacity', 0.9)
+        dot.attr('opacity', 0).transition().delay(extra).duration(60).attr('opacity', 0.9)
           .transition().duration(dur).ease(d3.easeQuadInOut)
             .attrTween('cx', () => t => arcEl.node().getPointAtLength(t*len).x)
             .attrTween('cy', () => t => arcEl.node().getPointAtLength(t*len).y)
-          .transition().duration(100).attr('opacity', 0)
-          .on('end', () => loop(300));
+          .transition().duration(100).attr('opacity', 0);
       }
       loop(1000 + i*100);
     });
-
     FLOWS.forEach(d => {
       const [x, y] = px(d.lat, d.lon);
       svg.append('circle').attr('cx', x).attr('cy', y).attr('r', 3.5)
         .attr('fill', d.color).attr('stroke','#f4f5f7').attr('stroke-width', 1.5)
         .attr('opacity', 0).transition().delay(350).duration(250).attr('opacity', 1);
-      svg.append('text').attr('x', x-8).attr('y', y)
-        .attr('text-anchor','end').attr('dominant-baseline','middle')
-        .attr('font-family','system-ui,sans-serif').attr('font-size', 10)
-        .attr('font-weight', 600).attr('fill','#6b7280').text(d.code)
-        .attr('opacity', 0).transition().delay(400).duration(250).attr('opacity', 1);
+      svg.append('text').attr('x', x-8).attr('y', y).attr('text-anchor','end').attr('dominant-baseline','middle')
+        .attr('font-family','system-ui,sans-serif').attr('font-size', 10).attr('font-weight', 600)
+        .attr('fill','#6b7280').text(d.code).attr('opacity', 0).transition().delay(400).duration(250).attr('opacity', 1);
     });
-
     svg.append('circle').attr('cx', deluPx[0]).attr('cy', deluPx[1]).attr('r', 5)
       .attr('fill','#111827').attr('stroke','#f4f5f7').attr('stroke-width', 2)
       .attr('opacity', 0).transition().delay(350).duration(250).attr('opacity', 1);
-    svg.append('text').attr('x', deluPx[0]+10).attr('y', deluPx[1])
-      .attr('dominant-baseline','middle').attr('font-family','system-ui,sans-serif')
-      .attr('font-size', 11).attr('font-weight', 700).attr('fill','#111827').text('DE-LU')
-      .attr('opacity', 0).transition().delay(400).duration(250).attr('opacity', 1);
-
+    svg.append('text').attr('x', deluPx[0]+10).attr('y', deluPx[1]).attr('dominant-baseline','middle')
+      .attr('font-family','system-ui,sans-serif').attr('font-size', 11).attr('font-weight', 700)
+      .attr('fill','#111827').text('DE-LU').attr('opacity', 0).transition().delay(400).duration(250).attr('opacity', 1);
     const cardsEl = document.getElementById('m-cards');
     FLOWS.forEach(d => {
       const card = document.createElement('div');
@@ -433,8 +412,8 @@ sup a { text-decoration: none; }
         <div class="fc-body">
           <div class="fc-lbl">${d.country}</div>
           <div class="fc-row">
-            <span class="fc-val" style="color:${d.color}">${d.label}</span>
-            <span class="fc-unit">GWh</span>
+            <span class="fc-val" style="color:#111827;">${d.label}</span>
+            <span class="fc-unit" style="color:#111827;font-weight:700;">TWh</span>
           </div>
           <div class="fc-sub">${d.sub}</div>
         </div>`;
@@ -446,6 +425,7 @@ sup a { text-decoration: none; }
     const dualWeeks = Array.from({length:52}, (_,i) => i+1);
     const ZONE_COLORS = { FR: '#dc6030', NL: '#2563eb', NO2: '#2d7d46' };
     const ZONE_LABELS = { FR: 'FR → DE-LU', NL: 'NL → DE-LU', NO2: 'NO2 → DE-LU' };
+    const ZONE_CORR   = { FR: -0.481, NL: -0.564, NO2: -0.611 };
 
     const dualData = {
       FR:  {
@@ -468,106 +448,104 @@ sup a { text-decoration: none; }
     function buildDualChart(zone) {
       const color = ZONE_COLORS[zone];
       const d = dualData[zone];
-
-      if (dualChart) dualChart.destroy();
-
+      if (dualChart && typeof dualChart.destroy === 'function') dualChart.destroy();
       dualChart = new Chart(document.getElementById('dualChart'), {
         type: 'line',
         data: {
           labels: dualWeeks,
           datasets: [
-            {
-              label: 'Avg net flow (MW)',
-              data: d.net_flow,
-              borderColor: color,
-              borderWidth: 2,
-              pointRadius: 0,
-              pointHoverRadius: 3,
-              tension: 0.3,
-              fill: false,
-              yAxisID: 'yFlow',
-            },
-            {
-              label: 'Price spread (€/MWh)',
-              data: d.spread,
-              borderColor: '#9ca3af',
-              borderWidth: 1.5,
-              borderDash: [4, 3],
-              pointRadius: 0,
-              pointHoverRadius: 3,
-              tension: 0.3,
-              fill: false,
-              yAxisID: 'ySpread',
-            }
+            { label: 'Avg net flow (MW)', data: d.net_flow, borderColor: color, borderWidth: 2, pointRadius: 0, pointHoverRadius: 3, tension: 0.3, fill: false, yAxisID: 'yFlow' },
+            { label: 'Price spread (€/MWh)', data: d.spread, borderColor: '#9ca3af', borderWidth: 1.5, borderDash: [4, 3], pointRadius: 0, pointHoverRadius: 3, tension: 0.3, fill: false, yAxisID: 'ySpread' }
           ]
         },
         options: {
-          responsive: true,
-          maintainAspectRatio: false,
+          responsive: true, maintainAspectRatio: false,
           interaction: { mode: 'index', intersect: false },
           plugins: {
             legend: { display: false },
             tooltip: {
-              backgroundColor: '#ffffff',
-              borderColor: '#e0e3e8',
-              borderWidth: 1,
-              titleColor: '#111827',
-              bodyColor: '#374151',
-              padding: 10,
-              boxWidth: 5, boxHeight: 5,
-              usePointStyle: true,
+              backgroundColor: '#ffffff', borderColor: '#e0e3e8', borderWidth: 1,
+              titleColor: '#111827', bodyColor: '#374151', padding: 10,
+              boxWidth: 5, boxHeight: 5, usePointStyle: true,
               callbacks: {
                 title: items => `Week ${dualWeeks[items[0].dataIndex]} · 2025`,
                 label: ctx => ctx.datasetIndex === 0
                   ? ` Net flow: ${ctx.parsed.y.toLocaleString('en-GB', {maximumFractionDigits:0})} MW`
                   : ` Price spread: €${ctx.parsed.y.toFixed(2)}/MWh`,
-                labelColor: ctx => {
-                  const c = ctx.datasetIndex === 0 ? color : '#9ca3af';
-                  return { borderColor: c, backgroundColor: c };
-                }
+                labelColor: ctx => { const c = ctx.datasetIndex === 0 ? color : '#9ca3af'; return { borderColor: c, backgroundColor: c }; }
               }
             }
           },
           scales: {
-            x: {
-              grid: { display: false },
-              border: { color: '#e0e3e8' },
-              title: { display: true, text: 'Week', color: '#9ca3af', font: { size: 11 } },
-              ticks: { color: '#6b7280', font: { size: 11 }, maxTicksLimit: 13, callback: (v,i) => i % 4 === 0 ? dualWeeks[i] : '' }
-            },
-            yFlow: {
-              type: 'linear', position: 'left',
-              grid: { display: false },
-              border: { color: '#e0e3e8' },
-              title: { display: true, text: 'Net flow (MW)', color: '#9ca3af', font: { size: 11 } },
-              ticks: { color: '#6b7280', font: { size: 11 }, callback: v => v.toLocaleString('en-GB') }
-            },
-            ySpread: {
-              type: 'linear', position: 'right',
-              grid: { display: false },
-              border: { color: '#e0e3e8' },
-              title: { display: true, text: 'Price spread (€/MWh)', color: '#9ca3af', font: { size: 11 } },
-              ticks: { color: '#6b7280', font: { size: 11 }, callback: v => '€' + v.toFixed(0) }
-            }
+            x: { grid:{display:false}, border:{color:'#e0e3e8'}, title:{display:true,text:'Week',color:'#9ca3af',font:{size:11}}, ticks:{color:'#6b7280',font:{size:11},maxTicksLimit:13,autoSkip:true,maxRotation:0,callback:(v,i)=>i%4===0?dualWeeks[i]:''} },
+            yFlow: { type:'linear', position:'left', grid:{display:false}, border:{color:'#e0e3e8'}, title:{display:true,text:'Net flow (MW)',color:'#9ca3af',font:{size:11}}, ticks:{color:'#6b7280',font:{size:11},callback:v=>v.toLocaleString('en-GB')} },
+            ySpread: { type:'linear', position:'right', grid:{display:false}, border:{color:'#e0e3e8'}, title:{display:true,text:'Price spread (€/MWh)',color:'#9ca3af',font:{size:11}}, ticks:{color:'#6b7280',font:{size:11},callback:v=>'€'+v.toFixed(0)} }
           }
         }
       });
-
-      // update fig caption and legend line colour
-      document.getElementById('dualFig').textContent =
-        `Fig. 2 — Weekly avg net flow (MW, left) and price spread (€/MWh, right) for ${ZONE_LABELS[zone]}, 2025.`;
+      document.getElementById('dualFig').textContent = `Fig. 2 — Weekly avg net flow (MW, left) and price spread (€/MWh, right) for ${ZONE_LABELS[zone]}, 2025.`;
       document.getElementById('dualFlowLine').style.background = color;
+      const r = ZONE_CORR[zone];
+      document.getElementById('corrValue').textContent = (r < 0 ? '−' : '') + Math.abs(r).toFixed(2);
     }
 
     function setZone(zone) {
       currentZone = zone;
-      document.querySelectorAll('.df-btn').forEach(b => {
-        b.classList.toggle('active', b.dataset.zone === zone);
-      });
+      document.querySelectorAll('.df-btn').forEach(b => b.classList.toggle('active', b.dataset.zone === zone));
       buildDualChart(zone);
     }
 
     buildDualChart('FR');
+  </script>
+  <script>
+  (function() {
+    const zones = [
+      { label: 'France',                color: '#dc6030', bars: [{src:'Nuclear',pct:68.8},{src:'Hydro',pct:10.4},{src:'Wind',pct:8.2}] },
+      { label: 'Norway',         color: '#2d7d46', bars: [{src:'Hydro',pct:90.0},{src:'Wind',pct:8.4},{src:'Gas',pct:0.6}] },
+      { label: 'Netherlands',           color: '#2563eb', bars: [{src:'Gas',pct:34.9},{src:'Wind',pct:25.0},{src:'Solar',pct:21.1}] },
+      { label: 'Germany–Luxembourg', color: '#111827', bars: [{src:'Wind',pct:27.2},{src:'Coal',pct:20.5},{src:'Solar',pct:17.9}] },
+    ];
+    const W = document.getElementById('mixChart').clientWidth;
+    const H = 320;
+    const marginL = 10, marginR = 10, marginT = 40, marginB = 66;
+    const chartW = W - marginL - marginR;
+    const chartH = H - marginT - marginB;
+    const maxPct = 95;
+    const zoneW = chartW / zones.length;
+    const barW = Math.min(48, zoneW / 4.5);
+    const barGap = barW * 0.4;
+    const groupW = 3 * barW + 2 * barGap;
+
+    let svg = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;font-family:system-ui,sans-serif;">`;
+
+    zones.forEach((zone, zi) => {
+      const groupX = marginL + zi * zoneW + (zoneW - groupW) / 2;
+      zone.bars.forEach((bar, bi) => {
+        const isTop = bi === 0;
+        const x = groupX + bi * (barW + barGap);
+        const barH = (bar.pct / maxPct) * chartH;
+        const y = marginT + chartH - barH;
+        const fill = isTop ? zone.color : '#d1d5db';
+        svg += `<rect x="${x}" y="${y}" width="${barW}" height="${barH}" fill="${fill}" rx="2"/>`;
+        const labelY = y - 5;
+        const fw = isTop ? '700' : '400';
+        const fc = isTop ? '#6b7280' : '#9ca3af';
+        const fs = isTop ? 13 : 12;
+        svg += `<text x="${x + barW/2}" y="${labelY}" text-anchor="middle" font-size="${fs}" font-weight="${fw}" fill="${fc}">${bar.pct}%</text>`;
+        const srcY = marginT + chartH + 18;
+        const srcFw = isTop ? '700' : '400';
+        const srcFc = isTop ? '#6b7280' : '#9ca3af';
+        svg += `<text x="${x + barW/2}" y="${srcY}" text-anchor="middle" font-size="11" font-weight="${srcFw}" fill="${srcFc}">${bar.src}</text>`;
+      });
+      const zoneX = groupX + groupW / 2;
+      const zoneY = marginT + chartH + 38;
+      const parts = zone.label.split(' · ');
+      svg += `<text x="${zoneX}" y="${zoneY}" text-anchor="middle" font-size="12" font-weight="600" fill="#374151">${parts[1] || parts[0]}</text>`;
+    });
+
+    svg += '</svg>';
+    document.getElementById('mixChart').innerHTML = svg;
+  })();
   </script>
 </body>
 </html>
