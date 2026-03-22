@@ -1,12 +1,10 @@
-
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>East Africa Electricity Generation</title>
+  <title>DE-LU Electricity Imports — Energy Systems</title>
 
-<style>
+  <style>
 :root {
   --bg-page: #f4f5f7;
   --bg-card: #ffffff;
@@ -83,10 +81,10 @@ h2 {
 }
 
 .section p {
-font-size: 0.97rem;
-line-height: 1.75;
-color: #374151;
-margin: 0 0 12px;
+  font-size: 0.97rem;
+  line-height: 1.75;
+  color: #374151;
+  margin: 0 0 12px;
 }
 
 .chips {
@@ -138,13 +136,6 @@ margin: 0 0 12px;
   font-weight: 600;
 }
 
-@media (max-width: 600px) {
-  .viz-block {
-    max-width: 100%;
-    padding: 12px;
-  }
-}
-
 .tables-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -185,22 +176,11 @@ th {
   background-color: var(--table-header);
   font-weight: 600;
 }
-  
-ul {
-  margin-left: 20px;
-  margin-top: 6px;
-  margin-bottom: 8px;
-}
-  
-ol {
-  margin-left: 20px;
-}
-  
-li {
-  font-size: 0.97rem;
-  line-height: 1.7;
-}
-  
+
+ul { margin-left: 20px; margin-top: 6px; margin-bottom: 8px; }
+ol { margin-left: 20px; }
+li { font-size: 0.97rem; line-height: 1.7; }
+
 .limitations {
   margin-top: 22px;
   padding-top: 12px;
@@ -209,52 +189,96 @@ li {
   font-size: 0.92rem;
   line-height: 1.4;
 }
-  
+
 footer {
-margin-top: 28px;
-padding-top: 16px;
-border-top: 1px solid #e0e3e8;
-text-align: center;
-font-size: 0.75rem;
-color: #9ca3af;
-}
-
-footer a {
-color: #2563eb;
-text-decoration: none;
-}
-
-a, a:visited, a:hover, a:active {
-color: #2563eb;
-}
-
-footer a:hover { text-decoration: underline; }
-  
-.tableau-container {
-  margin-top: 16px;
+  margin-top: 28px;
+  padding-top: 16px;
+  border-top: 1px solid #e0e3e8;
   text-align: center;
-}
-  
-h2 + ol,
-p + ol {
-  margin-top: 14px;
-  margin-bottom: 18px;
-}
-  
-ol li {
-  margin-bottom: 8px;
-}
-  
-sup {
-  font-size: 0.75em;
+  font-size: 0.75rem;
+  color: #9ca3af;
 }
 
-sup a {
-  text-decoration: none;
+footer a { color: #2563eb; text-decoration: none; }
+a, a:visited, a:hover, a:active { color: #2563eb; }
+footer a:hover { text-decoration: underline; }
+
+h2 + ol, p + ol { margin-top: 14px; margin-bottom: 18px; }
+ol li { margin-bottom: 8px; }
+sup { font-size: 0.75em; }
+sup a { text-decoration: none; }
+
+/* ── Map embed ── */
+.map-embed {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  border-radius: 10px;
+  border: 1px solid var(--border-soft);
+  overflow: hidden;
+  margin-top: 10px;
+  margin-bottom: 16px;
+  background: #f4f5f7;
 }
 
-</style>
+/* Scoped map styles — prefixed with .map-embed to avoid leaking */
+.map-embed svg#flow-map {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+}
+.map-embed .mc { fill: #e8e9ec; stroke: #fff; stroke-width: 0.8; }
+.map-embed .mc.active { fill: #dde0e6; }
 
+.map-embed #m-panel {
+  position: absolute; top: 16px; left: 18px; z-index: 10;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.map-embed #m-panel h3 {
+  font-size: 12px; font-weight: 700; color: #111827; margin: 0;
+  border-bottom: none; padding-bottom: 0; margin-top: 0;
+}
+.map-embed #m-panel p {
+  font-size: 10px; color: #6b7280; margin: 1px 0 0;
+  font-size: 0.97rem; line-height: 1.75; /* reset from .section p */
+  font-size: 10px; line-height: 1.3; color: #6b7280;
+}
+.map-embed #m-cards { display: flex; flex-direction: column; gap: 4px; margin-top: 2px; }
+
+.map-embed .fc {
+  background: #fff; border: 1px solid #e0e3e8; border-radius: 6px;
+  padding: 7px 12px 7px 10px;
+  display: flex; align-items: center; gap: 8px;
+  white-space: nowrap;
+  opacity: 0; animation: mup .35s ease forwards;
+}
+.map-embed .fc-bar  { width: 3px; align-self: stretch; border-radius: 2px; flex-shrink: 0; }
+.map-embed .fc-body { display: flex; flex-direction: column; }
+.map-embed .fc-lbl  { font-size: 10px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 2px; }
+.map-embed .fc-row  { display: flex; align-items: baseline; gap: 3px; }
+.map-embed .fc-val  { font-size: 17px; font-weight: 700; letter-spacing: -.5px; line-height: 1; }
+.map-embed .fc-unit { font-size: 10px; color: #9ca3af; }
+.map-embed .fc-sub  { font-size: 10px; color: #9ca3af; margin-top: 1px; }
+
+.map-embed #m-total {
+  position: absolute; bottom: 14px; right: 16px; z-index: 10;
+  background: #fff; border: 1px solid #e0e3e8; border-radius: 6px;
+  padding: 7px 11px; text-align: right;
+  opacity: 0; animation: mup .35s .5s ease forwards;
+}
+.map-embed #m-total .tl { font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: #6b7280; }
+.map-embed #m-total .tv { font-size: 16px; font-weight: 700; letter-spacing: -1px; color: #111827; line-height: 1.1; margin-top: 1px; }
+.map-embed #m-total .ts { font-size: 9px; color: #9ca3af; }
+
+.map-embed #m-src {
+  position: absolute; bottom: 14px; left: 16px; z-index: 10;
+  font-size: 10px; color: #d1d5db;
+  opacity: 0; animation: mup .35s .6s ease forwards;
+}
+
+@keyframes mup {
+  from { opacity: 0; transform: translateY(3px); }
+  to   { opacity: 1; transform: none; }
+}
+  </style>
 </head>
 
 <body>
@@ -266,126 +290,187 @@ sup a {
       <div class="meta">ENTSO-E Transparency Platform &bull; March 2026</div>
     </header>
 
-<div class="chips" aria-label="At-a-glance">
-  <span class="chip"></span>
-  <span class="chip"></span>
-  <span class="chip"></span>
-  <span class="chip"></span>
-</div>
+    <div class="chips" aria-label="At-a-glance">
+      <span class="chip"></span>
+      <span class="chip"></span>
+      <span class="chip"></span>
+      <span class="chip"></span>
+    </div>
 
-<h2>System Overview</h2>
-<p></p>
+    <h2>System Overview</h2>
+    <p></p>
 
-<div class="kpi-grid">
-  <div class="kpi-card">
-    <div class="kpi-label"></div>
-    <div class="kpi-value"></div>
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="kpi-label"></div><div class="kpi-value"></div></div>
+      <div class="kpi-card"><div class="kpi-label"> </div><div class="kpi-value"> </div></div>
+      <div class="kpi-card"><div class="kpi-label"> </div><div class="kpi-value"> </div></div>
+    </div>
+
+    <h2>Net Electricity Imports into DE-LU</h2>
+
+    <!-- ── Embedded map ── -->
+    <div class="map-embed" id="map-wrap">
+      <svg id="flow-map"></svg>
+      <div id="m-panel">
+        <div>
+          <h3>DE-LU Net Electricity Imports</h3>
+          <p>Cross-border flows · 2025 · GWh</p>
+        </div>
+        <div id="m-cards"></div>
+      </div>
+      <div id="m-total">
+        <div class="tl">Total net imports</div>
+        <div class="tv">32,783</div>
+        <div class="ts">GWh into DE-LU</div>
+      </div>
+      <div id="m-src">ENTSO-E Transparency Platform</div>
+    </div>
+
+    <h2></h2>
+
+    <div class="tables-grid">
+      <div class="table-card">
+        <h3></h3>
+        <table>
+          <thead><tr><th> </th></tr></thead>
+          <tbody><tr><td> </td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <h2>Key Insights</h2>
+
+    <h2>Implications</h2>
+    <p> </p>
+
+    <h2>Data Source</h2>
+    <h2>References</h2>
+
   </div>
-  <div class="kpi-card">
-    <div class="kpi-label"> </div>
-    <div class="kpi-value"> </div>
-  </div>
-  <div class="kpi-card">
-    <div class="kpi-label"> </div>
-    <div class="kpi-value"> </div>
-  </div>
-</div>
 
-<h2></h2>
+  <footer>
+    <p>Data source: ENTSO-E Transparency Platform · March 2026</p>
+    <a href="energy_systems.html">← Back to Energy Systems</a>
+  </footer>
 
-<div class="tables-grid">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+  <script>
+  (async () => {
+    const FLOWS = [
+      { id:'fr',  code:'FR',  country:'France',      sub:'nuclear',    lat:46.2, lon:2.3,  gwh:20029, label:'20,029', color:'#dc6030', delay:.1 },
+      { id:'no2', code:'NO2', country:'Norway',      sub:'hydro',      lat:60.5, lon:8.5,  gwh:6873,  label:'6,873',  color:'#2d7d46', delay:.2 },
+      { id:'nl',  code:'NL',  country:'Netherlands', sub:'gas & wind', lat:52.3, lon:5.3,  gwh:5881,  label:'5,881',  color:'#2563eb', delay:.3 },
+    ];
+    const DELU   = { lat:50.7, lon:10.2 };
+    const maxGwh = 20029;
 
-  <div class="table-card">
-    <h3></h3>
-    <table>
-      <thead>
-      <tr><th> </th></tr>
-      </thead>
-      <tbody>
-      <tr><td> </td></tr>
-      </tbody>
-    </table>
-  </div>
-  
-</div>
+    // Use the container dimensions, not window
+    const container = document.getElementById('map-wrap');
+    const W = container.clientWidth;
+    const H = container.clientHeight;
 
-<h2>Key Insights</h2>
-<!--
-<ol>
-  <li> </li>
-</ol>
--->
+    const svg = d3.select('#flow-map').attr('viewBox', `0 0 ${W} ${H}`);
 
-<h2>Implications</h2>
-<p> </p>
-    
-<!--
-<div class="limitations">
-  <strong>Limitations:</strong>
-</div>
--->
+    const proj = d3.geoNaturalEarth1()
+      .center([5, 52])
+      .scale(Math.min(W, H) * 2.6)
+      .translate([W * 0.44, H * 0.5]);
 
-<!--
-<div class="tableau-container">
-  <div class='tableauPlaceholder' id='myTableauViz' style='position: relative'>
-    <object class='tableauViz' style='display:none;'>
-      <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-      <param name='embed_code_version' value='3' />
-      <param name='site_root' value='' />
-      <param name='name' value='EAElectricityGeneration2017-2022/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link' />
-      <param name='tabs' value='no' />
-      <param name='toolbar' value='yes' />
-    </object>
-  </div>
-</div>
--->
+    const geoPath = d3.geoPath().projection(proj);
+    const world   = await d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json');
+    const features = topojson.feature(world, world.objects.countries).features;
+    const activeIds = new Set(['250','528','578','276','442']);
 
-<!--
-<script type='text/javascript'>
-  var placeholder = document.getElementById('myTableauViz');
-  var viz = placeholder.getElementsByTagName('object')[0];
-  viz.style.width = '100%';
-  viz.style.height = '800px';
-  var script = document.createElement('script');
-  script.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-  viz.parentNode.insertBefore(script, viz);
-</script>
--->
+    svg.append('g').selectAll('path')
+      .data(features).join('path')
+      .attr('class', d => 'mc' + (activeIds.has(d.id) ? ' active' : ''))
+      .attr('d', geoPath);
 
-<h2>Data Source</h2>
-<!--
-<p>
-  Ember (2022). <em>Electricity Data Explorer</em>.
-  Available at:
-  <a href="https://ember-energy.org/data/electricity-data-explorer/" target="_blank">
-    https://ember-energy.org/data/electricity-data-explorer/
-  </a>
-</p>
--->
+    const px     = (lat, lon) => proj([lon, lat]);
+    const deluPx = px(DELU.lat, DELU.lon);
 
-<h2>References</h2>
-<!--
-<ol>
-  <li id="ref1">
-    International Hydropower Association (2022).
-    <em>Pumped storage hydropower</em>.
-    Available at:
-    <a href="https://www.hydropower.org/factsheets/pumped-storage" target="_blank">
-      https://www.hydropower.org/factsheets/pumped-storage
-    </a>
-  </li>
-</ol>
--->
+    function ctrlPt(src, dst) {
+      const mx = (src[0]+dst[0])/2, my = (src[1]+dst[1])/2;
+      const dx = dst[0]-src[0], dy = dst[1]-src[1];
+      return [mx + dy*0.22, my - dx*0.22];
+    }
 
+    FLOWS.forEach((d, i) => {
+      const src   = px(d.lat, d.lon);
+      const c     = ctrlPt(src, deluPx);
+      const w     = 1.2 + (d.gwh / maxGwh) * 4.5;
+      const pathD = `M${src[0]},${src[1]} Q${c[0]},${c[1]} ${deluPx[0]},${deluPx[1]}`;
 
+      const arcEl = svg.append('path')
+        .attr('d', pathD).attr('fill','none')
+        .attr('stroke', d.color).attr('stroke-width', w).attr('opacity', 0.65);
 
-</div> <!-- End of report -->
+      const len = arcEl.node().getTotalLength();
+      arcEl.attr('stroke-dasharray', len).attr('stroke-dashoffset', len)
+        .transition().delay(250 + i*100).duration(750).ease(d3.easeCubicInOut)
+        .attr('stroke-dashoffset', 0);
 
+      const dot = svg.append('circle').attr('r', 3).attr('fill', d.color).attr('opacity', 0);
+      const dur  = 1500 + i*180;
+      function loop(extra) {
+        dot.attr('opacity', 0)
+          .transition().delay(extra).duration(60).attr('opacity', 0.9)
+          .transition().duration(dur).ease(d3.easeQuadInOut)
+            .attrTween('cx', () => t => arcEl.node().getPointAtLength(t*len).x)
+            .attrTween('cy', () => t => arcEl.node().getPointAtLength(t*len).y)
+          .transition().duration(100).attr('opacity', 0)
+          .on('end', () => loop(300));
+      }
+      loop(1000 + i*100);
+    });
 
-<footer>
-  <p>Data source: ENTSO-E Transparency Platform · March 2026</p>
-  <a href="energy_systems.html">← Back to Energy Systems</a>
-</footer>
+    FLOWS.forEach(d => {
+      const [x, y] = px(d.lat, d.lon);
+      svg.append('circle')
+        .attr('cx', x).attr('cy', y).attr('r', 3.5)
+        .attr('fill', d.color).attr('stroke','#f4f5f7').attr('stroke-width', 1.5)
+        .attr('opacity', 0).transition().delay(350).duration(250).attr('opacity', 1);
+      svg.append('text')
+        .attr('x', x-8).attr('y', y)
+        .attr('text-anchor','end').attr('dominant-baseline','middle')
+        .attr('font-family','system-ui,sans-serif').attr('font-size', 10)
+        .attr('font-weight', 600).attr('fill','#6b7280')
+        .text(d.code)
+        .attr('opacity', 0).transition().delay(400).duration(250).attr('opacity', 1);
+    });
 
+    svg.append('circle')
+      .attr('cx', deluPx[0]).attr('cy', deluPx[1]).attr('r', 5)
+      .attr('fill','#111827').attr('stroke','#f4f5f7').attr('stroke-width', 2)
+      .attr('opacity', 0).transition().delay(350).duration(250).attr('opacity', 1);
+    svg.append('text')
+      .attr('x', deluPx[0]+10).attr('y', deluPx[1])
+      .attr('dominant-baseline','middle')
+      .attr('font-family','system-ui,sans-serif')
+      .attr('font-size', 11).attr('font-weight', 700).attr('fill','#111827')
+      .text('DE-LU')
+      .attr('opacity', 0).transition().delay(400).duration(250).attr('opacity', 1);
+
+    const cardsEl = document.getElementById('m-cards');
+    FLOWS.forEach(d => {
+      const card = document.createElement('div');
+      card.className = 'fc';
+      card.style.animationDelay = d.delay + 's';
+      card.innerHTML = `
+        <div class="fc-bar" style="background:${d.color}"></div>
+        <div class="fc-body">
+          <div class="fc-lbl">${d.country}</div>
+          <div class="fc-row">
+            <span class="fc-val" style="color:${d.color}">${d.label}</span>
+            <span class="fc-unit">GWh</span>
+          </div>
+          <div class="fc-sub">${d.sub}</div>
+        </div>
+      `;
+      cardsEl.appendChild(card);
+    });
+  })();
+  </script>
 </body>
 </html>
