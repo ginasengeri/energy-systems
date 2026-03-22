@@ -92,13 +92,6 @@ sup a { text-decoration: none; }
       <div class="meta">ENTSO-E Transparency Platform &bull; March 2026</div>
     </header>
 
-   <div class="chips">
-      <span class="chip">DE-LU &middot; Germany&ndash;Luxembourg</span>
-      <span class="chip">FR &middot; France</span>
-      <span class="chip">NL &middot; Netherlands</span>
-      <span class="chip">NO2 &middot; Norway South</span>
-    </div>
-
     <div class="chips">
         <span class="chip"><span style="width:8px;height:8px;border-radius:50%;background:#111827;display:inline-block;vertical-align:middle;margin-right:6px;"></span>DE-LU · Germany–Luxembourg</span>
         <span class="chip"><span style="width:8px;height:8px;border-radius:50%;background:#dc6030;display:inline-block;vertical-align:middle;margin-right:6px;"></span>FR · France</span>
@@ -179,7 +172,7 @@ sup a { text-decoration: none; }
     const proj = d3.geoNaturalEarth1()
       .center([5, 52])
       .scale(Math.min(W, H) * 2.6)
-      .translate([W * 0.32, H * 0.5]);
+      .translate([W * 0.45, H * 0.5]);
 
     const geoPath = d3.geoPath().projection(proj);
     const world = await d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json');
