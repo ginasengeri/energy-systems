@@ -68,7 +68,6 @@ sup a { text-decoration: none; }
 .zone-table { min-width: unset; width: auto; margin: 10px 0 16px; }
 .zone-table td code { font-family: ui-monospace, monospace; font-size: 0.8rem; background: var(--table-header); border: 1px solid var(--border-soft); border-radius: 4px; padding: 1px 6px; }
 
-
 .zone-legend { display: flex; flex-direction: column; gap: 5px; margin: 10px 0 16px; }
 .zl-item { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; }
 .zl-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
@@ -81,6 +80,13 @@ sup a { text-decoration: none; }
 .zone-code { font-size: 0.8rem; font-weight: 700; font-family: ui-monospace, monospace; color: var(--text-main); background: var(--table-header); border: 1px solid var(--border-soft); border-radius: 4px; padding: 1px 6px; }
 .zone-name { font-size: 0.9rem; color: var(--text-muted); }
 
+.chart-wrap { position: relative; width: 65%; margin: 12px auto 0; height: 380px; }
+.chart-wrap canvas { display: block; }
+.chart-fig { font-size: 0.75rem; color: #9ca3af; text-align: left; margin-bottom: 6px; margin-top: 0; }
+.custom-legend { display: flex; flex-wrap: wrap; gap: 6px 24px; justify-content: center; margin-top: 12px; }
+.cl-item { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: #374151; }
+.cl-line { width: 22px; height: 2.5px; border-radius: 2px; flex-shrink: 0; }
+
   </style>
 </head>
 <body>
@@ -89,7 +95,7 @@ sup a { text-decoration: none; }
       <div class="label">Energy Systems</div>
       <h1>Work In Progress</h1>
       <p></p>
-      <div class="meta">ENTSO-E Transparency Platform &bull; 2025/div>
+      <div class="meta">ENTSO-E Transparency Platform &bull; 2025</div>
     </header>
 
     <div class="chips">
@@ -102,7 +108,7 @@ sup a { text-decoration: none; }
     <h2>System Overview</h2>
     <p>
         The European Network Transmission System Operator for Electricity (ENTSO-E) coordinates trade across
-        36 countries in Europe, ensuring energy security and market efficiency for its member countries.
+        36 countries in Europe, ensuring energy security and market efficiency for its member countries<sup><a href="#ref1">[1]</a></sup>.
         Germany sits between several different power systems in Europe, and connects a diverse set of generation systems. This allows for
         observation of a range of trade patterns in one place. The focus of this
         analysis is on electricity transmission between the Germany-Luxembourg bidding zone (DE-LU), France (FR), Netherlands (NL), 
@@ -113,9 +119,9 @@ sup a { text-decoration: none; }
     <h2>Key Insights</h2>
     <p>There are three main roles observed in the Germany-Luxembourg zone:</p>
     <ol> 
-      <li>Major importing corridor — France’s nuclear power is the main source of imports.</li>
+      <li>Major importing corridor — France's nuclear power is the main source of imports.</li>
       <li>Alternating flows — gas and wind power from the Netherlands provides balancing support to cover short-term gaps on either side.</li>
-      <li>Prolonged flow reversals — Norway’s hydro provides seasonal balancing depending on reservoir levels.</li>
+      <li>Prolonged flow reversals — Norway's hydro provides seasonal balancing depending on reservoir levels.</li>
     </ol>
 
     <p>The map below illustrates the net electricity flows into Germany-Luxembourg from these three zones in 2025.</p>
@@ -137,15 +143,39 @@ sup a { text-decoration: none; }
       <div id="m-src">ENTSO-E Transparency Platform</div>
     </div>
 
+    <h2>Weekly Average Net Flow (MW)</h2>
+    <p>The chart below shows the weekly average net flow magnitude between DE-LU and each zone throughout 2025. </p>
+    <p class="chart-fig">Fig. 1 — Weekly average net flow (MW) between DE-LU and neighbouring zones, 2025.</p>
+    <div class="chart-wrap">
+      <canvas id="flowChart"></canvas>
+    </div>
+    <div class="custom-legend" id="customLegend"></div>
+
     <h2>Implications</h2>
     <p>
-
+        
     </p>
 
     <h2>Data Source</h2>
+    <p>
+      ENTSO-E (2025). <em>Transparency Platform</em>.
+      Available at:
+      <a href="https://transparency.entsoe.eu/" target="_blank">
+        https://transparency.entsoe.eu/
+      </a>
+    </p>
 
     <h2>References</h2>
-    https://www.entsoe.eu/about/inside-entsoe/members/
+    <ol>
+      <li id="ref1">
+        ENTSO-E (2025).
+        <em>Inside ENTSO-E: Members</em>.
+        Available at:
+        <a href="https://www.entsoe.eu/about/inside-entsoe/members/" target="_blank">
+          https://www.entsoe.eu/about/inside-entsoe/members/
+        </a>
+      </li>
+    </ol>
 
   </div>
 
@@ -154,7 +184,121 @@ sup a { text-decoration: none; }
     <a href="energy_systems.html">← Back to Energy Systems</a>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+  <script>
+    const rawFR  = [-1339.96,-1842.17,-2128.56,-2604.65,-2670.32,-501.09,-1599.32,-2068.3,-2477.47,-1160.59,-1528.3,-1200.56,-1635.38,-1600.29,-1643.22,-1452.18,-1752.15,-1749.12,-2750.58,-1891.07,-2159.02,-2322.68,-2574.56,-2072.05,-1730.73,-1151.17,-1627.67,-2704.69,-2886.96,-3203.27,-2919.36,-2221.73,-2380.42,-2373.42,-2856.6,-2432.41,-2703.55,-1950.36,-2526.34,-2315.16,-2160.39,-2577.36,-2508.49,-2803.2,-3137.22,-3205.82,-2909.67,-3420.93,-3600.67,-3492.79,-3540.91,-2961.46];
+    const rawNL  = [672.72,1051.59,-2249.05,-392.25,90.33,-963.04,-1021.25,-1128.58,-1669.6,-136.53,-2192.99,-325.04,-248.81,-109.5,-514.79,785.87,-18.21,-418.8,-983.79,-686.45,-335.6,-594.65,-571.74,-348.32,-606.48,-441.93,-678.77,-676.43,-1567.55,-1326.01,-685.57,-813.0,-1336.14,-1272.98,-1639.77,-1083.75,-769.33,163.82,-755.8,-305.43,155.07,-1025.99,837.06,67.71,-855.71,-347.04,-1272.14,-2006.24,-2323.43,-1471.6,-1156.28,399.18];
+    const rawNO2 = [-655.86,-458.14,-1285.01,-1098.94,-987.68,-1187.46,-1167.68,-1056.15,-1193.08,-633.67,-863.19,-470.64,-711.84,-535.45,-630.61,-667.39,-855.79,-472.77,-522.98,-408.04,-582.52,-501.57,-449.78,-128.88,-303.62,-470.89,-896.84,-891.44,-649.82,-646.19,-639.4,-616.36,-534.99,-369.41,-634.51,-980.4,-1070.18,-322.2,-769.18,-962.05,-1124.43,-1194.34,-447.09,-888.31,-1170.71,-1184.33,-766.19,-1253.12,-1130.81,-1147.25,-1199.18,-1030.58];
+
+    const weeks = Array.from({length: 52}, (_, i) => i + 1);
+    const COLORS = { FR: '#dc6030', NL: '#2563eb', NO2: '#2d7d46', export: '#111827' };
+
+    function segColor(raw, zoneColor) {
+      return ctx => raw[ctx.p0DataIndex] > 0 ? COLORS.export : zoneColor;
+    }
+
+    const seriesDefs = [
+      { key: 'FR',  raw: rawFR,  label: 'FR → DE-LU' },
+      { key: 'NL',  raw: rawNL,  label: 'NL → DE-LU' },
+      { key: 'NO2', raw: rawNO2, label: 'NO2 → DE-LU' },
+    ];
+
+    const datasets = seriesDefs.map(s => ({
+      label: s.label,
+      data: s.raw.map(Math.abs),
+      borderWidth: 2,
+      pointRadius: 0,
+      pointHoverRadius: 2,
+      tension: 0.3,
+      fill: false,
+      borderColor: COLORS[s.key],
+      pointStyle: 'circle',
+      segment: { borderColor: segColor(s.raw, COLORS[s.key]) },
+    }));
+
+    Chart.defaults.font.family = "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+
+    new Chart(document.getElementById('flowChart').getContext('2d'), {
+      type: 'line',
+      data: { labels: weeks, datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        layout: { padding: { right: 10 } },
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#ffffff',
+            borderColor: '#e0e3e8',
+            borderWidth: 1,
+            titleColor: '#111827',
+            bodyColor: '#374151',
+            padding: 10,
+            boxWidth: 5,
+            boxHeight: 5,
+            usePointStyle: true,
+            callbacks: {
+              label(ctx) {
+                const raw = seriesDefs[ctx.datasetIndex].raw[ctx.dataIndex];
+                const zone = seriesDefs[ctx.datasetIndex].key;
+                const dir = raw > 0 ? `DE-LU → ${zone}` : `${zone} → DE-LU`;
+                return ` ${dir}: ${Math.abs(raw).toLocaleString('en-GB', {maximumFractionDigits: 0})} MW`;
+              },
+              title: items => `Week ${weeks[items[0].dataIndex]} · 2025`,
+              labelPointStyle: () => ({ pointStyle: 'circle', rotation: 0 }),
+              labelColor(ctx) {
+                const raw = seriesDefs[ctx.datasetIndex].raw[ctx.dataIndex];
+                const c = raw > 0 ? COLORS.export : COLORS[seriesDefs[ctx.datasetIndex].key];
+                return { borderColor: c, backgroundColor: c };
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            grid: { display: false },
+            border: { color: '#e0e3e8' },
+            title: { display: true, text: 'Week', color: '#9ca3af', font: { size: 11 } },
+            ticks: {
+              color: '#6b7280',
+              font: { size: 11 },
+              maxTicksLimit: 13,
+              callback: (val, i) => (i % 4 === 0) ? weeks[i] : ''
+            }
+          },
+          y: {
+            min: 0,
+            max: 3800,
+            grid: { display: false },
+            border: { color: '#e0e3e8' },
+            ticks: {
+              color: '#6b7280',
+              font: { size: 11 },
+              stepSize: 1000,
+              callback: v => v.toLocaleString('en-GB') + ' MW'
+            },
+            title: { display: true, text: 'Avg net flow (MW)', color: '#9ca3af', font: { size: 11 } }
+          }
+        }
+      }
+    });
+
+    const legendEl = document.getElementById('customLegend');
+    seriesDefs.forEach(s => {
+      const item = document.createElement('div');
+      item.className = 'cl-item';
+      item.innerHTML = `<div class="cl-line" style="background:${COLORS[s.key]}"></div><span>${s.label}</span>`;
+      legendEl.appendChild(item);
+    });
+    if ([...rawFR, ...rawNL, ...rawNO2].some(v => v > 0)) {
+      const item = document.createElement('div');
+      item.className = 'cl-item';
+      item.innerHTML = `<div class="cl-line" style="background:#111827"></div><span>DE-LU → zone (net export)</span>`;
+      legendEl.appendChild(item);
+    }
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
   <script>
   (async () => {
