@@ -18,7 +18,7 @@ header h1 { font-size: 1.4rem; font-weight: 800; margin: 0 0 12px; line-height: 
 header p { margin: 0 auto; color: #6b7280; font-size: 0.95rem; }
 .meta { text-align: center; font-size: 0.8rem; color: #9ca3af; margin-top: 10px; margin-bottom: 0; font-weight: 600; }
 h2 { margin-top: 24px; margin-bottom: 8px; font-size: 1.05rem; font-weight: 700; border-bottom: 1px solid var(--border-soft); padding-bottom: 4px; }
-.section p { font-size: 0.95rem; line-height: 1.75; color: #111827; margin: 0 0 12px; }
+.section p { font-size: 0.95rem; line-height: 1.75; color: #374151; margin: 0 0 12px; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0px 0 16px; justify-content: center; }
 .chip { background: var(--chip); border: 1px solid rgba(37, 99, 235, 0.15); color: #1f2a5a; padding: 6px 10px; border-radius: 999px; font-size: 0.82rem; font-weight: 650; white-space: nowrap; }
 .kpi-grid { display: grid; justify-content: center; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-top: 10px; margin-bottom: 10px; }
@@ -90,8 +90,7 @@ sup a { text-decoration: none; }
 .df-btn.active[data-zone="NL"]  { background: #eff6ff; border-color: #2563eb; color: #2563eb; }
 .df-btn.active[data-zone="NO2"] { background: #f0fdf4; border-color: #2d7d46; color: #2d7d46; }
 .dual-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0; }
-p { font-size: 0.95rem; line-height: 1.75; color: #111827; margin: 0 0 12px; }
-  </style>
+</style>
 </head>
 <body>
   <div class="report-container">
@@ -109,6 +108,7 @@ p { font-size: 0.95rem; line-height: 1.75; color: #111827; margin: 0 0 12px; }
         <span class="chip"><span style="width:8px;height:8px;border-radius:50%;background:#2563eb;display:inline-block;vertical-align:middle;margin-right:6px;"></span>NL · Netherlands</span>
     </div>
 
+    <section>
     <h2>System Overview</h2>
     <p>
         The European Network Transmission System Operator for Electricity (ENTSO-E) coordinates trade across
@@ -146,15 +146,18 @@ p { font-size: 0.95rem; line-height: 1.75; color: #111827; margin: 0 0 12px; }
       </div>
       <div id="m-src">ENTSO-E Transparency Platform</div>
     </div>
+    </section>
 
+    <section>
     <h2>Key Insights</h2>
     <ol>
       <li>The DE-LU zone is a net importer of electricity with 32.8 TWh in imports in 2025.</li>
       <li>The majority of imports come from cheap, steady baseload sources (France nuclear, 20 TWh).</li>
       <li>Germany-Luxembourg has the highest day-ahead average price for 2025 (€90.68/MWh).</li>
     </ol>
+    </section>
 
-    
+    <section>
     <h2>Price Spread and Net Flow by Zone</h2>
     <p>The top three sources of electricity for each zone are shown in Figure 3 below. 
     <p class="chart-fig">Fig. 2 — Top three generation sources and average day-ahead prices, 2025.</p>
@@ -199,8 +202,9 @@ p { font-size: 0.95rem; line-height: 1.75; color: #111827; margin: 0 0 12px; }
       <div class="cl-item"><div class="cl-line" id="dualFlowLine" style="background:#dc6030;"></div><span>Avg net flow (MW)</span></div>
       <div class="cl-item"><div class="cl-line" style="border-top:2px dashed #9ca3af;height:0;width:22px;background:none;"></div><span>Price spread (€/MWh)</span></div>
     </div>
+    </section>
 
-
+    <section>
     <h2>Implications</h2>
     <p>
         In the past decade, solar generation in the EU has tripled while coal-fired geeration has dropped by 60 %. 
@@ -208,6 +212,9 @@ p { font-size: 0.95rem; line-height: 1.75; color: #111827; margin: 0 0 12px; }
         Currently, just under 25 GWh of storage is installed in total, with large-scale systems rising from 2.3 to 3.7 GWh in 2025 alone. 
         It is estimated that 100 to 170 GWh of storage will be needed by 2030<sup><a href="#ref2">[2]</a></sup>. 
     </p>
+    </section>
+
+    <section>
     <h2>Data Source</h2>
     <p>
       ENTSO-E (2025). <em>Transparency Platform</em>.
@@ -216,7 +223,9 @@ p { font-size: 0.95rem; line-height: 1.75; color: #111827; margin: 0 0 12px; }
         https://transparency.entsoe.eu/
       </a>
     </p>
+    </section>
 
+    <section>
     <h2>Technical Appendix</h2>
     <p>
       ENTSO-E Data Pipeline.
@@ -225,7 +234,9 @@ p { font-size: 0.95rem; line-height: 1.75; color: #111827; margin: 0 0 12px; }
         technical_appendix_entsoe.html
       </a>
     </p>
+    </section>
 
+    <section>
     <h2>References</h2>
     <ol>
       <li id="ref1">
@@ -246,6 +257,8 @@ p { font-size: 0.95rem; line-height: 1.75; color: #111827; margin: 0 0 12px; }
         </a>
       </li>
     </ol>
+    </section>
+
 
   </div>
 
