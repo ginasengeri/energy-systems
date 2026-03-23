@@ -165,6 +165,7 @@ p { font-size: 1.05rem; line-height: 1.75; color: #374151; margin: 0 0 12px; }
     <div class="dual-header">
       <p class="chart-fig" id="dualFig">Fig. 2 — Weekly avg net flow (MW, left) and price spread (€/MWh, right) for FR → DE-LU, 2025.</p>
       <div class="dual-filter">
+        <span style="font-size:0.90rem;font-weight:600;color:#6b7280;align-self:center;">Zone:</span>
         <button class="df-btn active" data-zone="FR"  onclick="setZone('FR')">FR</button>
         <button class="df-btn"        data-zone="NL"  onclick="setZone('NL')">NL</button>
         <button class="df-btn"        data-zone="NO2" onclick="setZone('NO2')">NO2</button>
@@ -172,7 +173,7 @@ p { font-size: 1.05rem; line-height: 1.75; color: #374151; margin: 0 0 12px; }
     </div>
     <div class="price-wrap" style="position:relative;">
       <canvas id="dualChart"></canvas>
-      <div id="corrBadge" style="position:absolute;top:3px;right:70px;background:#fff;border:1px solid #e0e3e8;border-radius:6px;padding:5px 10px;font-size:0.75rem;color:#6b7280;pointer-events:none;">r = <span id="corrValue" style="font-weight:700;color:#111827;">−0.48</span></div>
+      <div id="corrBadge" style="position:absolute;top:0px;right:70px;background:#fff;border:1px solid #e0e3e8;border-radius:6px;padding:5px 10px;font-size:0.75rem;color:#6b7280;pointer-events:none;">ρ = <span id="corrValue" style="font-weight:700;color:#111827;">−0.48</span></div>
     </div>
     <div class="custom-legend">
       <div class="cl-item"><div class="cl-line" id="dualFlowLine" style="background:#dc6030;"></div><span>Avg net flow (MW)</span></div>
@@ -180,12 +181,17 @@ p { font-size: 1.05rem; line-height: 1.75; color: #374151; margin: 0 0 12px; }
     </div>
 
     <h2>Generation Mix</h2>
-    <p>The price differences above reflect the structural composition of each zone's generation fleet. France's nuclear dominance keeps marginal costs low year-round.
-         Norway's near-total reliance on hydro is similarly low-cost but subject to seasonal reservoir levels. The Netherlands mirrors 
-         Germany's mix of wind and solar with thermal generation coming from gas, explaining why their prices track closely.</p>
+    <p>The price differences above reflect the structural composition of each zone's generation fleet. France's nuclear fleet, at 68.8% of output, provides a large base of low-cost dispatchable generation that keeps prices structurally below Germany's. Norway generates 90% of its electricity from hydro, which has near-zero marginal cost but varies with reservoir levels and precipitation. The Netherlands relies on gas for 34.9% of output alongside wind and solar, giving it a price structure closer to Germany's — which despite leading on wind at 27.2%, still depends on coal at 20.5% for dispatchable capacity, driving higher marginal costs than either France or Norway.</p>
     <p class="chart-fig">Fig. 3 — Top three generation sources by share of total output, 2025.</p>
     <div id="mixChart" style="width:100%;margin-top:8px;"></div>
 
+    <h2>Implications</h2>
+    <p>
+        In the past decade, solar generation in the EU has tripled while coal-fired geeration has dropped by 60 %. 
+        This has led to generation volatility and price fluctuations, increasing the need for battery storage systems in the region. 
+        Currently, just under 25 GWh of storage is installed in total, with large-scale systems rising from 2.3 to 3.7 GWh in 2025 alone. 
+        It is estimated that 100 to 170 GWh of storage will be needed by 2030<sup><a href="#ref2">[2]</a></sup>. 
+    </p>
     <h2>Data Source</h2>
     <p>
       ENTSO-E (2025). <em>Transparency Platform</em>.
@@ -212,6 +218,15 @@ p { font-size: 1.05rem; line-height: 1.75; color: #374151; margin: 0 0 12px; }
         Available at:
         <a href="https://www.entsoe.eu/about/inside-entsoe/members/" target="_blank">
           https://www.entsoe.eu/about/inside-entsoe/members/
+        </a>
+      </li>
+    
+        <li id="ref2">
+        Energy-Charts (2025).
+        <em>German Public Electricity Generation in 2025: Wind and Solar Take the Lead for the First Time</em>.
+        Available at:
+        <a href="https://www.energy-charts.info/index.html?l=en&c=DE" target="_blank">
+          https://www.energy-charts.info/index.html?l=en&c=DE
         </a>
       </li>
     </ol>
@@ -318,7 +333,7 @@ p { font-size: 1.05rem; line-height: 1.75; color: #374151; margin: 0 0 12px; }
               stepSize: 1000,
               callback: v => v.toLocaleString('en-GB') + ' MW'
             },
-            title: { display: true, text: 'Avg net flow magnitude (MW)', color: '#9ca3af', font: { size: 11 } }
+            title: { display: true, text: 'Average Net Flow (MW)', color: '#9ca3af', font: { size: 11 } }
           }
         }
       }
@@ -425,7 +440,7 @@ p { font-size: 1.05rem; line-height: 1.75; color: #374151; margin: 0 0 12px; }
     const dualWeeks = Array.from({length:52}, (_,i) => i+1);
     const ZONE_COLORS = { FR: '#dc6030', NL: '#2563eb', NO2: '#2d7d46' };
     const ZONE_LABELS = { FR: 'FR → DE-LU', NL: 'NL → DE-LU', NO2: 'NO2 → DE-LU' };
-    const ZONE_CORR   = { FR: -0.481, NL: -0.564, NO2: -0.611 };
+    const ZONE_CORR   = { FR: 0.48, NL: 0.26, NO2:0.63 };
 
     const dualData = {
       FR:  {
@@ -454,7 +469,7 @@ p { font-size: 1.05rem; line-height: 1.75; color: #374151; margin: 0 0 12px; }
         data: {
           labels: dualWeeks,
           datasets: [
-            { label: 'Avg net flow (MW)', data: d.net_flow, borderColor: color, borderWidth: 2, pointRadius: 0, pointHoverRadius: 3, tension: 0.3, fill: false, yAxisID: 'yFlow' },
+            { label: 'Avg net flow (MW)', data: d.net_flow.map(Math.abs), borderColor: color, borderWidth: 2, pointRadius: 0, pointHoverRadius: 3, tension: 0.3, fill: false, yAxisID: 'yFlow' },
             { label: 'Price spread (€/MWh)', data: d.spread, borderColor: '#9ca3af', borderWidth: 1.5, borderDash: [4, 3], pointRadius: 0, pointHoverRadius: 3, tension: 0.3, fill: false, yAxisID: 'ySpread' }
           ]
         },
@@ -470,7 +485,7 @@ p { font-size: 1.05rem; line-height: 1.75; color: #374151; margin: 0 0 12px; }
               callbacks: {
                 title: items => `Week ${dualWeeks[items[0].dataIndex]} · 2025`,
                 label: ctx => ctx.datasetIndex === 0
-                  ? ` Net flow: ${ctx.parsed.y.toLocaleString('en-GB', {maximumFractionDigits:0})} MW`
+                  ? ` Net flow: ${Math.abs(ctx.parsed.y).toLocaleString('en-GB', {maximumFractionDigits:0})} MW`
                   : ` Price spread: €${ctx.parsed.y.toFixed(2)}/MWh`,
                 labelColor: ctx => { const c = ctx.datasetIndex === 0 ? color : '#9ca3af'; return { borderColor: c, backgroundColor: c }; }
               }
@@ -478,7 +493,7 @@ p { font-size: 1.05rem; line-height: 1.75; color: #374151; margin: 0 0 12px; }
           },
           scales: {
             x: { grid:{display:false}, border:{color:'#e0e3e8'}, title:{display:true,text:'Week',color:'#9ca3af',font:{size:11}}, ticks:{color:'#6b7280',font:{size:11},maxTicksLimit:13,autoSkip:true,maxRotation:0,callback:(v,i)=>i%4===0?dualWeeks[i]:''} },
-            yFlow: { type:'linear', position:'left', grid:{display:false}, border:{color:'#e0e3e8'}, title:{display:true,text:'Net flow (MW)',color:'#9ca3af',font:{size:11}}, ticks:{color:'#6b7280',font:{size:11},callback:v=>v.toLocaleString('en-GB')} },
+            yFlow: { type:'linear', position:'left', grid:{display:false}, border:{color:'#e0e3e8'}, title:{display:true,text:'Average Net Flow (MW)',color:'#9ca3af',font:{size:11}}, ticks:{color:'#6b7280',font:{size:11},callback:v=>v.toLocaleString('en-GB')} },
             ySpread: { type:'linear', position:'right', grid:{display:false}, border:{color:'#e0e3e8'}, title:{display:true,text:'Price spread (€/MWh)',color:'#9ca3af',font:{size:11}}, ticks:{color:'#6b7280',font:{size:11},callback:v=>'€'+v.toFixed(0)} }
           }
         }
@@ -500,10 +515,10 @@ p { font-size: 1.05rem; line-height: 1.75; color: #374151; margin: 0 0 12px; }
   <script>
   (function() {
     const zones = [
-      { label: 'France',                color: '#dc6030', bars: [{src:'Nuclear',pct:68.8},{src:'Hydro',pct:10.4},{src:'Wind',pct:8.2}] },
-      { label: 'Norway',         color: '#2d7d46', bars: [{src:'Hydro',pct:90.0},{src:'Wind',pct:8.4},{src:'Gas',pct:0.6}] },
-      { label: 'Netherlands',           color: '#2563eb', bars: [{src:'Gas',pct:34.9},{src:'Wind',pct:25.0},{src:'Solar',pct:21.1}] },
-      { label: 'Germany–Luxembourg', color: '#111827', bars: [{src:'Wind',pct:27.2},{src:'Coal',pct:20.5},{src:'Solar',pct:17.9}] },
+      { label: 'FR · France',                color: '#dc6030', bars: [{src:'Nuclear',pct:68.8},{src:'Hydro',pct:10.4},{src:'Wind',pct:8.2}] },
+      { label: 'NO2 · Norway South',         color: '#2d7d46', bars: [{src:'Hydro',pct:90.0},{src:'Wind',pct:8.4},{src:'Gas',pct:0.6}] },
+      { label: 'NL · Netherlands',           color: '#2563eb', bars: [{src:'Gas',pct:34.9},{src:'Wind',pct:25.0},{src:'Solar',pct:21.1}] },
+      { label: 'DE-LU · Germany–Luxembourg', color: '#111827', bars: [{src:'Wind',pct:27.2},{src:'Coal',pct:20.5},{src:'Solar',pct:17.9}] },
     ];
     const W = document.getElementById('mixChart').clientWidth;
     const H = 320;
