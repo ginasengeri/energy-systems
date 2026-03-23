@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ember Data Pipeline – Technical Appendix</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+margin:0;
+background:#f4f5f7;
+color:#111827;
+line-height:1.65;
+}
+header{
+text-align:center;
+padding:70px 20px 30px;
+background:#f4f5f7;
+}
+header h1{
+font-size:2rem;
+margin:0 0 10px;
+font-weight:800;
+}
+header p{
+margin:0;
+color:#6b7280;
+font-size:0.95rem;
+}
+main{
+max-width:820px;
+margin:0 auto;
+padding:0 20px 20px;
+}
+h2{
+margin-top:30px;
+font-size:1.1rem;
+font-weight:750;
+}
+p{ margin:12px 0; }
+ul{ margin:10px 0 0 20px; }
+pre {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 18px;
+  overflow-x: auto;
+  font-size: 0.85rem;
+}
+code{
+font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+line-height: 1.5;
+font-size: 0.9rem;
+}
+.sources-section ol {
+  margin: 10px 0 0 0;
+  padding-left: 0;
+  list-style: none;
+}
+.sources-section li {
+  margin-bottom: 6px;
+  word-break: break-word;
+}
+.sources-section a {
+  color: #2563eb;
+  text-decoration: none;
+}
+.sources-section a:hover { text-decoration: underline; }
+footer {
+margin-top: 28px;
+padding-top: 16px;
+border-top: 1px solid #e0e3e8;
+text-align: center;
+font-size: 0.75rem;
+color: #9ca3af;
+}
+footer a {
+color: #2563eb;
+text-decoration: none;
+}
+</style>
+</head>
+<body>
+<header>
+<h1>Work in Progress: Ember Data Pipeline</h1>
+<p>Technical appendix describing the data collection, processing, and validation steps used to construct the annual electricity generation datasets.</p>
+</header>
+<main>
+<p>
+Data were collected from publicly available Ember API endpoints and transformed into tabular datasets for analysis of annual electricity generation by country and source. The pipeline begins with API retrieval followed by table conversion, column standardisation, filtering, aggregation, validation, and final export.
+</p>
+
+<h2>Data sources</h2>
+
+<p>The dataset uses the Ember electricity generation API and retrieves yearly generation data for selected countries and fuel categories.</p>
+
+<ul>
+<li>Yearly electricity generation by country</li>
+<li>Generation by source or technology</li>
+<li>Country-level values used directly or combined into regional aggregates</li>
+</ul>
+
+<p>
+These reports are retrieved as JSON responses and converted into table format.
+</p>
+
+<pre><code>import requests
+import pandas as pd
+
+my_api_key = "YOUR_KEY"
+base_url = "https://api.ember-energy.org/v1/electricity-generation/yearly"
+
+query_url = (
+    f"{base_url}?entity_code=UGA,KEN,ETH,RWA,TZA&"
+    "is_aggregate_series=false&"
+    "start_date=2019&"
+    "end_date=2024&"
+    f"api_key={my_api_key}"
+)
+
+response = requests.get(query_url)
+data = response.json()</code></pre>
+
+<h2>Converting API responses to a table</h2>
+
+<p>
+The Ember API returns a JSON object containing a dataset of yearly records. These records are loaded directly into a pandas DataFrame.
+</p>
+
+<pre><code>df = pd.DataFrame(data["data"])
+print(data.keys())
+print(df.head())</code></pre>
+
+<h2>Cleaning and standardising fields</h2>
+
+<p>
+Non-essential metadata fields are removed and net imports are excluded where the analysis is intended to focus on domestic generation only.
+</p>
+
+<pre><code>df.drop(columns=["is_aggregate_entity", "is_aggregate_series"], inplace=True)
+
+df = df.rename(columns={
+    "series": "source",
+    "entity": "country",
+    "entity_code": "country_code"
+})
+
+df = df[df["source"] != "Net imports"]</code></pre>
+
+<h2>Aggregation and regional construction</h2>
+
+<p>
+Generation is reported for individual countries in the East African generation analysis. 
+The ENTSO-E system combines Germany and Luxembourg into a single DE-LU series. In this case, 
+records for DEU and LUX are grouped by source and summed to create a regional total. The regional share of 
+generation is then calculated from the summed total to approximate the mix in this zone.
+</p>
+
+<pre><code>delu = (
+    df[df["country_code"].isin(["DEU", "LUX"])]
+    .groupby("source", as_index=False)["generation_twh"]
+    .sum()
+)
+
+delu["country"] = "Germany–Luxembourg"
+delu["country_code"] = "DE-LU"
+delu["date"] = 2025
+
+total = delu["generation_twh"].sum()
+delu["share_of_generation_pct"] = (
+    delu["generation_twh"] / total * 100
+).round(1)</code></pre>
+
+<p>
+Netherlands, Norway, and France are then appended to the DE-LU aggregate to produce a combined table.
+</p>
+
+<pre><code>others = df[df["country_code"].isin(["NLD", "NOR", "FRA"])].copy()
+final = pd.concat([delu, others], ignore_index=True)</code></pre>
+
+<h2>Validation</h2>
+
+<p>
+A validation step checks that the API response contains the expected date range and no duplicate source-country-year combinations after aggregation. 
+</p>
+
+<pre><code>
+
+</code></pre>
+
+
+<h2>Final dataset</h2>
+
+<p>
+The final datasets contain annual generation values by source for the selected countries and regions.
+</p>
+
+<pre><code>final.to_csv("ember_generation_output.csv", index=False)</code></pre>
+
+<section class="sources-section">
+  <h2>API Documentation &amp; Sources</h2>
+  <ol>
+    <li>Ember – Electricity Data API – <a href="https://api.ember-energy.org">https://api.ember-energy.org</a></li>
+  </ol>
+</section>
+
+<footer>
+  <p>Data source: Ember Electricity Data API</p>
+  <a href="technical_appendix.html">← Back to Technical Appendix</a>
+</footer>
+</main>
+</body>
+</html>
