@@ -78,8 +78,8 @@ sup a { text-decoration: none; }
 .zone-name { font-size: 0.9rem; color: var(--text-muted); }
 .chart-wrap { position: relative; width: 65%; margin: 12px auto 0; height: 380px; }
 .chart-wrap canvas { display: block; }
-.chart-fig { font-size: 0.85rem; color: #9ca3af; text-align: left; margin-bottom: 6px; margin-top: 0; }
-.custom-legend { display: flex; flex-wrap: wrap; gap: 6px 24px; justify-content: center; margin-top: 12px; }
+.chart-fig { font-size: 0.85rem; color: #9ca3af; text-align: left; margin-bottom: 6px; margin-top: 16px; }
+.custom-legend { display: flex; flex-wrap: wrap; gap: 6px 24px; justify-content: center; margin-bottom: 12px; margin-top: 12px; }
 .cl-item { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: #374151; }
 .cl-line { width: 22px; height: 2.5px; border-radius: 2px; flex-shrink: 0; }
 .price-wrap { position: relative; width: 65%; margin: 12px auto 0; height: 340px; }
@@ -120,7 +120,6 @@ p { font-size: 1.05rem; line-height: 1.75; color: #374151; margin: 0 0 12px; }
         This combines a nuclear-heavy system in France, a hydro-dominated system in Norway, and a gas/wind mix in the Netherlands.
     </p>
 
-    <h2>Key Insights</h2>
     <p>There are three main roles observed in the Germany-Luxembourg zone:</p>
     <ol>
       <li>Major importing corridor — France's nuclear power is the main source of imports.</li>
@@ -129,7 +128,8 @@ p { font-size: 1.05rem; line-height: 1.75; color: #374151; margin: 0 0 12px; }
     </ol>
 
     <p>The map below illustrates the net electricity flows into Germany-Luxembourg from these three zones in 2025.</p>
-
+    
+    <p class="chart-fig">Fig. 1 — Net Flows (TWh) between DE-LU and neighbouring zones, 2025.</p>
     <div class="map-embed" id="map-wrap">
       <svg id="flow-map"></svg>
       <div id="m-panel">
@@ -147,23 +147,43 @@ p { font-size: 1.05rem; line-height: 1.75; color: #374151; margin: 0 0 12px; }
       <div id="m-src">ENTSO-E Transparency Platform</div>
     </div>
 
-    <h2>Weekly Average Net Flow (MW)</h2>
-    <p>The chart below shows the weekly average net flow magnitude between DE-LU and each zone throughout 2025. Where flow is into DE-LU the line is shown in the zone colour; where DE-LU is a net exporter to that zone the segment turns black.</p>
+    <h2>Key Insights</h2>
+    <ol>
+      <li>The DE-LU zone is a net importer of electricity with 32.8 TWh in imports in 2025.</li>
+      <li>The majority of imports come from cheap, steady baseload sources (France nuclear, 20 TWh).</li>
+      <li>Germany-Luxembourg has the highest day-ahead average price for 2025 (€90.68/MWh).</li>
+    </ol>
 
-    <p class="chart-fig">Fig. 1 — Weekly average net flow magnitude (MW) between DE-LU and neighbouring zones, 2025.</p>
+    
+    <h2>Price Spread and Net Flow by Zone</h2>
+    The top three sources of electricity for each zone are shown in Figure 3 below. 
+    <p class="chart-fig">Fig. 2 — Top three generation sources and average day-ahead prices, 2025.</p>
+    <div id="mixChart" style="width:100%;margin-top:8px;"></div>
+    <p class="chart-fig" style="text-align:left;margin-top:0px;margin-bottom:16px;">Generation mix data was collected from Ember Energy. Germany and Luxembourg were combined to illustrate an appropriate mix for the DE-LU bidding zone.</p>
+
+    <p>
+        Throughout 2025, NL was the only zone with net 
+        imports from DE-LU on a weekly average basis. The chart below shows the weekly average net flow
+        between DE-LU and each zone. Flows into DE-LU are shown in the zone colour,
+        and flows out of DE-LU (net exports) are shown as black segments. </p>
+
+    <p class="chart-fig">Fig. 3 — Weekly average net flow magnitude (MW) between DE-LU and neighbouring zones, 2025.</p>
     <div class="chart-wrap">
       <canvas id="flowChart"></canvas>
     </div>
     <div class="custom-legend" id="customLegend"></div>
 
-    <h2>Price Spread and Net Flow by Corridor</h2>
     <p>
-      Electricity flows from lower-price zones into higher-price ones. Germany's day-ahead prices are consistently above those of France and Norway, reflecting higher
-      marginal generation costs from gas and coal following the nuclear phase-out. The Netherlands, with a similar generation mix, trades close to Germany.
+        Price differences across zones reflect the structural composition of each generation fleet. France's nuclear power, 
+        at 68.8% of output, provides a large base of low-cost dispatchable generation that keeps prices structurally below Germany's.
+        Norway generates 90% of its electricity from hydro, which has near-zero marginal cost but varies with reservoir levels and 
+        precipitation. The Netherlands relies on gas for 34.9% of output alongside wind and solar, giving it a price structure closer 
+        to Germany-Luxembourg. Despite wind leading at 27.2%, Germany-Luxembourg still depends on coal with 20.5% for dispatchable capacity,
+        driving higher marginal costs than either France or Norway.
     </p>
 
     <div class="dual-header">
-      <p class="chart-fig" id="dualFig">Fig. 2 — Weekly avg net flow (MW, left) and price spread (€/MWh, right) for FR → DE-LU, 2025.</p>
+      <p class="chart-fig" id="dualFig">Fig. 4 — Weekly avg net flow (MW, left) and price spread (€/MWh, right) for FR → DE-LU, 2025.</p>
       <div class="dual-filter">
         <span style="font-size:0.90rem;font-weight:600;color:#6b7280;align-self:center;">Zone:</span>
         <button class="df-btn active" data-zone="FR"  onclick="setZone('FR')">FR</button>
@@ -180,10 +200,6 @@ p { font-size: 1.05rem; line-height: 1.75; color: #374151; margin: 0 0 12px; }
       <div class="cl-item"><div class="cl-line" style="border-top:2px dashed #9ca3af;height:0;width:22px;background:none;"></div><span>Price spread (€/MWh)</span></div>
     </div>
 
-    <h2>Generation Mix</h2>
-    <p>The price differences above reflect the structural composition of each zone's generation fleet. France's nuclear fleet, at 68.8% of output, provides a large base of low-cost dispatchable generation that keeps prices structurally below Germany's. Norway generates 90% of its electricity from hydro, which has near-zero marginal cost but varies with reservoir levels and precipitation. The Netherlands relies on gas for 34.9% of output alongside wind and solar, giving it a price structure closer to Germany's — which despite leading on wind at 27.2%, still depends on coal at 20.5% for dispatchable capacity, driving higher marginal costs than either France or Norway.</p>
-    <p class="chart-fig">Fig. 3 — Top three generation sources by share of total output, 2025.</p>
-    <div id="mixChart" style="width:100%;margin-top:8px;"></div>
 
     <h2>Implications</h2>
     <p>
@@ -515,14 +531,14 @@ p { font-size: 1.05rem; line-height: 1.75; color: #374151; margin: 0 0 12px; }
   <script>
   (function() {
     const zones = [
-      { label: 'FR · France',                color: '#dc6030', bars: [{src:'Nuclear',pct:68.8},{src:'Hydro',pct:10.4},{src:'Wind',pct:8.2}] },
-      { label: 'NO2 · Norway South',         color: '#2d7d46', bars: [{src:'Hydro',pct:90.0},{src:'Wind',pct:8.4},{src:'Gas',pct:0.6}] },
-      { label: 'NL · Netherlands',           color: '#2563eb', bars: [{src:'Gas',pct:34.9},{src:'Wind',pct:25.0},{src:'Solar',pct:21.1}] },
-      { label: 'DE-LU · Germany–Luxembourg', color: '#111827', bars: [{src:'Wind',pct:27.2},{src:'Coal',pct:20.5},{src:'Solar',pct:17.9}] },
+      { label: 'FR · France',                color: '#dc6030', price: '€62.33/MWh',bars: [{src:'Nuclear',pct:68.8},{src:'Hydro',pct:10.4},{src:'Wind',pct:8.2}] },
+      { label: 'NO2 · Norway',         color: '#2d7d46', price: '€66.04/MWh', bars: [{src:'Hydro',pct:90.0},{src:'Wind',pct:8.4},{src:'Gas',pct:0.6}] },
+      { label: 'NL · Netherlands',           color: '#2563eb', price: '€88.18/MWh', bars: [{src:'Gas',pct:34.9},{src:'Wind',pct:25.0},{src:'Solar',pct:21.1}] },
+      { label: 'DE-LU · Germany–Luxembourg', color: '#111827', price: '€90.68/MWh', bars: [{src:'Wind',pct:27.2},{src:'Coal',pct:20.5},{src:'Solar',pct:17.9}] },
     ];
     const W = document.getElementById('mixChart').clientWidth;
-    const H = 320;
-    const marginL = 10, marginR = 10, marginT = 40, marginB = 66;
+    const H = 360;
+    const marginL = 10, marginR = 10, marginT = 40, marginB = 92;
     const chartW = W - marginL - marginR;
     const chartH = H - marginT - marginB;
     const maxPct = 95;
@@ -556,6 +572,7 @@ p { font-size: 1.05rem; line-height: 1.75; color: #374151; margin: 0 0 12px; }
       const zoneY = marginT + chartH + 38;
       const parts = zone.label.split(' · ');
       svg += `<text x="${zoneX}" y="${zoneY}" text-anchor="middle" font-size="12" font-weight="600" fill="#374151">${parts[1] || parts[0]}</text>`;
+      svg += `<text x="${zoneX}" y="${zoneY + 30}" text-anchor="middle" font-size="13" font-weight="700" fill="#6b7280">${zone.price}</text>`;
     });
 
     svg += '</svg>';
