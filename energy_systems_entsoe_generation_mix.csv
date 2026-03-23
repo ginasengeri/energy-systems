@@ -1,46 +1,37 @@
-country,country_code,date,source,generation_twh,share_of_generation_pct
-Netherlands,NLD,2025,Solar,28.5,21.12
-Luxembourg,LUX,2025,Other fossil,0.07,4.55
-Luxembourg,LUX,2025,Other renewables,0.0,0.0
-Luxembourg,LUX,2025,Solar,0.47,30.52
-Luxembourg,LUX,2025,Wind,0.47,30.52
-Netherlands,NLD,2025,Bioenergy,6.85,5.08
-Netherlands,NLD,2025,Coal,9.55,7.08
-Netherlands,NLD,2025,Gas,47.09,34.89
-Netherlands,NLD,2025,Hydro,0.05,0.04
-Netherlands,NLD,2025,Nuclear,3.99,2.96
-Netherlands,NLD,2025,Other fossil,5.23,3.88
-Netherlands,NLD,2025,Other renewables,0.0,0.0
-Luxembourg,LUX,2025,Nuclear,0.0,0.0
-Netherlands,NLD,2025,Wind,33.7,24.97
-Norway,NOR,2025,Bioenergy,0.24,0.15
-Norway,NOR,2025,Coal,0.0,0.0
-Norway,NOR,2025,Gas,0.9,0.56
-Norway,NOR,2025,Hydro,144.77,90.03
-Norway,NOR,2025,Nuclear,0.0,0.0
-Norway,NOR,2025,Other fossil,0.71,0.44
-Norway,NOR,2025,Other renewables,0.1,0.06
-Norway,NOR,2025,Solar,0.53,0.33
-Norway,NOR,2025,Wind,13.56,8.43
-Germany,DEU,2025,Hydro,19.56,3.91
-France,FRA,2025,Coal,1.74,0.31
-France,FRA,2025,Gas,17.25,3.03
-France,FRA,2025,Hydro,59.41,10.42
-France,FRA,2025,Nuclear,392.07,68.79
-France,FRA,2025,Other fossil,10.36,1.82
-France,FRA,2025,Other renewables,0.57,0.1
-France,FRA,2025,Solar,31.82,5.58
-France,FRA,2025,Wind,46.49,8.16
-Germany,DEU,2025,Bioenergy,50.53,10.1
-Germany,DEU,2025,Coal,103.15,20.61
-Germany,DEU,2025,Gas,82.67,16.52
-France,FRA,2025,Bioenergy,10.27,1.8
-Germany,DEU,2025,Nuclear,0.0,0.0
-Germany,DEU,2025,Other fossil,18.91,3.78
-Germany,DEU,2025,Other renewables,0.0,0.0
-Germany,DEU,2025,Solar,89.62,17.91
-Germany,DEU,2025,Wind,136.03,27.18
-Luxembourg,LUX,2025,Bioenergy,0.42,27.27
-Luxembourg,LUX,2025,Coal,0.0,0.0
-Luxembourg,LUX,2025,Gas,0.06,3.9
-Luxembourg,LUX,2025,Hydro,0.05,3.25
+source,generation_twh,country,country_code,date,share_of_generation_pct
+Bioenergy,50.95,Germany–Luxembourg,DE-LU,2025,10.1
+Coal,103.15,Germany–Luxembourg,DE-LU,2025,20.5
+Gas,82.73,Germany–Luxembourg,DE-LU,2025,16.5
+Hydro,19.61,Germany–Luxembourg,DE-LU,2025,3.9
+Nuclear,0.0,Germany–Luxembourg,DE-LU,2025,0.0
+Other fossil,18.98,Germany–Luxembourg,DE-LU,2025,3.8
+Other renewables,0.0,Germany–Luxembourg,DE-LU,2025,0.0
+Solar,90.09,Germany–Luxembourg,DE-LU,2025,17.9
+Wind,136.5,Germany–Luxembourg,DE-LU,2025,27.2
+Solar,28.5,Netherlands,NLD,2025,21.12
+Bioenergy,6.85,Netherlands,NLD,2025,5.08
+Coal,9.55,Netherlands,NLD,2025,7.08
+Gas,47.09,Netherlands,NLD,2025,34.89
+Hydro,0.05,Netherlands,NLD,2025,0.04
+Nuclear,3.99,Netherlands,NLD,2025,2.96
+Other fossil,5.23,Netherlands,NLD,2025,3.88
+Other renewables,0.0,Netherlands,NLD,2025,0.0
+Wind,33.7,Netherlands,NLD,2025,24.97
+Bioenergy,0.24,Norway,NOR,2025,0.15
+Coal,0.0,Norway,NOR,2025,0.0
+Gas,0.9,Norway,NOR,2025,0.56
+Hydro,144.77,Norway,NOR,2025,90.03
+Nuclear,0.0,Norway,NOR,2025,0.0
+Other fossil,0.71,Norway,NOR,2025,0.44
+Other renewables,0.1,Norway,NOR,2025,0.06
+Solar,0.53,Norway,NOR,2025,0.33
+Wind,13.56,Norway,NOR,2025,8.43
+Coal,1.74,France,FRA,2025,0.31
+Gas,17.25,France,FRA,2025,3.03
+Hydro,59.41,France,FRA,2025,10.42
+Nuclear,392.07,France,FRA,2025,68.79
+Other fossil,10.36,France,FRA,2025,1.82
+Other renewables,0.57,France,FRA,2025,0.1
+Solar,31.82,France,FRA,2025,5.58
+Wind,46.49,France,FRA,2025,8.16
+Bioenergy,10.27,France,FRA,2025,1.8
