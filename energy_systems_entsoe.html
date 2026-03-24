@@ -329,7 +329,7 @@ sup a { text-decoration: none; }
   const zones = ["DE-LU->FR", "DE-LU->NO2", "DE-LU->NL"];
   const zoneLabels = { "DE-LU->FR": "FR", "DE-LU->NO2": "NO2", "DE-LU->NL": "NL" };
 
-  function buildTable(data, unit, title, decimals=0, label='') {
+  function buildTable(data, unit, title, decimals=0) {
     let html = `<div class="table-card">
       ${label ? `<p style="font-size:0.78rem;color:#9ca3af;margin:0 0 4px;">${label}</p>` : ''}
       <h3>${title}</h3>
@@ -353,8 +353,8 @@ sup a { text-decoration: none; }
   }
 
   document.getElementById('quarterlyTables').innerHTML =
-    buildTable(flows,   'MW',     'Avg Net Imports into DE-LU (MW)',    0, 'Table 1a') +
-    buildTable(spreads, '€/MWh',  'Avg Price Spread vs DE-LU (€/MWh)', 2, 'Table 1b');
+    buildTable(flows,   'MW',     'Avg Net Imports into DE-LU (MW)',    0) +
+    buildTable(spreads, '€/MWh',  'Avg Price Spread vs DE-LU (€/MWh)', 2);
 })();
 </script>
 
