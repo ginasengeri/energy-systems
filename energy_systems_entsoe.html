@@ -328,8 +328,8 @@ sup a { text-decoration: none; }
     return `Q${Math.ceil((dt.getMonth()+1)/3)}`;
   });
 
-  const zones = ["DE-LU->FR", "DE-LU->NL", "DE-LU->NO2"];
-  const zoneLabels = { "DE-LU->FR": "FR", "DE-LU->NL": "NL", "DE-LU->NO2": "NO2" };
+  const zones = ["DE-LU->FR", "DE-LU->NO2", "DE-LU->NL"];
+  const zoneLabels = { "DE-LU->FR": "FR",  "DE-LU->NO2": "NO2" "DE-LU->NL": "NL"};
 
   function buildTable(data, unit, title, decimals=0) {
     let html = `<div class="table-card">
@@ -363,11 +363,11 @@ sup a { text-decoration: none; }
   (async () => {
     const flowData = await d3.csv("https://raw.githubusercontent.com/ginasengeri/Electricity-and-the-Economy/main/energy_systems_entsoe_weekly_net_flows.csv");
     const rawFR  = flowData.map(d => +d["DE-LU->FR"]);
-    const rawNL  = flowData.map(d => +d["DE-LU->NL"]);
-    const rawNO2 = flowData.map(d => +d["DE-LU->NO2"]);
+    const rawNO2  = flowData.map(d => +d["DE-LU->NO2"]);
+    const rawNL = flowData.map(d => +d["DE-LU->NL"]);
   
     const weeks = Array.from({length: 52}, (_, i) => i + 1);
-    const COLORS = { FR: '#dc6030', NL: '#2563eb', NO2: '#2d7d46', export: '#111827' };
+    const COLORS = { FR: '#dc6030', NO2: '#2563eb', NL: '#2d7d46', export: '#111827' };
   
     function segColor(raw, zoneColor) {
       return ctx => raw[ctx.p0DataIndex] > 0 ? COLORS.export : zoneColor;
@@ -375,8 +375,8 @@ sup a { text-decoration: none; }
   
     const seriesDefs = [
       { key: 'FR',  raw: rawFR,  label: 'FR → DE-LU' },
-      { key: 'NL',  raw: rawNL,  label: 'NL → DE-LU' },
-      { key: 'NO2', raw: rawNO2, label: 'NO2 → DE-LU' },
+      { key: 'NO2',  raw: rawNO2,  label: 'NO2 → DE-LU' },
+      { key: 'NL', raw: rawNL, label: 'NL → DE-LU' },
     ];
   
     const datasets = seriesDefs.map(s => ({
