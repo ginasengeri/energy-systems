@@ -96,7 +96,7 @@ sup a { text-decoration: none; }
   <div class="report-container">
     <header>
       <div class="label">Energy Systems</div>
-      <h1>Work In Progress</h1>
+      <h1>Electricity Trade in the DE-LU Bidding Zone</h1>
       <p>This report discusses the roles played by different generation systems, focussing on the Germany-Luxembourg, France, Netherlands and Norway South bidding zones.   </p>
       <div class="meta">ENTSO-E Transparency Platform &bull; 2025</div>
     </header>
@@ -116,18 +116,21 @@ sup a { text-decoration: none; }
         Germany sits between several different power systems in Europe, and connects a diverse set of generation systems. This allows for
         observation of a range of trade patterns in one place. The focus of this
         analysis is on electricity transmission between the Germany-Luxembourg bidding zone (DE-LU), France (FR), Netherlands (NL),
-        and Norway South (NO2).
-        This combines a nuclear-heavy system in France, a hydro-dominated system in Norway, and a gas/wind mix in the Netherlands.
+        and Norway South (NO2). This combines a nuclear-heavy system in France, a hydro-dominated system in Norway, and a gas/wind mix in the Netherlands.
+    </p>
+
+    <p>
+        France consistently has the largest average price spread against DE-LU except in Q1, where Norway's prices are 46 €/MWh cheaper 
+        than DE-LU. The Netherlands remains closest to DE-LU in price across all quarters.
     </p>
 
     <div id="quarterlyTables" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0;"></div>
 
-    <p>There are three main roles observed in the Germany-Luxembourg zone:</p>
-    <ol>
-      <li>Major importing corridor — France's nuclear power is the main source of imports.</li>
-      <li>Alternating flows — gas and wind power from the Netherlands provides balancing support to cover short-term gaps on either side.</li>
-      <li>NO2's average net exports to DE-LU are twice as large in winter as in summer, consistent with seasonal hydro patterns
-        (Q2: 502 MW, Q4: 1030 MW).</li>
+    <p>There are three main roles observed in the Germany-Luxembourg zone:</p> 
+    <ol> 
+        <li>Baseload imports — France supplies large, steady volumes of low-cost nuclear power.</li> 
+        <li>Seasonal balancing — Norway's hydro exports vary with reservoir cycles, peaking in winter and falling in summer.</li> 
+        <li>Short-term balancing — the Netherlands provides flexible gas and wind capacity to cover short-term gaps on either side.</li> 
     </ol>
 
     <p>The map below illustrates the net electricity flows into Germany-Luxembourg from these three zones in 2025.</p>
@@ -154,24 +157,31 @@ sup a { text-decoration: none; }
     <section class="section">
     <h2>Key Insights</h2>
     <ol>
-      <li>The DE-LU zone is a net importer of electricity with 32.8 TWh in imports in 2025.</li>
-      <li>The majority of imports come from cheap, steady baseload sources (France nuclear, 20 TWh).</li>
-      <li>Germany-Luxembourg has the highest day-ahead average price for 2025 (€90.68/MWh).</li>
+      <li>The DE-LU zone is a net importer of electricity with 32.8 TWh in imports in 2025, with a majority of 
+        imports coming from France (20 TWh).</li>
+      <li>NO2's average net exports to DE-LU are twice as large in winter as in summer, consistent with seasonal hydro patterns
+        (Q2: 502 MW, Q4: 1030 MW).</li>
+      <li>DE-LU–NL corridor is the only boundary where the average net flow reverses direction, with net exports out of DE-LU 
+        occurring in 10 out of 53 weeks in 2025.</li>
     </ol>
     </section>
 
     <section class="section">
-    <h2>Price Spread and Net Flow by Zone</h2>
-    <p>The top three sources of electricity for each zone are shown in Figure 3 below. 
+    <h2>Generation Mix</h2>
+    <p>The top three sources of electricity and average day-ahead prices for each zone are shown in Figure 2 below. Germany-Luxembourg 
+        has the highest day-ahead average price for 2025 (€90.68/MWh). Despite wind leading generation at 27%, DE-LU's average price reflects
+        coal's role as the main dispatchable source of generation in the country. 
     <p class="chart-fig">Fig. 2 — Top three generation sources and average day-ahead prices, 2025.</p>
     <div id="mixChart" style="width:100%;margin-top:8px;"></div>
     <p class="chart-fig" style="text-align:left;margin-top:0px;margin-bottom:16px;">Generation mix data was collected from Ember Energy <sup><a href="#ref2">[2]</a></sup>. Germany and Luxembourg were combined to illustrate an appropriate mix for the DE-LU bidding zone.</p>
-
+    </section>
+        
+    <section class="section">
+    <h2>Price Spread and Net Flow</h2>
     <p>
-        Throughout 2025, NL was the only zone with net 
-        imports from DE-LU on a weekly average basis. The chart below shows the weekly average net flow
-        between DE-LU and each zone. Flows into DE-LU are shown in the zone colour,
-        and flows out of DE-LU (net exports) are shown as black segments. </p>
+        The chart below shows the average net flow on a weekly basis between DE-LU and each zone. Flows into DE-LU are shown in the zone 
+        colour, and flows out of DE-LU (net exports) are shown as black segments.
+    </p>
 
     <p class="chart-fig">Fig. 3 — Weekly average net flow magnitude (MW) between DE-LU and neighbouring zones, 2025.</p>
     <div class="chart-wrap">
@@ -180,12 +190,10 @@ sup a { text-decoration: none; }
     <div class="custom-legend" id="customLegend"></div>
 
     <p>
-        Price differences across zones reflect the structural composition of each generation fleet. France's nuclear power, 
-        at 68.8% of output, provides a large base of low-cost dispatchable generation that keeps prices structurally below Germany's.
-        Norway generates 90% of its electricity from hydro, which has near-zero marginal cost but varies with reservoir levels and 
-        precipitation. The Netherlands relies on gas for 34.9% of output alongside wind and solar, giving it a price structure closer 
-        to Germany-Luxembourg. Despite wind leading at 27.2%, Germany-Luxembourg still depends on coal with 20.5% for dispatchable capacity,
-        driving higher marginal costs than either France or Norway.
+        Price differences across zones reflect the composition of each generation fleet. France's nuclear power keeps prices 
+        structurally below Germany's, resulting in steady imports into DE-LU. Norway's hydropower has near-zero marginal cost<sup><a href="#ref3">[3]</a></sup>
+        but varies with reservoir levels and precipitation, resulting in declining exports mid-year. The Netherlands relies on 
+        gas for 35% of output alongside wind and solar, giving it a price structure closer to Germany-Luxembourg. 
     </p>
 
     <div class="dual-header">
@@ -195,7 +203,6 @@ sup a { text-decoration: none; }
         <button class="df-btn active" data-zone="FR"  onclick="setZone('FR')">FR</button>
         <button class="df-btn"        data-zone="NO2" onclick="setZone('NO2')">NO2</button>
         <button class="df-btn"        data-zone="NL"  onclick="setZone('NL')">NL</button>
-
       </div>
     </div>
     <div class="price-wrap" style="position:relative;">
@@ -203,9 +210,17 @@ sup a { text-decoration: none; }
       <div id="corrBadge" style="position:absolute;top:0px;right:70px;background:#fff;border:1px solid #e0e3e8;border-radius:6px;padding:5px 10px;font-size:0.75rem;color:#6b7280;pointer-events:none;">ρ = <span id="corrValue" style="font-weight:700;color:#111827;">−0.48</span></div>
     </div>
     <div class="custom-legend">
-      <div class="cl-item"><div class="cl-line" id="dualFlowLine" style="background:#dc6030;"></div><span>Avg net flow (MW)</span></div>
-      <div class="cl-item"><div class="cl-line" style="border-top:2px dashed #9ca3af;height:0;width:22px;background:none;"></div><span>Price spread (€/MWh)</span></div>
+    <div class="cl-item"><div class="cl-line" id="dualFlowLine" style="background:#dc6030;"></div><span>Zone → DE-LU (net import)</span></div>
+    <div class="cl-item"><div class="cl-line" style="background:#111827;"></div><span>DE-LU → Zone (net export)</span></div>
+    <div class="cl-item"><div class="cl-line" style="border-top:2px dashed #9ca3af;height:0;width:22px;background:none;"></div><span>Price spread (€/MWh)</span></div>
     </div>
+
+    <p>
+        Spearman correlation is used to account for non-linear relationships between price spreads and flows. France and
+        Norway show moderate to strong correlations (0.48 and 0.64), indicating stronger responses to price differences. The
+        Netherlands shows a weaker correlation (0.26), suggesting flows are less driven by price incentives. This is consistent
+        with the 10 weeks of net flow reversals between DE-LU and NL, which occur throughout the year with no clear seasonal pattern.  
+    </p>
     </section>
 
     <section class="section">
@@ -214,7 +229,7 @@ sup a { text-decoration: none; }
         In the past decade, solar generation in the EU has tripled while coal-fired geeration has dropped by 60 %. 
         This has led to generation volatility and price fluctuations, increasing the need for battery storage systems in the region. 
         Currently, just under 25 GWh of storage is installed in total, with large-scale systems rising from 2.3 to 3.7 GWh in 2025 alone. 
-        It is estimated that 100 to 170 GWh of storage will be needed by 2030<sup><a href="#ref3">[3]</a></sup>. 
+        It is estimated that 100 to 170 GWh of storage will be needed by 2030<sup><a href="#ref4">[4]</a></sup>. 
     </p>
     </section>
 
@@ -238,6 +253,14 @@ sup a { text-decoration: none; }
         technical_appendix_entsoe.html
       </a>
     </p>
+
+    <p>
+      Ember Data Pipeline.
+      Available at:
+      <a href="https://ginasengeri.github.io/Electricity-and-the-Economy/technical_appendix_ember.html" target="_blank">
+        technical_appendix_ember.html
+      </a>
+    </p>
     </section>
 
     <section class="section">
@@ -254,7 +277,7 @@ sup a { text-decoration: none; }
 
         <li id="ref2">
         Ember (2022).  
-        <em>Electricity Data Explorer.</em>.
+        <em>Electricity Data Explorer.</em>
         Available at:
         <a href="https://ember-energy.org/data/electricity-data-explorer/" target="_blank">
           https://ember-energy.org/data/electricity-data-explorer/
@@ -262,6 +285,15 @@ sup a { text-decoration: none; }
         </li>
 
         <li id="ref3">
+        Tome Robles, D.J., Maurer, F., Nøland, J.K., Panwar, M., Mishra, S. and Øyvang, T. (2025).
+        <em>Facets of hydro power and future trends in a Nordic Context</em>.
+        Energy Reports, 13, pp. 5016–5063.
+        Available at:
+        <a href="https://www.sciencedirect.com/science/article/pii/S235248472500215X" target="_blank">
+            https://www.sciencedirect.com/science/article/pii/S235248472500215X
+        </a>
+
+        <li id="ref4">
         Energy-Charts (2025).
         <em>German Public Electricity Generation in 2025: Wind and Solar Take the Lead for the First Time</em>.
         Available at:
@@ -282,6 +314,7 @@ sup a { text-decoration: none; }
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+  
 <script>
 (async () => {
   const base = "https://raw.githubusercontent.com/ginasengeri/Electricity-and-the-Economy/main/";
@@ -298,7 +331,7 @@ sup a { text-decoration: none; }
   const zones = ["DE-LU->FR", "DE-LU->NL", "DE-LU->NO2"];
   const zoneLabels = { "DE-LU->FR": "FR", "DE-LU->NL": "NL", "DE-LU->NO2": "NO2" };
 
-  function buildTable(data, unit, title) {
+  function buildTable(data, unit, title, decimals=0) {
     let html = `<div class="table-card">
       <h3>${title}</h3>
       <table>
@@ -312,7 +345,7 @@ sup a { text-decoration: none; }
           ${zones.map(z => `
           <tr>
             <td style="font-weight:600;">${zoneLabels[z]}</td>
-            ${data.map(d => `<td style="text-align:right;">${Math.abs(+d[z]).toFixed(0)}</td>`).join('')}
+            ${data.map(d => `<td style="text-align:right;">${Math.abs(+d[z]).toFixed(decimals)}</td>`).join('')}
           </tr>`).join('')}
         </tbody>
       </table>
@@ -321,8 +354,8 @@ sup a { text-decoration: none; }
   }
 
   document.getElementById('quarterlyTables').innerHTML =
-    buildTable(flows,   'MW',     'Avg Net Imports into DE-LU (MW)') +
-    buildTable(spreads, '€/MWh',  'Avg Price Spread vs DE-LU (€/MWh)');
+    buildTable(flows,   'MW',     'Avg Net Imports into DE-LU (MW)', 0) +
+    buildTable(spreads, '€/MWh',  'Avg Price Spread vs DE-LU (€/MWh)', 2);
 })();
 </script>
 
@@ -437,7 +470,7 @@ sup a { text-decoration: none; }
     if ([...rawFR, ...rawNL, ...rawNO2].some(v => v > 0)) {
       const item = document.createElement('div');
       item.className = 'cl-item';
-      item.innerHTML = `<div class="cl-line" style="background:#111827"></div><span>DE-LU → zone (net export)</span>`;
+      item.innerHTML = `<div class="cl-line" style="background:#111827"></div><span>DE-LU → Zone (net export)</span>`;
       legendEl.appendChild(item);
     }
   })();
@@ -555,8 +588,9 @@ sup a { text-decoration: none; }
       data: {
         labels: dualWeeks,
         datasets: [
-          { label: 'Avg net flow (MW)', data: d.net_flow.map(Math.abs), borderColor: color, borderWidth: 2, pointRadius: 0, pointHoverRadius: 3, tension: 0.3, fill: false, yAxisID: 'yFlow' },
-          { label: 'Price spread (€/MWh)', data: d.spread, borderColor: '#9ca3af', borderWidth: 1.5, borderDash: [4, 3], pointRadius: 0, pointHoverRadius: 3, tension: 0.3, fill: false, yAxisID: 'ySpread' }
+            { label: 'Avg net flow (MW)', data: d.net_flow.map(Math.abs), borderColor: color, borderWidth: 2, pointRadius: 0, pointHoverRadius: 3, tension: 0.3, fill: false, yAxisID: 'yFlow',
+              segment: { borderColor: ctx => d.net_flow[ctx.p0DataIndex] < 0 ? '#111827' : color } },
+            { label: 'Price spread (€/MWh)', data: d.spread, borderColor: '#9ca3af', borderWidth: 1.5, borderDash: [4, 3], pointRadius: 0, pointHoverRadius: 3, tension: 0.3, fill: false, yAxisID: 'ySpread' }
         ]
       },
       options: {
