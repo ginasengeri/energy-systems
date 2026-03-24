@@ -98,7 +98,7 @@ sup a { text-decoration: none; }
     <header>
       <div class="label">Energy Systems</div>
       <h1>Electricity Trade in the DE-LU Bidding Zone</h1>
-      <p>This report discusses the roles played by different generation systems, focussing on the Germany-Luxembourg, France, Netherlands and Norway South bidding zones.   </p>
+      <p>This report discusses the roles played by different generation systems, focussing on the Germany-Luxembourg, France, Netherlands and Norway South bidding zones.</p>
       <div class="meta">ENTSO-E Transparency Platform &bull; 2025</div>
     </header>
 
@@ -255,7 +255,6 @@ sup a { text-decoration: none; }
     technical_appendix_entsoe.html
   </a>
 </p>
-
 <p>
   Ember Data Pipeline.
   Available at:
@@ -276,34 +275,31 @@ sup a { text-decoration: none; }
       https://www.entsoe.eu/about/inside-entsoe/members/
     </a>
   </li>
-
-    <li id="ref2">
-    Ember (2022).  
+  <li id="ref2">
+    Ember (2022).
     <em>Electricity Data Explorer.</em>
     Available at:
     <a href="https://ember-energy.org/data/electricity-data-explorer/" target="_blank">
       https://ember-energy.org/data/electricity-data-explorer/
     </a>
-    </li>
-
-    <li id="ref3">
+  </li>
+  <li id="ref3">
     Tome Robles, D.J., Maurer, F., Nøland, J.K., Panwar, M., Mishra, S. and Øyvang, T. (2025).
     <em>Facets of hydro power and future trends in a Nordic Context</em>.
     Energy Reports, 13, pp. 5016–5063.
     Available at:
     <a href="https://www.sciencedirect.com/science/article/pii/S235248472500215X" target="_blank">
-        https://www.sciencedirect.com/science/article/pii/S235248472500215X
+      https://www.sciencedirect.com/science/article/pii/S235248472500215X
     </a>
-    </li>
-
-    <li id="ref4">
+  </li>
+  <li id="ref4">
     Energy-Charts (2025).
     <em>German Public Electricity Generation in 2025: Wind and Solar Take the Lead for the First Time</em>.
     Available at:
     <a href="https://www.energy-charts.info/index.html?l=en&c=DE" target="_blank">
       https://www.energy-charts.info/index.html?l=en&c=DE
     </a>
-    </li>
+  </li>
 </ol>
 </section>
 ```
@@ -335,8 +331,9 @@ sup a { text-decoration: none; }
   const zones = ["DE-LU->FR", "DE-LU->NO2", "DE-LU->NL"];
   const zoneLabels = { "DE-LU->FR": "FR", "DE-LU->NO2": "NO2", "DE-LU->NL": "NL" };
 
-  function buildTable(data, unit, title, decimals=0) {
+  function buildTable(data, unit, title, decimals=0, label='') {
     let html = `<div class="table-card">
+      ${label ? `<p style="font-size:0.78rem;color:#9ca3af;margin:0 0 4px;">${label}</p>` : ''}
       <h3>${title}</h3>
       <table>
         <thead>
@@ -358,8 +355,8 @@ sup a { text-decoration: none; }
   }
 
   document.getElementById('quarterlyTables').innerHTML =
-    buildTable(flows,   'MW',     'Avg Net Imports into DE-LU (MW)', 0) +
-    buildTable(spreads, '€/MWh',  'Avg Price Spread vs DE-LU (€/MWh)', 2);
+    buildTable(flows,   'MW',     'Avg Net Imports into DE-LU (MW)',    0, 'Table 1a') +
+    buildTable(spreads, '€/MWh',  'Avg Price Spread vs DE-LU (€/MWh)', 2, 'Table 1b');
 })();
 </script>
 
@@ -369,20 +366,20 @@ sup a { text-decoration: none; }
     const rawFR  = flowData.map(d => +d["DE-LU->FR"]);
     const rawNO2 = flowData.map(d => +d["DE-LU->NO2"]);
     const rawNL  = flowData.map(d => +d["DE-LU->NL"]);
-  
+
     const weeks = Array.from({length: 52}, (_, i) => i + 1);
     const COLORS = { FR: '#dc6030', NO2: '#2d7d46', NL: '#2563eb', export: '#111827' };
-  
+
     function segColor(raw, zoneColor) {
       return ctx => raw[ctx.p0DataIndex] > 0 ? COLORS.export : zoneColor;
     }
-  
+
     const seriesDefs = [
       { key: 'FR',  raw: rawFR,  label: 'FR → DE-LU' },
       { key: 'NO2', raw: rawNO2, label: 'NO2 → DE-LU' },
       { key: 'NL',  raw: rawNL,  label: 'NL → DE-LU' },
     ];
-  
+
     const datasets = seriesDefs.map(s => ({
       label: s.label,
       data: s.raw.map(Math.abs),
@@ -395,9 +392,9 @@ sup a { text-decoration: none; }
       pointStyle: 'circle',
       segment: { borderColor: segColor(s.raw, COLORS[s.key]) },
     }));
-  
+
     Chart.defaults.font.family = "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
-  
+
     new Chart(document.getElementById('flowChart').getContext('2d'), {
       type: 'line',
       data: { labels: weeks, datasets },
@@ -463,7 +460,7 @@ sup a { text-decoration: none; }
         }
       }
     });
-  
+
     const legendEl = document.getElementById('customLegend');
     seriesDefs.forEach(s => {
       const item = document.createElement('div');
