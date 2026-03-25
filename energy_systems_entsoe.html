@@ -134,7 +134,10 @@ sup a { text-decoration: none; }
     <li>Short-term balancing — the Netherlands provides flexible gas and wind capacity to cover short-term gaps on either side.</li> 
 </ol>
 
-<p>The map below illustrates the net electricity flows into Germany-Luxembourg from these three zones in 2025.</p>
+<p>
+    The map below illustrates Germany-Luxembourg's connections to 11 other neighboring bidding zones,
+    highlighting net electricity flows from France, Norway South and Netherlands in 2025. 
+</p>
 
 <p class="chart-fig">Fig. 1 — Net Flows (TWh) between DE-LU and neighbouring zones, 2025.</p>
 <div class="map-embed" id="map-wrap">
@@ -148,7 +151,7 @@ sup a { text-decoration: none; }
   </div>
   <div id="m-total">
     <div class="tl">Total net imports</div>
-    <div class="tv">32.8</div>
+    <div class="tv">23.7</div>
     <div class="ts"><strong style="color:#111827;">TWh</strong> into DE-LU</div>
   </div>
   <div id="m-src">ENTSO-E Transparency Platform</div>
@@ -158,7 +161,7 @@ sup a { text-decoration: none; }
 <section class="section">
 <h2>Key Insights</h2>
 <ol>
-  <li>The DE-LU zone is a net importer of electricity with 32.8 TWh in imports in 2025, with a majority of 
+  <li>The DE-LU zone is a net importer of electricity with 32.8 TWh in imports in 2025, with a 84.5% of net
     imports coming from France (20 TWh).</li>
   <li>NO2's average net exports to DE-LU are twice as large in winter as in summer, consistent with seasonal hydro patterns
     (Q2: 502 MW, Q4: 1030 MW).</li>
@@ -230,7 +233,7 @@ sup a { text-decoration: none; }
 
 <p>
   The three roles observed in 2025 present clear challenges
-   and opportunities for Germany’s energy transition.
+   and opportunities for Germany's energy transition.
 </p>
 <p>
     Prior to 2023, Germany was a net exporter of electricity for two decades. 
@@ -243,11 +246,8 @@ sup a { text-decoration: none; }
     This shift to renewables introduces generation volatility and price fluctuations. 
     The weaker price-flow correlation between DE-LU and the Netherlands suggests that 
     balancing needs override price signals, pointing to a need for continued investment 
-    in grid stability infrastructure.
-</p>
-
-<p>
-    A characteristic of solar and wind power is the reduced system inertia. When demand or generation conditions change, 
+    in grid stability infrastructure. A characteristic of solar and wind power is the 
+    reduced system inertia - when demand or generation conditions change, 
     frequency can shift rapidly and cause generators to trip offline. The total blackout seen across Spain and Portugal 
     in April 2025<sup><a href="#ref3">[3]</a></sup>, 
     for example, makes battery storage systems increasingly important for grid stability.
@@ -255,18 +255,22 @@ sup a { text-decoration: none; }
 
 <p>
     Currently, just under 25 GWh 
-    of storage is installed in total, with large-scale systems rising from 2.3 to 3.7 GWh in 2025.
-    It is estimated that 100 to 170 GWh of storage will be needed by 2030<sup><a href="#ref4">[4]</a></sup>. 
-    LEAG, Germany's second-largest power producer, is constructing Europe’s largest single-site battery 
-    storage project, a key investment in grid stability as lignite (brown coal) generation phases out<sup><a href="#ref5">[5]</a></sup>.
+    of storage is installed in total, with large-scale systems rising from 2.3 to 3.7 GWh in 2025, and it is estimated that 100 to
+    170 GWh of storage will be needed by 2030<sup><a href="#ref4">[4]</a></sup>. 
+    LEAG, Germany's second-largest power producer, is constructing Europe's largest single-site battery 
+    storage project, a key investment in grid stability as lignite (brown coal) generation phases out<sup><a href="#ref5">[5]</a></sup>. 
+    The 1 GW storage system is designed to supply power for up to four hours, compensating for the loss of flexible generation and inertia
+    in the power system. 
   </p>
   
   <p>
-  Norway’s hydro could also become  more important as a storage and balancing resource. 
+  Norway's hydro could also become more important as a storage and balancing resource. 
   In 2021, a 1,400 MW submarine cable, NordLink, was completed connecting Northern 
   Germany and Norway<sup><a href="#ref7">[7]</a></sup>. It is designed to deliver hydropower to Germany 
-  and store excess electricity from Germany using pumped hydro, positioning Norway’s reservoirs as a long-term 
-  storage asset.
+  and store excess electricity from Germany using pumped hydro, positioning Norway's reservoirs as a
+  storage asset. However, the ENTSO-E reported 12 disturbance outages for each of NordLink's parallel links in 2021, and 7 in 2022
+  indicating ongoing performance challenges and improvements required<sup><a href="#ref8">[8]</a></sup>. This together with seasonal hydrology,
+  makes domestic storage remains crucial to Germany's energy security. 
 </p>
 
 </section>
@@ -367,17 +371,21 @@ sup a { text-decoration: none; }
       Norway to become Germany's energy reservoir
     </em>.
     Available at:
-    <a href="    https://amp.dw.com/en/norway-to-become-germanys-energy-reservoir/a-18256802" target="_blank">
+    <a href="https://amp.dw.com/en/norway-to-become-germanys-energy-reservoir/a-18256802" target="_blank">
     https://amp.dw.com/en/norway-to-become-germanys-energy-reservoir/
     </a>
-    
 
+    
+       <li id="ref8">
+    Deutsche Welle (2015).
+    <em>
+      Norway to become Germany's energy reservoir
+    </em>.
+    Available at:
+    <a href="https://eepublicdownloads.entsoe.eu/clean-documents/SOC%20documents/Nordic/2023/HVDC_Utilisation_and_Unavailability_Statistics_2022.pdf" target="_blank">
+    https://eepublicdownloads.entsoe.eu/HVDC_Utilisation_and_Unavailability_Statistics_2022.pdf
+    </a>
   </li>
-  
-  
-  
-  
-  
 </ol>
 </section>
 
@@ -389,7 +397,6 @@ sup a { text-decoration: none; }
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 
 <script>
@@ -557,72 +564,165 @@ sup a { text-decoration: none; }
 
   <script>
   (async () => {
-    const FLOWS = [
-      { id:'fr',  code:'FR',  country:'France',      sub:'nuclear',    lat:46.2, lon:2.3,  gwh:20028, label:'20.0', color:'#dc6030', delay:.1 },
-      { id:'no2', code:'NO2', country:'Norway',      sub:'hydro',      lat:60.5, lon:8.5,  gwh:6873,  label:'6.9',  color:'#2d7d46', delay:.2 },
-      { id:'nl',  code:'NL',  country:'Netherlands', sub:'gas & wind', lat:52.3, lon:5.3,  gwh:5881,  label:'5.9',  color:'#2563eb', delay:.3 },
-    ];
-    const DELU = { lat:50.7, lon:10.2 };
-    const maxGwh = 20028;
+    const CSV_URL = 'https://raw.githubusercontent.com/ginasengeri/Electricity-and-the-Economy/main/energy_systems_entsoe_net_yearly_balance.csv';
+
+    const HIGHLIGHTS = {
+      FR:  { color: '#dc6030', country: 'France',      sub: 'nuclear',    lat: 46.2, lon: 2.3  },
+      NO2: { color: '#2d7d46', country: 'Norway',      sub: 'hydro',      lat: 60.5, lon: 8.5  },
+      NL:  { color: '#2563eb', country: 'Netherlands', sub: 'gas & wind', lat: 52.3, lon: 5.3  },
+    };
+
+    const ZONE_COORDS = {
+      FR:  { lat: 46.2, lon: 2.3  },
+      NO2: { lat: 60.5, lon: 8.5  },
+      NL:  { lat: 52.3, lon: 5.3  },
+      PL:  { lat: 52.1, lon: 19.4 },
+      AT:  { lat: 47.6, lon: 14.3 },
+      CZ:  { lat: 49.8, lon: 15.5 },
+      CH:  { lat: 46.8, lon: 8.2  },
+      DK2: { lat: 55.5, lon: 12.3 },
+      SE4: { lat: 57.3, lon: 14.2 },
+      BE:  { lat: 50.8, lon: 4.4  },
+      DK1: { lat: 56.2, lon: 9.4  },
+    };
+
+    const DELU = { lat: 50.7, lon: 10.2 };
+
+    const rows = await d3.csv(CSV_URL);
+
+    const FLOWS = rows.map(row => {
+      const parts = String(row.link).split('->').map(s => s.trim());
+      const code = parts[1];
+      const value = +String(row.net_flow_mwh).replace(/,/g, '');
+      const coords = ZONE_COORDS[code];
+      if (!coords || !Number.isFinite(value)) return null;
+      const isHighlight = !!HIGHLIGHTS[code];
+      const color = isHighlight ? HIGHLIGHTS[code].color : '#6b7280';
+      const country = isHighlight ? HIGHLIGHTS[code].country : code;
+      const sub = isHighlight ? HIGHLIGHTS[code].sub : '';
+      const twh = (Math.abs(value) / 1e6).toFixed(1);
+      return {
+        code, country, sub,
+        lat: coords.lat, lon: coords.lon,
+        value, gwh: Math.abs(value) / 1e3,
+        label: twh,
+        color,
+        isHighlight,
+        isImport: value < 0,
+      };
+    }).filter(Boolean);
+
+    const maxGwh = d3.max(FLOWS, d => d.gwh) || 1;
+
     const container = document.getElementById('map-wrap');
     const W = container.clientWidth;
     const H = container.clientHeight;
     const svg = d3.select('#flow-map').attr('viewBox', `0 0 ${W} ${H}`);
-    const proj = d3.geoNaturalEarth1().center([5, 52]).scale(Math.min(W, H) * 2.6).translate([W * 0.45, H * 0.5]);
+
+    const proj = d3.geoNaturalEarth1()
+      .center([5, 52])
+      .scale(Math.min(W, H) * 3.3)
+      .translate([W * 0.45, H * 0.5]);
     const geoPath = d3.geoPath().projection(proj);
+
     const world = await d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json');
     const features = topojson.feature(world, world.objects.countries).features;
-    const activeIds = new Set(['250','528','578','276','442']);
+    const activeIds = new Set(['250','528','578','276','442','056','040','756','203','616','208','752']);
     svg.append('g').selectAll('path').data(features).join('path')
-      .attr('class', d => 'mc' + (activeIds.has(d.id) ? ' active' : '')).attr('d', geoPath);
+      .attr('class', d => 'mc' + (activeIds.has(d.id) ? ' active' : ''))
+      .attr('d', geoPath);
+
     const px = (lat, lon) => proj([lon, lat]);
     const deluPx = px(DELU.lat, DELU.lon);
-    function ctrlPt(src, dst) {
+
+    function ctrlPt(src, dst, bend) {
       const mx = (src[0]+dst[0])/2, my = (src[1]+dst[1])/2;
       const dx = dst[0]-src[0], dy = dst[1]-src[1];
-      return [mx + dy*0.22, my - dx*0.22];
+      return [mx + dy * bend, my - dx * bend];
     }
-    FLOWS.forEach((d, i) => {
+
+    // Draw grey arcs first, highlights on top
+    const sorted = [...FLOWS].sort((a, b) => a.isHighlight - b.isHighlight);
+
+    sorted.forEach((d, i) => {
       const src = px(d.lat, d.lon);
-      const c = ctrlPt(src, deluPx);
-      const w = 1.2 + (d.gwh / maxGwh) * 4.5;
+      const bend = d.isHighlight ? 0.22 : 0.14;
+      const c = ctrlPt(src, deluPx, bend);
+      const w = d.isHighlight
+        ? 1.2 + (d.gwh / maxGwh) * 4.5
+        : 0.6 + (d.gwh / maxGwh) * 1.5;
+      const opacity = d.isHighlight ? 0.65 : 0.35;
       const pathD = `M${src[0]},${src[1]} Q${c[0]},${c[1]} ${deluPx[0]},${deluPx[1]}`;
-      const arcEl = svg.append('path').attr('d', pathD).attr('fill','none')
-        .attr('stroke', d.color).attr('stroke-width', w).attr('opacity', 0.65);
+
+      const arcEl = svg.append('path')
+        .attr('d', pathD)
+        .attr('fill', 'none')
+        .attr('stroke', d.color)
+        .attr('stroke-width', w)
+        .attr('opacity', opacity);
+
       const len = arcEl.node().getTotalLength();
       arcEl.attr('stroke-dasharray', len).attr('stroke-dashoffset', len)
-        .transition().delay(250 + i*100).duration(750).ease(d3.easeCubicInOut).attr('stroke-dashoffset', 0);
-      const dot = svg.append('circle').attr('r', 3).attr('fill', d.color).attr('opacity', 0);
-      const dur = 1500 + i*180;
-      function loop(extra) {
-        dot.attr('opacity', 0).transition().delay(extra).duration(60).attr('opacity', 0.9)
-          .transition().duration(dur).ease(d3.easeQuadInOut)
-            .attrTween('cx', () => t => arcEl.node().getPointAtLength(t*len).x)
-            .attrTween('cy', () => t => arcEl.node().getPointAtLength(t*len).y)
-          .transition().duration(100).attr('opacity', 0);
+        .transition().delay(250 + i * 40).duration(d.isHighlight ? 750 : 450)
+        .ease(d3.easeCubicInOut).attr('stroke-dashoffset', 0);
+
+      // Animated dot for highlights only
+      if (d.isHighlight) {
+        const dot = svg.append('circle').attr('r', 3).attr('fill', d.color).attr('opacity', 0);
+        const dur = 1500 + i * 180;
+        function loop(extra) {
+          dot.attr('opacity', 0).transition().delay(extra).duration(60).attr('opacity', 0.9)
+            .transition().duration(dur).ease(d3.easeQuadInOut)
+              .attrTween('cx', () => t => arcEl.node().getPointAtLength(t * len).x)
+              .attrTween('cy', () => t => arcEl.node().getPointAtLength(t * len).y)
+            .transition().duration(100).attr('opacity', 0)
+            .on('end', () => loop(0));
+        }
+        loop(1000 + i * 100);
       }
-      loop(1000 + i*100);
+
+      // Zone dot
+      svg.append('circle')
+        .attr('cx', src[0]).attr('cy', src[1])
+        .attr('r', d.isHighlight ? 3.5 : 2)
+        .attr('fill', d.color)
+        .attr('stroke', '#f4f5f7').attr('stroke-width', 1)
+        .attr('opacity', 0)
+        .transition().delay(350).duration(250).attr('opacity', 1);
+
+      // Zone label
+      svg.append('text')
+        .attr('x', src[0] - 6).attr('y', src[1])
+        .attr('text-anchor', 'end').attr('dominant-baseline', 'middle')
+        .attr('font-family', 'system-ui,sans-serif')
+        .attr('font-size', d.isHighlight ? 10 : 8.5)
+        .attr('font-weight', 700)
+        .attr('fill', d.isHighlight ? d.color : '#aaa')
+        .attr('opacity', 0)
+        .text(d.code)
+        .transition().delay(400).duration(250).attr('opacity', 1);
     });
-    FLOWS.forEach(d => {
-      const [x, y] = px(d.lat, d.lon);
-      svg.append('circle').attr('cx', x).attr('cy', y).attr('r', 3.5)
-        .attr('fill', d.color).attr('stroke','#f4f5f7').attr('stroke-width', 1.5)
-        .attr('opacity', 0).transition().delay(350).duration(250).attr('opacity', 1);
-      svg.append('text').attr('x', x-8).attr('y', y).attr('text-anchor','end').attr('dominant-baseline','middle')
-        .attr('font-family','system-ui,sans-serif').attr('font-size', 10).attr('font-weight', 600)
-        .attr('fill','#6b7280').text(d.code).attr('opacity', 0).transition().delay(400).duration(250).attr('opacity', 1);
-    });
-    svg.append('circle').attr('cx', deluPx[0]).attr('cy', deluPx[1]).attr('r', 5)
-      .attr('fill','#111827').attr('stroke','#f4f5f7').attr('stroke-width', 2)
+
+    // DE-LU hub
+    svg.append('circle')
+      .attr('cx', deluPx[0]).attr('cy', deluPx[1]).attr('r', 5)
+      .attr('fill', '#111827').attr('stroke', '#f4f5f7').attr('stroke-width', 2)
       .attr('opacity', 0).transition().delay(350).duration(250).attr('opacity', 1);
-    svg.append('text').attr('x', deluPx[0]+10).attr('y', deluPx[1]).attr('dominant-baseline','middle')
-      .attr('font-family','system-ui,sans-serif').attr('font-size', 11).attr('font-weight', 700)
-      .attr('fill','#111827').text('DE-LU').attr('opacity', 0).transition().delay(400).duration(250).attr('opacity', 1);
+
+    svg.append('text')
+      .attr('x', deluPx[0] + 10).attr('y', deluPx[1])
+      .attr('dominant-baseline', 'middle')
+      .attr('font-family', 'system-ui,sans-serif')
+      .attr('font-size', 11).attr('font-weight', 700).attr('fill', '#111827')
+      .attr('opacity', 0).text('DE-LU')
+      .transition().delay(400).duration(250).attr('opacity', 1);
+
+    // Panel cards for highlights only
     const cardsEl = document.getElementById('m-cards');
-    FLOWS.forEach(d => {
+    FLOWS.filter(d => d.isHighlight).forEach((d, i) => {
       const card = document.createElement('div');
       card.className = 'fc';
-      card.style.animationDelay = d.delay + 's';
+      card.style.animationDelay = (0.1 + i * 0.1) + 's';
       card.innerHTML = `
         <div class="fc-bar" style="background:${d.color}"></div>
         <div class="fc-body">
