@@ -651,7 +651,22 @@ sup a { text-decoration: none; }
       arcEl.attr('stroke-dasharray', len).attr('stroke-dashoffset', len)
         .transition().delay(250 + i * 40).duration(d.isHighlight ? 750 : 450)
         .ease(d3.easeCubicInOut).attr('stroke-dashoffset', 0);
-
+        // Mid-arc arrowhead for grey zones only
+        if (!d.isHighlight) {
+          arcEl.transition().delay(250 + i * 40 + 450).duration(0).on('end', function() {
+            const total = arcEl.node().getTotalLength();
+            const mid = arcEl.node().getPointAtLength(total * 0.5);
+            const p1  = arcEl.node().getPointAtLength(total * 0.5 - 3);
+            const p2  = arcEl.node().getPointAtLength(total * 0.5 + 3);
+            const angle = Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI;
+            svg.append('polygon')
+              .attr('points', '0,-3 6,0 0,3')
+              .attr('fill', d.color)
+              .attr('opacity', 0.45)
+              .attr('transform', `translate(${mid.x},${mid.y}) rotate(${angle})`);
+          });
+        }
+        
       // Animated dot for highlights only
       if (d.isHighlight) {
         const dot = svg.append('circle').attr('r', 3).attr('fill', d.color).attr('opacity', 0);
