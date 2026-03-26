@@ -82,7 +82,7 @@ text-decoration: none;
 </head>
 <body>
 <header>
-<h1>Work in Progress: Ember Data Pipeline</h1>
+<h1>Ember Data Pipeline</h1>
 <p>Technical appendix describing the data collection, processing, and validation steps used to construct the annual electricity generation datasets.</p>
 </header>
 <main>
@@ -181,13 +181,12 @@ final = pd.concat([delu, others], ignore_index=True)</code></pre>
 <h2>Validation</h2>
 
 <p>
-A validation step checks that the API response contains the expected date range and no duplicate source-country-year combinations after aggregation. 
+A validation step checks that the API response contains the expected date range and no duplicate source-country-year combinations before and after aggregation.
 </p>
+<pre><code>print("Date range:", df['date'].unique())
 
-<pre><code>
-
-</code></pre>
-
+print("Duplicates before aggregation:", df.duplicated(subset=['source', 'country_code', 'date']).sum())
+print("Duplicates after aggregation:", final.duplicated(subset=['source', 'country_code', 'date']).sum())</code></pre>
 
 <h2>Final dataset</h2>
 
