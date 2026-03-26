@@ -578,7 +578,7 @@ sup a { text-decoration: none; }
     const rows = await d3.csv(CSV_URL);
     
     const totalRow = rows[rows.length - 1];
-    const totalTWh = (Math.abs(+String(totalRow.net_flow_mwh).replace(/,/g, '')) / 1e6).toFixed(1);
+    const totalTWh = (Math.abs(+String(totalRow.net_flow_mwh).replace(/,/g, '')) / 1e6).toFixed(2);
     document.getElementById('tv-net').textContent = totalTWh;
     
     const FLOWS = rows.map(row => {
