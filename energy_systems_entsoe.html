@@ -656,8 +656,12 @@ sup a { text-decoration: none; }
           arcEl.transition().delay(250 + i * 40 + 450).duration(0).on('end', function() {
             const total = arcEl.node().getTotalLength();
             const mid = arcEl.node().getPointAtLength(total * 0.5);
-            const p1  = arcEl.node().getPointAtLength(total * 0.5 - 3);
-            const p2  = arcEl.node().getPointAtLength(total * 0.5 + 3);
+            const p1  = d.isImport 
+              ? arcEl.node().getPointAtLength(total * 0.5 - 3)
+              : arcEl.node().getPointAtLength(total * 0.5 + 3);
+            const p2  = d.isImport 
+              ? arcEl.node().getPointAtLength(total * 0.5 + 3)
+              : arcEl.node().getPointAtLength(total * 0.5 - 3);
             const angle = Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI;
             svg.append('polygon')
               .attr('points', '0,-3 6,0 0,3')
