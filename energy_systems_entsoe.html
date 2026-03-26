@@ -121,7 +121,7 @@ sup a { text-decoration: none; }
 <p>
     The European Network Transmission System Operator for Electricity (ENTSO-E) coordinates trade across
     36 countries in Europe, ensuring energy security and market efficiency for its member countries.
-    Germany sits between several different power systems in Europe, and connects a diverse set of generation systems. This allows for
+    Germany sits between several different power systems in Europe, connecting a diverse set of generation systems. This allows for
     observation of a range of trade patterns in one place. The focus of this
     analysis is on electricity transmission between the Germany-Luxembourg bidding zone (DE-LU), France (FR), Netherlands (NL),
     and Norway South (NO2). This combines a nuclear-heavy system in France, a hydro-dominated system in Norway, and a gas/wind mix in the Netherlands.
@@ -137,7 +137,7 @@ sup a { text-decoration: none; }
 <p>There are three main roles observed in the Germany-Luxembourg zone:</p> 
 <ol> 
     <li>Baseload imports — France supplies large, steady volumes of low-cost nuclear power.</li> 
-    <li>Seasonal balancing — Norway's hydro exports vary with reservoir cycles, peaking in winter and falling in summer.</li> 
+    <li>Seasonal balancing — Norway's hydro exports peak in winter and fall in summer, reflecting reservoir storage cycles.</li> 
     <li>Short-term balancing — the Netherlands provides flexible gas and wind capacity to cover short-term gaps on either side.</li> 
 </ol>
 
@@ -169,9 +169,9 @@ sup a { text-decoration: none; }
 <section class="section">
 <h2>Key Insights</h2>
 <ol>
-  <li>The DE-LU zone is a net importer of electricity with 84.5% 
+  <li>The DE-LU zone is a net importer of electricity with 84% 
     coming from France (20 TWh).</li>
-  <li>NO2's average net exports to DE-LU are twice as large in winter as in summer, consistent with seasonal hydro patterns
+  <li>NO2's average net exports to DE-LU are twice as large in winter as in summer, consistent with reservoir management patterns.
     (Q2: 502 MW, Q4: 1030 MW).</li>
   <li>Of the three interconnections, DE-LU → NL is the only boundary where the average net flow reverses direction, with net exports out of DE-LU 
     occurring in 10 out of 53 weeks in 2025.</li>
@@ -191,8 +191,10 @@ sup a { text-decoration: none; }
 <section class="section">
 <h2>Price Spread and Net Flow</h2>
 <p>
-    The chart below shows the average net flow on a weekly basis between DE-LU and each zone. Flows into DE-LU are shown in the zone 
-    colour, and flows out of DE-LU (net exports) are shown as black segments.
+    Figure 3 below shows the average net flow on a weekly basis between DE-LU and each zone. Imports from France show an upward trend 
+    over the year, starting around 1,000 MW in January and reaching over 3,000 MW by December. Norway's flows are lower and relatively 
+    stable throughout the year, with the lowest average of 129 MW seen in June. The Netherlands shows the most volatile flows of the three,
+    frequently dropping close to zero and reversing direction.
 </p>
 
 <p class="chart-fig">Fig. 3 — Average net flow (MW) between DE-LU and neighbouring zones, 2025.</p>
@@ -200,12 +202,13 @@ sup a { text-decoration: none; }
   <canvas id="flowChart"></canvas>
 </div>
 <div class="custom-legend" id="customLegend"></div>
-
+<br>
 <p>
-    Price differences across zones reflect the composition of each generation fleet. France's nuclear power keeps prices 
-    structurally below Germany's, resulting in steady imports into DE-LU. Norway's hydropower has near-zero marginal cost
-    but varies with reservoir levels and precipitation, resulting in declining exports mid-year. The Netherlands relies on 
-    gas for 35% of output alongside wind and solar, giving it a price structure closer to Germany-Luxembourg. 
+    Figure 4 shows the weekly net flow alongside the price spread for each zone. Price differences across zones reflect the composition
+    of each generation fleet. France's nuclear power keeps prices structurally 
+    below Germany's, resulting in steady imports into DE-LU. Norway's hydropower has near-zero marginal cost but generation varies with 
+    reservoir levels and inflow, resulting in lower exports mid-year. The Netherlands relies on gas for 35% of output alongside wind and
+    solar, giving it a price structure closer to Germany-Luxembourg.
 </p>
 
 <div class="dual-header">
@@ -230,7 +233,7 @@ sup a { text-decoration: none; }
 <p>
     Spearman correlation is used to account for non-linear relationships between price spreads and flows. France and
     Norway show moderate to strong correlations (0.48 and 0.64), indicating stronger responses to price differences. 
-    The Netherlands shows a weaker correlation (0.26), suggesting flows respond less to price differences and more to 
+    The Netherlands shows a weaker correlation (0.26), further supporting that flows respond less to price differences and more to 
     short-term balancing needs. This is consistent with the 10 weeks of net flow reversals between DE-LU and NL, 
     which occur throughout the year with no clear seasonal pattern.  
 </p>
@@ -240,11 +243,12 @@ sup a { text-decoration: none; }
 <h2>Implications</h2>
 
 <p>
-  The three roles observed in 2025 present clear challenges
+  While the DE-LU bidding zone includes both Germany and Luxembourg, it is dominated by German production and consumption.
+    The three roles observed in 2025 present clear challenges
    and opportunities for Germany's energy transition. Prior to 2023,
     Germany was a net exporter of electricity for two decades. 
     The phasing out of coal and shutdown of remaining nuclear plants in 2023
-    has reduced Germany's  domestic capacity, contributing to the rise in imports. 
+    has reduced Germany's dispatchable generation capacity, contributing to the rise in imports. 
     This is being partially offset by the increase of renewable capacity - wind and solar.
 </p>
     
@@ -270,14 +274,15 @@ sup a { text-decoration: none; }
   </p>
   
   <p>
-  Norway's hydro could also become more important as a storage and balancing resource. 
+  Norway could also become more important as a storage and balancing resource given that it holds
+  roughly half of Europe's reservoir storage capacity. 
   In 2021, a 1,400 MW submarine cable, NordLink, was completed connecting Northern 
   Germany and Norway<sup><a href="#ref5">[5]</a></sup>. It is designed to deliver hydropower 
   to Germany and allow excess electricity to be stored in Norway’s hydropower reservoirs. 
   Since its commission, the ENTSO-E
   has reported 12 disturbance outages for each of the parallel links in 2021, and 7 in 2022
   indicating ongoing performance challenges and continued improvements<sup><a href="#ref6">[6]</a></sup>. 
-  Together with seasonal hydrology, domestic storage remains crucial to Germany's energy security. 
+  Together with seasonal reservoir dynamics, domestic storage remains crucial to Germany's energy security. 
 </p>
 
 </section>
@@ -578,7 +583,7 @@ sup a { text-decoration: none; }
     const rows = await d3.csv(CSV_URL);
     
     const totalRow = rows[rows.length - 1];
-    const totalTWh = (Math.abs(+String(totalRow.net_flow_mwh).replace(/,/g, '')) / 1e6).toFixed(2);
+    const totalTWh = (Math.abs(+String(totalRow.net_flow_mwh).replace(/,/g, '')) / 1e6).toFixed(1);
     document.getElementById('tv-net').textContent = totalTWh;
     
     const FLOWS = rows.map(row => {
