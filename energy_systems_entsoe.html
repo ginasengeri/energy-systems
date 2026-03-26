@@ -637,7 +637,7 @@ sup a { text-decoration: none; }
 
     sorted.forEach((d, i) => {
       const src = px(d.lat, d.lon);
-      const bend = d.isHighlight ? 0.22 : 0.14;
+      const bend = d.isHighlight ? 0.22 : 0.17;
       const c = ctrlPt(src, deluPx, bend);
       const w = d.isHighlight
         ? 1.2 + (d.gwh / maxGwh) * 4.5
