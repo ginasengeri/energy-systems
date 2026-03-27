@@ -873,7 +873,7 @@ sup a { text-decoration: none; }
       const fw = isTop ? '700' : '400';
       const fc = isTop ? '#6b7280' : '#9ca3af';
       const fs = isTop ? 13 : 12;
-      svg += `<text x="${x + barW/2}" y="${labelY}" text-anchor="middle" font-size="${fs}" font-weight="${fw}" fill="${fc}">${bar.pct}%</text>`;
+      svg += `<text x="${x + barW/2}" y="${labelY}" text-anchor="middle" font-size="${fs}" font-weight="${fw}" fill="${fc}">${bar.pct.toFixed(2)}%</text>`;
       const srcY = marginT + chartH + 18;
       const srcFw = isTop ? '700' : '400';
       const srcFc = isTop ? '#6b7280' : '#9ca3af';
