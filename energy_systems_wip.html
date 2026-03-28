@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta property="og:title" content="Electricity Trade in the DE-LU Bidding Zone" />
+  <meta property="og:description" content="The roles of generation systems in cross-border electricity trade" />
+  <meta property="og:image" content="https://raw.githubusercontent.com/ginasengeri/Electricity-and-the-Economy/main/energy_systems_wip_preview_image.png"
+  <meta property="og:url" content="https://ginasengeri.github.io/Electricity-and-the-Economy/index.html" />
+  <meta property="og:type" content="article" />  
+  <title>ENSTSO-E — Energy Systems</title>
+  <style>
+:root {
+  --bg-page: #f4f5f7; --bg-card: #ffffff; --border-soft: #e0e3e8;
+  --accent: #2563eb; --accent-soft: #dbeafe; --text-main: #111827;
+  --text-muted: #6b7280; --table-header: #f3f4f6; --chip: #eef2ff;
+}
+* { box-sizing: border-box; }
+body { margin: 0; padding: 32px 16px; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background-color: var(--bg-page); color: var(--text-main); }
+.report-container { max-width: 1100px; margin: 0 auto; background: var(--bg-card); border-radius: 12px; padding: 28px 32px 36px; box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12); }
+header { text-align: center; padding: 20px 0 10px; }
+header .label { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: #6b7280; margin-bottom: 12px; }
+header h1 { font-size: 1.4rem; font-weight: 800; margin: 0 0 12px; line-height: 1.25; }
+header p { margin: 0 auto; color: #6b7280; font-size: 0.94rem; }
+.meta { text-align: center; font-size: 0.8rem; color: #9ca3af; margin-top: 10px; margin-bottom: 0; font-weight: 600; }
+h2 { margin-top: 24px; margin-bottom: 8px; font-size: 1.05rem; font-weight: 700; border-bottom: 1px solid var(--border-soft); padding-bottom: 4px; }
+.section p { font-size: 0.95rem; line-height: 1.7; color: #374151; margin: 0 0 12px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0px 0 16px; justify-content: center; }
+.chip { background: var(--chip); border: 1px solid rgba(37, 99, 235, 0.15); color: #1f2a5a; padding: 6px 10px; border-radius: 999px; font-size: 0.82rem; font-weight: 650; white-space: nowrap; }
+.kpi-grid { display: grid; justify-content: center; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-top: 10px; margin-bottom: 10px; }
+.kpi-card { background: var(--accent-soft); border-radius: 10px; padding: 10px 12px; text-align: center; border: 1px solid rgba(37, 99, 235, 0.35); }
+.kpi-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 4px; }
+.kpi-value { font-size: 1.1rem; font-weight: 600; }
+.tables-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-top: 10px; margin-bottom: 16px; }
+.table-card { background: #ffffff; border-radius: 10px; border: 1px solid var(--border-soft); padding: 10px 12px; overflow: auto; }
+.table-card h3 { margin-top: 0; margin-bottom: 6px; font-size: 1rem; }
+table { width: 100%; border-collapse: collapse; font-size: 0.85rem; min-width: unset; }
+th, td { border: 1px solid var(--border-soft); padding: 6px 8px; text-align: left; white-space: nowrap; }
+th { background-color: var(--table-header); font-weight: 600; }
+ul { margin-left: 20px; margin-top: 6px; margin-bottom: 8px; }
+ol { margin-left: 20px; }
+li { font-size: 0.95rem; line-height: 1.7; color: #374151; }
+.limitations { margin-top: 22px; padding-top: 12px; border-top: 1px solid var(--border-soft); color: var(--text-muted); font-size: 0.92rem; line-height: 1.4; }
+footer { margin-top: 28px; padding-top: 16px; border-top: 1px solid #e0e3e8; text-align: center; font-size: 0.75rem; color: #9ca3af; }
+footer a { color: #2563eb; text-decoration: none; }
+a, a:visited, a:hover, a:active { color: #2563eb; }
+footer a:hover { text-decoration: underline; }
+h2 + ol, p + ol { margin-top: 14px; margin-bottom: 18px; }
+ol li { margin-bottom: 8px; }
+sup { font-size: 0.75em; }
+sup a { text-decoration: none; }
+.map-embed { position: relative; width: 100%; height: 480px; border-radius: 10px; border: 1px solid var(--border-soft); overflow: hidden; margin-top: 10px; margin-bottom: 16px; background: #f4f5f7; }
+.map-embed svg#flow-map { position: absolute; inset: 0; width: 100%; height: 100%; }
+.map-embed .mc { fill: #e8e9ec; stroke: #fff; stroke-width: 0.8; }
+.map-embed .mc.active { fill: #dde0e6; }
+.map-embed #m-panel { position: absolute; top: 16px; left: 18px; z-index: 10; display: flex; flex-direction: column; gap: 6px; }
+.map-embed #m-panel h3 { font-size: 12px; font-weight: 700; color: #111827; margin: 0; border-bottom: none; padding-bottom: 0; margin-top: 0; }
+.map-embed #m-panel p { font-size: 10px; line-height: 1.3; color: #6b7280; margin: 1px 0 0; }
+.map-embed #m-cards { display: flex; flex-direction: column; gap: 4px; margin-top: 2px; }
+.map-embed .fc { background: #fff; border: 1px solid #e0e3e8; border-radius: 6px; padding: 7px 12px 7px 10px; display: flex; align-items: center; gap: 8px; white-space: nowrap; opacity: 0; animation: mup .35s ease forwards; }
+.map-embed .fc-bar { width: 3px; align-self: stretch; border-radius: 2px; flex-shrink: 0; }
+.map-embed .fc-body { display: flex; flex-direction: column; }
+.map-embed .fc-lbl { font-size: 10px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 2px; }
+.map-embed .fc-row { display: flex; align-items: baseline; gap: 3px; }
+.map-embed .fc-val { font-size: 17px; font-weight: 700; letter-spacing: -.5px; line-height: 1; }
+.map-embed .fc-unit { font-size: 10px; color: #9ca3af; }
+.map-embed .fc-sub { font-size: 10px; color: #9ca3af; margin-top: 1px; }
+.map-embed #m-total { position: absolute; bottom: 14px; right: 16px; z-index: 10; background: #fff; border: 1px solid #e0e3e8; border-radius: 6px; padding: 7px 11px; text-align: right; opacity: 0; animation: mup .35s .5s ease forwards; }
+.map-embed #m-total .tl { font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: #6b7280; }
+.map-embed #m-total .tv { font-size: 16px; font-weight: 700; letter-spacing: -1px; color: #111827; line-height: 1.1; margin-top: 1px; }
+.map-embed #m-total .ts { font-size: 9px; color: #9ca3af; }
+.map-embed #m-src { position: absolute; bottom: 14px; left: 16px; z-index: 10; font-size: 10px; color: #d1d5db; opacity: 0; animation: mup .35s .6s ease forwards; }
+.zone-table { min-width: unset; width: auto; margin: 10px 0 16px; }
+.zone-table td code { font-family: ui-monospace, monospace; font-size: 0.8rem; background: var(--table-header); border: 1px solid var(--border-soft); border-radius: 4px; padding: 1px 6px; }
+.zone-legend { display: flex; flex-direction: column; gap: 5px; margin: 10px 0 16px; }
+.zl-item { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; }
+.zl-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.zl-item code { font-family: ui-monospace, monospace; font-size: 0.8rem; background: var(--table-header); border: 1px solid var(--border-soft); border-radius: 4px; padding: 1px 6px; color: var(--text-main); }
+.zl-desc { color: var(--text-muted); }
+@keyframes mup { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
+.zone-grid { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 10px 0 16px; }
+.zone-item { display: flex; align-items: baseline; gap: 8px; }
+.zone-code { font-size: 0.8rem; font-weight: 700; font-family: ui-monospace, monospace; color: var(--text-main); background: var(--table-header); border: 1px solid var(--border-soft); border-radius: 4px; padding: 1px 6px; }
+.zone-name { font-size: 0.9rem; color: var(--text-muted); }
+.chart-wrap { position: relative; width: 65%; margin: 12px auto 0; height: 380px; }
+.chart-wrap canvas { display: block; }
+.section p.chart-fig { font-size: 0.85rem; color: #9ca3af; text-align: left; margin-bottom: 6px; margin-top: 16px; }
+.custom-legend { display: flex; flex-wrap: wrap; gap: 6px 24px; justify-content: center; margin-bottom: 12px; margin-top: 12px; }
+.cl-item { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: #374151; }
+.cl-line { width: 22px; height: 2.5px; border-radius: 2px; flex-shrink: 0; }
+.price-wrap { position: relative; width: 65%; margin: 12px auto 0; height: 340px; }
+.price-wrap canvas { display: block; }
+.dual-filter { display: flex; gap: 6px; }
+.df-btn { padding: 4px 14px; border-radius: 999px; font-size: 0.78rem; font-weight: 600; cursor: pointer; border: 1px solid var(--border-soft); background: var(--table-header); color: var(--text-muted); transition: all .15s; font-family: inherit; }
+.df-btn.active[data-zone="FR"]  { background: #fff0eb; border-color: #dc6030; color: #dc6030; }
+.df-btn.active[data-zone="NL"]  { background: #eff6ff; border-color: #2563eb; color: #2563eb; }
+.df-btn.active[data-zone="NO2"] { background: #f0fdf4; border-color: #2d7d46; color: #2d7d46; }
+.dual-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0; }
+@media (max-width: 600px) {
+  .viz-block {
+    max-width: 100%;
+    padding: 12px;
+  }
+}
+
+</style>
+</head>
+<body>
+  <div class="report-container">
+    <header>
+      <div class="label">Energy Systems</div>
+      <h1>Work in Progress</h1>
+      <p>This anaysis discusses...</p>
+      <div class="meta">Data Source &bull; Period</div>
+    </header>
+
+<div class="chips">
+  <span class="chip"><span></span></span>
+  <span class="chip"><span></span></span>
+  <span class="chip"><span></span></span>
+  <span class="chip"><span></span></span>
+  <span class="chip"><span></span></span>
+</div>
+
+<section class="section">
+<h2>System Overview</h2>
+<p>
+
+</p>
+
+<p>
+  
+</p>
+
+<p></p> 
+<ol> 
+    <li></li> 
+    <li></li> 
+    <li></li> 
+</ol>
+
+<p>
+  
+</p>
+</section>
+
+<section class="section">
+<h2>Key Insights</h2>
+<ol>
+  <li></li>
+  <li></li>
+  <li></li>
+</ol>
+</section>
+
+<section class="section">
+<h2>Generation Mix</h2>
+<p>
+
+</p> 
+</section>
+    
+<section class="section">
+<h2>Price Spread and Net Flow</h2>
+<p>
+
+</p>
+</section>
+
+<section class="section">
+<h2>Implications</h2>
+<p>
+
+</p> 
+</section>
+
+<section class="section">
+<h2>Data Source</h2>
+<p>
+  ENTSO-E (2025). <em>Transparency Platform</em>.
+  Available at:
+  <a href="https://transparency.entsoe.eu/" target="_blank">
+    https://transparency.entsoe.eu/
+  </a>
+</p>
+</section>
+
+<section class="section">
+<h2>Technical Appendix</h2>
+<p>
+  ENTSO-E Data Pipeline.
+  Available at:
+  <a href="https://ginasengeri.github.io/Electricity-and-the-Economy/technical_appendix_entsoe.html" target="_blank">
+    technical_appendix_entsoe.html
+  </a>
+</p>
+<p>
+  Ember Data Pipeline.
+  Available at:
+  <a href="https://ginasengeri.github.io/Electricity-and-the-Economy/technical_appendix_ember.html" target="_blank">
+    technical_appendix_ember.html
+  </a>
+</p>
+</section>
+
+<section class="section">
+<h2>References</h2>
+<ol>
+  <li id="ref1">
+    Ember (2022).
+    <em>Electricity Data Explorer.</em>
+    Available at:
+    <a href="https://ember-energy.org/data/electricity-data-explorer/" target="_blank">
+      https://ember-energy.org/data/electricity-data-explorer/
+    </a>
+  </li>
+  
+</ol>
+</section>
+</div>
+
+<footer>
+  <p>Data source: Data Source · Period</p>
+  <a href="energy_systems.html">← Back to Energy Systems</a>
+</footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+
+<script>
+(async () => {
+  const base = "https://raw.githubusercontent.com/ginasengeri/Electricity-and-the-Economy/main/";
+  const [flows, spreads] = await Promise.all([
+    d3.csv(base + "energy_systems_entsoe_quarterly_net_flows.csv"),
+    d3.csv(base + "energy_systems_entsoe_quarterly_price_spreads.csv"),
+  ]); 
+
+</script>
+
+</body>
+</html>
