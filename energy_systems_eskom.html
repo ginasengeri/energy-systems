@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta property="og:title" content="Electricity Trade in the DE-LU Bidding Zone" />
+  <meta property="og:description" content="The roles of generation systems in cross-border electricity trade" />
+  <meta property="og:image" content="https://raw.githubusercontent.com/ginasengeri/Electricity-and-the-Economy/main/energy_systems_entsoe_preview_image.png"
+  <meta property="og:url" content="https://ginasengeri.github.io/Electricity-and-the-Economy/index.html" />
+  <meta property="og:type" content="article" />  
+  <title>ENSTSO-E — Energy Systems</title>
+  <style>
+    :root {--bg-page: #f4f5f7; --bg-card: #ffffff; --border-soft: #e0e3e8;--accent: #2563eb; --accent-soft: #dbeafe; --text-main: #111827;--text-muted: #6b7280; --table-header: #f3f4f6; --chip: #eef2ff;}
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 32px 16px; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background-color: var(--bg-page); color: var(--text-main); }
+    .report-container { max-width: 1100px; margin: 0 auto; background: var(--bg-card); border-radius: 12px; padding: 28px 32px 36px; box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12); }
+    header { text-align: center; padding: 20px 0 10px; }
+    header .label { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: #6b7280; margin-bottom: 12px; }
+    header h1 { font-size: 1.4rem; font-weight: 800; margin: 0 0 12px; line-height: 1.25; }
+    header p { margin: 0 auto; color: #6b7280; font-size: 0.94rem; }
+    .meta { text-align: center; font-size: 0.8rem; color: #9ca3af; margin-top: 10px; margin-bottom: 0; font-weight: 600; }
+    h2 { margin-top: 24px; margin-bottom: 8px; font-size: 1.05rem; font-weight: 700; border-bottom: 1px solid var(--border-soft); padding-bottom: 4px; }
+    .section p { font-size: 0.95rem; line-height: 1.7; color: #374151; margin: 0 0 12px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0px 0 16px; justify-content: center; }
+    .chip { background: var(--chip); border: 1px solid rgba(37, 99, 235, 0.15); color: #1f2a5a; padding: 6px 10px; border-radius: 999px; font-size: 0.82rem; font-weight: 650; white-space: nowrap; }
+    .kpi-grid { display: grid; justify-content: center; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-top: 10px; margin-bottom: 10px; }
+    .kpi-card { background: var(--accent-soft); border-radius: 10px; padding: 10px 12px; text-align: center; border: 1px solid rgba(37, 99, 235, 0.35); }
+    .kpi-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 4px; }
+    .kpi-value { font-size: 1.1rem; font-weight: 600; }
+    .tables-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-top: 10px; margin-bottom: 16px; }
+    .table-card { background: #ffffff; border-radius: 10px; border: 1px solid var(--border-soft); padding: 10px 12px; overflow: auto; }
+    .table-card h3 { margin-top: 0; margin-bottom: 6px; font-size: 1rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; min-width: unset; }
+    th, td { border: 1px solid var(--border-soft); padding: 6px 8px; text-align: left; white-space: nowrap; }
+    th { background-color: var(--table-header); font-weight: 600; }
+    ul { margin-left: 20px; margin-top: 6px; margin-bottom: 8px; }
+    ol { margin-left: 20px; }
+    li { font-size: 0.95rem; line-height: 1.7; color: #374151; }
+    .limitations { margin-top: 22px; padding-top: 12px; border-top: 1px solid var(--border-soft); color: var(--text-muted); font-size: 0.92rem; line-height: 1.4; }
+    footer { margin-top: 28px; padding-top: 16px; border-top: 1px solid #e0e3e8; text-align: center; font-size: 0.75rem; color: #9ca3af; }
+    footer a { color: #2563eb; text-decoration: none; }
+    a, a:visited, a:hover, a:active { color: #2563eb; }
+    footer a:hover { text-decoration: underline; }
+    h2 + ol, p + ol { margin-top: 14px; margin-bottom: 18px; }
+    ol li { margin-bottom: 8px; }
+    sup { font-size: 0.75em; }
+    sup a { text-decoration: none; }
+    .map-embed { position: relative; width: 100%; height: 480px; border-radius: 10px; border: 1px solid var(--border-soft); overflow: hidden; margin-top: 10px; margin-bottom: 16px; background: #f4f5f7; }
+    .map-embed svg#flow-map { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .map-embed .mc { fill: #e8e9ec; stroke: #fff; stroke-width: 0.8; }
+    .map-embed .mc.active { fill: #dde0e6; }
+    .map-embed #m-panel { position: absolute; top: 16px; left: 18px; z-index: 10; display: flex; flex-direction: column; gap: 6px; }
+    .map-embed #m-panel h3 { font-size: 12px; font-weight: 700; color: #111827; margin: 0; border-bottom: none; padding-bottom: 0; margin-top: 0; }
+    .map-embed #m-panel p { font-size: 10px; line-height: 1.3; color: #6b7280; margin: 1px 0 0; }
+    .map-embed #m-cards { display: flex; flex-direction: column; gap: 4px; margin-top: 2px; }
+    .map-embed .fc { background: #fff; border: 1px solid #e0e3e8; border-radius: 6px; padding: 7px 12px 7px 10px; display: flex; align-items: center; gap: 8px; white-space: nowrap; opacity: 0; animation: mup .35s ease forwards; }
+    .map-embed .fc-bar { width: 3px; align-self: stretch; border-radius: 2px; flex-shrink: 0; }
+    .map-embed .fc-body { display: flex; flex-direction: column; }
+    .map-embed .fc-lbl { font-size: 10px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 2px; }
+    .map-embed .fc-row { display: flex; align-items: baseline; gap: 3px; }
+    .map-embed .fc-val { font-size: 17px; font-weight: 700; letter-spacing: -.5px; line-height: 1; }
+    .map-embed .fc-unit { font-size: 10px; color: #9ca3af; }
+    .map-embed .fc-sub { font-size: 10px; color: #9ca3af; margin-top: 1px; }
+    .map-embed #m-total { position: absolute; bottom: 14px; right: 16px; z-index: 10; background: #fff; border: 1px solid #e0e3e8; border-radius: 6px; padding: 7px 11px; text-align: right; opacity: 0; animation: mup .35s .5s ease forwards; }
+    .map-embed #m-total .tl { font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: #6b7280; }
+    .map-embed #m-total .tv { font-size: 16px; font-weight: 700; letter-spacing: -1px; color: #111827; line-height: 1.1; margin-top: 1px; }
+    .map-embed #m-total .ts { font-size: 9px; color: #9ca3af; }
+    .map-embed #m-src { position: absolute; bottom: 14px; left: 16px; z-index: 10; font-size: 10px; color: #d1d5db; opacity: 0; animation: mup .35s .6s ease forwards; }
+    .zone-table { min-width: unset; width: auto; margin: 10px 0 16px; }
+    .zone-table td code { font-family: ui-monospace, monospace; font-size: 0.8rem; background: var(--table-header); border: 1px solid var(--border-soft); border-radius: 4px; padding: 1px 6px; }
+    .zone-legend { display: flex; flex-direction: column; gap: 5px; margin: 10px 0 16px; }
+    .zl-item { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; }
+    .zl-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .zl-item code { font-family: ui-monospace, monospace; font-size: 0.8rem; background: var(--table-header); border: 1px solid var(--border-soft); border-radius: 4px; padding: 1px 6px; color: var(--text-main); }
+    .zl-desc { color: var(--text-muted); }
+    @keyframes mup { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
+    .zone-grid { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 10px 0 16px; }
+    .zone-item { display: flex; align-items: baseline; gap: 8px; }
+    .zone-code { font-size: 0.8rem; font-weight: 700; font-family: ui-monospace, monospace; color: var(--text-main); background: var(--table-header); border: 1px solid var(--border-soft); border-radius: 4px; padding: 1px 6px; }
+    .zone-name { font-size: 0.9rem; color: var(--text-muted); }
+    .chart-wrap { position: relative; width: 65%; margin: 12px auto 0; height: 380px; }
+    .chart-wrap canvas { display: block; }
+    .section p.chart-fig { font-size: 0.85rem; color: #9ca3af; text-align: left; margin-bottom: 6px; margin-top: 16px; }
+    .custom-legend { display: flex; flex-wrap: wrap; gap: 6px 24px; justify-content: center; margin-bottom: 12px; margin-top: 12px; }
+    .cl-item { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: #374151; }
+    .cl-line { width: 22px; height: 2.5px; border-radius: 2px; flex-shrink: 0; }
+    .price-wrap { position: relative; width: 65%; margin: 12px auto 0; height: 340px; }
+    .price-wrap canvas { display: block; }
+    .dual-filter { display: flex; gap: 6px; }
+    .df-btn { padding: 4px 14px; border-radius: 999px; font-size: 0.78rem; font-weight: 600; cursor: pointer; border: 1px solid var(--border-soft); background: var(--table-header); color: var(--text-muted); transition: all .15s; font-family: inherit; }
+    .df-btn.active[data-zone="FR"]  { background: #fff0eb; border-color: #dc6030; color: #dc6030; }
+    .df-btn.active[data-zone="NL"]  { background: #eff6ff; border-color: #2563eb; color: #2563eb; }
+    .df-btn.active[data-zone="NO2"] { background: #f0fdf4; border-color: #2d7d46; color: #2d7d46; }
+    .dual-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0; }
+    @media (max-width: 600px) {
+      .viz-block {
+        max-width: 100%;
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="report-container">
+    <header>
+      <div class="label">Energy Systems</div>
+      <h1>Work in Progress</h1>
+      <p>This anaysis discusses...</p>
+      <div class="meta">Eskom &bull; 2025-26</div>
+    </header>
+
+  <div class="chips">
+    <span class="chip"><span></span></span>
+    <span class="chip"><span></span></span>
+    <span class="chip"><span></span></span>
+    <span class="chip"><span></span></span>
+    <span class="chip"><span></span></span>
+  </div>
+
+  <section class="section">
+  <h2>Sounth Africa's Energy Situation</h2>
+  <p>
+    Energy systems are layered.
+    Progress in one layer can hide vulnerability in another. For south africa:
+
+    <ol>
+      <li>Coal phase out</li>
+      <li>Expansion of renewables</li>
+      <li>Role reversals in regional trade</li>
+    </ol>
+
+  <p>
+    These interactions must be managed carefully.
+  </p> 
+
+  <p>
+    South Africa is a useful example because its electricity system has undergone significant stress and transformation in recent years.
+    Being the most industrialized economy in Africa, reliability is required to sustain economic acitivity. 
+  </p>
+
+  <h2>Operational Improvement</h2>  
+   <p>
+    Starting in 2007, significant energy shortages led to an electricity crisis with 205 days of load shedding in 2022.
+    This has commonly been attributed to insuffcient maintenance of coal plants and poor governance.
+    Significant progress has since been made with no load shedding since March 2024. 
+    While plans to phase out coal by 2040 are in place, Eskom's operational recovery has been driven by reparations to some coal plants, 
+    restoring capacity to the grid.
+    This saw energy availability (EAF) reaching or exceeding the 70% milestone on 83 occasions in 2025-26. OCGT usage also continues 
+    to fall, reducing the pressure on fuel price for other uses such as transportation.
+  </p>
+  
+   <!-- Fig. 1 -->
+  <p class="chart-fig">Fig. 1 — Eskom operational recovery, 2025–2026</p>
+  <div class="custom-legend" id="legend1">
+    <div class="cl-item"><div class="cl-line" style="background:#2563eb"></div><span>EAF — energy available</span></div>
+    <div class="cl-item"><div class="cl-line" style="background:#dc2626"></div><span>UCLF — unplanned outages</span></div>
+    <div class="cl-item"><div class="cl-line" style="background:#d97706; border-top: 2px dashed #d97706; height:0; width:22px;"></div><span>PCLF — planned outages</span></div>
+    <div class="cl-item"><div class="cl-line" style="background:#16a34a; border-top: 2px dashed #16a34a; height:0; width:22px;"></div><span>OCLF — other losses</span></div>
+  </div>
+  <div class="chart-wrap"><canvas id="c1"></canvas></div>
+
+  <!-- Fig. 2 -->
+  <p class="chart-fig">Fig. 2 — OCGT generation (diesel peakers), 2025–2026</p>
+  <p class="chart-fig" style="color:#374151;">Monthly generation from Open Cycle Gas Turbines. Costs obtained from Fuel SA</p>
+  <div class="custom-legend">
+    <div class="cl-item"><div class="cl-line" style="background:#2563eb"></div><span>Eskom + IPP OCGT (GWh)</span></div>
+  </div>
+  <div class="chart-wrap"><canvas id="c2"></canvas></div>
+
+  <p>
+    OCGT have low thermal efficiency ranging 34-36% (eskom source) and are expensive, meant to run as peaker plants for events of very high
+    demand or supply shortages. Not meant to run to meet ordinary demand. The decline in OCGT usage provides signifcant cost savings. 
+  </p>
+  
+
+  </section>
+
+  <section class="section">
+  <h2>Coal phase-out vs renewables deployment</h2>
+  <p>
+    Aside the coal plants for which decomisdioning is delayed, old rundown coal plants are being repurposed for RE. Policy changes
+    have also allowed businesses and households to employ private embedded generation, reducing pressure on the grid. This includes solar and batteties.
+    Coal retirement schedules are outpacing the added renewable capacity. Repurposing of the coal plants requires significant 
+    construction so capacity overall for the nation drops.  
+  </p> 
+
+   <!-- Fig. 3 -->
+  <p class="chart-fig">Fig. 3 — Coal capacity loss vs renewable capacity added, 2010–2024</p>
+  <div class="custom-legend">
+    <div class="cl-item"><div class="cl-line" style="background:#374151"></div><span>Coal (GW, left axis)</span></div>
+    <div class="cl-item"><div class="cl-line" style="background:#d97706"></div><span>Solar PV (GW, right axis)</span></div>
+    <div class="cl-item"><div class="cl-line" style="background:#2563eb"></div><span>Wind (GW, right axis)</span></div>
+    <div class="cl-item"><div class="cl-line" style="background:#16a34a; border-top: 2px dashed #16a34a; height:0; width:22px;"></div><span>Solar + Wind (GW, right axis)</span></div>
+  </div>
+  <div class="chart-wrap"><canvas id="c3"></canvas></div>
+
+  <p>
+    Project delays are due to administrative delays and lack of organization preventing them from beginning construction on time. 
+  </p>
+
+  </section>
+
+  <section class="section">
+  <h2>Regional Electricity Trade</h2>  
+  <p>
+    South Africa has been a net exporter in the SAPP for the majority of its years in operation since 1995. In recent years, 
+    the net value has gotten closer to zero.
+  </p>  
+
+  <!-- Fig. 4 -->
+  <p class="chart-fig">Fig. 4 — South Africa: net electricity trade, 2000–2023</p>
+  <div class="custom-legend">
+    <div class="cl-item"><div class="cl-line" style="background:rgba(37,99,235,0.55); height:10px; width:10px; border-radius:2px;"></div><span>Imports (GWh)</span></div>
+    <div class="cl-item"><div class="cl-line" style="background:rgba(22,163,74,0.55); height:10px; width:10px; border-radius:2px;"></div><span>Exports (GWh, shown negative)</span></div>
+    <div class="cl-item"><div class="cl-line" style="background:#dc2626"></div><span>Net trade</span></div>
+  </div>
+  <div class="chart-wrap"><canvas id="c4"></canvas></div>
+
+<p>
+  The International Renewable Energy Agency (IRENA) supports renewable planning and regional coordination. 
+  IRENA organizes initiatives such as the African Clean Energy Corridor (ACEC), which includes 21 countries across 
+  Eastern and Southern Africa. This initiative aims to strengthen cooperation between the Southern African Power Pool 
+  and the Eastern African Power Pool and promote the development of a North–South power transmission corridor.
+</p>
+
+<p>
+  From IRENA's report [1], in all scenarios, South Africa becomes the single largest net importer of electricity in the entire region 
+  by 2040, at 62 TWh net imports in the reference scenario. This is a complete structural reversal from SA's role as a net exporter in
+   the SAPP.
+</p>
+
+<p>
+  Significant exporters by 2040 would be the DRC (51 TWh net exports) and Mozambique (31 TWh net exports). The Mozambique–South 
+  Africa link is specifically flagged as a high-priority transmission project. SA's imports would represent roughly 16% of its 
+  domestic demand.
+</p>
+
+<p>The report projects SA's generation mix shifting significantly toward solar PV and wind by 2040. Solar and wind generation in SA alone would be 65–80 GW. But the key tension is that SA's coal retirement happens faster than its renewable buildout can compensate, creating a growing import dependence.</p>
+
+<h2>What Comes Next?</h2>
+<p>Cross-border trade is essential for cost minimisation. Building more transmission capacity pays through efficiency gains — savings exceed the infrastructure investment costs. Countries with surplus renewable generation (mainly DRC hydro, Mozambique hydro, and areas with strong wind and solar) can export to deficit areas, reducing the need for every country to build its own backup capacity. Without expanded trade, countries would need to build more expensive peaking plants or curtail cheap renewable energy.</p>
+
+<p>The report shows that even in scenarios with very high VRE penetration, trade remains valuable because solar and wind profiles in different countries are complementary — when SA's solar is low, DRC's hydro is available.</p>
+
+<p>Private solar reduces SA's immediate demand on Eskom, which helps in the short term. But the 2021 IRENA report shows the long-term trajectory is SA becoming more dependent on regional imports — regardless of what happens with private solar. Is the region prepared to meet the demand that SA will create?</p>
+
+<p>Private embedded generation also means wealthier households/businesses can exit the shared system — equity angle.</p>
+
+<h2>IRENA Scenario Cases</h2>
+<p><strong>Reference (REF)</strong> — The baseline. Cost-optimized, no renewable targets or CO2 limits, interconnectors limited to identified projects. Results in 36% solar/wind by 2040.</p>
+<p><strong>VRELim</strong> — Caps solar and wind at 20% by 2040 (5% by 2020, 10% by 2030), simulating slow or blocked deployment due to non-cost barriers.</p>
+<p><strong>VREHigh</strong> — Pushes solar and wind to 50% by 2040, testing what additional investment an ambitious renewables target would require.</p>
+<p><strong>HyDry (Dry-year)</strong> — Reduces hydropower capacity factors to simulate drought conditions, reflecting rising drought frequency in the region.</p>
+<p><strong>HyDel (Delayed hydro)</strong> — Delays hydropower project construction: 5 years for plants over 250 MW, 10 years for those over 1,000 MW.</p>
+<p><strong>TxNoLim</strong> — Removes build limits on key cross-border interconnectors after 2030 (e.g., Ethiopia–Kenya, Tanzania–Malawi) to assess how greater regional grid integration affects the power mix and trade.</p>
+   </section> 
+
+  
+
+
+  
+  <section class="section">
+  <h2>Data Sources</h2>
+  <p>
+    Statistics South Africa (2026).
+    <em>Electricity Generated and Available for Distribution</em>
+    Available at:
+    <a href="https://www.statssa.gov.za/?page_id=1879&page_no=1" target="_blank">
+      https://www.statssa.gov.za/
+    </a>
+  </p>  
+
+  <p>
+    IRENA (2019).
+    <em>System Planning Test SPLAT Models for Africa</em>
+    Available at:
+    <a href="https://www.irena.org/Energy-Transition/Planning/SPLAT-Models-for-Africa" target="_blank">
+      https://www.irena.org/
+    </a>
+  </p>
+
+  <p>
+    Eskom (2026).
+    <em>Outage Performance</em>
+    Available at:
+    <a href="https://www.eskom.co.za/dataportal/" target="_blank">
+      https://www.eskom.co.za/dataportal/
+    </a>
+  </p>
+
+  <p>
+    IEA (2023).
+    <em>Where does Africa get its electricity?</em>
+    Available at:
+    <a href="https://www.iea.org/regions/africa/electricity" target="_blank">
+      https://www.iea.org/regions/africa/electricity
+    </a>
+  </p>
+  </section>
+
+
+  <section class="section">
+  <h2>References</h2>
+  <ol>
+    <li id="ref1">
+      IRENA (2021).
+      <em>Planning Prospects for Africa.</em>
+      Available at:
+      <a href="https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2021/Apr/IRENA_Planning_Prospects_Africa_2021.pdf" target="_blank">
+        https://www.irena.org/publications/planning-prospects-africa-2021.pdf
+      </a>
+    </li>
+
+    <li id="ref2">
+      ESKOM (2026).
+      <em>ESKOM Maintains Grid Stability with Continued Generation Improvements</em>
+      Available at:
+       <a href="https://www.eskom.co.za/eskom-maintains-grid-stability-with-continued-generation-improvements/" target="_blank">
+      https://www.eskom.co.za/eskom-maintains-grid-stability-with-continued-generation-improvements/ </a>
+    </li>
+    
+  </ol>
+  </section>
+
+</div>
+
+<footer>
+  <p>Data source: Eskom · 2025-26</p>
+  <a href="energy_systems.html">← Back to Energy Systems</a>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/2.2.1/chartjs-plugin-annotation.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+
+<script>
+Chart.defaults.font.family = "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+
+const TOOLTIP = {
+  backgroundColor: '#ffffff',
+  borderColor: '#e0e3e8',
+  borderWidth: 1,
+  titleColor: '#111827',
+  bodyColor: '#374151',
+  padding: 10,
+  boxWidth: 8,
+  boxHeight: 8,
+  usePointStyle: true,
+};
+
+const AXIS_X = {
+  grid: { display: false },
+  border: { color: '#e0e3e8' },
+  ticks: { color: '#6b7280', font: { size: 11 } },
+};
+
+const AXIS_Y = {
+  grid: { display: false },
+  border: { color: '#e0e3e8' },
+  ticks: { color: '#6b7280', font: { size: 11 } },
+};
+
+/* ── FIG 1 ── */
+new Chart(document.getElementById('c1'), {
+  type: 'line',
+  data: {
+    labels: ['Mar 25','Apr 25','May 25','Jun 25','Jul 25','Aug 25','Sep 25','Oct 25','Nov 25','Dec 25','Jan 26','Feb 26','Mar 26','Apr 26'],
+    datasets: [
+      { label:'EAF',  data:[56.9,56.1,59.0,60.2,63.8,66.2,70.2,65.7,68.2,68.9,71.0,68.4,66.7,62.1], borderColor:'#2563eb', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:3, borderWidth:2 },
+      { label:'UCLF', data:[28.2,28.6,29.0,31.2,25.9,21.3,18.3,21.9,19.1,19.9,17.2,20.6,19.6,21.5], borderColor:'#dc2626', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:3, borderWidth:2 },
+      { label:'PCLF', data:[14.3,14.8,11.5,8.1,9.9,12.1,10.9,12.1,12.4,10.9,11.4,10.7,13.4,16.2],   borderColor:'#d97706', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:3, borderWidth:1.5, borderDash:[5,4] },
+      { label:'OCLF', data:[0.6,0.5,0.5,0.5,0.4,0.4,0.6,0.3,0.3,0.3,0.4,0.3,0.3,0.2],              borderColor:'#16a34a', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:3, borderWidth:1.5, borderDash:[2,4] },
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    interaction: { mode:'index', intersect:false },
+    plugins: {
+      legend: { display: false },
+      tooltip: { ...TOOLTIP, usePointStyle: true, boxWidth: 3, yAlign:'bottom', callbacks: {
+        label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)}%`,
+        title: items => items[0].label,
+      }},
+      annotation: { annotations: { t70: {
+        type:'line', yMin:70, yMax:70,
+        borderColor:'rgba(37,99,235,0.45)', borderDash:[6,4], borderWidth:1,
+        label:{ content:'70%', display:true, position:'start', font:{size:10}, color:'rgba(37,99,235,0.45)', backgroundColor:'transparent', yAdjust:-10 }
+      }}}
+    },
+    scales: {
+      x: { ...AXIS_X, ticks:{ ...AXIS_X.ticks, maxRotation:45 } },
+      y: { ...AXIS_Y, min:0, max:100, ticks:{ ...AXIS_Y.ticks, callback: v => v+'%' }, title:{ display:true, text:'% of installed capacity', color:'#9ca3af', font:{size:10} } }
+    }
+  }
+});
+
+/* ── FIG 2 ── */
+const ocgtVals = [462.2,284.0,284.2,204.1,119.4,65.9,93.6,92.8,95.3,91.5,92.9,99.4];
+const ocgtCost = [2.36,1.42,1.39,1.05,0.63,0.34,0.48,0.47,0.50,0.45,0.44,0.49];
+const ocgtPriceDate = ['01 Apr 2025','06 May 2025','03 Jun 2025','01 Jul 2025','05 Aug 2025','02 Sep 2025','30 Sep 2025','04 Nov 2025','02 Dec 2025','06 Jan 2026','03 Feb 2026','03 Mar 2026'];
+new Chart(document.getElementById('c2'), {
+  type: 'bar',
+  data: {
+    labels: ['Apr 25','May 25','Jun 25','Jul 25','Aug 25','Sep 25','Oct 25','Nov 25','Dec 25','Jan 26','Feb 26','Mar 26'],
+    datasets: [
+      { label:'OCGT (GWh)', data:ocgtVals, backgroundColor:'#2563eb', borderRadius:2, borderSkipped:false, yAxisID:'y', order:2 },
+      { label:'Est. Cost (Rbn)', data:ocgtCost, type:'line', borderColor:'#f59e0b', pointRadius:3, pointBackgroundColor:'#f59e0b', borderWidth:2, yAxisID:'y2', order:1 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { ...TOOLTIP, callbacks: {
+        label: ctx => { const v = ctx.parsed.y; const i = ctx.dataIndex; return [` ${v.toFixed(0)} GWh`, ` Est. cost: R${ocgtCost[i].toFixed(2)}bn`, ` Diesel price dated ${ocgtPriceDate[i]}`]; },
+        title: items => items[0].label,
+      }}
+    },
+    scales: {
+      x: { ...AXIS_X },
+      y: { ...AXIS_Y, ticks:{ ...AXIS_Y.ticks, callback: v => v+' GWh' }, title:{ display:true, text:'GWh', color:'#9ca3af', font:{size:10} } },
+      y2: { ...AXIS_Y, position:'right', ticks:{ ...AXIS_Y.ticks, callback: v => 'R'+v+'bn' }, title:{ display:true, text:'Est. Cost (Rbn)', color:'#9ca3af', font:{size:10} }, grid:{ drawOnChartArea:false } }
+    }
+  }
+});
+
+/* ── FIG 3 ── */
+const yrs3 = [2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024];
+const coalGWh  = [243.45,244.44,239.68,233.49,229.77,227.3,229.58,228.7,231.01,225.26,214.08,210.92,201.77,192.29,206.81].map(g=>g*1000);
+const solarGWh = [0.02,0.02,0.03,0.05,1.08,2.4,3.01,3.94,4.54,5.4,6.98,7.84,10.46,14.81,18.3].map(g=>g*1000);
+const windGWh  = [0.03,0.04,0.04,0.04,1.07,3.07,4.21,7.02,6.41,6.63,6.41,8.65,9.7,11.6,11.1].map(g=>g*1000);
+const reComb   = solarGWh.map((s,i) => +(s+windGWh[i]));
+
+new Chart(document.getElementById('c3'), {
+  type: 'line',
+  data: {
+    labels: yrs3,
+    datasets: [
+      { label:'Coal (GWh)',       data:coalGWh,  borderColor:'#374151', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:4, borderWidth:2.5, yAxisID:'y' },
+      { label:'Solar (GWh)',      data:solarGWh, borderColor:'#d97706', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:4, borderWidth:2, yAxisID:'y2' },
+      { label:'Wind (GWh)',       data:windGWh,  borderColor:'#2563eb', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:4, borderWidth:2, yAxisID:'y2' },
+      { label:'Solar+Wind (GWh)', data:reComb,   borderColor:'#16a34a', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:4, borderWidth:2, borderDash:[5,4], yAxisID:'y2' },
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    interaction: { mode:'index', intersect:false },
+    plugins: {
+      legend: { display: false },
+      tooltip: { ...TOOLTIP, callbacks: {
+        label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)} GWh`,
+        title: items => String(yrs3[items[0].dataIndex]),
+      }}
+    },
+    scales: {
+      x: { ...AXIS_X },
+      y:  { ...AXIS_Y, position:'left',  min:180000, max:260000, ticks:{ ...AXIS_Y.ticks, callback: v => v+' GWh' }, title:{ display:true, text:'Coal generation (GWh)', color:'#9ca3af', font:{size:10} } },
+      y2: { ...AXIS_Y, position:'right', min:0,  max:40000, grid:{display:false}, ticks:{ ...AXIS_Y.ticks, callback: v => v+' GWh' }, title:{ display:true, text:'RE generation (GWh)', color:'#9ca3af', font:{size:10} } }
+    }
+  }
+});
+
+/* ── FIG 4 ── */
+const tradeYrs = [2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023];
+const imports  = [15719,9200,9496,8194,9818,11079,10624,11348,10572,12295,12193,11890,10006,9428,11177,13059,10555,8568,9687,9804,9829,10137,10761,10709];
+const exportsA = [3386,6996,7242,10263,13254,13422,13589,14496,14168,14052,14668,14964,15035,13929,13836,14609,16549,15201,14386,14977,13647,13705,12270,11256];
+const netTrade = imports.map((v,i) => v - exportsA[i]);
+
+new Chart(document.getElementById('c4'), {
+  type: 'bar',
+  data: {
+    labels: tradeYrs,
+    datasets: [
+      { label:'Imports', data:imports,             backgroundColor:'rgba(37,99,235,0.55)', stack:'s' },
+      { label:'Exports', data:exportsA.map(v=>-v), backgroundColor:'rgba(22,163,74,0.55)',  stack:'s' },
+      { label:'Net trade', data:netTrade, type:'line', borderColor:'#dc2626', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:4, borderWidth:2, order:0 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    interaction: { mode:'index', intersect:false },
+    plugins: {
+      legend: { display: false },
+      tooltip: { ...TOOLTIP, callbacks: {
+        label: ctx => {
+          if (ctx.dataset.label === 'Net trade') return ` Net: ${(ctx.parsed.y/1000).toFixed(1)} TWh (${ctx.parsed.y > 0 ? 'net importer' : 'net exporter'})`;
+          return ` ${ctx.dataset.label}: ${Math.abs(ctx.parsed.y/1000).toFixed(1)} TWh`;
+        },
+        title: items => String(tradeYrs[items[0].dataIndex]),
+      }},
+      annotation: { annotations: { zero: { type:'line', yMin:0, yMax:0, borderColor:'rgba(0,0,0,0.1)', borderWidth:1 } } }
+    },
+    scales: {
+      x: { ...AXIS_X, stacked:true, ticks:{ ...AXIS_X.ticks, callback:(v,i) => tradeYrs[i] % 4 === 0 ? tradeYrs[i] : null } },
+      y: { ...AXIS_Y, stacked:true, ticks:{ ...AXIS_Y.ticks, callback: v => (v/1000).toFixed(0)+' TWh' }, title:{ display:true, text:'GWh (imports +,  exports −)', color:'#9ca3af', font:{size:10} } }
+    }
+  }
+});
+</script>
+
+</body>
+</html>
