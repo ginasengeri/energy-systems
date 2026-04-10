@@ -133,7 +133,8 @@
   display: grid;
   grid-template-columns: 1fr;
   border-bottom: 1px solid var(--border-soft);
-}    .irena-map-panel { background: #fff; position: relative; border-right: 1px solid var(--border-soft); }
+}    
+    .irena-map-panel { background: #fff; position: relative; border-right: 1px solid var(--border-soft); }
     .irena-map-wrap { width: 100%; height: 420px; position: relative; overflow: hidden; }
     .irena-map-wrap svg { width: 100%; height: 100%; display: block; }
     .irena-bottom-row { display: grid; grid-template-columns: 1fr 1fr; }
@@ -180,6 +181,16 @@
     .irena-corr-bar-wrap { flex: 0 0 60px; background: #f3f4f6; border-radius: 2px; height: 4px; overflow: hidden; }
     .irena-corr-bar { height: 4px; border-radius: 2px; background: #2563eb; }
     .irena-corr-val { font-size: 0.68rem; color: #9ca3af; flex: 0 0 46px; text-align: right; white-space: nowrap; }
+    .fig-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:28px;
+      margin-bottom:40px;
+    }
+    
+    .fig-col{
+      min-width:0;
+    }
   </style>
 </head>
 
@@ -223,23 +234,34 @@
     provides signifcant cost savings with an estimated >R1.5bn reduction in costs between April and March 2026.
     This also reduces the pressure on diesel price for other uses such as transportation.</p>
 
-  <p class="chart-fig">Fig. 1 — Eskom operational recovery, 2025–2026</p>
-  <div class="custom-legend" id="legend1">
-    <div class="cl-item"><div class="cl-line" style="background:#2563eb"></div><span>EAF — energy available</span></div>
-    <div class="cl-item"><div class="cl-line" style="background:#dc2626"></div><span>UCLF — unplanned outages</span></div>
-    <div class="cl-item"><div class="cl-line" style="background:#d97706; border-top: 2px dashed #d97706; height:0; width:22px;"></div><span>PCLF — planned outages</span></div>
-    <div class="cl-item"><div class="cl-line" style="background:#16a34a; border-top: 2px dashed #16a34a; height:0; width:22px;"></div><span>OCLF — other losses</span></div>
+<div class="fig-grid">
+
+  <div class="fig-col">
+    <p class="chart-fig">Fig. 1 — Eskom operational recovery, 2025–2026</p>
+
+    <div class="custom-legend" id="legend1">
+      <div class="cl-item"><div class="cl-line" style="background:#2563eb"></div><span>EAF — energy available</span></div>
+      <div class="cl-item"><div class="cl-line" style="background:#dc2626"></div><span>UCLF — unplanned outages</span></div>
+      <div class="cl-item"><div class="cl-line" style="background:#d97706; border-top:2px dashed #d97706; height:0; width:22px;"></div><span>PCLF — planned outages</span></div>
+      <div class="cl-item"><div class="cl-line" style="background:#16a34a; border-top:2px dashed #16a34a; height:0; width:22px;"></div><span>OCLF — other losses</span></div>
+    </div>
+
+    <div class="chart-wrap"><canvas id="c1"></canvas></div>
   </div>
-  <div class="chart-wrap"><canvas id="c1"></canvas></div>
 
-  <p class="chart-fig">Fig. 2 — OCGT generation (diesel peakers), 2025–2026</p>
-  <p class="chart-fig" style="color:#374151;">Monthly generation from Open Cycle Gas Turbines. Costs obtained from Fuel SA</p>
-  <div class="custom-legend">
-    <div class="cl-item"><div class="cl-line" style="background:#2563eb"></div><span>Eskom + IPP OCGT (GWh)</span></div>
+
+  <div class="fig-col">
+    <p class="chart-fig">Fig. 2 — OCGT generation (diesel peakers), 2025–2026</p>
+    <p class="chart-fig" style="color:#374151;">Monthly generation from Open Cycle Gas Turbines. Costs obtained from Fuel SA</p>
+
+    <div class="custom-legend">
+      <div class="cl-item"><div class="cl-line" style="background:#2563eb"></div><span>Eskom + IPP OCGT (GWh)</span></div>
+    </div>
+
+    <div class="chart-wrap"><canvas id="c2"></canvas></div>
   </div>
-  <div class="chart-wrap"><canvas id="c2"></canvas></div>
 
-
+</div>
   </section>
 
   <section class="section">
