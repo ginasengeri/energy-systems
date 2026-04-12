@@ -78,7 +78,6 @@
     .zone-code { font-size: 0.8rem; font-weight: 700; font-family: ui-monospace, monospace; color: var(--text-main); background: var(--table-header); border: 1px solid var(--border-soft); border-radius: 4px; padding: 1px 6px; }
     .zone-name { font-size: 0.9rem; color: var(--text-muted); }
     .chart-wrap { position: relative; width: 65%; margin: 12px auto 0; height: 380px; }
-    .fig-col .chart-wrap { width: 100%; }
     .chart-wrap canvas { display: block; }
     .section p.chart-fig { font-size: 0.85rem; color: #9ca3af; text-align: left; margin-bottom: 6px; margin-top: 16px; }
     .custom-legend { display: flex; flex-wrap: wrap; gap: 6px 24px; justify-content: center; margin-bottom: 12px; margin-top: 12px; }
@@ -134,8 +133,7 @@
   display: grid;
   grid-template-columns: 1fr;
   border-bottom: 1px solid var(--border-soft);
-}    
-    .irena-map-panel { background: #fff; position: relative; border-right: 1px solid var(--border-soft); }
+}    .irena-map-panel { background: #fff; position: relative; border-right: 1px solid var(--border-soft); }
     .irena-map-wrap { width: 100%; height: 420px; position: relative; overflow: hidden; }
     .irena-map-wrap svg { width: 100%; height: 100%; display: block; }
     .irena-bottom-row { display: grid; grid-template-columns: 1fr 1fr; }
@@ -213,68 +211,63 @@
   </div>
 
   <section class="section">
-  <h2>Sounth Africa's Energy Situation</h2>
-  <p>Energy systems are layered. Progress in one layer can hide vulnerability in another. For south africa:</p>
+  <h2>South Africa's Energy Situation</h2>
+  <p>
+    Energy systems are layered. Progress in one layer can hide vulnerability in another. Starting in 2007, significant energy
+    shortages led to an electricity crisis with 205 days of load shedding in 2022. This has commonly
+    been attributed to insuffcient maintenance of coal plants and poor governance. Significant progress has since been made with no
+    load shedding since March 2024. The moving pieces:
+  </p>
   <ol>
-    <li>Operational improvement</li>
-    <li>Coal phase out vs Expansion of renewables</li>
+    <li>Coal repurposing</li>
+    <li>Expansion of renewables</li>
     <li>Role reversals in regional trade</li>
   </ol>
   <p>These interactions must be managed carefully.</p>
   <p>South Africa is a useful example because its electricity system has undergone significant stress and transformation in recent years. Being the most industrialized economy in Africa, reliability is required to sustain economic acitivity.</p>
 
-  <h2>Operational Improvement</h2>
-  <p>Starting in 2007, significant energy shortages led to an electricity crisis with 205 days of load shedding in 2022. 
-    This has commonly been attributed to insuffcient maintenance of coal plants and poor governance. Resulted in increased use 
-    of expensive OCGT generators.
+  <h2>Operational Recovery</h2>
+  <p>
+    Eskom's operational recovery has partially been
+    driven by reparations to some coal plants, with the energy availability (EAF) reaching or exceeding
+    the 70% milestone on 83 occasions in 2025-26.     
+    Policy changes have also allowed businesses and households to employ private embedded generation, further reducing pressure on the grid.
   </p>
-    
-  <p>Significant progress 
-    has since been made with no load shedding since March 2024. While plans to phase out coal by 2040 are in place, Eskom's 
-    operational recovery has been driven by reparations to some coal plants, restoring capacity to the grid. 
-    Policy changes have also allowed businesses and households to employ private embedded generation, reducing pressure on the grid including solar and batteties.
-    This saw energy 
-    availability (EAF) reaching or exceeding the 70% milestone on 83 occasions in 2025-26.</p>
+
   
-  <p>OCGT have low thermal efficiency ranging 34-36% (eskom source) and are expensive, meant to run as peaker plants for
-    events of very high demand or supply shortages. Not meant to run to meet ordinary demand. The decline in OCGT usage 
-    provides signifcant cost savings with an estimated >R1.5bn reduction in costs between April and March 2026.
-    This also reduces the pressure on diesel price for other uses such as transportation.</p>
-
-<div class="fig-grid">
-
-  <div class="fig-col">
-    <p class="chart-fig">Fig. 1 — Eskom operational recovery, 2025–2026</p>
-
-    <div class="custom-legend" id="legend1">
-      <div class="cl-item"><div class="cl-line" style="background:#2563eb"></div><span>EAF — energy available</span></div>
-      <div class="cl-item"><div class="cl-line" style="background:#dc2626"></div><span>UCLF — unplanned outages</span></div>
-      <div class="cl-item"><div class="cl-line" style="background:#d97706; border-top:2px dashed #d97706; height:0; width:22px;"></div><span>PCLF — planned outages</span></div>
-      <div class="cl-item"><div class="cl-line" style="background:#16a34a; border-top:2px dashed #16a34a; height:0; width:22px;"></div><span>OCLF — other losses</span></div>
-    </div>
-
-    <div class="chart-wrap"><canvas id="c1"></canvas></div>
+  <p class="chart-fig">Fig. 1 — Eskom operational recovery, 2025–2026.</p>
+  <div class="custom-legend" id="legend1">
+    <div class="cl-item"><div class="cl-line" style=background:#2563eb></div><span>EAF, energy available</span></div>  
+    <div class="cl-item"><div class="cl-line" style=background:#dc2626></div><span>UCLF, unplanned outages</span></div>
+    <div class="cl-item"><div class="cl-line" style=background:#d97706></div><span>PCLF, planned outages</span></div>
+    <div class="cl-item"><div class="cl-line" style=background:#16a34a></div><span>OCLF, other losses</span></div>
   </div>
+  <div class="chart-wrap"><canvas id="c1"></canvas></div>
+  <br>
+
+  <p>
+    Eskom's Open Cycle Gas Turbines (OCGT) are diesel-fired generators which were frequently used to reduce load-shedding levels.
+    They have low thermal efficiency (34-36%) and are very expensive to operate for long periods.
+    The decline in OCGT usage reduces pressure on diesel prices for other uses such as transportation.
+  </p>
 
 
-  <div class="fig-col">
-    <p class="chart-fig">Fig. 2 — OCGT generation (diesel peakers), 2025–2026</p>
-
-    <div class="custom-legend">
-      <div class="cl-item"><div class="cl-line" style="background:#2563eb"></div><span>Eskom + IPP OCGT (GWh)</span></div>
-    </div>
-
-    <div class="chart-wrap"><canvas id="c2"></canvas></div>
+  <p class="chart-fig">Fig. 2 — OCGT generation (diesel peakers), 2025–2026</p>
+  <p class="chart-fig" style="color:#374151;">Monthly generation from Open Cycle Gas Turbines. Costs obtained from Fuel SA</p>
+  <div class="custom-legend">
+    <div class="cl-item"><div class="cl-line" style="background:#2563eb"></div><span>Eskom + IPP OCGT (GWh)</span></div>
+    <div class="cl-item"><div class="cl-line" style="background:#f59e0b"></div><span>Est. Cost (Rbn)</span></div>
   </div>
-
-</div>
+  <div class="chart-wrap"><canvas id="c2"></canvas></div>
   </section>
 
   <section class="section">
-  <h2>Coal phase-out vs renewables deployment</h2>
-  <p>Some coal plants are beyond repair and are being repurposed for RE. 
-    Coal retirement schedules are outpacing the added renewable capacity. Repurposing of the coal plants requires significant construction so capacity overall for the nation drops
-    faster than RE buildout.</p>
+  <h2>Coal Repurposing & Renewables Deployment</h2>
+  <p>
+    Decomissioning of some plants has been delayed with reparations as previously mentioned made to recover some capacity. However, 
+    Eskom is committed to long-term reduction of coal capacity from 39 GW to 18 GW and increase of renewables to 32 GW by 2040. 
+  </p>
+  
 
   <p class="chart-fig">Fig. 3 — Coal capacity loss vs renewable capacity added, 2010–2024</p>
   <div class="custom-legend">
@@ -285,13 +278,11 @@
   </div>
   <div class="chart-wrap"><canvas id="c3"></canvas></div>
 
-  <p>Project delays are due to administrative delays and lack of organization preventing them from beginning construction on time.</p>
   </section>
 
   <section class="section">
   <h2>Regional Electricity Trade</h2>
-  <p> The outpaced RE by declining coal means that SA overall has less capacity.
-    South Africa has been a net exporter in the SAPP for the majority of its years in operation since 1995. In recent years, the net value has gotten closer to zero.</p>
+  <p>South Africa has been a net exporter in the SAPP for the majority of its years in operation since 1995. In recent years, the net value has gotten closer to zero.</p>
 
   <p class="chart-fig">Fig. 4 — South Africa: net electricity trade, 2000–2023</p>
   <div class="custom-legend">
@@ -309,91 +300,35 @@
 
   <p>The report projects SA's generation mix shifting significantly toward solar PV and wind by 2040. Solar and wind generation in SA alone would be 65–80 GW. But the key tension is that SA's coal retirement happens faster than its renewable buildout can compensate, creating a growing import dependence.</p>
 
-  <!-- IRENA Dashboard -->
-  <p class="chart-fig">Fig. 5 — ACEC Reference Case: technology capacity mix &amp; interconnection, 2025–2040</p>
+  <p>
+    With the layered nature of energy systems, there is a large amount of uncertainty in planning. Future demand, technology
+    costs, fuel prices, political positions and climate impacts across regions are unknown. IRENA models 6 scenarios to illustrate a 
+    range of different scenarios and their possible outcomes.
+  </p>  
 
-  <div class="irena-dashboard">
-    <div class="irena-db-header">
-      <div>
-        <p class="irena-db-title">ACEC 2019 Reference Scenario — EAPP + SAPP Region</p>
-        <p class="irena-db-sub">Technology capacity 2025–2040 · Interconnection flows 2040 · Source: IRENA (2019)</p>
-      </div>
-      <div class="irena-db-controls">
-        <div class="irena-seg" id="iMetricSeg">
-          <button class="active" onclick="iSetMetric('flow',this)">Gross Flow</button>
-          <button onclick="iSetMetric('cap',this)">Capacity</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="irena-db-body">
-
-      <!-- Top row: map + tech mix -->
-      <div class="irena-top-row">
-        
-        <!-- Corridors -->
-        <div class="irena-section">
-          <div class="irena-sec-header">
-            <div>
-              <p class="irena-sec-title">Corridors — 2040</p>
-              <p class="irena-sec-sub">Click to highlight on map</p>
-            </div>
-            <select class="irena-select" id="iCorrSort" onchange="iRenderCorrList()">
-              <option value="flow">By flow</option>
-              <option value="cap">By capacity</option>
-              <option value="name">By name</option>
-            </select>
-          </div>
-          <div class="irena-corr-scroll" id="iCorrList"></div>
-        </div>
-
-
-      </div>
-
-      <!-- Bottom row: drilldown + corridors -->
-      <div class="irena-bottom-row">
-
-        <!-- Drilldown -->
-        <div class="irena-section" style="border-right:1px solid #f3f4f6;">
-          <div class="irena-sec-header">
-            <p class="irena-sec-title">Technology Drilldown</p>
-            <select class="irena-select" id="iTechSel" onchange="iRenderTechLine()">
-              <option value="Large Hydropower">Large Hydropower</option>
-              <option value="Solar PV - Utility">Solar PV — Utility</option>
-              <option value="Wind">Wind</option>
-              <option value="Natural Gas">Natural Gas</option>
-              <option value="Biomass">Biomass</option>
-              <option value="Coal">Coal</option>
-              <option value="Diesel">Diesel</option>
-              <option value="Nuclear">Nuclear</option>
-            </select>
-          </div>
-          <div class="irena-insight" id="iTechInsight"></div>
-          <div class="irena-chart-box" style="height:300px"><canvas id="iTechLine"></canvas></div>
-        </div>
-
-
-        <!-- Tech mix -->
-        <div class="irena-section" style="border-right:none;">
-          <div class="irena-sec-header">
-            <div>
-              <p class="irena-sec-title">Technology Capacity Mix (GW)</p>
-              <p class="irena-sec-sub">All countries · 2025–2040</p>
-            </div>
-          </div>
-          <div class="irena-chart-box" style="height:280px"><canvas id="iStackChart"></canvas></div>
-          <div class="irena-leg-row" id="iStackLeg"></div>
-        </div>
-        
-      </div>
-    </div>
-  </div>
 
   <h2>What Comes Next?</h2>
+  <p>
+    In addition to cross-border trade, batteries, pumped-hydro etc. coal remains an availble resource that can be utilized responsibly.
+  </p>
+  <p>
+    South Africa's coal fleet was designed for baseload operation where output remains above a minimum stable (MSL)
+    load. Running below this can result in uneven thermal gradients across boiler tubing, causing thermal stress and metal fatigue over many cycles. 
+    Older designs operate with a more conservative MSL due to slower responses to thermal instabilities.
+    This inflexibility has resulted in curtailment of cheap renewable power, with the system physically unable to accommodate it.  
+    Flexible operation reduces the amount of coal burned overall which both saves cost on burning expensive fuel when cheap options are 
+    available, and reduces the amount of pollutants released.    
+  </p>
+
+  <p>  
+    This increases interest in batteries and energy storage solutions, as well as refurbishment of existing plants to improve flexibility.
+    This repurposing and buildout of storage solutions requires significant construction, raising
+    questions about the installed capacity and electricity trade roles during this period of redesign.
+  </p>
   <p>Cross-border trade is essential for cost minimisation. Building more transmission capacity pays through efficiency gains — savings exceed the infrastructure investment costs. Countries with surplus renewable generation (mainly DRC hydro, Mozambique hydro, and areas with strong wind and solar) can export to deficit areas, reducing the need for every country to build its own backup capacity. Without expanded trade, countries would need to build more expensive peaking plants or curtail cheap renewable energy.</p>
   <p>The report shows that even in scenarios with very high VRE penetration, trade remains valuable because solar and wind profiles in different countries are complementary — when SA's solar is low, DRC's hydro is available.</p>
   <p>Private solar reduces SA's immediate demand on Eskom, which helps in the short term. But the 2021 IRENA report shows the long-term trajectory is SA becoming more dependent on regional imports — regardless of what happens with private solar. Is the region prepared to meet the demand that SA will create?</p>
-
+  <p>Private embedded generation also means wealthier households/businesses can exit the shared system — equity angle.</p>
 
   <h2>IRENA Scenario Cases</h2>
   <p><strong>Reference (REF)</strong> — The baseline. Cost-optimized, no renewable targets or CO2 limits, interconnectors limited to identified projects. Results in 36% solar/wind by 2040.</p>
@@ -446,12 +381,12 @@ const AXIS_Y = { grid: { display: false }, border: { color: '#e0e3e8' }, ticks: 
 new Chart(document.getElementById('c1'), {
   type: 'line',
   data: {
-    labels: ['Mar 25','Apr 25','May 25','Jun 25','Jul 25','Aug 25','Sep 25','Oct 25','Nov 25','Dec 25','Jan 26','Feb 26','Mar 26'],
+    labels: ['Mar 25','Apr 25','May 25','Jun 25','Jul 25','Aug 25','Sep 25','Oct 25','Nov 25','Dec 25','Jan 26','Feb 26','Mar 26','Apr 26'],
     datasets: [
-      { label:'EAF',  data:[56.9,56.1,59.0,60.2,63.8,66.2,70.2,65.7,68.2,68.9,71.0,68.4,66.7], borderColor:'#2563eb', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:3, borderWidth:2 },
-      { label:'UCLF', data:[28.2,28.6,29.0,31.2,25.9,21.3,18.3,21.9,19.1,19.9,17.2,20.6,19.6], borderColor:'#dc2626', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:3, borderWidth:2 },
-      { label:'PCLF', data:[14.3,14.8,11.5,8.1,9.9,12.1,10.9,12.1,12.4,10.9,11.4,10.7,13.4],   borderColor:'#d97706', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:3, borderWidth:1.5, borderDash:[5,4] },
-      { label:'OCLF', data:[0.6,0.5,0.5,0.5,0.4,0.4,0.6,0.3,0.3,0.3,0.4,0.3,0.3],              borderColor:'#16a34a', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:3, borderWidth:1.5, borderDash:[2,4] },
+      { label:'EAF',  data:[56.9,56.1,59.0,60.2,63.8,66.2,70.2,65.7,68.2,68.9,71.0,68.4,66.7,62.1], borderColor:'#2563eb', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:3, borderWidth:2 },
+      { label:'UCLF', data:[28.2,28.6,29.0,31.2,25.9,21.3,18.3,21.9,19.1,19.9,17.2,20.6,19.6,21.5], borderColor:'#dc2626', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:3, borderWidth:2 },
+      { label:'PCLF', data:[14.3,14.8,11.5,8.1,9.9,12.1,10.9,12.1,12.4,10.9,11.4,10.7,13.4,16.2],   borderColor:'#d97706', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:3, borderWidth:1.5, borderDash:[5,4] },
+      { label:'OCLF', data:[0.6,0.5,0.5,0.5,0.4,0.4,0.6,0.3,0.3,0.3,0.4,0.3,0.3,0.2],              borderColor:'#16a34a', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:3, borderWidth:1.5, borderDash:[2,4] },
     ]
   },
   options: {
@@ -480,65 +415,95 @@ new Chart(document.getElementById('c1'), {
 const ocgtVals = [462.2,284.0,284.2,204.1,119.4,65.9,93.6,92.8,95.3,91.5,92.9,99.4];
 const ocgtCost = [2.36,1.42,1.39,1.05,0.63,0.34,0.48,0.47,0.50,0.45,0.44,0.49];
 const ocgtPriceDate = ['01 Apr 2025','06 May 2025','03 Jun 2025','01 Jul 2025','05 Aug 2025','02 Sep 2025','30 Sep 2025','04 Nov 2025','02 Dec 2025','06 Jan 2026','03 Feb 2026','03 Mar 2026'];
+
 new Chart(document.getElementById('c2'), {
-  type: 'line',
+  type: 'bar',
   data: {
     labels: ['Apr 25','May 25','Jun 25','Jul 25','Aug 25','Sep 25','Oct 25','Nov 25','Dec 25','Jan 26','Feb 26','Mar 26'],
     datasets: [
-      { label:'OCGT (GWh)', data:ocgtVals, borderColor:'#2563eb', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:3, borderWidth:2, yAxisID:'y' },
-      { label:'Est. Cost (Rbn)', data:ocgtCost, borderColor:'#f59e0b', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:3, borderWidth:2, yAxisID:'y2' }
+      { label:'OCGT (GWh)', data:ocgtVals, backgroundColor:'#2563eb', borderRadius:0, borderSkipped:false, yAxisID:'y', order:2 },
+      { label:'Est. Cost (Rbn)', data:ocgtCost, type:'line', borderColor:'#f59e0b', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:3, borderWidth:2, yAxisID:'y2', order:1 }
     ]
   },
+
   options: {
-    responsive: true, maintainAspectRatio: false,
-    interaction: { mode:'index', intersect:false },
+    responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: { display: false },
-      tooltip: { ...TOOLTIP, callbacks: {
-        label: ctx => { const i = ctx.dataIndex; return [` ${ocgtVals[i].toFixed(0)} GWh`, ` Est. cost: R${ocgtCost[i].toFixed(2)}bn`, ` Diesel price dated ${ocgtPriceDate[i]}`]; },
-        title: items => items[0].label,
-      }}
+      tooltip: {
+        ...TOOLTIP,
+        boxWidth: 3,
+        callbacks: {
+          label: function(ctx) {
+            const i = ctx.dataIndex;
+            return [
+              `OCGT: ${ocgtVals[i].toFixed(0)} GWh`,
+              `Est. cost: R${ocgtCost[i].toFixed(2)} bn`,
+              `Diesel price date: ${ocgtPriceDate[i]}`
+            ];
+          }
+        }
+      }
     },
     scales: {
       x: { ...AXIS_X },
-      y: { ...AXIS_Y, ticks:{ ...AXIS_Y.ticks, callback: v => v+' GWh' }, title:{ display:true, text:'GWh', color:'#9ca3af', font:{size:10} } },
-      y2: { ...AXIS_Y, position:'right', ticks:{ ...AXIS_Y.ticks, callback: v => 'R'+v+'bn' }, title:{ display:true, text:'Est. Cost (Rbn)', color:'#9ca3af', font:{size:10} }, grid:{ drawOnChartArea:false } }
+      y: {
+        ...AXIS_Y,
+        ticks: { ...AXIS_Y.ticks, callback: v => v },
+        title: { display: true, text: 'OCGT Generation (GWh)', color: '#9ca3af', font: { size: 10 } }
+      },
+      y2: {
+        ...AXIS_Y,
+        position: 'right',
+        ticks: { ...AXIS_Y.ticks, callback: v => 'R' + v + 'bn' },
+        title: { display: true, text: 'Estimated Cost', color: '#9ca3af', font: { size: 10 } },
+        grid: { drawOnChartArea: false }
+      }
     }
   }
 });
 
-
 /* ── FIG 3 ── */
 const yrs3 = [2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024];
-const coalGWh  = [243.45,244.44,239.68,233.49,229.77,227.3,229.58,228.7,231.01,225.26,214.08,210.92,201.77,192.29,206.81].map(g=>g*1000);
-const solarGWh = [0.02,0.02,0.03,0.05,1.08,2.4,3.01,3.94,4.54,5.4,6.98,7.84,10.46,14.81,18.3].map(g=>g*1000);
-const windGWh  = [0.03,0.04,0.04,0.04,1.07,3.07,4.21,7.02,6.41,6.63,6.41,8.65,9.7,11.6,11.1].map(g=>g*1000);
-const reComb   = solarGWh.map((s,i) => +(s+windGWh[i]));
+const coalTWh  = [243.45,244.44,239.68,233.49,229.77,227.3,229.58,228.7,231.01,225.26,214.08,210.92,201.77,192.29,206.81];
+const solarTWh = [0.02,0.02,0.03,0.05,1.08,2.4,3.01,3.94,4.54,5.4,6.98,7.84,10.46,14.81,18.3];
+const windTWh  = [0.03,0.04,0.04,0.04,1.07,3.07,4.21,7.02,6.41,6.63,6.41,8.65,9.7,11.6,11.1];
+
+const totalTWh  = yrs3.map((_,i) => coalTWh[i] + solarTWh[i] + windTWh[i]);
+const toP = (arr) => arr.map((v,i) => +(v/totalTWh[i] * 100).toFixed(2));
+
+const coalPct   = toP(coalTWh);
+const solarPct  = toP(solarTWh);
+const windPct   = toP(windTWh);
+const reCombPct = solarPct.map((s,i) => +(s+windPct[i]).toFixed(2));
+
 new Chart(document.getElementById('c3'), {
   type: 'line',
   data: {
     labels: yrs3,
     datasets: [
-      { label:'Coal (GWh)',       data:coalGWh,  borderColor:'#374151', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:4, borderWidth:2.5, yAxisID:'y' },
-      { label:'Solar (GWh)',      data:solarGWh, borderColor:'#d97706', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:4, borderWidth:2, yAxisID:'y2' },
-      { label:'Wind (GWh)',       data:windGWh,  borderColor:'#2563eb', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:4, borderWidth:2, yAxisID:'y2' },
-      { label:'Solar+Wind (GWh)', data:reComb,   borderColor:'#16a34a', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:4, borderWidth:2, borderDash:[5,4], yAxisID:'y2' },
+      { label:'Coal (%)',       data:coalPct,   borderColor:'#374151', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:3, borderWidth:2, yAxisID:'y'  },
+      { label:'Solar (%)',      data:solarPct,  borderColor:'#d97706', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:3, borderWidth:2,   yAxisID:'y2' },
+      { label:'Wind (%)',       data:windPct,   borderColor:'#2563eb', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:3, borderWidth:2,   yAxisID:'y2' },
+      { label:'Solar+Wind (%)', data:reCombPct, borderColor:'#16a34a', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:3, borderWidth:2,   yAxisID:'y2', borderDash:[5,4] },
     ]
+
   },
   options: {
     responsive: true, maintainAspectRatio: false,
     interaction: { mode:'index', intersect:false },
     plugins: {
       legend: { display: false },
-      tooltip: { ...TOOLTIP, callbacks: {
-        label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)} GWh`,
+      tooltip: { ...TOOLTIP, usePointStyle: true, boxWidth: 3, callbacks: {
+        label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)}%`,
         title: items => String(yrs3[items[0].dataIndex]),
       }}
     },
     scales: {
-      x: { ...AXIS_X },
-      y:  { ...AXIS_Y, position:'left',  min:180000, max:260000, ticks:{ ...AXIS_Y.ticks, callback: v => v+' GWh' }, title:{ display:true, text:'Coal generation (GWh)', color:'#9ca3af', font:{size:10} } },
-      y2: { ...AXIS_Y, position:'right', min:0, max:40000, grid:{display:false}, ticks:{ ...AXIS_Y.ticks, callback: v => v+' GWh' }, title:{ display:true, text:'RE generation (GWh)', color:'#9ca3af', font:{size:10} } }
+      x:  { ...AXIS_X },
+      y:  { ...AXIS_Y, position:'left',  min:80, max:100, ticks:{ ...AXIS_Y.ticks, callback: v => v+'%' }, title:{ display:true, text:'Coal generation (%)', color:'#9ca3af', font:{size:10} } },
+      y2: { ...AXIS_Y, position:'right', min:0,  max:14,  grid:{display:false}, ticks:{ ...AXIS_Y.ticks, callback: v => v+'%' }, title:{ display:true, text:'RE generation (%)', color:'#9ca3af', font:{size:10} } }
     }
   }
 });
@@ -555,7 +520,7 @@ new Chart(document.getElementById('c4'), {
     datasets: [
       { label:'Imports', data:imports,             backgroundColor:'rgba(37,99,235,0.55)', stack:'s' },
       { label:'Exports', data:exportsA.map(v=>-v), backgroundColor:'rgba(22,163,74,0.55)',  stack:'s' },
-      { label:'Net trade', data:netTrade, type:'line', borderColor:'#dc2626', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:4, borderWidth:2, order:0 }
+      { label:'Net trade', data:netTrade, type:'line', borderColor:'#dc2626', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:2, borderWidth:2, order:1 }
     ]
   },
   options: {
