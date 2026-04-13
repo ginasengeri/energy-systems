@@ -213,11 +213,13 @@
   <section class="section">
   <h2>South Africa's Energy Situation</h2>
   <p>
-    Energy systems are layered, and progress in one layer can hide vulnerability in another. Each solution introduces a new constraint.
+   
     Starting in 2007, significant energy
-    shortages led to an electricity crisis, reaching its peak in 2022 with 205 days of load shedding. The crisis has commonly
-    been attributed to insuffcient maintenance of coal plants and poor governance. Significant progress has since been made with no
-    load shedding since March 2024. The moving pieces:
+    shortages led to an electricity crisis which reached its peak in 2022, with 205 days of load shedding. South Africa's load
+    shedding has commonly
+    been attributed to insuffcient maintenance of coal plants and poor governance. However, significant progress has since been made
+    with no
+    load shedding since March 2024. There are several layers that play a role in the future of South Africa's energy landscape:
   </p>
 
   <ol>
@@ -226,21 +228,22 @@
     <li>Role reversals in regional trade</li>
   </ol>
 
-  <p>These interactions must be managed carefully.</p>
+  <p>
+    Progress in one layer can hide vulnerability in another. Each solution introduces a new
+    constraint which affects the state of an adjacent layer; all interact and must be managed carefully. 
+    This makes South Africa a useful example because its electricity system has undergone
+    significant stress and transformation in recent years, and explains how constraints move through the system.    
+    </p>
   
   <p>
-    South Africa is a useful example because its electricity system has undergone significant stress and transformation in recent years.
-    Being the most industrialized economy in Africa, reliability is required to sustain economic acitivity.
   </p>
 
   <h2>Operational Recovery</h2>
-  What layer is this, and what new vulnerability does it create?
+
   <p>
-    Eskom's operational recovery has been
-    driven by reparations to some coal plants, with the energy availability (EAF) reaching or exceeding
-    the 70% milestone on 83 occasions in 2025-26.     
-    Policy changes have also allowed businesses and households to employ private embedded generation, further reducing pressure
-    on the grid.
+    Reduced load shedding in South Africa is primarily driven by improved performance of coal power stations as well as the adoption
+    of private renewable energy. Over the financial year 2025-26, Eskom's Energy Availability Factor (EAF) reached or exceeded
+    the 70% milestone on 83 occasions. More than 4100 MW of private capacity was added in the first half of 2025 [3].
   </p>
 
   
@@ -255,12 +258,15 @@
   <br>
 
   <p>
-    Eskom's Open Cycle Gas Turbines (OCGT) are diesel-fired generators were frequently used to reduce load-shedding levels
-    during the crisis.
-    They have low thermal efficiency (34-36%) and are very expensive to operate for long periods.
-    The decline in OCGT usage reduces pressure on diesel prices for other uses such as transportation.
+    Diesel-fired Open Cycle Gas Turbines (OCGTs) were previously used to reduce the severity of load-shedding, and have seen significant
+    decline in usage over 2025.
+    These units are both inefficient (34-36% thermal efficiency) and costly, with diesel generation approximately 11 times more expensive than coal
+    in 2025 (6084R/MWh vs 546R/MWh)[4].
+  </p>  
+  <p>  
+    Between April 2025 and March 2026, OCGT generation reduced by 460 GWh, corresponding to an approximate reduction in diesel expenditure
+    of R1.87bn. 
   </p>
-
 
   <p class="chart-fig">Fig. 2 — OCGT generation (diesel peakers), 2025–2026</p>
   <p class="chart-fig" style="color:#374151;">Monthly generation from Open Cycle Gas Turbines. Costs obtained from Fuel SA</p>
@@ -269,22 +275,50 @@
     <div class="cl-item"><div class="cl-line" style="background:#f59e0b"></div><span>Est. Cost (Rbn)</span></div>
   </div>
   <div class="chart-wrap"><canvas id="c2"></canvas></div>
+  <br>
+  <p>
+    This decline reflects both improved coal plant perforamance and reduced system demand due to private generation. Lower reliance on diesel
+    also alleviates pressure on fuel supply for other sectors, particularly transportation. 
+  </p>
+  
+  <p>
+    While these improvements stabilize electricity supply in the short term, the system may face new constraints as it
+    transitions toward intermittent renewable energy / flexibility of generation units must be considered as South 
+    Africa's long-term goals aim to transition to intermittent renewable energy.
+  </p>
   </section>
 
   <section class="section">
   <h2>Coal Repurposing & Renewables Deployment</h2>
-  What layer is this, and what new vulnerability does it create?
   <p>
-    Some coal plant retirements have been delayed and have been repaired to restore capacity. However, 
-    Eskom is committed to long-term reduction of coal capacity from 39 GW to 18 GW and increase of renewables to 32 GW by 2040. 
-  </p>
-  
+    While short-term reliability has improved, South Africa’s long-term energy strategy introduces a different set of constraints.
+  </p> 
+
   <p>
-    Coal capacity has declined steadily, while solar and wind have increased at a slower rate. This creates a gap
-    where lost baseload capacity is not fully replaced. As a result, total system capacity and reliability come under pressure
-    during the transition.
+    While short-term reliability has improved, South Africa’s long-term energy strategy introduces a different set of constraints.
+    South Africa's coal fleet was designed for baseload operation, where output remains above a minimum stable load (MSL). 
+    Operating below this threshold can create uneven thermal gradients across boilers, leading to thermal stress and long-term 
+    material fatigue. Older plants are particularly constrained due to slower responses to thermal instability.
+  </p>  
+
+  <p>
+    As a result, even at relatively low levels of renewable penetration (just over 10%), this inflexibility has already led to 
+    curtailment of low-cost renewable energy, as the system is unable to adjust output quickly enough to accommodate 
+    renewables.
   </p>
 
+  <p>
+    Alongside this, long-term plans to reduce coal capacity creates a challenge to replace lost baseload capacity on schedule.
+    As part of the Just Energy Transition (JET), Eskom plans to 
+    decommission nine coal power plants by 2035 and reduce coal capacity from 39 GW to 18 GW.
+    These sites are being repurposed for renewable energy with a goal of increasing renewable capacity to 32 GW by 2040.
+  </p>
+
+  <p> 
+    Since 2021, solar and wind capacity has more than doubled from 6% to 12%, driven by private generation investment
+    amidst the period of heavy load shedding.
+  </p>
+  
   <p class="chart-fig">Fig. 3 — Coal capacity loss vs renewable capacity added, 2010–2024</p>
   <div class="custom-legend">
     <div class="cl-item"><div class="cl-line" style="background:#374151"></div><span>Coal (GWh, left axis)</span></div>
@@ -294,24 +328,20 @@
   </div>
   <div class="chart-wrap"><canvas id="c3"></canvas></div>
   <br>
+
   <p>
-    South Africa's coal fleet was designed for baseload operation where output remains above a minimum stable (MSL)
-    load. Running below this can result in uneven thermal gradients across boiler tubing, causing thermal stress and metal fatigue over many cycles. 
-    Older designs operate with a more conservative MSL due to slower responses to thermal instabilities.
-    This inflexibility has resulted in curtailment of cheap renewable power, with the system physically unable to accommodate it.  
-    Flexible operation reduces the amount of coal burned overall which both saves cost on burning expensive fuel when cheap options are 
-    available, and reduces the amount of pollutants released.    
+    As coal plants are decommissioned over the next decade, constraints on capacity are likely to affect not 
+    only domestic reliability, but also South Africa’s role in regional electricity trade.
   </p>
+
+
   </section>
 
   <section class="section">
   <h2>Regional Electricity Trade</h2>
-  What layer is this, and what new vulnerability does it create?
   <p>
-    South Africa has been a net exporter in the SAPP for the majority of its years in operation since 1995. In recent years, the net 
-    value has gotten closer to zero. With Eskom's coal repurposing schedules, it is likely that reduced capacity further lowers exports
-    out of South Arica. Eswatini, Botswana and Zambia rely on these exports, raising questions about future coordination of electricity
-    supply in the SAPP.
+    South Africa has been a net exporter in the SAPP for the majority of its years in operation since 1995. Eswatini, Botswana, Zambia 
+    and Lesotho rely on these exports.
   </p>
 
   <p class="chart-fig">Fig. 4 — South Africa: net electricity trade, 2000–2023</p>
@@ -323,21 +353,31 @@
   <div class="chart-wrap"><canvas id="c4"></canvas></div>
 
   <p>
-    The International Renewable Energy Agency (IRENA) supports renewable planning and regional coordination. 
-    The African Clean Energy Corridor (ACEC) aims to strengthen cooperation between the Southern
+    The African Clean Energy Corridor (ACEC) is an initiative supported by The International Renewable Energy Agency (IRENA) 
+    which aims to strengthen cooperation between the Southern
     African Power Pool and the Eastern African Power Pool.
   </p>
 
-  <p>From IRENA's report [1], in all scenarios, South Africa becomes the single largest net importer of electricity in the entire region by 2040, at 62 TWh net imports in the reference scenario. This is a complete structural reversal from SA's role as a net exporter in the SAPP.</p>
+  <p>
+    From IRENA's report [1], in all scenarios, South Africa becomes the single largest net importer of electricity in the entire region
+    by 2040, at 62 TWh net imports in the reference scenario. This is a complete structural reversal from SA's role as a net exporter 
+    in the SAPP.
+  </p>
 
-  <p>Significant exporters by 2040 would be the DRC (51 TWh net exports) and Mozambique (31 TWh net exports). The Mozambique–South Africa link is specifically flagged as a high-priority transmission project. SA's imports would represent roughly 16% of its domestic demand.</p>
+  <p>
+    Significant exporters by 2040 would be the DRC (51 TWh net exports) and Mozambique (31 TWh net exports). The Mozambique–South Africa 
+    link is specifically flagged as a high-priority transmission project. SA's imports would represent roughly 16% of its domestic demand.
+  </p>
 
-  <p>The report projects SA's generation mix shifting significantly toward solar PV and wind by 2040. Solar and wind generation in SA alone would be 65–80 GW. But the key tension is that SA's coal retirement happens faster than its renewable buildout can compensate, creating a growing import dependence.</p>
+  <p>
+    The report projects SA's generation mix shifting significantly toward solar PV and wind by 2040. Solar and wind generation in SA 
+    alone would be 65–80 GW. But the key tension is that SA's coal retirement happens faster than its renewable buildout can compensate,
+    creating a growing import dependence.
+  </p>
 
   <p>
     There is a large amount of uncertainty in planning. Future demand, technology
-    costs, fuel prices, political positions and climate impacts across regions are unknown. IRENA models 6 scenarios to illustrate a 
-    range of different scenarios and their possible outcomes.
+    costs, fuel prices, political positions and climate impacts across regions are unknown.
   </p>  
 
 
@@ -346,13 +386,21 @@
     In addition to cross-border trade, batteries, pumped-hydro etc. coal remains an availble resource that can be utilized responsibly.
     Coal can be repurposed to improve flexibility addressing curtailment problem.
   </p>
-  
-  <p>  
-    Uncertainty of timelines means questions remain about the installed capacity and electricity trade roles during 
-    this period of redesign.
+  <p>
+    Redesign to coal plants to improve ability to ramp up and down quickly. Flexible operation reduces the amount of coal burned overall which both 
+    saves cost on burning expensive fuel when cheap options are available, and reduces the amount of pollutants released. It also preserves
+    some usable capacity to prevent gaps in total installed capacity while renewables are deployed.  
   </p>
-  <p>Cross-border trade pays through efficiency gains through lack of need to build more expensive peaking plants or curtail cheap renewable energy.</p>
-  <p>2021 IRENA report shows the long-term trajectory is SA becoming more dependent on regional imports. Is the region prepared to meet the demand that SA will create?</p>
+  
+  <p>
+    Cross-border trade pays through efficiency gains through lack of need to build more expensive peaking plants or curtail cheap 
+    renewable energy.
+  </p>
+
+  <p>
+    2021 IRENA report shows the long-term trajectory is SA becoming more dependent on regional imports. Is the region prepared to meet 
+    the demand that SA will create?
+  </p>
 
 
   <section class="section">
@@ -361,13 +409,16 @@
   <p>IRENA (2019). <em>System Planning Test SPLAT Models for Africa</em> Available at: <a href="https://www.irena.org/Energy-Transition/Planning/SPLAT-Models-for-Africa" target="_blank">https://www.irena.org/</a></p>
   <p>Eskom (2026). <em>Outage Performance</em> Available at: <a href="https://www.eskom.co.za/dataportal/" target="_blank">https://www.eskom.co.za/dataportal/</a></p>
   <p>IEA (2023). <em>Where does Africa get its electricity?</em> Available at: <a href="https://www.iea.org/regions/africa/electricity" target="_blank">https://www.iea.org/regions/africa/electricity</a></p>
+  <p>Fuel SA (2026). <em>Historic Fuel Prices</em> Available at: <a href="https://www.fuelsa.co.za/#history">https://www.fuelsa.co.za/#history</a></p>
   </section>
 
   <section class="section">
   <h2>References</h2>
   <ol>
     <li id="ref1">IRENA (2021). <em>Planning Prospects for Africa.</em> Available at: <a href="https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2021/Apr/IRENA_Planning_Prospects_Africa_2021.pdf" target="_blank">https://www.irena.org/publications/planning-prospects-africa-2021.pdf</a></li>
-    <li id="ref2">ESKOM (2026). <em>ESKOM Maintains Grid Stability with Continued Generation Improvements</em> Available at: <a href="https://www.eskom.co.za/eskom-maintains-grid-stability-with-continued-generation-improvements/" target="_blank">https://www.eskom.co.za/eskom-maintains-grid-stability-with-continued-generation-improvements/</a></li>
+    <li id="ref2">Eskom (2026). <em>ESKOM Maintains Grid Stability with Continued Generation Improvements</em> Available at: <a href="https://www.eskom.co.za/eskom-maintains-grid-stability-with-continued-generation-improvements/" target="_blank">https://www.eskom.co.za/eskom-maintains-grid-stability-with-continued-generation-improvements/</a></li>
+    <li id="ref3">Ecofin Agency. <em>Private Sector Powers South Africa's Decarbonization Push</em> Availble at:<a href="https://www.ecofinagency.com/news-industry/1311-50446-private-sector-powers-south-africa-s-decarbonisation-push#:~:text=Private%20producers%20added%204%2C100%20MW,%25%20year%2Don%2Dyear." target="_blank">https://www.ecofinagency.com/news-industry/</a></li>  
+    <li id="ref4">Eskom (2025). <em>Integrated Report 2025</em> Available at: https://www.eskom.co.za/wp-content/uploads/2025/09/Eskom-integrated-report-2025.pdf#page=86</li>
   </ol>
   </section>
 
@@ -481,30 +532,22 @@ new Chart(document.getElementById('c2'), {
 });
 
 /* ── FIG 3 ── */
-const yrs3 = [2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024];
-const coalTWh  = [243.45,244.44,239.68,233.49,229.77,227.3,229.58,228.7,231.01,225.26,214.08,210.92,201.77,192.29,206.81];
-const solarTWh = [0.02,0.02,0.03,0.05,1.08,2.4,3.01,3.94,4.54,5.4,6.98,7.84,10.46,14.81,18.3];
-const windTWh  = [0.03,0.04,0.04,0.04,1.07,3.07,4.21,7.02,6.41,6.63,6.41,8.65,9.7,11.6,11.1];
-
-const totalTWh  = yrs3.map((_,i) => coalTWh[i] + solarTWh[i] + windTWh[i]);
-const toP = (arr) => arr.map((v,i) => +(v/totalTWh[i] * 100).toFixed(2));
-
-const coalPct   = toP(coalTWh);
-const solarPct  = toP(solarTWh);
-const windPct   = toP(windTWh);
-const reCombPct = solarPct.map((s,i) => +(s+windPct[i]).toFixed(2));
+const yrs3    = [2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024];
+const coalPct = [93.78,93.11,92.92,91.16,90.19,90.77,90.72,89.53,90.12,89.19,89.40,86.30,84.48,82.28,83.03];
+const solarPct= [0.01, 0.03, 0.03, 0.09, 0.42, 1.10, 1.29, 1.66, 1.78, 1.94, 2.38, 2.77, 4.24, 6.66, 7.97];
+const windPct = [0.01, 0.02, 0.02, 0.02, 0.42, 1.23, 1.66, 2.75, 2.50, 2.63, 2.68, 3.54, 4.06, 4.96, 4.46];
+const reCombPct = solarPct.map((s,i) => +(s + windPct[i]).toFixed(2));
 
 new Chart(document.getElementById('c3'), {
   type: 'line',
   data: {
     labels: yrs3,
     datasets: [
-      { label:'Coal (%)',       data:coalPct,   borderColor:'#374151', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:3, borderWidth:2, yAxisID:'y'  },
-      { label:'Solar (%)',      data:solarPct,  borderColor:'#d97706', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:3, borderWidth:2,   yAxisID:'y2' },
-      { label:'Wind (%)',       data:windPct,   borderColor:'#2563eb', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:3, borderWidth:2,   yAxisID:'y2' },
-      { label:'Solar+Wind (%)', data:reCombPct, borderColor:'#16a34a', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:3, borderWidth:2,   yAxisID:'y2', borderDash:[5,4] },
+      { label:'Coal (%)',       data:coalPct,   borderColor:'#374151', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:3, borderWidth:2, yAxisID:'y'},
+      { label:'Solar (%)',      data:solarPct,  borderColor:'#d97706', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:3, borderWidth:2, yAxisID:'y2' },
+      { label:'Wind (%)',       data:windPct,   borderColor:'#2563eb', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:3, borderWidth:2, yAxisID:'y2' },
+      { label:'Solar+Wind (%)', data:reCombPct, borderColor:'#16a34a', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:3, borderWidth:2, yAxisID:'y2', borderDash:[5,4] },
     ]
-
   },
   options: {
     responsive: true, maintainAspectRatio: false,
@@ -518,8 +561,8 @@ new Chart(document.getElementById('c3'), {
     },
     scales: {
       x:  { ...AXIS_X },
-      y:  { ...AXIS_Y, position:'left',  min:80, max:100, ticks:{ ...AXIS_Y.ticks, callback: v => v+'%' }, title:{ display:true, text:'Coal generation (%)', color:'#9ca3af', font:{size:10} } },
-      y2: { ...AXIS_Y, position:'right', min:0,  max:14,  grid:{display:false}, ticks:{ ...AXIS_Y.ticks, callback: v => v+'%' }, title:{ display:true, text:'RE generation (%)', color:'#9ca3af', font:{size:10} } }
+      y:  { ...AXIS_Y, position:'left',  min:80, max:96, ticks:{ ...AXIS_Y.ticks, callback: v => v+'%' }, title:{ display:true, text:'Coal generation (%)', color:'#9ca3af', font:{size:10} } },
+      y2: { ...AXIS_Y, position:'right', min:0,  max:14, grid:{display:false}, ticks:{ ...AXIS_Y.ticks, callback: v => v+'%' }, title:{ display:true, text:'RE generation (%)', color:'#9ca3af', font:{size:10} } }
     }
   }
 });
