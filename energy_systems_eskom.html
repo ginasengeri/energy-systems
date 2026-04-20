@@ -418,7 +418,7 @@ new Chart(document.getElementById('c3b'), {
         tVal.setAttribute('x', cen[0] - 20);
         tVal.setAttribute('y', cen[1] + 15);
         tVal.setAttribute('font-size', '10');
-        tVal.setAttribute('font-weight', '400');
+        tVal.setAttribute('font-weight', isLargest ? '700' : '400');
         tVal.setAttribute('fill', '#374151');
         tVal.setAttribute('font-family', 'system-ui,sans-serif');
         tVal.textContent = valStr;
