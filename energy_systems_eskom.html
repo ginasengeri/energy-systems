@@ -30,6 +30,8 @@
     footer { margin-top: 28px; padding-top: 16px; border-top: 1px solid #e0e3e8; text-align: center; font-size: 0.75rem; color: #9ca3af; }
     footer a { color: #2563eb; text-decoration: none; }
     a, a:visited, a:hover, a:active { color: #2563eb; }
+    sup a { color: #2563eb; text-decoration: none; }
+    sup a:hover { text-decoration: underline; }
     .tables-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-top: 10px; margin-bottom: 16px; }
     .table-card { background: #ffffff; border-radius: 10px; border: 1px solid var(--border-soft); padding: 10px 12px; overflow: auto; }
     .table-card h3 { margin-top: 0; margin-bottom: 6px; font-size: 1rem; }
@@ -59,31 +61,33 @@
 <div class="report-container">
   <header>
     <div class="label">Energy Systems</div>
-    <h1>Work in Progress</h1>
-    <p>This analysis discusses...</p>
+    <h1>Recovery and Constraint in South Africa's Power System</h1>
+    <p>
+      This analysis discusses South Africa's recovery from an electricity crisis, the resulting contraints, and the role of regional
+      expansion in addressing them.
+    </p>
     <div class="meta">Eskom &bull; 2025-26</div>
   </header>
 
   <div class="chips">
-    <span class="chip"><span></span></span>
-    <span class="chip"><span></span></span>
-    <span class="chip"><span></span></span>
-    <span class="chip"><span></span></span>
-    <span class="chip"><span></span></span>
+    <span class="chip"><span>Eskom Recovery</span></span>
+    <span class="chip"><span>Coal Transition</span></span>
+    <span class="chip"><span>Renewable Integration</span></span>
+    <span class="chip"><span>Africa Clean Energy Corridor</span></span>
   </div>
 
   <section class="section">
   <h2>South Africa's Energy Situation</h2>
   <p>Beginning in 2007, South Africa experienced growing energy shortages that developed into a major electricity crisis, which peaked in 2022 with 205 days of load shedding. This crisis has commonly been attributed to insufficient maintenance of coal-fired power stations and challenges with governance. However, significant progress has since been made with no load shedding since March 2024. There are several layers that play a role in South Africa's changing energy landscape:</p>
   <ol>
-    <li>Operational Recovery: reparation to coal plants solve the reliability problem</li>
-    <li>Coal Repurposing and Renewable Deployment: introduces flexibility and capacity issues</li>
-    <li>Regional Trade: resolves this by sharing capacity and flexibility across borders</li>
+    <li>Operational recovery: reparation to coal plants solve the reliability problem</li>
+    <li>Coal repurposing and renewable deployment: introduces flexibility and capacity issues</li>
+    <li>Regional trade: resolves this by sharing capacity and flexibility across borders</li>
   </ol>
   <p>With constantly shifting factors (i.e. future demand, weather patterns, fuel prices, technology costs, political decisions), each solution introduces new constraints, requiring constant recalibration and careful planning.</p>
 
   <h2>Operational Recovery</h2>
-  <p>Reduced load shedding in South Africa is primarily driven by improved performance of coal power stations, as well as the adoption of private renewable energy. Over the financial year 2025-26, Eskom's Energy Availability Factor (EAF) reached or exceeded the 70% milestone on 83 occasions. More than 4100 MW of private capacity, mostly embedded solar, was added in the first half of 2025 [3].</p>
+  <p>Reduced load shedding in South Africa is primarily driven by improved performance of coal power stations, as well as the adoption of private renewable energy.<sup><a href="#ref2">[2]</a></sup> Over the financial year 2025-26, Eskom's Energy Availability Factor (EAF) reached or exceeded the 70% milestone on 83 occasions. More than 4100 MW of private capacity, mostly embedded solar, was added in the first half of 2025.<sup><a href="#ref3">[3]</a></sup></p>
   <p class="chart-fig">Fig. 1 — Eskom operational recovery, 2025–26.</p>
   <div class="custom-legend">
     <div class="cl-item"><div class="cl-line" style="background:#2563eb"></div><span>EAF, energy available</span></div>
@@ -93,7 +97,7 @@
   </div>
   <div class="chart-wrap"><canvas id="c1"></canvas></div>
   <br>
-  <p>Diesel-fired Open Cycle Gas Turbines (OCGTs) were previously used to reduce the severity of load-shedding, and have seen a significant decline in usage over 2025. These units are both inefficient (34-36% thermal efficiency) and costly, with diesel generation approximately 11 times more expensive than coal in 2025 (6084R/MWh vs 546R/MWh)[4].</p>
+  <p>Diesel-fired Open Cycle Gas Turbines (OCGTs) were previously used to reduce the severity of load-shedding, and have seen a significant decline in usage over 2025. These units are both inefficient (34-36% thermal efficiency) and costly, with diesel generation approximately 11 times more expensive than coal in 2025 (6084R/MWh vs 546R/MWh).<sup><a href="#ref4">[4]</a></sup></p>
   <p>Between April 2025 and March 2026, OCGT generation reduced by 460 GWh, corresponding to an approximate reduction in diesel expenditure of R1.87bn.</p>
   <p class="chart-fig">Fig. 2 — OCGT generation (diesel peakers), 2025–2026</p>
   <p class="chart-fig" style="color:#374151;">Monthly generation from Open Cycle Gas Turbines. Costs obtained from Fuel SA</p>
@@ -109,8 +113,8 @@
   <section class="section">
   <h2>Coal Repurposing &amp; Renewables Deployment</h2>
   <p>While short-term reliability has improved, South Africa's long-term energy strategy introduces a different set of constraints: flexibility and supply gaps.</p>
-  <p>South Africa's coal fleet was designed for steady baseload operation, where output remains above a minimum stable load (MSL). Operating below this threshold can create uneven thermal gradients across boilers, leading to thermal stress and long-term material fatigue. Older plants are especially constrained due to slower responses to thermal instability. This means coal output cannot be adjusted appropriately to accommodate added renewable capacity, leading to grid congestion [6]. As a result, even at relatively low levels of renewable penetration (under 10%), this inflexibility has led to the need for curtailment of low-cost renewable energy.</p>
-  <p>Alongside this, long-term plans to reduce coal capacity create the challenge to replace the lost baseload power on schedule. As part of the Just Energy Transition (JET), Eskom plans to decommission nine coal power plants by 2035 and reduce coal capacity from 39 GW to 18 GW. These sites are being repurposed for renewable energy with a goal of increasing renewable capacity to 32 GW by 2040. The International Renewable Energy Agency (IRENA) has developed a System Planning Test (SPLAT) to model capacity expansion for Africa. Since current data does not yet reflect planned coal retirement, IRENA projections are used to illustrate expected changes (Reference scenario, modelled in 2019).</p>
+  <p>South Africa's coal fleet was designed for steady baseload operation, where output remains above a minimum stable load (MSL). Operating below this threshold can create uneven thermal gradients across boilers, leading to thermal stress and long-term material fatigue. Older plants are especially constrained due to slower responses to thermal instability. This means coal output cannot be adjusted appropriately to accommodate added renewable capacity, leading to grid congestion.<sup><a href="#ref6">[6]</a></sup> As a result, even at relatively low levels of renewable penetration (under 10%), this inflexibility has led to the need for curtailment of low-cost renewable energy.</p>
+  <p>Alongside this, long-term plans to reduce coal capacity create the challenge to replace the lost baseload power on schedule. As part of the Just Energy Transition (JET), Eskom plans to decommission nine coal power plants by 2035 and reduce coal capacity from 39 GW to 18 GW.<sup><a href="#ref5">[5]</a></sup> These sites are being repurposed for renewable energy with a goal of increasing renewable capacity to 32 GW by 2040. The International Renewable Energy Agency (IRENA) has developed a System Planning Test (SPLAT) to model capacity expansion for Africa. Since current data does not yet reflect planned coal retirement, IRENA projections are used to illustrate expected changes (Reference scenario, modelled in 2019).</p>
   <p class="chart-fig">Fig. 3 — Coal capacity loss vs renewable capacity added, 2010–2040</p>
   <div class="custom-legend">
     <div class="cl-item"><div class="cl-line" style="background:#374151"></div><span>Coal</span></div>
@@ -161,7 +165,7 @@
   <p style="font-size:0.82rem; color:#9ca3af; margin-top:4px;"><em>Reference scenario (REF), Unlimited interconnector capacity expansion (TxNoLim), 50% variable renewables in 2040 (VREHigh), Limited penetration of VRE to 20% (VRELim)</em></p>
 
   <p>A higher degree of renewable deployment results in lower total trade volumes, with the largest consumer countries—Egypt, South Africa, Kenya, Ethiopia—producing more domestic power and therefore importing less.</p>
-  <p>From IRENA's model [1], in all scenarios, South Africa becomes the largest net importer of electricity in the region by 2040, at 62 TWh net imports in the reference scenario—a notable reversal from SA's role as a net exporter in the SAPP.</p>
+  <p>From IRENA's model,<sup><a href="#ref1">[1]</a></sup> in all scenarios, South Africa becomes the largest net importer of electricity in the region by 2040, at 62 TWh net imports in the reference scenario—a notable reversal from SA's role as a net exporter in the SAPP.</p>
 
   <div class="acec-figline" style="margin-top:20px;">
     <p class="chart-fig" style="margin:0;">Fig. — ACEC net trade positions, top 5 importers and exporters, 2040 (IRENA SPLAT reference)</p>
@@ -322,11 +326,9 @@ new Chart(document.getElementById('c3b'), {
     const top5exp = sorted.filter(([,v]) => v<0).sort((a,b) => a[1]-b[1]).slice(0,5).map(([k]) => k);
     const labeled = new Set([...top5imp, ...top5exp]);
 
-    // The single largest importer and exporter get coloured labels; all others get black
     const largestImp = top5imp[0];
     const largestExp = top5exp[0];
 
-    // Base country fills
     const gBase = document.createElementNS('http://www.w3.org/2000/svg','g');
     svg.appendChild(gBase);
     _features.forEach(f => {
@@ -343,7 +345,6 @@ new Chart(document.getElementById('c3b'), {
       gBase.appendChild(el);
     });
 
-    // Dots and labels
     const gDots = document.createElementNS('http://www.w3.org/2000/svg','g');
     svg.appendChild(gDots);
     const gLabels = document.createElementNS('http://www.w3.org/2000/svg','g');
@@ -364,7 +365,6 @@ new Chart(document.getElementById('c3b'), {
       const isTop5 = labeled.has(name);
       const isLargest = (isImp && name === largestImp) || (!isImp && name === largestExp);
 
-      // Expanding ring for #1
       if (isLargest) {
         const ring = document.createElementNS('http://www.w3.org/2000/svg','circle');
         ring.setAttribute('cx', cen[0]);
@@ -388,7 +388,6 @@ new Chart(document.getElementById('c3b'), {
         gDots.appendChild(ring);
       }
 
-      // Solid dot
       const dot = document.createElementNS('http://www.w3.org/2000/svg','circle');
       dot.setAttribute('cx', cen[0]);
       dot.setAttribute('cy', cen[1]);
@@ -397,7 +396,6 @@ new Chart(document.getElementById('c3b'), {
       dot.setAttribute('opacity', isTop5 ? '1' : '0.45');
       gDots.appendChild(dot);
 
-      // Labels for top 5
       if (isTop5) {
         const label = SHORT[name] || name;
         const valStr = (isImp ? '+' : '') + val.toFixed(1) + ' TWh';
@@ -407,8 +405,6 @@ new Chart(document.getElementById('c3b'), {
         tName.setAttribute('y', cen[1] - 10);
         tName.setAttribute('font-size', '11');
         tName.setAttribute('font-weight', '700');
-        // Only the single largest importer and largest exporter get the coloured label;
-        // all other top-5 country names are black.
         tName.setAttribute('fill', isLargest ? col : '#6b7280');
         tName.setAttribute('font-family', 'system-ui,sans-serif');
         tName.textContent = label;
