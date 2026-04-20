@@ -1,4 +1,5 @@
 <!DOCTYPE html> 
+
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -43,19 +44,7 @@
     .acec-pill.active{background:#374151;color:#fff;border-color:#374151;}
     .acec-figline{display:flex;align-items:center;justify-content:space-between;margin-top:16px;margin-bottom:12px;}
     .acec-toggle{display:flex;gap:6px;}
-    .acec-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px;}
-    .acec-kpi{background:#fff;border:1px solid var(--border-soft);border-radius:10px;padding:12px 14px;}
-    .acec-label{font-size:10px;color:#9ca3af;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;}
-    .acec-val{font-size:16px;font-weight:700;color:#111827;line-height:1.2;}
-    .acec-sub{font-size:11px;margin-top:3px;}
-    .acec-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
-    .acec-rname{width:120px;flex-shrink:0;font-size:12px;color:#374151;text-align:right;}
-    .acec-bar{flex:1;height:10px;background:#f3f4f6;border-radius:4px;overflow:hidden;}
-    .acec-bar-fill{height:100%;border-radius:4px;}
-    .acec-rpct{width:32px;flex-shrink:0;font-size:10px;color:#6b7280;text-align:right;}
     @keyframes pulse-ring { 0%{r:5px;opacity:.7} 100%{r:14px;opacity:0} }
-    .dot-imp { animation: pulse-ring 1.6s ease-out infinite; fill:#dc2626; }
-    .dot-exp { animation: pulse-ring 1.6s ease-out infinite; fill:#16a34a; }
   </style>
 </head>
 <body>
@@ -63,18 +52,15 @@
   <header>
     <div class="label">Energy Systems</div>
     <h1>Recovery and Constraint in South Africa's Power System</h1>
-    <p>
-      This analysis discusses South Africa's recovery from an electricity crisis, the resulting contraints, and the role of regional
-      expansion in addressing them.
-    </p>
+    <p>This analysis discusses South Africa's recovery from an electricity crisis, the resulting constraints, and the role of regional expansion in addressing them.</p>
     <div class="meta">Eskom &bull; 2025-26</div>
   </header>
 
   <div class="chips">
-    <span class="chip"><span>Eskom Recovery</span></span>
-    <span class="chip"><span>Coal Transition</span></span>
-    <span class="chip"><span>Renewable Integration</span></span>
-    <span class="chip"><span>Africa Clean Energy Corridor</span></span>
+    <span class="chip">Eskom Recovery</span>
+    <span class="chip">Coal Transition</span>
+    <span class="chip">Renewable Integration</span>
+    <span class="chip">Africa Clean Energy Corridor</span>
   </div>
 
   <section class="section">
@@ -114,32 +100,8 @@
   <section class="section">
   <h2>Coal Repurposing &amp; Renewables Deployment</h2>
   <p>While short-term reliability has improved, South Africa's long-term energy strategy introduces a different set of constraints: flexibility and supply gaps.</p>
-  <p>South Africa's coal fleet was designed 
-     for steady baseload operation, 
-    where output remains above a minimum stable
-     load (MSL). Operating below this threshold 
-    can create uneven thermal gradients across
-     boilers, leading to thermal stress and 
-    long-term material fatigue. This lack 
-    of flexibility contributes to grid 
-    congestion as renewable capacity is added, 
-    increasing the need for curtailment.
-    <sup><a href="#ref6">[6]</a></sup>.</p>
-  <p>Alongside this, long-term plans to reduce coal 
-    capacity create the challenge to replace the 
-    lost baseload power on schedule. Eskom 
-    plans to decommission nine coal power plants 
-    by 2035<sup><a href="#ref5">[5]</a></sup>
-    and repurpose them for
-    renewable energy, with a goal of increasing 
-    capacity to 32 GW by 2040. 
-    The International Renewable Energy Agency
-     (IRENA) has developed a System Planning
-     Test (SPLAT) to model capacity expansion 
-    for Africa. Since current data does not 
-    yet reflect planned coal retirement, 
-    IRENA projections are used to illustrate 
-    expected changes under a 2019 reference scenario.</p>
+  <p>South Africa's coal fleet was designed for steady baseload operation, where output remains above a minimum stable load (MSL). Operating below this threshold can create uneven thermal gradients across boilers, leading to thermal stress and long-term material fatigue. This lack of flexibility contributes to grid congestion as renewable capacity is added, increasing the need for curtailment.<sup><a href="#ref6">[6]</a></sup></p>
+  <p>Alongside this, long-term plans to reduce coal capacity create the challenge to replace the lost baseload power on schedule. Eskom plans to decommission nine coal power plants by 2035, reducing coal capacity to 18 GW<sup><a href="#ref5">[5]</a></sup>, and repurpose them for renewable energy, with a goal of increasing capacity to 32 GW by 2040. The International Renewable Energy Agency (IRENA) has developed a System Planning Test (SPLAT) to model capacity expansion for Africa. Since current data does not yet reflect planned coal retirement, IRENA projections are used to illustrate expected changes under a 2019 reference scenario.</p>
   <p class="chart-fig">Fig. 3 — Coal capacity loss vs renewable capacity added, 2010–2040</p>
   <div class="custom-legend">
     <div class="cl-item"><div class="cl-line" style="background:#374151"></div><span>Coal</span></div>
@@ -195,20 +157,18 @@
   <div class="acec-figline" style="margin-top:20px;">
     <p class="chart-fig" style="margin:0;">Fig. 4 — ACEC net trade positions, top 5 importers and exporters, 2040 (IRENA SPLAT reference)</p>
   </div>
-  <div style="display:flex;gap:8px;margin-bottom:6px;font-size:11px;color:#6b7280;align-items:center;">
+  <div style="display:flex;gap:8px;margin-bottom:8px;font-size:12px;color:#6b7280;align-items:center;">
     <span style="display:inline-flex;align-items:center;gap:4px;"><svg width="10" height="10"><circle cx="5" cy="5" r="4" fill="#dc2626"/></svg> Net importer</span>
     <span style="display:inline-flex;align-items:center;gap:4px;margin-left:8px;"><svg width="10" height="10"><circle cx="5" cy="5" r="4" fill="#16a34a"/></svg> Net exporter</span>
   </div>
-  <svg id="acec-map" viewBox="0 0 500 560" style="width:42%;display:block;margin:0 auto;"></svg>
-  <p style="font-size:0.82rem;color:#9ca3af;margin-top:6px;">
-    <em>
-    The SPLAT model uses data from the EAPP (2014) and SAPP (2017) master plans for assumptions on demand, costs and
-    generation capacity. Projected country trade positions reflect these model assumptions and should be 
-    interpreted in this context—particularly for East Africa.</em></p>
 
-  <p>While trade roles are affected by VRE deployment, the entire region benefits from the resulting efficiency gains, seen by the projected increase in total trade flows across each scenario.
-  Cross-border electricity trade should create resilience rather than dependency in order for all countries to benefit. This requires coordination between countries to ensure projects are delivered on schedule. Interconnected grids must also provide access to transparent data to support future planning and ensure efficiency of trade.</p>
+  <!-- MAP: width 72%, viewBox 700x620 for more real-estate; fitExtent uses full bounds -->
 
+<svg id="acec-map" viewBox="0 0 700 620" style="width:72%;display:block;margin:0 auto;"></svg>
+
+  <p style="font-size:0.82rem;color:#9ca3af;margin-top:6px;"><em>The SPLAT model uses data from the EAPP (2014) and SAPP (2017) master plans for assumptions on demand, costs and generation capacity. Projected country trade positions reflect these model assumptions and should be interpreted in this context—particularly for East Africa.</em></p>
+
+  <p>While trade roles are affected by VRE deployment, the entire region benefits from the resulting efficiency gains, seen by the projected increase in total trade flows across each scenario. Cross-border electricity trade should create resilience rather than dependency in order for all countries to benefit. This requires coordination between countries to ensure projects are delivered on schedule. Interconnected grids must also provide access to transparent data to support future planning and ensure efficiency of trade.</p>
   </section>
 
   <section class="section">
@@ -239,9 +199,13 @@
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/2.2.1/chartjs-plugin-annotation.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+
 <script>
 Chart.defaults.font.family = "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
 const TOOLTIP = { backgroundColor:'#ffffff', borderColor:'#e0e3e8', borderWidth:1, titleColor:'#111827', bodyColor:'#374151', padding:10, boxWidth:8, boxHeight:8, usePointStyle:true };
@@ -353,7 +317,6 @@ new Chart(document.getElementById('c3b'), {
     const top5imp = sorted.filter(([,v]) => v>0).slice(0,5).map(([k]) => k);
     const top5exp = sorted.filter(([,v]) => v<0).sort((a,b) => a[1]-b[1]).slice(0,5).map(([k]) => k);
     const labeled = new Set([...top5imp, ...top5exp]);
-
     const largestImp = top5imp[0];
     const largestExp = top5exp[0];
 
@@ -369,7 +332,7 @@ new Chart(document.getElementById('c3b'), {
       el.setAttribute('d', pd);
       el.setAttribute('fill', '#e8e8e5');
       el.setAttribute('stroke', '#fff');
-      el.setAttribute('stroke-width', '0.7');
+      el.setAttribute('stroke-width', '0.8');
       gBase.appendChild(el);
     });
 
@@ -397,20 +360,17 @@ new Chart(document.getElementById('c3b'), {
         const ring = document.createElementNS('http://www.w3.org/2000/svg','circle');
         ring.setAttribute('cx', cen[0]);
         ring.setAttribute('cy', cen[1]);
-        ring.setAttribute('r', '5');
+        ring.setAttribute('r', '6');
         ring.setAttribute('fill', col);
         ring.setAttribute('opacity', '0.7');
-
         const animR = document.createElementNS('http://www.w3.org/2000/svg','animate');
         animR.setAttribute('attributeName','r');
-        animR.setAttribute('from','5'); animR.setAttribute('to','14');
+        animR.setAttribute('from','6'); animR.setAttribute('to','18');
         animR.setAttribute('dur','1.6s'); animR.setAttribute('repeatCount','indefinite');
-
         const animO = document.createElementNS('http://www.w3.org/2000/svg','animate');
         animO.setAttribute('attributeName','opacity');
         animO.setAttribute('from','0.7'); animO.setAttribute('to','0');
         animO.setAttribute('dur','1.6s'); animO.setAttribute('repeatCount','indefinite');
-
         ring.appendChild(animR);
         ring.appendChild(animO);
         gDots.appendChild(ring);
@@ -419,7 +379,7 @@ new Chart(document.getElementById('c3b'), {
       const dot = document.createElementNS('http://www.w3.org/2000/svg','circle');
       dot.setAttribute('cx', cen[0]);
       dot.setAttribute('cy', cen[1]);
-      dot.setAttribute('r', isTop5 ? '3' : '2.5');
+      dot.setAttribute('r', isTop5 ? '5' : '3.5');
       dot.setAttribute('fill', col);
       dot.setAttribute('opacity', isTop5 ? '1' : '0.45');
       gDots.appendChild(dot);
@@ -429,9 +389,9 @@ new Chart(document.getElementById('c3b'), {
         const valStr = (isImp ? '+' : '') + val.toFixed(1) + ' TWh';
 
         const tName = document.createElementNS('http://www.w3.org/2000/svg','text');
-        tName.setAttribute('x', cen[0] - 20);
-        tName.setAttribute('y', cen[1] - 10);
-        tName.setAttribute('font-size', '11');
+        tName.setAttribute('x', cen[0] - 28);
+        tName.setAttribute('y', cen[1] - 14);
+        tName.setAttribute('font-size', '14');
         tName.setAttribute('font-weight', '700');
         tName.setAttribute('fill', isLargest ? col : '#6b7280');
         tName.setAttribute('font-family', 'system-ui,sans-serif');
@@ -439,9 +399,9 @@ new Chart(document.getElementById('c3b'), {
         gLabels.appendChild(tName);
 
         const tVal = document.createElementNS('http://www.w3.org/2000/svg','text');
-        tVal.setAttribute('x', cen[0] - 20);
-        tVal.setAttribute('y', cen[1] + 15);
-        tVal.setAttribute('font-size', '10');
+        tVal.setAttribute('x', cen[0] - 28);
+        tVal.setAttribute('y', cen[1] + 20);
+        tVal.setAttribute('font-size', '13');
         tVal.setAttribute('font-weight', isLargest ? '700' : '400');
         tVal.setAttribute('fill', '#374151');
         tVal.setAttribute('font-family', 'system-ui,sans-serif');
@@ -467,8 +427,9 @@ new Chart(document.getElementById('c3b'), {
         return Object.values(ISO).includes(iso);
       });
 
+      // Wider viewBox (700x620) + tight padding = map fills the space and zooms into ACEC region
       const proj = d3.geoMercator()
-        .fitExtent([[10,10],[490,550]], {type:'FeatureCollection', features: acecFeatures});
+        .fitExtent([[20, 20],[680, 600]], {type:'FeatureCollection', features: acecFeatures});
 
       _geoPath = d3.geoPath().projection(proj);
       _features = allFeatures;
@@ -478,9 +439,10 @@ new Chart(document.getElementById('c3b'), {
     .catch(err => {
       console.error('Map load failed:', err);
       const svg = document.getElementById('acec-map');
-      svg.innerHTML = '<text x="250" y="280" text-anchor="middle" font-size="13" fill="#9ca3af" font-family="system-ui,sans-serif">Map data could not be loaded</text>';
+      svg.innerHTML = '<text x="350" y="310" text-anchor="middle" font-size="14" fill="#9ca3af" font-family="system-ui,sans-serif">Map data could not be loaded</text>';
     });
 })();
 </script>
+
 </body>
 </html>
