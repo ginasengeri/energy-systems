@@ -293,7 +293,7 @@ const N_HIST=yrs3_hist.length, N_PROJ=yrs3_proj.length;
 function histOnly(arr){return[...arr,null,...Array(N_PROJ).fill(null)];}
 function projOnly(arr){return[...Array(N_HIST).fill(null),null,...arr];}
 const X_TICKS_3={...AXIS_X,ticks:{...AXIS_X.ticks,callback:(v,i)=>yrs3[i]==='\u200b'?null:yrs3[i]}};
-const GAP_LINE={type:'line',xMin:'\u200b',xMax:'\u200b',borderColor:'rgba(0,0,0,0.12)',borderWidth:1,borderDash:[3,3],label:{content:'SPLAT anchored to 2019',display:true,position:'center',font:{size:9},color:'#9ca3af',backgroundColor:'transparent',rotation:-90}};
+const GAP_LINE={type:'line',xMin:'\u200b',xMax:'\u200b',borderColor:'rgba(0,0,0,0.12)',borderWidth:1,borderDash:[3,3],label:{content:'SPLAT model 2019',display:true,position:'center',font:{size:10},color:'#9ca3af',backgroundColor:'transparent',rotation:-90}};
 
 new Chart(document.getElementById('c3a'), {
   type:'line',
