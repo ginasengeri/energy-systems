@@ -40,13 +40,43 @@
     table { width: 100%; border-collapse: collapse; font-size: 0.85rem; min-width: unset; }
     th, td { border: 1px solid var(--border-soft); padding: 6px 8px; text-align: left; white-space: nowrap; }
     th { background-color: var(--table-header); font-weight: 600; }
-    .acec-pill{padding:4px 12px;border-radius:20px;border:1px solid #d1d5db;background:transparent;font-size:12px;cursor:pointer;color:#6b7280;font-family:inherit;transition:all .15s;}
-    .acec-pill.active{background:#374151;color:#fff;border-color:#374151;}
-    .acec-figline{display:flex;align-items:center;justify-content:space-between;margin-top:16px;margin-bottom:12px;}
-    .acec-toggle{display:flex;gap:6px;}
-    @keyframes pulse-ring { 0%{r:5px;opacity:.7} 100%{r:14px;opacity:0} }
-    .acec-map-svg { width: 42%; }
-    @media (max-width: 768px) { .acec-map-svg { width: 95% !important; max-width: 500px !important; } }
+
+    /* ── Map card ── */
+    .map-embed {
+      position: relative; width: 92%; height: 520px;
+      border-radius: 10px; border: 1px solid var(--border-soft);
+      overflow: hidden; margin: 10px auto 6px;
+      background: #ffffff;
+    }
+    .map-embed svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    #acec-panel {
+      position: absolute; top: 16px; left: 18px; z-index: 10;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    #acec-panel h3 { font-size: 12px; font-weight: 700; color: #111827; margin: 0; }
+    #acec-panel p  { font-size: 10px; line-height: 1.3; color: #6b7280; margin: 1px 0 0; }
+    #acec-cards    { display: flex; flex-direction: column; gap: 4px; margin-top: 4px; }
+    .ac {
+      background: #fff; border: 1px solid #e0e3e8; border-radius: 6px;
+      padding: 7px 12px 7px 10px; display: flex; align-items: center; gap: 8px;
+      white-space: nowrap; opacity: 0; animation: acup .35s ease forwards;
+    }
+    .ac-bar  { width: 3px; align-self: stretch; border-radius: 2px; flex-shrink: 0; }
+    .ac-body { display: flex; flex-direction: column; }
+    .ac-lbl  { font-size: 10px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 2px; }
+    .ac-row  { display: flex; align-items: baseline; gap: 3px; }
+    .ac-val  { font-size: 17px; font-weight: 700; letter-spacing: -.5px; line-height: 1; }
+    .ac-unit { font-size: 10px; color: #9ca3af; }
+    .ac-sub  { font-size: 10px; color: #9ca3af; margin-top: 1px; }
+    #acec-legend {
+      position: absolute; bottom: 14px; right: 16px; z-index: 10;
+      background: #fff; border: 1px solid #e0e3e8; border-radius: 6px;
+      padding: 7px 11px; display: flex; flex-direction: column; gap: 5px;
+      opacity: 0; animation: acup .35s .5s ease forwards;
+    }
+    .leg-item { display: flex; align-items: center; gap: 6px; font-size: 10px; color: #6b7280; }
+    .leg-dot  { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    @keyframes acup { from { opacity:0; transform:translateY(3px); } to { opacity:1; transform:none; } }
   </style>
 </head>
 <body>
@@ -115,7 +145,7 @@
     Alongside this, long-term plans to reduce coal capacity create the challenge to replace the lost baseload power on schedule. 
     Eskom plans to decommission nine coal power plants by 2035, and increase renewable capacity to 32 GW by 2040 <sup><a href="#ref7">[7]</a></sup>.
     The specific technologies used in repurposing remain uncertain, with nuclear and gas plants being considered to complement renewables.
-    The International Renewable Energy Agency (IRENA) has developed a System Planning Test (SPLAT) to model capacity expansion for Africa, illustrating expected changes under a 2019 reference scenario.</p>
+    The International Renewable Energy Agency (IRENA) has developed a System Planning Test (SPLAT) to model capacity expansion for Africa, illustrating expected changes under a 2019 reference scenario<sup><a href="#ref1">[1]</a></sup>.</p>
   <p class="chart-fig">Fig. 3 — Coal capacity loss vs renewable capacity added, 2010–2040</p>
   <div class="custom-legend">
     <div class="cl-item"><div class="cl-line" style="background:#374151"></div><span>Coal</span></div>
@@ -151,28 +181,38 @@
     countries including Eswatini, Botswana, Zambia, and Lesotho.
     Regional integration is expected to expand through initiatives such as the African Clean Energy Corridor (ACEC), which links the
     Southern and Eastern African power pools.
-    IRENA<sup><a href="#ref1">[1]</a></sup> models six scenarios to illustrate a range of possible outcomes, including a reference
+    IRENA models six scenarios to illustrate a range of possible outcomes, including a reference
     scenario (base case), variations in renewable deployment, changes in hydrology and degree of regional integration.
     Across all scenarios, South Africa becomes the largest net importer of electricity in the region by 
     2040, reaching 62 TWh of net imports in the reference case.
   </p>
 
- <div class="acec-figline" style="margin-top:20px;">
-    <p class="chart-fig" style="margin:0;">Fig. 4 — ACEC net trade positions, top 5 importers and exporters, 2040 (IRENA SPLAT reference case)</p>
-  </div>
-  <div style="display:flex;gap:8px;margin-bottom:8px;font-size:15px;color:#6b7280;align-items:center;">
-    <span style="display:inline-flex;align-items:center;gap:4px;"><svg width="10" height="10"><circle cx="5" cy="5" r="4" fill="#dc2626"/></svg> Net importer</span>
-    <span style="display:inline-flex;align-items:center;gap:4px;margin-left:8px;"><svg width="10" height="10"><circle cx="5" cy="5" r="4" fill="#16a34a"/></svg> Net exporter</span>
+  <p class="chart-fig" style="margin-top:20px;">Fig. 4 — ACEC net trade positions, 2040 (IRENA SPLAT reference case)</p>
+
+  <!-- ── Map card ── -->
+  <div class="map-embed" id="acec-wrap">
+    <svg id="acec-map-svg"></svg>
+
+    <div id="acec-panel">
+      <div>
+        <h3>ACEC Net Trade Positions</h3>
+        <p>Africa Clean Energy Corridor · 2040 · TWh</p>
+      </div>
+      <div id="acec-cards"></div>
+    </div>
+
+    <div id="acec-legend">
+      <div class="leg-item"><div class="leg-dot" style="background:#dc2626"></div>Net importer</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#16a34a"></div>Net exporter</div>
+    </div>
   </div>
 
-  <svg id="acec-map" viewBox="0 0 500 560" class="acec-map-svg" style="display:block;margin:0 auto;width:100%;max-width:500px;"></svg>
-  <p style="font-size:0.8rem;color:#9ca3af;margin-top:6px;"><em>The SPLAT model uses data from the EAPP (2014) and SAPP (2017) master plans for assumptions on demand, costs and generation capacity. Projected country trade positions reflect these model assumptions and should be interpreted in this context.</em></p>  
-  
+  <p style="font-size:0.8rem;color:#9ca3af;margin-top:6px;"><em>The SPLAT model uses data from the EAPP (2014) and SAPP (2017) master plans for assumptions on demand, costs and generation capacity. Projected country trade positions reflect these model assumptions and should be interpreted in this context.</em></p>
 
   <p>The diversity of resources in the ACEC region creates opportunities for efficiency gains, with total trade flows projected to increase
      to around five times their 2020 level.</p>
- 
-    <div class="table-card">
+
+  <div class="table-card">
     <h3>Total Trade Flows (TWh)</h3>
     <table>
       <thead>
@@ -201,7 +241,6 @@
     While trade roles are affected by VRE deployment, the entire region benefits from the resulting efficiency gains, seen by the 
     projected increase in total trade flows across each scenario. 
   </p>
-
   <p>
     Cross-border electricity trade should create resilience rather than dependency in order for all countries to benefit. 
     This requires coordination between countries to ensure projects are delivered on schedule. Interconnected grids must 
@@ -221,13 +260,13 @@
   <section class="section">
   <h2>References</h2>
   <ol>
-    <li id="ref1">IRENA (2021). <em>Planning Prospects for Africa.</em> Available at: <a href="https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2021/Apr/IRENA_Planning_Prospects_Africa_2021.pdf" target="_blank">https://www.irena.org/publications/planning-prospects-africa-2021.pdf</a></li>
     <li id="ref2">Eskom (2026). <em>ESKOM Maintains Grid Stability with Continued Generation Improvements.</em> Available at: <a href="https://www.eskom.co.za/eskom-maintains-grid-stability-with-continued-generation-improvements/" target="_blank">https://www.eskom.co.za/eskom-maintains-grid-stability-with-continued-generation-improvements/</a></li>
     <li id="ref3">Ecofin Agency. <em>Private Sector Powers South Africa's Decarbonization Push.</em> Available at: <a href="https://www.ecofinagency.com/news-industry/1311-50446-private-sector-powers-south-africa-s-decarbonisation-push" target="_blank">https://www.ecofinagency.com/news-industry/</a></li>
     <li id="ref4">Eskom (2025). <em>Integrated Report 2025.</em> Available at: <a href="https://www.eskom.co.za/wp-content/uploads/2025/09/Eskom-integrated-report-2025.pdf#page=86" target="_blank">https://www.eskom.co.za/wp-content/uploads/2025/</a></li>
     <li id="ref5">Department of Electricity and Energy (2025). <em>The South African Energy Sector Report 2025.</em> Available at: <a href="https://share.google/5t1V60Vnmg5nJV9zR" target="_blank">https://www.dmre.gov.za/</a></li>
-    <li id="ref7">Enerdata. <em>South Africa’s Eskom will cut coal capacity and boost renewables by 2040</em>Available at: <a href="https://www.enerdata.net/publications/daily-energy-news/south-africas-eskom-will-cut-coal-capacity-and-boost-renewables-2040.html" target="_blank_">https://www.reuters.com/sustainability/</a></li>
+    <li id="ref7">Enerdata (2025). <em>South Africa's Eskom will cut coal capacity and boost renewables by 2040</em> Available at: <a href="https://www.enerdata.net/publications/daily-energy-news/south-africas-eskom-will-cut-coal-capacity-and-boost-renewables-2040.html" target="_blank">https://www.reuters.com/sustainability/</a></li>
     <li id="ref6">Eskom (2025). <em>Congestion Curtailment Practice Note October 2025.</em> Available at: <a href="https://www.eskom.co.za/distribution/wp-content/uploads/2025/10/Congestion-Curtailment-Practice-Note-October-2025.pdf" target="_blank">https://www.eskom.co.za/distribution/wp-content/uploads/2025/10/Congestion-Curtailment-Practice-Note-October-2025.pdf</a></li>
+    <li id="ref1">IRENA (2021). <em>Planning Prospects for Africa.</em> Available at: <a href="https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2021/Apr/IRENA_Planning_Prospects_Africa_2021.pdf" target="_blank">https://www.irena.org/publications/planning-prospects-africa-2021.pdf</a></li>
   </ol>
   </section>
 </div>
@@ -236,7 +275,6 @@
   <p>Data source: Eskom · 2025-26</p>
   <a href="energy_systems.html">← Back to Energy Systems</a>
 </footer>
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/2.2.1/chartjs-plugin-annotation.min.js"></script>
@@ -255,7 +293,7 @@ new Chart(document.getElementById('c1'), {
     datasets:[
       {label:'EAF', data:[56.9,56.1,59.0,60.2,63.8,66.2,70.2,65.7,68.2,68.9,71.0,68.4,66.7,62.1], borderColor:'#2563eb', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:3, borderWidth:2},
       {label:'UCLF', data:[28.2,28.6,29.0,31.2,25.9,21.3,18.3,21.9,19.1,19.9,17.2,20.6,19.6,21.5], borderColor:'#dc2626', fill:false, tension:0.3, pointRadius:0, pointHoverRadius:3, borderWidth:2}
-         ]},
+    ]},
   options:{ responsive:true, maintainAspectRatio:false, interaction:{mode:'index',intersect:false},
     plugins:{ legend:{display:false},
       tooltip:{...TOOLTIP,usePointStyle:true,boxWidth:3,yAlign:'bottom',callbacks:{label:ctx=>` ${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)}%`,title:items=>items[0].label}},
@@ -269,33 +307,15 @@ const ocgtPriceDate=['01 Apr 2025','06 May 2025','03 Jun 2025','01 Jul 2025','05
 new Chart(document.getElementById('c2'), {
   type:'bar',
   data:{ labels:['Apr 25','May 25','Jun 25','Jul 25','Aug 25','Sep 25','Oct 25','Nov 25','Dec 25','Jan 26','Feb 26','Mar 26'],
-    datasets:[
-      {label:'OCGT (GWh)', data:ocgtVals, backgroundColor:'#2563eb', borderRadius:0, borderSkipped:false, yAxisID:'y', order:2},
-    ]},
+    datasets:[{label:'OCGT (GWh)', data:ocgtVals, backgroundColor:'#2563eb', borderRadius:0, borderSkipped:false, yAxisID:'y', order:2}]},
   options:{ responsive:true, maintainAspectRatio:false,
     plugins:{
       legend:{display:false},
-      tooltip:{...TOOLTIP,boxWidth:3,callbacks:{label:function(ctx){const i=ctx.dataIndex;return[`OCGT: ${ocgtVals[i].toFixed(0)} GWh`,`Est. cost: R${ocgtCost[i].toFixed(2)} bn`,`Diesel price date: ${ocgtPriceDate[i]}`];}}},
-      barEndLabels:{
-        afterDatasetsDraw(chart){
-          const {ctx,data,scales:{x,y}}=chart;
-          const ds=chart.getDatasetMeta(0).data;
-          [0,ocgtVals.length-1].forEach(i=>{
-            const bar=ds[i];
-            const val=ocgtVals[i];
-            ctx.save();
-            ctx.fillStyle='#9ca3af';
-            ctx.font='11px sans-serif';
-            ctx.textAlign='center';
-            ctx.fillText(val.toFixed(0)+' GWh', bar.x, y.getPixelForValue(val)-6);
-            ctx.restore();
-          });
-        }
-      }
+      tooltip:{...TOOLTIP,boxWidth:3,callbacks:{label:function(ctx){const i=ctx.dataIndex;return[`OCGT: ${ocgtVals[i].toFixed(0)} GWh`,`Est. cost: R${ocgtCost[i].toFixed(2)} bn`,`Diesel price date: ${ocgtPriceDate[i]}`];}}}
     },
     scales:{ x:{...AXIS_X}, y:{...AXIS_Y,ticks:{...AXIS_Y.ticks,callback:v=>v},title:{display:true,text:'OCGT Generation (GWh)',color:'#9ca3af',font:{size:10}}} }
   },
- plugins:[{id:'barEndLabels',afterDatasetsDraw(chart){
+  plugins:[{id:'barEndLabels',afterDatasetsDraw(chart){
     const {ctx,scales:{y}}=chart;
     const ds=chart.getDatasetMeta(0).data;
     [0,ocgtVals.length-1].forEach(i=>{
@@ -355,135 +375,52 @@ new Chart(document.getElementById('c3b'), {
     scales:{x:X_TICKS_3,y:{...AXIS_Y,min:0,max:50,ticks:{...AXIS_Y.ticks,callback:v=>v+'%'},title:{display:true,text:'RE generation (%)',color:'#9ca3af',font:{size:10}}}}}
 });
 
+/* ── ACEC Map ── */
 (function(){
-  const NET={
-    "2022":{"Ethiopia":15.29,"Kenya":-13.45,"Uganda":-7.24,"UR Tanzania":-0.43,"Rwanda":1.05,"Burundi":-0.16,"DR Congo":2.38,"South Sudan":0,"Sudan":2.15,"Djibouti":-0.09,"Angola":0,"Mozambique":0.08,"Zambia":-3.86,"Zimbabwe":-4.12,"Malawi":0,"Namibia":2.68,"Botswana":1.07,"South Africa":0.92,"Eswatini":1.33,"Lesotho":0.59,"Egypt":0},
-    "2030":{"Ethiopia":11.38,"Kenya":-12.69,"Uganda":-1.84,"UR Tanzania":-5.37,"Rwanda":1.24,"Burundi":0.32,"DR Congo":0.48,"South Sudan":-0.8,"Sudan":3.74,"Djibouti":0.01,"Angola":-0.6,"Mozambique":-20.34,"Zambia":-1.55,"Zimbabwe":-5.02,"Malawi":0.47,"Namibia":2.05,"Botswana":2.0,"South Africa":23.48,"Eswatini":1.82,"Lesotho":0.86,"Egypt":-2.52},
-    "2040":{"Ethiopia":12.0,"Kenya":-17.64,"Uganda":0.29,"UR Tanzania":10.62,"Rwanda":2.03,"Burundi":0.62,"DR Congo":-50.76,"South Sudan":-0.63,"Sudan":-7.81,"Djibouti":0.46,"Angola":11.96,"Mozambique":-30.85,"Zambia":-12.16,"Zimbabwe":-8.25,"Malawi":7.15,"Namibia":1.75,"Botswana":1.35,"South Africa":61.87,"Eswatini":0.77,"Lesotho":0.99,"Egypt":8.26}
+  const NET_2040 = {
+    "Ethiopia":12.0,"Kenya":-17.64,"Uganda":0.29,"UR Tanzania":10.62,"Rwanda":2.03,
+    "Burundi":0.62,"DR Congo":-50.76,"South Sudan":-0.63,"Sudan":-7.81,"Djibouti":0.46,
+    "Angola":11.96,"Mozambique":-30.85,"Zambia":-12.16,"Zimbabwe":-8.25,"Malawi":7.15,
+    "Namibia":1.75,"Botswana":1.35,"South Africa":61.87,"Eswatini":0.77,"Lesotho":0.99,"Egypt":8.26
   };
-  const ISO={
+  const ISO = {
     "Egypt":"818","Ethiopia":"231","Kenya":"404","Uganda":"800","UR Tanzania":"834",
     "Rwanda":"646","Burundi":"108","DR Congo":"180","South Sudan":"728","Sudan":"729",
     "Djibouti":"262","Angola":"024","Mozambique":"508","Zambia":"894","Zimbabwe":"716",
     "Malawi":"454","Namibia":"516","Botswana":"072","South Africa":"710","Eswatini":"748","Lesotho":"426"
   };
-  const SHORT={"UR Tanzania":"Tanzania","South Sudan":"S. Sudan","South Africa":"S. Africa","DR Congo":"DR Congo"};
 
-  let mapYear='2040';
-  let _geoPath = null;
-  let _features = null;
+  // Determine largest importer & exporter
+  const entries = Object.entries(NET_2040).filter(([,v]) => v !== 0);
+  const largestImp = entries.filter(([,v])=>v>0).sort((a,b)=>b[1]-a[1])[0][0]; // South Africa
+  const largestExp = entries.filter(([,v])=>v<0).sort((a,b)=>a[1]-b[1])[0][0]; // DR Congo
 
-  function drawMap() {
-    if (!_geoPath || !_features) return;
-    const svg = document.getElementById('acec-map');
-    svg.innerHTML = '';
-    const d = NET[mapYear];
+  // Build panel cards
+  const highlights = [
+    { name: largestImp, val: NET_2040[largestImp], label: 'Largest importer', color: '#dc2626' },
+    { name: largestExp, val: NET_2040[largestExp], label: 'Largest exporter', color: '#16a34a' },
+  ];
+  const cardsEl = document.getElementById('acec-cards');
+  highlights.forEach((h, i) => {
+    const card = document.createElement('div');
+    card.className = 'ac';
+    card.style.animationDelay = (0.1 + i * 0.12) + 's';
+    const twh = Math.abs(h.val).toFixed(1);
+    const displayName = {'UR Tanzania':'Tanzania','DR Congo':'DR Congo','South Africa':'South Africa'}[h.name] || h.name;
+    card.innerHTML = `
+      <div class="ac-bar" style="background:${h.color}"></div>
+      <div class="ac-body">
+        <div class="ac-lbl">${h.label}</div>
+        <div class="ac-row">
+          <span class="ac-val">${twh}</span>
+          <span class="ac-unit" style="font-weight:700;color:#111827;">TWh</span>
+        </div>
+        <div class="ac-sub">${displayName}</div>
+      </div>`;
+    cardsEl.appendChild(card);
+  });
 
-    const entries = Object.entries(d).filter(([,v]) => v !== 0 && v !== undefined);
-    const sorted = [...entries].sort((a,b) => b[1]-a[1]);
-    const top5imp = sorted.filter(([,v]) => v>0).slice(0,5).map(([k]) => k);
-    const top5exp = sorted.filter(([,v]) => v<0).sort((a,b) => a[1]-b[1]).slice(0,5).map(([k]) => k);
-    const labeled = new Set([...top5imp, ...top5exp]);
-    const largestImp = top5imp[0];
-    const largestExp = top5exp[0];
-
-    const gBase = document.createElementNS('http://www.w3.org/2000/svg','g');
-    svg.appendChild(gBase);
-    _features.forEach(f => {
-      const iso = f.id ? String(f.id).padStart(3,'0') : null;
-      const name = Object.keys(ISO).find(k => ISO[k] === iso);
-      if (!name) return;
-      const pd = _geoPath(f);
-      if (!pd) return;
-      const el = document.createElementNS('http://www.w3.org/2000/svg','path');
-      el.setAttribute('d', pd);
-      el.setAttribute('fill', '#e8e8e5');
-      el.setAttribute('stroke', '#fff');
-      el.setAttribute('stroke-width', '0.8');
-      gBase.appendChild(el);
-    });
-
-    const gDots = document.createElementNS('http://www.w3.org/2000/svg','g');
-    svg.appendChild(gDots);
-    const gLabels = document.createElementNS('http://www.w3.org/2000/svg','g');
-    svg.appendChild(gLabels);
-
-    _features.forEach(f => {
-      const iso = f.id ? String(f.id).padStart(3,'0') : null;
-      const name = Object.keys(ISO).find(k => ISO[k] === iso);
-      if (!name) return;
-      const val = d[name];
-      if (val === undefined || val === 0) return;
-
-      const cen = _geoPath.centroid(f);
-      if (!cen || isNaN(cen[0]) || isNaN(cen[1])) return;
-
-      const isImp = val > 0;
-      const col = isImp ? '#dc2626' : '#16a34a';
-      const isTop5 = labeled.has(name);
-      const isLargest = (isImp && name === largestImp) || (!isImp && name === largestExp);
-
-      if (isLargest) {
-        const ring = document.createElementNS('http://www.w3.org/2000/svg','circle');
-        ring.setAttribute('cx', cen[0]);
-        ring.setAttribute('cy', cen[1]);
-        ring.setAttribute('r', '5');
-        ring.setAttribute('fill', col);
-        ring.setAttribute('opacity', '0.7');
-        const animR = document.createElementNS('http://www.w3.org/2000/svg','animate');
-        animR.setAttribute('attributeName','r');
-        animR.setAttribute('from','4'); animR.setAttribute('to','12');
-        animR.setAttribute('dur','1.6s'); animR.setAttribute('repeatCount','indefinite');
-        const animO = document.createElementNS('http://www.w3.org/2000/svg','animate');
-        animO.setAttribute('attributeName','opacity');
-        animO.setAttribute('from','0.7'); animO.setAttribute('to','0');
-        animO.setAttribute('dur','1.6s'); animO.setAttribute('repeatCount','indefinite');
-        ring.appendChild(animR);
-        ring.appendChild(animO);
-        gDots.appendChild(ring);
-      }
-
-      const dot = document.createElementNS('http://www.w3.org/2000/svg','circle');
-      dot.setAttribute('cx', cen[0]);
-      dot.setAttribute('cy', cen[1]);
-      dot.setAttribute('r', isTop5 ? '3' : '2');
-      dot.setAttribute('fill', col);
-      dot.setAttribute('opacity', isTop5 ? '1' : '0.45');
-      gDots.appendChild(dot);
-
-      if (isTop5) {
-        const label = SHORT[name] || name;
-        const valStr = (isImp ? '+' : '') + val.toFixed(1) + ' TWh';
-
-        const tName = document.createElementNS('http://www.w3.org/2000/svg','text');
-        tName.setAttribute('x', cen[0] - 20);
-        tName.setAttribute('y', cen[1] - 10);
-        tName.setAttribute('font-size', '11');
-        tName.setAttribute('font-weight', '700');
-        tName.setAttribute('fill', isLargest ? col : '#6b7280');
-        tName.setAttribute('font-family', 'system-ui,sans-serif');
-        tName.textContent = label;
-        gLabels.appendChild(tName);
-
-        const tVal = document.createElementNS('http://www.w3.org/2000/svg','text');
-        tVal.setAttribute('x', cen[0] - 20);
-        tVal.setAttribute('y', cen[1] + 15);
-        tVal.setAttribute('font-size', '10');
-        tVal.setAttribute('font-weight', isLargest ? '700' : '400');
-        tVal.setAttribute('fill', '#374151');
-        tVal.setAttribute('font-family', 'system-ui,sans-serif');
-        tVal.textContent = valStr;
-        gLabels.appendChild(tVal);
-      }
-    });
-  }
-
-  window.mapSetYear = function(y, btn) {
-    mapYear = y;
-    document.querySelectorAll('[onclick^="mapSetYear"]').forEach(p => p.classList.remove('active'));
-    btn.classList.add('active');
-    drawMap();
-  };
+  const container = document.getElementById('acec-wrap');
 
   fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
     .then(r => r.json())
@@ -494,18 +431,75 @@ new Chart(document.getElementById('c3b'), {
         return Object.values(ISO).includes(iso);
       });
 
+      const W = container.clientWidth || 800;
+      const H = 520;
+      const LEFT_OFFSET = 80;
+
       const proj = d3.geoMercator()
-        .fitExtent([[10,10],[490,550]], {type:'FeatureCollection', features: acecFeatures});
+        .fitExtent([[LEFT_OFFSET, 10], [W - 10, H - 10]], {type:'FeatureCollection', features: acecFeatures});
+      const geoPath = d3.geoPath().projection(proj);
 
-      _geoPath = d3.geoPath().projection(proj);
-      _features = allFeatures;
+      const svg = d3.select('#acec-map-svg').attr('viewBox', `0 0 ${W} ${H}`);
 
-      drawMap();
+      // Base layer
+      svg.append('g').selectAll('path')
+        .data(acecFeatures).join('path')
+        .attr('d', geoPath)
+        .attr('fill', '#e8e8e5')
+        .attr('stroke', '#fff')
+        .attr('stroke-width', 0.8);
+
+      const gDots = svg.append('g');
+
+      acecFeatures.forEach(f => {
+        const iso = f.id ? String(f.id).padStart(3,'0') : null;
+        const name = Object.keys(ISO).find(k => ISO[k] === iso);
+        if (!name) return;
+        const val = NET_2040[name];
+        if (!val) return;
+        const cen = geoPath.centroid(f);
+        if (!cen || isNaN(cen[0])) return;
+
+        const isImp = val > 0;
+        const col = isImp ? '#dc2626' : '#16a34a';
+        const isHighlight = name === largestImp || name === largestExp;
+
+        // Pulsing ring only on the two largest
+        if (isHighlight) {
+          const ring = gDots.append('circle')
+            .attr('cx', cen[0]).attr('cy', cen[1])
+            .attr('r', 5).attr('fill', col).attr('opacity', 0.65);
+          ring.append('animate').attr('attributeName','r').attr('from','4').attr('to','15')
+            .attr('dur','1.8s').attr('repeatCount','indefinite');
+          ring.append('animate').attr('attributeName','opacity').attr('from','0.65').attr('to','0')
+            .attr('dur','1.8s').attr('repeatCount','indefinite');
+        }
+
+        // Solid dot
+        gDots.append('circle')
+          .attr('cx', cen[0]).attr('cy', cen[1])
+          .attr('r', isHighlight ? 4.5 : 2.5)
+          .attr('fill', col)
+          .attr('opacity', isHighlight ? 1 : 0.45);
+
+        // Country name label above dot (highlights only) — plain bold black
+        if (isHighlight) {
+          const displayName = {'UR Tanzania':'Tanzania','South Africa':'S. Africa','DR Congo':'DR Congo'}[name] || name;
+          svg.append('text')
+            .attr('x', cen[0]).attr('y', cen[1] - 14)
+            .attr('text-anchor', 'middle')
+            .attr('font-size', 10).attr('font-weight', '700')
+            .attr('fill', '#111827')
+            .attr('font-family', 'system-ui,sans-serif')
+            .text(displayName);
+        }
+      });
     })
-    .catch(err => {
-      console.error('Map load failed:', err);
-      const svg = document.getElementById('acec-map');
-      svg.innerHTML = '<text x="250" y="280" text-anchor="middle" font-size="13" fill="#9ca3af" font-family="system-ui,sans-serif">Map data could not be loaded</text>';
+    .catch(() => {
+      d3.select('#acec-map-svg').append('text')
+        .attr('x','50%').attr('y','50%').attr('text-anchor','middle')
+        .attr('font-size',13).attr('fill','#9ca3af')
+        .text('Map data could not be loaded');
     });
 })();
 </script>
