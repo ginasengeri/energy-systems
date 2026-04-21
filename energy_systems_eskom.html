@@ -73,7 +73,7 @@
     The crisis has commonly been attributed to insufficient maintenance of coal-fired power stations, as well as governance challenges.
   </p>
   <p>  
-    Significant progress has since been made, with no load shedding recorded since March 2024. Several factors now shape South Africa’s
+    Significant progress has since been made, with no load shedding recorded since March 2024. Several factors now shape South Africa's
     changing energy landscape:
   </p>
   <ol>
@@ -135,7 +135,7 @@
       <div style="position:relative; height:300px;"><canvas id="c3b"></canvas></div>
     </div>
   </div>
-  <p style="font-size:0.82rem; color:#9ca3af; margin-top:4px;"><em>Note: SPLAT projections are based on a 2019 reference scenario and do not reflect subsequent changes in future demand, technology costs, fuel prices, climate change or policy. South Africa's renewable deployment has already exceeded the model's 2019 baseline, which accounts for the discontinuity at the gap.</em></p>
+  <p style="font-size:0.8rem; color:#9ca3af; margin-top:4px;"><em>Note: SPLAT projections are based on a 2019 reference scenario and do not reflect subsequent changes in future demand, technology costs, fuel prices, climate change or policy. South Africa's renewable deployment has already exceeded the model's 2019 baseline, which accounts for the discontinuity at the gap.</em></p>
   <p>The majority of renewable deployment in South Africa is expected to come from solar PV and wind, accounting for an estimated 37% of domestic demand by 2040. IRENA's projections show coal generation dropping to 48% by 2035, while solar and wind rise to 39%. The timely deployment of renewable projects will be key to maintaining stable and reliable supply of electricity.</p>
   <p>As coal plants are decommissioned over the next decade, constraints on capacity are likely to affect not only domestic reliability, but also South Africa's role in regional electricity trade.</p>
   </section>
@@ -164,9 +164,9 @@
     <span style="display:inline-flex;align-items:center;gap:4px;margin-left:8px;"><svg width="10" height="10"><circle cx="5" cy="5" r="4" fill="#16a34a"/></svg> Net exporter</span>
   </div>
 
-  <svg id="acec-map" viewBox="0 0 700 620" class="acec-map-svg" style="display:block;margin:0 auto;"></svg>
+  <svg id="acec-map" viewBox="0 0 500 560" class="acec-map-svg" style="display:block;margin:0 auto;"></svg>
 
-  <p style="font-size:0.82rem;color:#9ca3af;margin-top:6px;"><em>The SPLAT model uses data from the EAPP (2014) and SAPP (2017) master plans for assumptions on demand, costs and generation capacity. Projected country trade positions reflect these model assumptions and should be interpreted in this context.</em></p>
+  <p style="font-size:0.8rem;color:#9ca3af;margin-top:6px;"><em>The SPLAT model uses data from the EAPP (2014) and SAPP (2017) master plans for assumptions on demand, costs and generation capacity. Projected country trade positions reflect these model assumptions and should be interpreted in this context.</em></p>
   
   
   <p>The diversity of resources in the ACEC region creates opportunities for efficiency gains, with total trade flows projected to increase
@@ -190,7 +190,7 @@
       </tbody>
     </table>
   </div>
-  <p style="font-size:0.82rem; color:#9ca3af; margin-top:4px;"><em>Reference scenario (REF), Unlimited interconnector capacity expansion (TxNoLim), 50% variable renewables in 2040 (VREHigh), Limited penetration of VRE to 20% (VRELim)</em></p>
+  <p style="font-size:0.8rem; color:#9ca3af; margin-top:4px;"><em>Reference scenario (REF), Unlimited interconnector capacity expansion (TxNoLim), 50% variable renewables in 2040 (VREHigh), Limited penetration of VRE to 20% (VRELim)</em></p>
 
   <p>
     The largest increase in trade flows is observed in the scenario with limited renewable deployment, with a 5.9× increase.
@@ -237,11 +237,8 @@
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/2.2.1/chartjs-plugin-annotation.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
 
 <script>
@@ -398,12 +395,12 @@ new Chart(document.getElementById('c3b'), {
         const ring = document.createElementNS('http://www.w3.org/2000/svg','circle');
         ring.setAttribute('cx', cen[0]);
         ring.setAttribute('cy', cen[1]);
-        ring.setAttribute('r', '6');
+        ring.setAttribute('r', '5');
         ring.setAttribute('fill', col);
         ring.setAttribute('opacity', '0.7');
         const animR = document.createElementNS('http://www.w3.org/2000/svg','animate');
         animR.setAttribute('attributeName','r');
-        animR.setAttribute('from','6'); animR.setAttribute('to','18');
+        animR.setAttribute('from','4'); animR.setAttribute('to','12');
         animR.setAttribute('dur','1.6s'); animR.setAttribute('repeatCount','indefinite');
         const animO = document.createElementNS('http://www.w3.org/2000/svg','animate');
         animO.setAttribute('attributeName','opacity');
@@ -417,7 +414,7 @@ new Chart(document.getElementById('c3b'), {
       const dot = document.createElementNS('http://www.w3.org/2000/svg','circle');
       dot.setAttribute('cx', cen[0]);
       dot.setAttribute('cy', cen[1]);
-      dot.setAttribute('r', isTop5 ? '4' : '3');
+      dot.setAttribute('r', isTop5 ? '3' : '2');
       dot.setAttribute('fill', col);
       dot.setAttribute('opacity', isTop5 ? '1' : '0.45');
       gDots.appendChild(dot);
@@ -427,9 +424,9 @@ new Chart(document.getElementById('c3b'), {
         const valStr = (isImp ? '+' : '') + val.toFixed(1) + ' TWh';
 
         const tName = document.createElementNS('http://www.w3.org/2000/svg','text');
-        tName.setAttribute('x', cen[0] - 28);
-        tName.setAttribute('y', cen[1] - 14);
-        tName.setAttribute('font-size', '14');
+        tName.setAttribute('x', cen[0] - 20);
+        tName.setAttribute('y', cen[1] - 10);
+        tName.setAttribute('font-size', '11');
         tName.setAttribute('font-weight', '700');
         tName.setAttribute('fill', isLargest ? col : '#6b7280');
         tName.setAttribute('font-family', 'system-ui,sans-serif');
@@ -437,9 +434,9 @@ new Chart(document.getElementById('c3b'), {
         gLabels.appendChild(tName);
 
         const tVal = document.createElementNS('http://www.w3.org/2000/svg','text');
-        tVal.setAttribute('x', cen[0] - 28);
-        tVal.setAttribute('y', cen[1] + 20);
-        tVal.setAttribute('font-size', '13');
+        tVal.setAttribute('x', cen[0] - 20);
+        tVal.setAttribute('y', cen[1] + 15);
+        tVal.setAttribute('font-size', '10');
         tVal.setAttribute('font-weight', isLargest ? '700' : '400');
         tVal.setAttribute('fill', '#374151');
         tVal.setAttribute('font-family', 'system-ui,sans-serif');
@@ -465,9 +462,8 @@ new Chart(document.getElementById('c3b'), {
         return Object.values(ISO).includes(iso);
       });
 
-      // Wider viewBox (700x620) + tight padding = map fills the space and zooms into ACEC region
       const proj = d3.geoMercator()
-        .fitExtent([[20, 20],[680, 600]], {type:'FeatureCollection', features: acecFeatures});
+        .fitExtent([[10,10],[490,550]], {type:'FeatureCollection', features: acecFeatures});
 
       _geoPath = d3.geoPath().projection(proj);
       _features = allFeatures;
@@ -477,7 +473,7 @@ new Chart(document.getElementById('c3b'), {
     .catch(err => {
       console.error('Map load failed:', err);
       const svg = document.getElementById('acec-map');
-      svg.innerHTML = '<text x="350" y="310" text-anchor="middle" font-size="14" fill="#9ca3af" font-family="system-ui,sans-serif">Map data could not be loaded</text>';
+      svg.innerHTML = '<text x="250" y="280" text-anchor="middle" font-size="13" fill="#9ca3af" font-family="system-ui,sans-serif">Map data could not be loaded</text>';
     });
 })();
 </script>
