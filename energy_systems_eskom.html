@@ -41,42 +41,45 @@
     th, td { border: 1px solid var(--border-soft); padding: 6px 8px; text-align: left; white-space: nowrap; }
     th { background-color: var(--table-header); font-weight: 600; }
 
-    /* ── Map card ── */
-    .map-embed {
-      position: relative; width: 92%; height: 520px;
-      border-radius: 10px; border: 1px solid var(--border-soft);
-      overflow: hidden; margin: 10px auto 6px;
-      background: #ffffff;
-    }
-    .map-embed svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-    #acec-panel {
-      position: absolute; top: 16px; left: 18px; z-index: 10;
-      display: flex; flex-direction: column; gap: 6px;
-    }
-    #acec-panel h3 { font-size: 12px; font-weight: 700; color: #111827; margin: 0; }
-    #acec-panel p  { font-size: 10px; line-height: 1.3; color: #6b7280; margin: 1px 0 0; }
-    #acec-cards    { display: flex; flex-direction: column; gap: 4px; margin-top: 4px; }
-    .ac {
-      background: #fff; border: 1px solid #e0e3e8; border-radius: 6px;
-      padding: 7px 12px 7px 10px; display: flex; align-items: center; gap: 8px;
-      white-space: nowrap; opacity: 0; animation: acup .35s ease forwards;
-    }
-    .ac-bar  { width: 3px; align-self: stretch; border-radius: 2px; flex-shrink: 0; }
-    .ac-body { display: flex; flex-direction: column; }
-    .ac-lbl  { font-size: 10px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 2px; }
-    .ac-row  { display: flex; align-items: baseline; gap: 3px; }
-    .ac-val  { font-size: 17px; font-weight: 700; letter-spacing: -.5px; line-height: 1; }
-    .ac-unit { font-size: 10px; color: #9ca3af; }
-    .ac-sub  { font-size: 10px; color: #9ca3af; margin-top: 1px; }
-    #acec-legend {
-      position: absolute; bottom: 14px; right: 16px; z-index: 10;
-      background: #fff; border: 1px solid #e0e3e8; border-radius: 6px;
-      padding: 7px 11px; display: flex; flex-direction: column; gap: 5px;
-      opacity: 0; animation: acup .35s .5s ease forwards;
-    }
-    .leg-item { display: flex; align-items: center; gap: 6px; font-size: 10px; color: #6b7280; }
-    .leg-dot  { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-    @keyframes acup { from { opacity:0; transform:translateY(3px); } to { opacity:1; transform:none; } }
+```
+/* ── Map card ── */
+.map-embed {
+  position: relative; width: 92%; height: 520px;
+  border-radius: 10px; border: 1px solid var(--border-soft);
+  overflow: hidden; margin: 10px auto 6px;
+  background: #ffffff;
+}
+.map-embed svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+#acec-panel {
+  position: absolute; top: 16px; left: 18px; z-index: 10;
+  display: flex; flex-direction: column; gap: 6px;
+}
+#acec-panel h3 { font-size: 12px; font-weight: 700; color: #111827; margin: 0; }
+#acec-panel p  { font-size: 10px; line-height: 1.3; color: #6b7280; margin: 1px 0 0; }
+#acec-cards    { display: flex; flex-direction: column; gap: 4px; margin-top: 4px; }
+.ac {
+  background: #fff; border: 1px solid #e0e3e8; border-radius: 6px;
+  padding: 7px 12px 7px 10px; display: flex; align-items: center; gap: 8px;
+  white-space: nowrap; opacity: 0; animation: acup .35s ease forwards;
+}
+.ac-bar  { width: 3px; align-self: stretch; border-radius: 2px; flex-shrink: 0; }
+.ac-body { display: flex; flex-direction: column; }
+.ac-lbl  { font-size: 10px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 2px; }
+.ac-row  { display: flex; align-items: baseline; gap: 3px; }
+.ac-val  { font-size: 17px; font-weight: 700; letter-spacing: -.5px; line-height: 1; }
+.ac-unit { font-size: 10px; color: #9ca3af; }
+.ac-sub  { font-size: 10px; color: #9ca3af; margin-top: 1px; }
+#acec-legend {
+  position: absolute; bottom: 14px; right: 16px; z-index: 10;
+  background: #fff; border: 1px solid #e0e3e8; border-radius: 6px;
+  padding: 7px 11px; display: flex; flex-direction: column; gap: 5px;
+  opacity: 0; animation: acup .35s .5s ease forwards;
+}
+.leg-item { display: flex; align-items: center; gap: 6px; font-size: 10px; color: #6b7280; }
+.leg-dot  { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+@keyframes acup { from { opacity:0; transform:translateY(3px); } to { opacity:1; transform:none; } }
+```
+
   </style>
 </head>
 <body>
@@ -190,21 +193,25 @@
   <p class="chart-fig" style="margin-top:20px;">Fig. 4 — ACEC net trade positions, 2040 (IRENA SPLAT reference case)</p>
 
   <!-- ── Map card ── -->
+
   <div class="map-embed" id="acec-wrap">
     <svg id="acec-map-svg"></svg>
 
-    <div id="acec-panel">
-      <div>
-        <h3>ACEC Net Trade Positions</h3>
-        <p>Africa Clean Energy Corridor · 2040 · TWh</p>
-      </div>
-      <div id="acec-cards"></div>
-    </div>
+```
+<div id="acec-panel">
+  <div>
+    <h3>ACEC Net Trade Positions</h3>
+    <p>Africa Clean Energy Corridor · 2040 · TWh</p>
+  </div>
+  <div id="acec-cards"></div>
+</div>
 
-    <div id="acec-legend">
-      <div class="leg-item"><div class="leg-dot" style="background:#dc2626"></div>Net importer</div>
-      <div class="leg-item"><div class="leg-dot" style="background:#16a34a"></div>Net exporter</div>
-    </div>
+<div id="acec-legend">
+  <div class="leg-item"><div class="leg-dot" style="background:#dc2626"></div>Net importer</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#16a34a"></div>Net exporter</div>
+</div>
+```
+
   </div>
 
   <p style="font-size:0.8rem;color:#9ca3af;margin-top:6px;"><em>The SPLAT model uses data from the EAPP (2014) and SAPP (2017) master plans for assumptions on demand, costs and generation capacity. Projected country trade positions reflect these model assumptions and should be interpreted in this context.</em></p>
@@ -277,8 +284,11 @@
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/2.2.1/chartjs-plugin-annotation.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
 
 <script>
@@ -304,30 +314,57 @@ new Chart(document.getElementById('c1'), {
 const ocgtVals=[462.2,284.0,284.2,204.1,119.4,65.9,93.6,92.8,95.3,91.5,92.9,99.4];
 const ocgtCost=[2.36,1.42,1.39,1.05,0.63,0.34,0.48,0.47,0.50,0.45,0.44,0.49];
 const ocgtPriceDate=['01 Apr 2025','06 May 2025','03 Jun 2025','01 Jul 2025','05 Aug 2025','02 Sep 2025','30 Sep 2025','04 Nov 2025','02 Dec 2025','06 Jan 2026','03 Feb 2026','03 Mar 2026'];
+
 new Chart(document.getElementById('c2'), {
   type:'bar',
   data:{ labels:['Apr 25','May 25','Jun 25','Jul 25','Aug 25','Sep 25','Oct 25','Nov 25','Dec 25','Jan 26','Feb 26','Mar 26'],
-    datasets:[{label:'OCGT (GWh)', data:ocgtVals, backgroundColor:'#2563eb', borderRadius:0, borderSkipped:false, yAxisID:'y', order:2}]},
-  options:{ responsive:true, maintainAspectRatio:false,
+    datasets:[{
+      label:'OCGT (GWh)',
+      data:ocgtVals,
+      backgroundColor:'#2563eb',
+      borderRadius:4,
+      borderSkipped:false,
+      yAxisID:'y',
+      order:2
+    }]
+  },
+  options:{
+    responsive:true,
+    maintainAspectRatio:false,
+    layout:{ padding:{ top: 28 } },
     plugins:{
       legend:{display:false},
       tooltip:{...TOOLTIP,boxWidth:3,callbacks:{label:function(ctx){const i=ctx.dataIndex;return[`OCGT: ${ocgtVals[i].toFixed(0)} GWh`,`Est. cost: R${ocgtCost[i].toFixed(2)} bn`,`Diesel price date: ${ocgtPriceDate[i]}`];}}}
     },
-    scales:{ x:{...AXIS_X}, y:{...AXIS_Y,ticks:{...AXIS_Y.ticks,callback:v=>v},title:{display:true,text:'OCGT Generation (GWh)',color:'#9ca3af',font:{size:10}}} }
+    scales:{
+      x:{...AXIS_X},
+      y:{...AXIS_Y,ticks:{...AXIS_Y.ticks,callback:v=>v},title:{display:true,text:'OCGT Generation (GWh)',color:'#9ca3af',font:{size:10}}}
+    }
   },
-  plugins:[{id:'barEndLabels',afterDatasetsDraw(chart){
-    const {ctx,scales:{y}}=chart;
-    const ds=chart.getDatasetMeta(0).data;
-    [0,ocgtVals.length-1].forEach(i=>{
-      const bar=ds[i];
-      ctx.save();
-      ctx.fillStyle='#000000';
-      ctx.font='bold 11px '+Chart.defaults.font.family;
-      ctx.textAlign='center';
-      ctx.fillText('R'+ocgtCost[i].toFixed(2)+'bn', bar.x, y.getPixelForValue(ocgtVals[i])-6);
-      ctx.restore();
-    });
-  }}]
+  plugins:[{
+    id:'barEndLabels',
+    afterDatasetsDraw(chart){
+      const {ctx, scales:{y}, chartArea} = chart;
+      const ds = chart.getDatasetMeta(0).data;
+      // Label first bar (left-aligned) and last bar (right-aligned to avoid clip)
+      const targets = [
+        { i: 0, align: 'center', xAdj: 0 },
+        { i: ocgtVals.length - 1, align: 'right', xAdj: -2 }
+      ];
+      targets.forEach(({ i, align, xAdj }) => {
+        const bar = ds[i];
+        const barTop = y.getPixelForValue(ocgtVals[i]);
+        // Place label inside top padding area — never above chartArea.top
+        const labelY = Math.max(barTop - 6, chartArea.top + 2);
+        ctx.save();
+        ctx.fillStyle = '#111827';
+        ctx.font = 'bold 11px ' + Chart.defaults.font.family;
+        ctx.textAlign = align;
+        ctx.fillText('R' + ocgtCost[i].toFixed(2) + 'bn', bar.x + xAdj, labelY);
+        ctx.restore();
+      });
+    }
+  }]
 });
 
 const yrs3_hist=[2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024];
@@ -390,12 +427,10 @@ new Chart(document.getElementById('c3b'), {
     "Malawi":"454","Namibia":"516","Botswana":"072","South Africa":"710","Eswatini":"748","Lesotho":"426"
   };
 
-  // Determine largest importer & exporter
   const entries = Object.entries(NET_2040).filter(([,v]) => v !== 0);
-  const largestImp = entries.filter(([,v])=>v>0).sort((a,b)=>b[1]-a[1])[0][0]; // South Africa
-  const largestExp = entries.filter(([,v])=>v<0).sort((a,b)=>a[1]-b[1])[0][0]; // DR Congo
+  const largestImp = entries.filter(([,v])=>v>0).sort((a,b)=>b[1]-a[1])[0][0];
+  const largestExp = entries.filter(([,v])=>v<0).sort((a,b)=>a[1]-b[1])[0][0];
 
-  // Build panel cards
   const highlights = [
     { name: largestImp, val: NET_2040[largestImp], label: 'Largest importer', color: '#dc2626' },
     { name: largestExp, val: NET_2040[largestExp], label: 'Largest exporter', color: '#16a34a' },
@@ -441,7 +476,6 @@ new Chart(document.getElementById('c3b'), {
 
       const svg = d3.select('#acec-map-svg').attr('viewBox', `0 0 ${W} ${H}`);
 
-      // Base layer
       svg.append('g').selectAll('path')
         .data(acecFeatures).join('path')
         .attr('d', geoPath)
@@ -464,7 +498,6 @@ new Chart(document.getElementById('c3b'), {
         const col = isImp ? '#dc2626' : '#16a34a';
         const isHighlight = name === largestImp || name === largestExp;
 
-        // Pulsing ring only on the two largest
         if (isHighlight) {
           const ring = gDots.append('circle')
             .attr('cx', cen[0]).attr('cy', cen[1])
@@ -475,14 +508,12 @@ new Chart(document.getElementById('c3b'), {
             .attr('dur','1.8s').attr('repeatCount','indefinite');
         }
 
-        // Solid dot
         gDots.append('circle')
           .attr('cx', cen[0]).attr('cy', cen[1])
           .attr('r', isHighlight ? 4.5 : 2.5)
           .attr('fill', col)
           .attr('opacity', isHighlight ? 1 : 0.45);
 
-        // Country name label above dot (highlights only) — plain bold black
         if (isHighlight) {
           const displayName = {'UR Tanzania':'Tanzania','South Africa':'S. Africa','DR Congo':'DR Congo'}[name] || name;
           svg.append('text')
