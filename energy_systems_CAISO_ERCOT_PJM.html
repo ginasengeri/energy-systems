@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -55,6 +54,10 @@ sup a { text-decoration: none; }
 .custom-legend { display: flex; flex-wrap: wrap; gap: 6px 24px; justify-content: center; margin-bottom: 12px; margin-top: 12px; }
 .cl-item { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: #374151; }
 .cl-line { width: 22px; height: 2.5px; border-radius: 2px; flex-shrink: 0; display: block; }
+.dual-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0; }
+.dual-filter { display: flex; gap: 6px; }
+.df-btn { padding: 4px 14px; border-radius: 999px; font-size: 0.78rem; font-weight: 600; cursor: pointer; border: 1px solid var(--border-soft); background: var(--table-header); color: var(--text-muted); transition: all .15s; font-family: inherit; }
+.df-btn.active[data-combined] { background: #eff6ff; border-color: #2563eb; color: #2563eb; }
   </style>
 </head>
 <body>
@@ -68,7 +71,7 @@ sup a { text-decoration: none; }
 
   <div class="chips">
     <span class="chip"><span style="width:8px;height:8px;border-radius:50%;background:#2563eb;display:inline-block;vertical-align:middle;margin-right:6px;"></span>CAISO · California</span>
-    <span class="chip"><span style="width:8px;height:8px;border-radius:50%;background:#dc6030;display:inline-block;vertical-align:middle;margin-right:6px;"></span>ERCOT · Texas</span>
+    <span class="chip"><span style="width:8px;height:8px;border-radius:50%;background:#7c3aed;display:inline-block;vertical-align:middle;margin-right:6px;"></span>ERCOT · Texas</span>
     <span class="chip"><span style="width:8px;height:8px;border-radius:50%;background:#2d7d46;display:inline-block;vertical-align:middle;margin-right:6px;"></span>PJM · Mid-Atlantic</span>
   </div>
 
@@ -99,8 +102,8 @@ sup a { text-decoration: none; }
       <tr><td>% Penetration vs. Avg Load</td><td>54.41%</td><td>60.06%</td><td>53.74%</td><td>70.61%</td></tr>
       <tr><td>Avg Duration (hrs)</td><td colspan="4" style="text-align:center">3.80</td></tr>
       <tr><td>Avg Penetration vs. Load</td><td colspan="4" style="text-align:center">59.71%</td></tr>
-      <tr><td>Peak Load (MW)</td><td colspan="4" style="text-align:center">41,118</td></tr>
-      <tr><td>Q3 Penetration vs. Peak (Max Load on 2025-08-22)</td><td colspan="4" style="text-align:center">35.24%</td></tr>
+      <tr><td>Peak Load (MW) on 2025-08-21 18:00</td><td colspan="4" style="text-align:center">41,118</td></tr>
+      <tr><td>Q3 Penetration vs. Peak Load on 2025-08-21</td><td colspan="4" style="text-align:center">35.24%</td></tr>
     </tbody>
   </table>
 
@@ -141,13 +144,28 @@ sup a { text-decoration: none; }
     <li><strong>Ancillary Service Saturation:</strong> How much of the grid's "balancing" services (like frequency regulation) are now provided by batteries instead of traditional gas plants.</li>
   </ul>
 
-  <p class="chart-fig">Fig. X — Average hourly load profile by quarter, CAISO 2025.</p>
-  <div class="chart-wrap">
-    <canvas id="batteryChart"></canvas>
+  <div class="dual-header" style="margin-top:16px;">
+    <p class="chart-fig" id="combinedFig">Fig. X — Normalised average hourly net load profile (% of daily peak), Q3 2025.</p>
+    <div class="dual-filter">
+      <span style="font-size:0.90rem;font-weight:600;color:#6b7280;align-self:center;">Quarter:</span>
+      <button class="df-btn"        data-combined="2025Q1" onclick="setCombined('2025Q1', 'Q1')">Q1</button>
+      <button class="df-btn"        data-combined="2025Q2" onclick="setCombined('2025Q2', 'Q2')">Q2</button>
+      <button class="df-btn active" data-combined="2025Q3" onclick="setCombined('2025Q3', 'Q3')">Q3</button>
+      <button class="df-btn"        data-combined="2025Q4" onclick="setCombined('2025Q4', 'Q4')">Q4</button>
+    </div>
   </div>
-  <div class="custom-legend" id="batteryLegend"></div>
+  <div class="chart-wrap">
+    <canvas id="combinedChart"></canvas>
+  </div>
+  <div class="custom-legend" id="combinedLegend"></div>
 
-  <h2>3. Price &amp; Market Signal Parameters (The "Drivers")</h2>
+  <p>
+    Batteries are most proliferate in CAISO &gt; ERCOT &gt; PJM. In the summer, the duck curve can be seen with
+    a dip in load in CAISO. Unlike PJM where there's a steady increase. ERCOT sees a steady increase due
+    to increasing demand mainly from data centres, despite having significant battery capacity.
+  </p>
+
+  <h2>3. Price &amp; Market Signal Parameters</h2>
   <p>Explain why BESS is being built.</p>
   <ul>
     <li><strong>Price Volatility (Price Spreads):</strong> Looking at the general gap between the daily highest and lowest prices. High volatility in ERCOT (due to wind fluctuations) drives BESS growth differently than the steadier patterns in CAISO.</li>
@@ -207,6 +225,8 @@ sup a { text-decoration: none; }
   <h2>Data Source</h2>
   <p>
     CAISO, ERCOT, PJM (2025). <em>Grid Operations Data</em>.
+    ERCOT: Historical DAM Load Zone and Hub Prices.
+    Must attribute — include "Powered by Grid Status" or "Data provided by Grid Status" with a link to gridstatus.io, plus their logo on first use.
   </p>
   </section>
 
@@ -224,7 +244,7 @@ sup a { text-decoration: none; }
   </ol>
   </section>
 
-</div>
+  </div>
 
 <footer>
   <p>Data source: CAISO · ERCOT · PJM · 2025</p>
@@ -238,93 +258,93 @@ sup a { text-decoration: none; }
 (async () => {
   const base = "https://raw.githubusercontent.com/ginasengeri/Electricity-and-the-Economy/main/";
 
-  const data = await d3.csv(base + "energy_systems_CAISO_ERCOT_PJM_CAISO_hrly_avg.csv");
+  const [caiso, ercot, pjm] = await Promise.all([
+    d3.csv(base + "energy_systems_CAISO_ERCOT_PJM_CAISO_net_load_hrly_avg.csv"),
+    d3.csv(base + "energy_systems_CAISO_ERCOT_PJM_ERCOT_net_load_hrly_avg.csv"),
+    d3.csv(base + "energy_systems_CAISO_ERCOT_PJM_PJM_net_load_hrly_avg.csv"),
+  ]);
 
-  const hours = data.map(d => +d.hour);
+  const hours = caiso.map(d => +d.hour);
 
-  const seriesDefs = [
-    { key: '2025Q1', label: 'Q1 2025', color: '#2563eb' },
-    { key: '2025Q2', label: 'Q2 2025', color: '#2d7d46' },
-    { key: '2025Q3', label: 'Q3 2025', color: '#dc6030' },
-    { key: '2025Q4', label: 'Q4 2025', color: '#7c3aed' },
+  const combinedDefs = [
+    { data: caiso, label: 'CAISO', color: '#2563eb' },
+    { data: ercot, label: 'ERCOT', color: '#7c3aed' },
+    { data: pjm,   label: 'PJM',   color: '#2d7d46' },
   ];
 
-  const datasets = seriesDefs.map(s => ({
-    label: s.label,
-    data: data.map(d => +d[s.key]),
-    borderColor: s.color,
-    borderWidth: 2,
-    pointRadius: 0,
-    pointHoverRadius: 2,
-    tension: 0.3,
-    fill: false,
-  }));
+  let combinedChart;
 
-  Chart.defaults.font.family = "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+  function buildCombinedChart(quarter, label) {
+    if (combinedChart) combinedChart.destroy();
 
-  new Chart(document.getElementById('batteryChart').getContext('2d'), {
-    type: 'line',
-    data: { labels: hours, datasets },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      layout: { padding: { right: 10 } },
-      interaction: { mode: 'index', intersect: false },
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          backgroundColor: '#ffffff',
-          borderColor: '#e0e3e8',
-          borderWidth: 1,
-          titleColor: '#111827',
-          bodyColor: '#374151',
-          padding: 10,
-          boxWidth: 5,
-          boxHeight: 5,
-          usePointStyle: true,
-          callbacks: {
-            title: items => `Hour ${hours[items[0].dataIndex]}:00`,
-            label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y.toLocaleString('en-GB', { maximumFractionDigits: 0 })} MW`,
-            labelColor: ctx => {
-              const c = seriesDefs[ctx.datasetIndex].color;
-              return { borderColor: c, backgroundColor: c };
+    combinedChart = new Chart(document.getElementById('combinedChart').getContext('2d'), {
+      type: 'line',
+      data: {
+        labels: hours,
+        datasets: combinedDefs.map(g => {
+          const vals = g.data.map(d => +d[quarter]);
+          const max = Math.max(...vals);
+          return {
+            label: g.label,
+            data: vals.map(v => (v / max) * 100),
+            borderColor: g.color,
+            borderWidth: 2,
+            pointRadius: 0,
+            pointHoverRadius: 0,
+            tension: 0.3,
+            fill: false,
+          };
+        })
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#ffffff', borderColor: '#e0e3e8', borderWidth: 1,
+            titleColor: '#111827', bodyColor: '#374151', padding: 8,
+            displayColors: false,
+            callbacks: {
+              title: items => `Hour ${hours[items[0].dataIndex]}:00`,
+              label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)}%`,
             }
           }
-        }
-      },
-      scales: {
-        x: {
-          grid: { display: false },
-          border: { color: '#e0e3e8' },
-          title: { display: true, text: 'Hour of Day', color: '#9ca3af', font: { size: 11 } },
-          ticks: {
-            color: '#6b7280',
-            font: { size: 11 },
-            maxRotation: 0,
-            callback: (val, i) => i % 3 === 0 ? `${hours[i]}:00` : ''
-          }
         },
-        y: {
-          grid: { display: false },
-          border: { color: '#e0e3e8' },
-          title: { display: true, text: 'Average Load (MW)', color: '#9ca3af', font: { size: 11 } },
-          ticks: {
-            color: '#6b7280',
-            font: { size: 11 },
-            callback: v => v.toLocaleString('en-GB') + ' MW'
+        scales: {
+          x: {
+            grid: { display: false }, border: { color: '#e0e3e8' },
+            title: { display: true, text: 'Hour of Day', color: '#9ca3af', font: { size: 11 } },
+            ticks: { color: '#6b7280', font: { size: 11 }, maxRotation: 0, callback: (val, i) => i % 6 === 0 ? `${hours[i]}:00` : '' }
+          },
+          y: {
+            grid: { display: false }, border: { color: '#e0e3e8' },
+            title: { display: true, text: '% of Daily Peak', color: '#9ca3af', font: { size: 11 } },
+            ticks: { color: '#6b7280', font: { size: 11 }, callback: v => v + '%' }
           }
         }
       }
-    }
-  });
+    });
 
-  const legendEl = document.getElementById('batteryLegend');
-  seriesDefs.forEach(s => {
-    const item = document.createElement('div');
-    item.className = 'cl-item';
-    item.innerHTML = `<div class="cl-line" style="background:${s.color};width:22px;height:2.5px;border-radius:2px;flex-shrink:0;display:block;align-self:center;"></div><span>${s.label}</span>`;
-    legendEl.appendChild(item);
-  });
+    document.getElementById('combinedFig').textContent = `Fig. X — Normalised average hourly net load profile (% of daily peak), ${label} 2025.`;
+
+    const legendEl = document.getElementById('combinedLegend');
+    legendEl.innerHTML = '';
+    combinedDefs.forEach(g => {
+      const item = document.createElement('div');
+      item.className = 'cl-item';
+      item.innerHTML = `<div class="cl-line" style="background:${g.color};width:22px;height:2.5px;border-radius:2px;flex-shrink:0;display:block;align-self:center;"></div><span>${g.label}</span>`;
+      legendEl.appendChild(item);
+    });
+  }
+
+  window.setCombined = function(quarter, label) {
+    document.querySelectorAll('.df-btn[data-combined]').forEach(b => b.classList.toggle('active', b.dataset.combined === quarter));
+    buildCombinedChart(quarter, label);
+  };
+
+  buildCombinedChart('2025Q3', 'Q3');
 })();
 </script>
 
