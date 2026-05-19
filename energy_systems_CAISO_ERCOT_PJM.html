@@ -50,6 +50,9 @@ sup a { text-decoration: none; }
 .df-btn.active[data-grid="CAISO"] { background: #eff6ff; border-color: #2563eb; color: #2563eb; }
 .df-btn.active[data-grid="ERCOT"] { background: #f5f0ff; border-color: #7c3aed; color: #7c3aed; }
 .df-btn.active[data-grid="PJM"]   { background: #f0fdf4; border-color: #2d7d46; color: #2d7d46; }
+.df-btn.active[data-price="CAISO"] { background: #eff6ff; border-color: #2563eb; color: #2563eb; }
+.df-btn.active[data-price="ERCOT"] { background: #f5f0ff; border-color: #7c3aed; color: #7c3aed; }
+.df-btn.active[data-price="PJM"]   { background: #f0fdf4; border-color: #2d7d46; color: #2d7d46; }
   </style>
 </head>
 <body>
@@ -76,19 +79,25 @@ sup a { text-decoration: none; }
   <p>Parameters that highlight structural differences in how these grids operate and the role batteries play in them.</p>
 
   <h2>1. Penetration &amp; Deployment Parameters</h2>
-  <p>These help you compare the scale and "density" of battery adoption.</p>
-  <ul>
-    <li><strong>Total Installed Capacity (MW/MWh):</strong> The basic measure of how much storage is available. CAISO and ERCOT currently lead the U.S. in these figures.</li>
-    <li><strong>Penetration vs. Peak Load:</strong> Instead of raw numbers, look at capacity as a percentage of the system's peak demand (e.g., ~38% in CAISO vs. ~11% in ERCOT). This shows how "battery-heavy" the grid is relative to its size.</li>
-    <li><strong>Average Duration (Hours):</strong> How long the "average" battery can discharge (e.g., 4-hour batteries in CAISO vs. 1-2 hour batteries in ERCOT). This tells you if the grid uses them for quick stabilization or longer-term energy shifting.</li>
-  </ul>
+  <p>
+    Total Installed Capacity (MW/MWh): The basic measure of how much storage is available. CAISO and ERCOT currently lead the U.S. in these figures.</li>
+    Penetration vs. Peak Load: Instead of raw numbers, look at capacity as a percentage of the system's peak demand (e.g., ~38% in CAISO vs. ~11% in ERCOT). How battery-heavy the grid is relative to its size.</li>
+    Average Duration (Hours): How long the average battery can discharge (e.g., 4-hour batteries in CAISO vs. 1-2 hour batteries in ERCOT). This tells you if the grid uses them for quick stabilization or longer-term energy shifting.</li>
+  </p>
 
+  <p>
+    Load from highest to lowest: PJM > ERCOT > CAISO
+    Batteries are most proliferate in CAISO &gt; ERCOT &gt; PJM.
+    Across all 3 grids, the highest average load is seen in Q3.
+    Duration is longest in CAISO (3.8 hrs), ERCOT (1.56 hrs) and PJM 
+    batteries are still emerging, most are queued to be 4 hour batteries.
+  </p>
   <h2>CAISO — 2025</h2>
   <table>
     <thead><tr><th>Metric</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th></tr></thead>
     <tbody>      
       <tr><td>Avg Load (MW)</td><td>21,674.0188</td><td>22,896.9151</td><td>27,845.9655</td><td>22,726.3685</td></tr>
-      <tr><td>Installed Capacity (GW)</td><td>11.57</td><td>13.11</td><td>14.49</td><td>15.73</td></tr>
+      <tr><td>Installed Capacity (GW)</td><td>11,570</td><td>13,105</td><td>14,489</td><td>15,734</td></tr>
       <tr><td>Max load</td><td colspan="4" style="text-align:center">43,639.17 at 2025-08-21 18:00</td></tr>
       <tr><td>Q3 Penetration vs. Peak Load (on 2025-08-21)</td><td colspan="4" style="text-align:center">33.20%</td></tr>
       <tr><td>Avg Duration (hrs)</td><td colspan="4" style="text-align:center">3.80</td></tr>
@@ -121,11 +130,16 @@ sup a { text-decoration: none; }
 
   <h2>2. Operational Impact Parameters</h2>
   <p>What batteries are doing for the grid.</p>
-  <ul>
-    <li><strong>Daily Load Shifting (Energy Shifting):</strong> Measuring how much energy is moved from low-demand (or high-renewable) periods to peak evening periods. This is the most visible impact in "Duck Curve" markets like CAISO.</li>
-    <li><strong>Renewable Curtailment Reduction:</strong> Tracking if higher BESS penetration leads to less wasted (curtailed) wind and solar power by storing it instead.</li>
-    <li><strong>Ancillary Service Saturation:</strong> How much of the grid's "balancing" services (like frequency regulation) are now provided by batteries instead of traditional gas plants.</li>
-  </ul>
+  <p>
+    Daily Load Shifting: Measuring how much energy is moved from low-demand (or high-renewable) periods to peak evening periods. 
+    This is the most visible impact in duck curve markets like CAISO. See figure on net load.
+  </p>
+  
+  <p>
+    Batteries are most proliferate in CAISO &gt; ERCOT &gt; PJM. In the summer, the duck curve can be seen with
+    a dip in load in CAISO. Unlike PJM where there's a steady increase. ERCOT sees a steady increase due
+    to [...], despite having significant battery capacity.
+  </p>
 
   <div class="dual-header" style="margin-top:16px;">
     <p class="chart-fig" id="gridFig">Fig. X — Average hourly net load profile by quarter, CAISO 2025.</p>
@@ -141,66 +155,142 @@ sup a { text-decoration: none; }
   </div>
   <div class="custom-legend" id="gridLegend"></div>
 
+  <p>  
+    <strong>How batteries are operating across the grids:</strong> Show the charge and discharge cycles in CAISO (steady pattern) vs
+    ERCOT (more volatile) and compare the 1 hour to 4 hour and the different roles they serve, and discuss what PJM may adopt to serve its 
+    purpose (largest market, mostly capacity payments in addition to market revenue - energy, ancillary, congestion). Check PJM's volatility
+    too - is it closer to CAISO? ERCOT? Somewhere in between? Model how it would change.  
+  </p>
+
+ <p>
+    <strong>Ancillary Service Saturation:</strong> How much of the grid's balancing services (like frequency regulation) are
+    now provided by batteries instead of traditional gas plants. Illustrate the saturation of ancillary market
+    that is starting to how up in CAISO, which has the largest battery capacity. Highlight the importance of diverse revenue streams.
+ </p> 
+
   <p>
-    Batteries are most proliferate in CAISO &gt; ERCOT &gt; PJM. In the summer, the duck curve can be seen with
-    a dip in load in CAISO. Unlike PJM where there's a steady increase. ERCOT sees a steady increase due
-    to increasing demand mainly from data centres, despite having significant battery capacity.
+    <strong>Renewable Curtailment Reduction:</strong> Tracking if higher BESS penetration leads to less wasted (curtailed) wind and solar
+     power by storing it instead.
   </p>
 
   <h2>3. Price &amp; Market Signal Parameters</h2>
   <p>Explain why BESS is being built.</p>
-  <ul>
-    <li><strong>Price Volatility (Price Spreads):</strong> Looking at the general gap between the daily highest and lowest prices. High volatility in ERCOT (due to wind fluctuations) drives BESS growth differently than the steadier patterns in CAISO.</li>
-    <li><strong>Scarcity Events:</strong> The frequency of extreme price spikes. BESS impact is often highest during these "grid stress" events.</li>
-    <li><strong>Capacity Market Participation:</strong> Whether batteries are getting paid just to "be there" (common in PJM) or must earn everything by actively trading (as in ERCOT).</li>
-  </ul>
 
-  <h2>Comparison Framework</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Parameter</th>
-        <th>CAISO</th>
-        <th>ERCOT</th>
-        <th>PJM</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Primary Driver</td>
-        <td>State Policy &amp; "Duck Curve"</td>
-        <td>Market Volatility &amp; Wind</td>
-        <td>Capacity Market &amp; Data Centers</td>
-      </tr>
-      <tr>
-        <td>Typical Duration</td>
-        <td>Long (4+ hours)</td>
-        <td>Short (1-2 hours)</td>
-        <td>Mixed (Emerging)</td>
-      </tr>
-      <tr>
-        <td>Grid Role</td>
-        <td>Day-night energy shifting</td>
-        <td>Fast frequency &amp; volatility</td>
-        <td>Reliability &amp; backup</td>
-      </tr>
-    </tbody>
-  </table>
+  
+  <p>
+    Looking at the general gap between the daily highest and
+    lowest prices. High volatility in ERCOT (due to wind fluctuations) drives BESS growth differently than the steadier patterns in CAISO.
+    Price Volatility (Price Spreads): Highest volatility is seen in ERCOT + PJM. See figure on price spreads.
+  </p>
+  <p>
+    Higher volatility requires respose to fast changes, steadier patterns require steady discharge for energy shifting.
+    The frequency of extreme price spikes: BESS impact is often highest during these "grid stress" events.
+  </p>
 
-  </section>
 
-  <section class="section">
-  <h2>Key Insights</h2>
-  <ol>
-    <li></li>
-    <li></li>
-    <li></li>
-  </ol>
+  <div class="dual-header" style="margin-top:0px;">
+  <p class="chart-fig" id="priceFig">Fig. X — Average hourly price above daily minimum by quarter, CAISO 2025.</p>
+  <div class="dual-filter">
+    <span style="font-size:0.90rem;font-weight:600;color:#6b7280;align-self:center;">Grid:</span>
+    <button class="df-btn active" data-price="CAISO" onclick="setPrice('CAISO')">CAISO</button>
+    <button class="df-btn"        data-price="ERCOT" onclick="setPrice('ERCOT')">ERCOT</button>
+    <button class="df-btn"        data-price="PJM"   onclick="setPrice('PJM')">PJM</button>
+  </div>
+  </div>
+  <div class="chart-wrap">
+    <canvas id="priceChart"></canvas>
+  </div>
+  <div class="custom-legend" id="priceLegend"></div>
+  <br>
+
+
+  <p>
+    CAISO hubs: SP15 & ZP26 most relevant since it has most BESS (modo source). All hubs move in the
+    same way, but NP15 doesn't see as much of a dip during the day.
+  </p>
+  <p>
+    ERCOT hubs: HB_HOUSTON, HB_NORTH, HB_SOUTH, HB_WEST. Prices across locations move fairly close together.
+  </p>
+  <p>  
+    PJM hubs: AEP-DAYTON HUB, CHICAGO HUB, DOMINION HUB, EASTERN HUB, WESTERN HUB. Prices move in a similar way across the hubs.
+  </p>
+
+  <p>
+    More volatile markets need faster response. Batteries can discharge at max rated power almost 
+    instantly, providing energy services in ERCOT and PJM grids to meet demand during peaks. This 
+    can help lower the price spikes as seen, as BESS expands. CAISO with most penetration has the lowest
+    average pice spreads, falling to $2.28 in Q2, and a max of $56.72 in Q3. Unlike ERCOT max $81.63 and 
+    PJM max $85.60 both in Q3. Mins remain at $17.52 in Q1 in ERCOT, and $22.12 in Q3 in PJM. 
+  </p>
+
+  <p>
+    CAISO has longest duration batteries, allowing for steady discharge of energy to meet demand in peak
+    hours of the evening when solar decreases, while allowing other backup generation to come online
+    so filling the gap in the meantime (CCGT requires 1-3hrs to get to full capacity).
+    Batteries don't discharge forever, so backup is needed.
+    The backup e.g. gas needs time from cold-start because during the day, as seen in CAISO, net load
+    falls sometimes to negative values.
+  </p>
+  <p>  
+    After wind and solar (VRE) is produced, net load drops, sometimes below zero. So gas and other
+    thermal sources must be turned off, expensive fuel should not be burnt when cheap renewable energy is available.
+    In the case of negative net load, batteries can consume this extra electricity, charging during 
+    the period of low prices and discharging in the evening when prices are higher, earning from this spread
+    (load shifting). 
+  </p>
+
+  <p>
+    <strong>Capacity Market Participation:</strong> Whether batteries are getting paid just to "be there" (common in PJM)
+     or must earn everything by actively trading (as in ERCOT).
+  </p>
+
+
   </section>
 
   <section class="section">
   <h2>Implications</h2>
-  <p></p>
+  <p>
+    How is PJM's grid expected to change as battery capacity is added?
+    Given that most queued are 4-hour - how will the grid compare to CAISO's 
+    4-hour cohort (4 hours for day-night energy shifting)? What about given the increasing load - ERCOT has significant
+    battery capacity (1.56 hours, for fast changes e.g. frequency and volatility)
+    but doesn't see the same net load curve due to more volatility (wind) and increasing
+    demand (data centres). PJM needs batteries that serve for reliability and backup services.
+  </p>
+  <p>
+    Batteries pair well with capacity requirements because they can dispatch
+    at full capacity instantly, guaranteeing supply during peak demand. However
+    they are limited to short intervals (1-4 hours currently) and do not replace need for 
+    backup generation. They only fill an immediate gap when demand rises quickly, allowing
+    other technologies the time to ramp up. 
+  </p>
+  <p>
+    CAISO and PJM are more contract-like, with capacity payments to fulfill resource adequacy
+    obligations (FERC rules - more stable revenue, support underwriting in addition to market revenue),
+    while ERCOT is more trading-like, real-time arbitrage, incentives are more immediate price driven,
+    not capacity payments.
+  </p>
+  <p>
+    Many data centres are building on-site generation and bypassing the grid
+    so in the near term prices are not likely to spike. In ERCOT, the opportunity for 
+    batteries is in hedging against worst performing hours 
+    (when prices are high, batteries are discharged to ease the price spike).
+  </p> 
+  <p> 
+    This works in ERCOT because it has more extreme price swings
+    prices to hedge against. But this doesn't work the same way in CAISO because of resource
+    adequacy requirements (batteries can be partially committed ahead of time, reducing ability to 
+    optimize around real-time prices).
+    Also revenues become weaker as batteries saturate the market. Not as extreme spikes, smaller
+    price spread; need
+    a different, more diverse revenue strategy. Driver remains the need for resource adequacy.
+  </p>
+  <p>
+    For PJM, the biggest driver is the capacity market (ensure enough supply during peak hours,
+    especially with aging thermal plants, increasing demand, strong reliability rules), but needs underwriting.
+    That's FTM. For BTM, transmission savings and credits and capacity value (avoiding peak demand charges)
+    are the main value additions.
+  </p>
   </section>
 
   <section class="section">
@@ -216,11 +306,11 @@ sup a { text-decoration: none; }
   <h2>References</h2>
   <ol>
     <li id="ref1">
-      Ember (2022).
-      <em>Electricity Data Explorer.</em>
+      GridBeyond (2026).
+      <em>Battery storage markets: what’s happening in ERCOT, CAISO, PJM, and Japan</em>
       Available at:
-      <a href="https://ember-energy.org/data/electricity-data-explorer/" target="_blank">
-        https://ember-energy.org/data/electricity-data-explorer/
+      <a href="https://gridbeyond.com/battery-storage-markets-whats-happening-in-ercot-caiso-pjm-and-japan/" target="_blank">
+        https://gridbeyond.com/battery-storage-markets-whats-happening-in-ercot-caiso-pjm-and-japan/
       </a>
     </li>
   </ol>
@@ -335,6 +425,108 @@ sup a { text-decoration: none; }
   };
 
   buildChart('CAISO');
+})();
+</script>
+
+<script>
+(async () => {
+  const base = "https://raw.githubusercontent.com/ginasengeri/Electricity-and-the-Economy/main/";
+
+  const [caiso, ercot, pjm] = await Promise.all([
+    d3.csv(base + "energy_systems_CAISO_ERCOT_PJM_caiso_lmp_2025.csv"),
+    d3.csv(base + "energy_systems_CAISO_ERCOT_PJM_ercot_lmp_2025.csv"),
+    d3.csv(base + "energy_systems_CAISO_ERCOT_PJM_pjm_lmp_2025.csv"),
+  ]);
+
+  const hours = caiso.map(d => +d.hour);
+
+  const gridColors = { CAISO: '#2563eb', ERCOT: '#7c3aed', PJM: '#2d7d46' };
+
+  const quarters = [
+    { key: '2025Q1', label: 'Q1 2025', dash: [4, 3], muted: true  },
+    { key: '2025Q2', label: 'Q2 2025', dash: [8, 4], muted: true  },
+    { key: '2025Q3', label: 'Q3 2025', dash: [],      muted: false },
+    { key: '2025Q4', label: 'Q4 2025', dash: [2, 2], muted: true  },
+  ];
+
+  const priceData = { CAISO: caiso, ERCOT: ercot, PJM: pjm };
+
+  let priceChart;
+
+  function buildPriceChart(grid) {
+    if (priceChart) priceChart.destroy();
+    const data = priceData[grid];
+    const heroColor = gridColors[grid];
+
+    priceChart = new Chart(document.getElementById('priceChart').getContext('2d'), {
+      type: 'line',
+      data: {
+        labels: hours,
+        datasets: quarters.map(q => ({
+          label: q.label,
+          data: data.map(d => +d[q.key]),
+          borderColor: q.muted ? '#c0c4cc' : heroColor,
+          borderWidth: q.muted ? 1.2 : 2,
+          borderDash: q.dash,
+          pointRadius: 0,
+          pointHoverRadius: 0,
+          tension: 0.3,
+          fill: false,
+        }))
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#ffffff', borderColor: '#e0e3e8', borderWidth: 1,
+            titleColor: '#111827', bodyColor: '#374151', padding: 8,
+            displayColors: false,
+            callbacks: {
+              title: items => `Hour ${hours[items[0].dataIndex]}:00`,
+              label: ctx => ` ${ctx.dataset.label}: $${ctx.parsed.y.toFixed(2)}/MWh`,
+            }
+          }
+        },
+        scales: {
+          x: {
+            grid: { display: false }, border: { color: '#e0e3e8' },
+            title: { display: true, text: 'Hour of Day', color: '#9ca3af', font: { size: 11 } },
+            ticks: { color: '#6b7280', font: { size: 11 }, maxRotation: 0, callback: (val, i) => i % 6 === 0 ? `${hours[i]}:00` : '' }
+          },
+          y: {
+            grid: { display: false }, border: { color: '#e0e3e8' },
+            title: { display: true, text: 'Avg $/MWh above daily minimum', color: '#9ca3af', font: { size: 11 } },
+            ticks: { color: '#6b7280', font: { size: 11 }, callback: v => '$' + v.toFixed(0) }
+          }
+        }
+      }
+    });
+
+    document.getElementById('priceFig').textContent = `Fig. X — Average hourly price above daily minimum by quarter, ${grid} 2025.`;
+
+    const legendEl = document.getElementById('priceLegend');
+    legendEl.innerHTML = '';
+    quarters.forEach(q => {
+      const color = q.muted ? '#c0c4cc' : heroColor;
+      const item = document.createElement('div');
+      item.className = 'cl-item';
+      const lineStyle = q.dash.length
+        ? `border-top: 2px dashed ${color}; height: 0; width: 22px; background: none; flex-shrink:0; align-self:center;`
+        : `background:${color}; width:22px; height:2.5px; border-radius:2px; flex-shrink:0; display:block; align-self:center;`;
+      item.innerHTML = `<div style="${lineStyle}"></div><span style="color:${q.muted ? '#9ca3af' : '#374151'}">${q.label}</span>`;
+      legendEl.appendChild(item);
+    });
+  }
+
+  window.setPrice = function(grid) {
+    document.querySelectorAll('.df-btn[data-price]').forEach(b => b.classList.toggle('active', b.dataset.price === grid));
+    buildPriceChart(grid);
+  };
+
+  buildPriceChart('CAISO');
 })();
 </script>
 
