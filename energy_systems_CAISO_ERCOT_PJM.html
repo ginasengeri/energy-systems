@@ -24,6 +24,10 @@ h2 { margin-top: 24px; margin-bottom: 8px; font-size: 1.05rem; font-weight: 700;
 .section p { font-size: 0.95rem; line-height: 1.7; color: #374151; margin: 0 0 12px; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0px 0 16px; justify-content: center; }
 .chip { background: var(--chip); border: 1px solid rgba(37, 99, 235, 0.15); color: #1f2a5a; padding: 6px 10px; border-radius: 999px; font-size: 0.82rem; font-weight: 650; white-space: nowrap; }
+.kpi-grid { display: grid; justify-content: center; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-top: 10px; margin-bottom: 10px; }
+.kpi-card { background: var(--accent-soft); border-radius: 10px; padding: 10px 12px; text-align: center; border: 1px solid rgba(37, 99, 235, 0.35); }
+.kpi-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 4px; }
+.kpi-value { font-size: 1.1rem; font-weight: 600; }
 table { width: 100%; border-collapse: collapse; font-size: 0.85rem; min-width: unset; }
 th, td { border: 1px solid var(--border-soft); padding: 6px 8px; text-align: left; white-space: nowrap; }
 th { background-color: var(--table-header); font-weight: 600; }
@@ -55,9 +59,9 @@ sup a { text-decoration: none; }
 .df-btn.active[data-dual="PJM"]      { background: #f0fdf4; border-color: #2d7d46; color: #2d7d46; }
 .df-btn.active[data-storage="CAISO"] { background: #eff6ff; border-color: #2563eb; color: #2563eb; }
 .df-btn.active[data-storage="ERCOT"] { background: #f5f0ff; border-color: #7c3aed; color: #7c3aed; }
-.df-btn.active[data-price="CAISO"]   { background: #eff6ff; border-color: #2563eb; color: #2563eb; }
-.df-btn.active[data-price="ERCOT"]   { background: #f5f0ff; border-color: #7c3aed; color: #7c3aed; }
-.df-btn.active[data-price="PJM"]     { background: #f0fdf4; border-color: #2d7d46; color: #2d7d46; }
+.df-btn.active[data-vol="CAISO"] { background: #eff6ff; border-color: #2563eb; color: #2563eb; }
+.df-btn.active[data-vol="ERCOT"] { background: #f5f0ff; border-color: #7c3aed; color: #7c3aed; }
+.df-btn.active[data-vol="PJM"]   { background: #f0fdf4; border-color: #2d7d46; color: #2d7d46; }
 .qbtn { padding: 2px 9px; border-radius: 999px; font-size: 0.72rem; font-weight: 500; cursor: pointer; border: 1px solid #e0e3e8; background: transparent; color: #9ca3af; transition: all .15s; font-family: inherit; }
 .qbtn.active { background: #f3f4f6; border-color: #9ca3af; color: #6b7280; font-weight: 600; }
   </style>
@@ -71,78 +75,65 @@ sup a { text-decoration: none; }
       <div class="meta">CAISO · ERCOT · PJM &bull; 2025</div>
     </header>
 
-  <div class="chips">
-    <span class="chip"><span style="width:8px;height:8px;border-radius:50%;background:#2563eb;display:inline-block;vertical-align:middle;margin-right:6px;"></span>CAISO · California</span>
-    <span class="chip"><span style="width:8px;height:8px;border-radius:50%;background:#7c3aed;display:inline-block;vertical-align:middle;margin-right:6px;"></span>ERCOT · Texas</span>
-    <span class="chip"><span style="width:8px;height:8px;border-radius:50%;background:#2d7d46;display:inline-block;vertical-align:middle;margin-right:6px;"></span>PJM · Mid-Atlantic</span>
+  <br>  
+
+<section class="section">
+
+  
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;">
+  <div style="text-align:center;padding:12px 8px;">
+    <div style="font-size:0.78rem;font-weight:600;color:#2563eb;margin-top:2px;">CAISO · California</div>
+    <div style="font-size:1.3rem;font-weight:700;color:#111827;">33.2%<span style="font-size:0.78rem;font-weight:400;color:#6b7280;margin-left:5px;">penetration</span></div>   
+    <div style="font-size:0.78rem;color:#6b7280;margin-top:1px;">15.7 GW installed</div>    
+    <div style="font-size:0.78rem;font-weight:600;color:#4b5563;margin-top:1px;">43.6 GW peak · 3.8 hr</div>
   </div>
+  <div style="text-align:center;padding:12px 8px;">
+    <div style="font-size:0.78rem;font-weight:600;color:#7c3aed;margin-top:2px;">ERCOT · Texas</div>
+    <div style="font-size:1.3rem;font-weight:700;color:#111827;">13.3%<span style="font-size:0.78rem;font-weight:400;color:#6b7280;margin-left:5px;">penetration</span></div>    
+    <div style="font-size:0.78rem;color:#6b7280;margin-top:1px;">13.1 GW installed</div>
+    <div style="font-size:0.78rem;font-weight:600;color:#4b5563;margin-top:1px;">83.9 GW peak · 1.56 hr</div>
+  </div>
+  <div style="text-align:center;padding:12px 8px;">
+    <div style="font-size:0.78rem;font-weight:600;color:#2d7d46;margin-top:2px;">PJM · Mid-Atlantic</div>
+    <div style="font-size:1.3rem;font-weight:700;color:#111827;">0.42 MW </div>
+    <div style="font-size:0.78rem;color:#6b7280;margin-top:1px;">0.26% penetration vs peak</div>
+    <div style="font-size:0.78rem;font-weight:600;color:#4b5563;margin-top:1px;">160.5 GW peak · emerging</div>
+  </div>
+</div>
 
-  <section class="section">
-  <h2>Impact of Batteries on the Grid</h2>
-  <p>The differences between PJM (little BESS penetration) and ERCOT (1-2 hour med penetration) and CAISO (4 hour heavy penetration) 
-    to give you an idea of the impact of the batteries on the grid. And the transition happens very quickly, so what does PJM look
-     like if batteries become more proliferate?
-  </p>
-  <p>Parameters that highlight structural differences in how these grids operate and the role batteries play in them.</p>
+<br>
 
-  <h2>1. Penetration &amp; Deployment Parameters</h2>
   <p>
-    Total Installed Capacity (MW/MWh): The basic measure of how much storage is available. CAISO and ERCOT currently lead the U.S. in these figures.
-    Penetration vs. Peak Load: Instead of raw numbers, look at capacity as a percentage of the system's peak demand (e.g., ~38% in CAISO vs. ~11% in ERCOT). How battery-heavy the grid is relative to its size.
-    Average Duration (Hours): How long the average battery can discharge (e.g., 4-hour batteries in CAISO vs. 1-2 hour batteries in ERCOT). This tells you if the grid uses them for quick stabilization or longer-term energy shifting.
+    BESS provide a wide range of services to the grid including energy shifting, frequency regulation and balancing services to buffer 
+    variability from renewables. Across the three grids, different levels of penetration highlight the effects of increasing BESS on the grid.
+    Differences and similarities in market designs (energy-only, ERCOT, and capacity market, CAISO) present varying opportunities for the integration of
+    battery storage.
+  </p> 
+
+
+  <h2>Operational Impact Parameters, Price &amp; Market Signal Parameters</h2>
+
+  <p>
+    CAISO has the highest BESS penetration followed by ERCOT, with PJM still emerging. The operational impact of batteries is most visible in CAISO, where
+    the duck curve is pronounced and batteries are used for daily load shifting with a mean duration of 3.8 hours. ERCOT experiences more
+    volatile prices due to wind fluctuations, with the 1.56-hour-average batteries used for fast response to price spikes in addition to predictable load shifting. 
+    PJM's market structure is similar to CAISO's with a focus on capacity market and reliability, with most queued batteries expected to have a 
+    duration 4-hours. PJM's prices currently show volatility similar to ERCOT, suggesting a potential use of batteries for both cyclic load shifting and price arbitrage.
   </p>
+
   <p>
-    Load from highest to lowest: PJM > ERCOT > CAISO.
-    Batteries are most proliferate in CAISO &gt; ERCOT &gt; PJM.
     Across all 3 grids, the highest average load is seen in Q3.
-    Duration is longest in CAISO (3.8 hrs), ERCOT (1.56 hrs) and PJM batteries are still emerging, most are queued to be 4 hour batteries.
   </p>
 
-  <h2>CAISO — 2025</h2>
-  <table>
-    <thead><tr><th>Metric</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th></tr></thead>
-    <tbody>
-      <tr><td>Avg Load (MW)</td><td>21,674.0188</td><td>22,896.9151</td><td>27,845.9655</td><td>22,726.3685</td></tr>
-      <tr><td>Installed Capacity (GW)</td><td>11,570</td><td>13,105</td><td>14,489</td><td>15,734</td></tr>
-      <tr><td>Max load</td><td colspan="4" style="text-align:center">43,639.17 at 2025-08-21 18:00</td></tr>
-      <tr><td>Q3 Penetration vs. Peak Load (on 2025-08-21)</td><td colspan="4" style="text-align:center">33.20%</td></tr>
-      <tr><td>Avg Duration (hrs)</td><td colspan="4" style="text-align:center">3.80</td></tr>
-    </tbody>
-  </table>
-
-  <h2>ERCOT — 2025</h2>
-  <table>
-    <thead><tr><th>Metric</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th></tr></thead>
-    <tbody>
-      <tr><td>Avg Load (MW)</td><td>51,499.3669</td><td>56,932.9601</td><td>64,805.5051</td><td>52,423.7595</td></tr>
-      <tr><td>Installed Capacity (MW)</td><td>8,117</td><td>9,171</td><td>11,119</td><td>13,187</td></tr>
-      <tr><td>Max load</td><td colspan="4" style="text-align:center">83,861.67 at 2025-08-18 16:00</td></tr>
-      <tr><td>Q3 Penetration vs. Peak Load (on 2025-08-18)</td><td colspan="4" style="text-align:center">13.29%</td></tr>
-      <tr><td>Avg Duration (hrs)</td><td colspan="4" style="text-align:center">1.56</td></tr>
-    </tbody>
-  </table>
-
-  <h2>PJM — 2025</h2>
-  <table>
-    <thead><tr><th>Metric</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th></tr></thead>
-    <tbody>
-      <tr><td>Avg Load (MW)</td><td>98,461.8531</td><td>88,209.8111</td><td>101,543.8790</td><td>91,693.1894</td></tr>
-      <tr><td>Installed Capacity (MW, end 2025)</td><td colspan="4" style="text-align:center">424</td></tr>
-      <tr><td>Max load</td><td colspan="4" style="text-align:center">160,463.49 at 2025-06-23 17:00</td></tr>
-      <tr><td>2025 Penetration vs. Peak Load (on 2025-06-23)</td><td colspan="4" style="text-align:center">0.26%</td></tr>
-      <tr><td>Duration (hrs)</td><td colspan="4" style="text-align:center">Emerging, most queued are 4 hour</td></tr>
-    </tbody>
-  </table>
-
-  <h2>2. Operational Impact Parameters, Price &amp; Market Signal Parameters</h2>
-  <p>What batteries are doing for the grid.</p>
   <p>
     Daily Load Shifting: Measuring how much energy is moved from low-demand (or high-renewable) periods to peak evening periods.
     This is the most visible impact in duck curve markets like CAISO. See figure on net load.
   </p>
+
   <p>
     Batteries are most proliferate in CAISO &gt; ERCOT &gt; PJM. In the summer, the duck curve can be seen with
-    a dip in load in CAISO. Unlike PJM where there's a steady increase. ERCOT sees a steady increase due
+    a dip in load in CAISO, unlike PJM where there's a steady increase. ERCOT sees a steady increase due
     to [...], despite having significant battery capacity.
   </p>
 
@@ -237,13 +228,26 @@ sup a { text-decoration: none; }
   </div>
   <div class="custom-legend" id="storageLegend"></div>
 
-  <p class="chart-fig">Fig. X — Daily maximum price ($/MWh), CAISO · ERCOT · PJM 2025.</p>
-  <div class="chart-wrap">
-    <canvas id="spikeChart"></canvas>
-  </div>
-  <div class="custom-legend" id="spikeLegend"></div>
 
   </section>
+
+  <!--Price Volatility Chart-->
+  <div style="margin-top:24px;">
+    <div class="dual-header">
+      <p class="chart-fig" id="volFig">Fig. X — Hourly price volatility (std dev $/MWh), Q3 2025.</p>
+      <div style="display:flex;gap:6px;align-items:center;">
+        <span style="font-size:0.72rem;color:#9ca3af;">Quarter:</span>
+        <button class="qbtn"        data-volq="2025Q1" onclick="setVol('2025Q1')">Q1</button>
+        <button class="qbtn"        data-volq="2025Q2" onclick="setVol('2025Q2')">Q2</button>
+        <button class="qbtn active" data-volq="2025Q3" onclick="setVol('2025Q3')">Q3</button>
+        <button class="qbtn"        data-volq="2025Q4" onclick="setVol('2025Q4')">Q4</button>
+      </div>
+    </div>
+  </div>
+  <div class="chart-wrap">
+    <canvas id="volChart"></canvas>
+  </div>
+  <div class="custom-legend" id="volLegend"></div>
 
   <section class="section">
   <h2>Implications</h2>
@@ -431,62 +435,61 @@ sup a { text-decoration: none; }
 <script>
 (async () => {
   const base = "https://raw.githubusercontent.com/ginasengeri/Electricity-and-the-Economy/main/";
-  const data = await d3.csv(base + "energy_systems_CAISO_ERCOT_PJM_daily_max_prices.csv");
+  const [caiso, ercot, pjm] = await Promise.all([
+    d3.csv(base + "energy_systems_CAISO_ERCOT_PJM_caiso_hourly_volatility.csv"),
+    d3.csv(base + "energy_systems_CAISO_ERCOT_PJM_ercot_hourly_volatility.csv"),
+    d3.csv(base + "energy_systems_CAISO_ERCOT_PJM_pjm_hourly_volatility.csv"),
+  ]);
+  const hours = caiso.map(d => +d.hour);
+  const gridDefs = [
+    { label: 'CAISO', color: '#2563eb', data: caiso },
+    { label: 'ERCOT', color: '#7c3aed', data: ercot },
+    { label: 'PJM',   color: '#2d7d46', data: pjm   },
+  ];
+  let volChart;
 
-  const dates = data.map(d => d.timestamp);
-  const gridColors = { caiso: '#2563eb', ercot: '#7c3aed', pjm: '#2d7d46' };
-  const gridLabels = { caiso: 'CAISO', ercot: 'ERCOT', pjm: 'PJM' };
-
-  new Chart(document.getElementById('spikeChart').getContext('2d'), {
-    type: 'line',
-    data: {
-      labels: dates,
-      datasets: ['caiso', 'ercot', 'pjm'].map(g => ({
-        label: gridLabels[g],
-        data: data.map(d => +d[g]),
-        borderColor: gridColors[g],
-        borderWidth: 1,
-        pointRadius: 0,
-        pointHoverRadius: 2,
-        tension: 0,
-        fill: false,
-      }))
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      interaction: { mode: 'index', intersect: false },
-      plugins: {
-        legend: { display: false },
-        tooltip: {
+  function buildVolChart(quarter) {
+    if (volChart) volChart.destroy();
+    volChart = new Chart(document.getElementById('volChart').getContext('2d'), {
+      type: 'line',
+      data: { labels: hours, datasets: gridDefs.map(g => ({
+        label: g.label,
+        data: g.data.map(d => +d[quarter]),
+        borderColor: g.color, borderWidth: 2,
+        pointRadius: 0, pointHoverRadius: 0, tension: 0.3, fill: false,
+      }))},
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: { legend: { display: false }, tooltip: {
           backgroundColor: '#ffffff', borderColor: '#e0e3e8', borderWidth: 1,
           titleColor: '#111827', bodyColor: '#374151', padding: 8, displayColors: false,
           callbacks: {
-            title: items => dates[items[0].dataIndex],
-            label: ctx => ` ${ctx.dataset.label}: $${ctx.parsed.y.toFixed(0)}/MWh`,
+            title: items => `Hour ${hours[items[0].dataIndex]}:00`,
+            label: ctx => ` ${ctx.dataset.label}: $${ctx.parsed.y.toFixed(2)}/MWh`,
           }
-        }
-      },
-      scales: {
-        x: {
-          grid: { display: false }, border: { color: '#e0e3e8' },
-          title: { display: true, text: 'Date', color: '#9ca3af', font: { size: 11 } },
-          ticks: { color: '#6b7280', font: { size: 11 }, maxRotation: 0, maxTicksLimit: 12, autoSkip: true }
-        },
-        y: {
-          grid: { display: false }, border: { color: '#e0e3e8' },
-          title: { display: true, text: 'Daily Max Price ($/MWh)', color: '#9ca3af', font: { size: 11 } },
-          ticks: { color: '#6b7280', font: { size: 11 }, callback: v => '$' + v.toFixed(0) }
+        }},
+        scales: {
+          x: { grid: { display: false }, border: { color: '#e0e3e8' }, title: { display: true, text: 'Hour of Day', color: '#9ca3af', font: { size: 11 } }, ticks: { color: '#6b7280', font: { size: 11 }, maxRotation: 0, callback: (val, i) => i % 6 === 0 ? `${hours[i]}:00` : '' } },
+          y: { grid: { display: false }, border: { color: '#e0e3e8' }, title: { display: true, text: 'Price Std Dev ($/MWh)', color: '#9ca3af', font: { size: 11 } }, ticks: { color: '#6b7280', font: { size: 11 }, callback: v => '$' + v.toFixed(0) } }
         }
       }
-    }
-  });
+    });
+    const qLabel = { '2025Q1':'Q1','2025Q2':'Q2','2025Q3':'Q3','2025Q4':'Q4' }[quarter];
+    document.getElementById('volFig').textContent = `Fig. X — Hourly price volatility (std dev $/MWh), ${qLabel} 2025.`;
+    const legendEl = document.getElementById('volLegend'); legendEl.innerHTML = '';
+    gridDefs.forEach(g => {
+      const item = document.createElement('div'); item.className = 'cl-item';
+      item.innerHTML = `<div class="cl-line" style="background:${g.color};width:22px;height:2.5px;border-radius:2px;flex-shrink:0;display:block;align-self:center;"></div><span>${g.label}</span>`;
+      legendEl.appendChild(item);
+    });
+  }
 
-  const legendEl = document.getElementById('spikeLegend');
-  ['caiso', 'ercot', 'pjm'].forEach(g => {
-    const item = document.createElement('div'); item.className = 'cl-item';
-    item.innerHTML = `<div class="cl-line" style="background:${gridColors[g]};width:22px;height:2.5px;border-radius:2px;flex-shrink:0;display:block;align-self:center;"></div><span>${gridLabels[g]}</span>`;
-    legendEl.appendChild(item);
-  });
+  window.setVol = function(quarter) {
+    document.querySelectorAll('.qbtn[data-volq]').forEach(b => b.classList.toggle('active', b.dataset.volq === quarter));
+    buildVolChart(quarter);
+  };
+  buildVolChart('2025Q3');
 })();
 </script>
 
