@@ -71,77 +71,45 @@ sup a { text-decoration: none; }
     <header>
       <div class="label">Energy Systems</div>
       <h1> Work in progress: Impact of Batteries on the Grid</h1>
-      <p>Comparing BESS penetration and operational impact across CAISO, ERCOT, and PJM.</p>
+      <p>Comparing BESS penetration and market incentives across CAISO, ERCOT, and PJM.</p>
       <div class="meta">CAISO · ERCOT · PJM &bull; 2025</div>
     </header>
 
-  <br>  
-
 <section class="section">
+<h2>The Duck Curve</h2>
+<p>
+  Increasing renewables have seen a shift in net load profiles, with a drop in demand during the
+  day followed by steep ramping in the evenings, also known as the duck curve. The resulting price swings provide the initial
+  economic incentive for battery storage, which shift energy to when it's needed and make a 
+  profit from the price spread. CAISO, ERCOT and PJM demonstrate this effect with varying degrees
+  of battery penetration.
+</p>
 
-  
-
-<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;">
-  <div style="text-align:center;padding:12px 8px;">
-    <div style="font-size:0.78rem;font-weight:600;color:#2563eb;margin-top:2px;">CAISO · California</div>
-    <div style="font-size:1.3rem;font-weight:700;color:#111827;">33.2%<span style="font-size:0.78rem;font-weight:400;color:#6b7280;margin-left:5px;">penetration</span></div>   
-    <div style="font-size:0.78rem;color:#6b7280;margin-top:1px;">15.7 GW installed</div>    
-    <div style="font-size:0.78rem;font-weight:600;color:#4b5563;margin-top:1px;">43.6 GW peak · 3.8 hr</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,260px));gap:50px;justify-content:center;margin:27px 0 6px;">
+  <div style="background:#fafafa;border:1px solid #e0e3e8;border-radius:10px;padding:12px 14px;text-align:center;">
+    <div style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.06em;font-weight:600;color:#2563eb;">CAISO · California</div>
+    <div style="font-size:1.25rem;font-weight:700;color:#111827;margin-top:3px;">36.1%</div>
+    <div style="font-size:0.75rem;color:#6b7280;">peak penetration</div>
+    <div style="font-size:0.8rem;font-weight:600;color:#374151;margin-top:6px;">3.8 hr <span style="font-weight:400;color:#9ca3af;">avg duration</span></div>
   </div>
-  <div style="text-align:center;padding:12px 8px;">
-    <div style="font-size:0.78rem;font-weight:600;color:#7c3aed;margin-top:2px;">ERCOT · Texas</div>
-    <div style="font-size:1.3rem;font-weight:700;color:#111827;">13.3%<span style="font-size:0.78rem;font-weight:400;color:#6b7280;margin-left:5px;">penetration</span></div>    
-    <div style="font-size:0.78rem;color:#6b7280;margin-top:1px;">13.1 GW installed</div>
-    <div style="font-size:0.78rem;font-weight:600;color:#4b5563;margin-top:1px;">83.9 GW peak · 1.56 hr</div>
+  <div style="background:#fafafa;border:1px solid #e0e3e8;border-radius:10px;padding:12px 14px;text-align:center;">
+    <div style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.06em;font-weight:600;color:#7c3aed;">ERCOT · Texas</div>
+    <div style="font-size:1.25rem;font-weight:700;color:#111827;margin-top:3px;">15.7%</div>
+    <div style="font-size:0.75rem;color:#6b7280;">peak penetration</div>
+    <div style="font-size:0.8rem;font-weight:600;color:#374151;margin-top:6px;">1.6 hr <span style="font-weight:400;color:#9ca3af;">avg duration</span></div>
   </div>
-  <div style="text-align:center;padding:12px 8px;">
-    <div style="font-size:0.78rem;font-weight:600;color:#2d7d46;margin-top:2px;">PJM · Mid-Atlantic</div>
-    <div style="font-size:1.3rem;font-weight:700;color:#111827;">0.42 MW </div>
-    <div style="font-size:0.78rem;color:#6b7280;margin-top:1px;">0.26% penetration vs peak</div>
-    <div style="font-size:0.78rem;font-weight:600;color:#4b5563;margin-top:1px;">160.5 GW peak · emerging</div>
+  <div style="background:#fafafa;border:1px solid #e0e3e8;border-radius:10px;padding:12px 14px;text-align:center;">
+    <div style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.06em;font-weight:600;color:#2d7d46;">PJM · Mid-Atlantic</div>
+    <div style="font-size:1.25rem;font-weight:700;color:#111827;margin-top:3px;">0.26%</div>
+    <div style="font-size:0.75rem;color:#6b7280;">peak penetration</div>
+    <div style="font-size:0.8rem;font-weight:600;color:#374151;margin-top:6px;">emerging <span style="font-weight:400;color:#9ca3af;">- 4 hr queued</span></div>
   </div>
 </div>
-
 <br>
 
-  <p>
-    BESS provide a wide range of services to the grid including energy shifting, frequency regulation and balancing services to buffer 
-    variability from renewables. Across the three grids, different levels of penetration highlight the effects of increasing BESS on the grid.
-    Differences and similarities in market designs (energy-only, ERCOT, and capacity market, CAISO) present varying opportunities for the integration of
-    battery storage.
-  </p> 
-
-
-  <h2>Operational Impact Parameters, Price &amp; Market Signal Parameters</h2>
-
-  <p>
-    CAISO has the highest BESS penetration followed by ERCOT, with PJM still emerging. The operational impact of batteries is most visible in CAISO, where
-    the duck curve is pronounced and batteries are used for daily load shifting with a mean duration of 3.8 hours. ERCOT experiences more
-    volatile prices due to wind fluctuations, with the 1.56-hour-average batteries used for fast response to price spikes in addition to predictable load shifting. 
-    PJM's market structure is similar to CAISO's with a focus on capacity market and reliability, with most queued batteries expected to have a 
-    duration 4-hours. PJM's prices currently show volatility similar to ERCOT, suggesting a potential use of batteries for both cyclic load shifting and price arbitrage.
-  </p>
-
-  <p>
-    Across all 3 grids, the highest average load is seen in Q3.
-  </p>
-
-  <p>
-    Daily Load Shifting: Measuring how much energy is moved from low-demand (or high-renewable) periods to peak evening periods.
-    This is the most visible impact in duck curve markets like CAISO. See figure on net load.
-  </p>
-
-  <p>
-    Batteries are most proliferate in CAISO &gt; ERCOT &gt; PJM. In the summer, the duck curve can be seen with
-    a dip in load in CAISO, unlike PJM where there's a steady increase. ERCOT sees a steady increase due
-    to [...], despite having significant battery capacity.
-  </p>
-
-
-  <!-- Dual axis chart -->
+ <!-- Dual axis chart -->
   <div style="margin-top:16px;">
     <div class="dual-header">
-      <p class="chart-fig" id="dualFig">Fig. X — Average hourly net load (GW) and price spread ($/MWh above daily min), CAISO Q3 2025.</p>
       <div class="dual-filter">
         <span style="font-size:0.90rem;font-weight:600;color:#6b7280;">Grid:</span>
         <button class="df-btn active" data-dual="CAISO" onclick="setDual('CAISO', currentDualQ)">CAISO</button>
@@ -161,76 +129,34 @@ sup a { text-decoration: none; }
     <canvas id="dualChart"></canvas>
   </div>
   <div class="custom-legend" id="dualLegend"></div>
-
-  <p>Does not include load from storage charging.</p>
-
-  <p>
-    Looking at the general gap between the daily highest and lowest prices. High volatility in ERCOT (due to wind fluctuations) drives BESS growth differently than the steadier patterns in CAISO.
-    Price Volatility (Price Spreads): Highest volatility is seen in ERCOT + PJM. See figure on price spreads.
+  <p class="chart-fig" id="dualFig">Average hourly net load (GW) and price spread ($/MWh above daily min), CAISO Q3 2025.
+     Does not include load from storage charging. Price hubs: CAISO — SP15 &amp; ZP26 (NP15 excluded; less pronounced midday dip).
+     ERCOT — HB_HOUSTON, HB_NORTH, HB_SOUTH, HB_WEST. PJM — AEP-DAYTON, CHICAGO, DOMINION, EASTERN, WESTERN HUB.
   </p>
 
+<p>
+  CAISO's surplus of solar energy is captured by BESS during the cheap midday hours and then
+  discharged for extended hours during peak evening demand.
+  ERCOT's significant growth in BESS is beginning to be reflected in net load profile
+  with a dip observed in the later morning hours. 
+  PJM is still emerging, and has the least share of renewables and bettery deployment,
+  and shows a more traditional net load curve with a steady increase in demand throughout the day. 
+</p>
+  
 
-  <p>
-    CAISO hubs: SP15 &amp; ZP26 most relevant since it has most BESS (modo source). All hubs move in the
-    same way, but NP15 doesn't see as much of a dip during the day.
-  </p>
-  <p>
-    ERCOT hubs: HB_HOUSTON, HB_NORTH, HB_SOUTH, HB_WEST. Prices across locations move fairly close together.
-  </p>
-  <p>
-    PJM hubs: AEP-DAYTON HUB, CHICAGO HUB, DOMINION HUB, EASTERN HUB, WESTERN HUB. Prices move in a similar way across the hubs.
-  </p>
-  <p>
-    More volatile markets need faster response. Batteries can discharge at max rated power almost
-    instantly, providing energy services in ERCOT and PJM grids to meet demand during peaks. This
-    can help lower the price spikes as seen, as BESS expands. CAISO with most penetration has the lowest
-    average price spreads, falling to $2.28 in Q2, and a max of $56.72 in Q3. Unlike ERCOT max $81.63 and
-    PJM max $85.60 both in Q3. Mins remain at $17.52 in Q1 in ERCOT, and $22.12 in Q3 in PJM.
-  </p>
-  <p>
-    CAISO has longest duration batteries, allowing for steady discharge of energy to meet demand in peak
-    hours of the evening when solar decreases, while allowing other backup generation to come online
-    so filling the gap in the meantime (CCGT requires 1-3hrs to get to full capacity).
-    Batteries don't discharge forever, so backup is needed.
-    The backup e.g. gas needs time from cold-start because during the day, as seen in CAISO, net load
-    falls sometimes to negative values.
-  </p>
-  <p>
-    After wind and solar (VRE) is produced, net load drops, sometimes below zero. So gas and other
-    thermal sources must be turned off, expensive fuel should not be burnt when cheap renewable energy is available.
-    In the case of negative net load, batteries can consume this extra electricity, charging during
-    the period of low prices and discharging in the evening when prices are higher, earning from this spread
-    (load shifting).
-  </p>
+<h2>Price Suppression</h2>
 
-  <h2>3. Battery Cycles & Ancillary Services</h2>
-
-  <p>
-    <strong>How batteries are operating across the grids:</strong> Show the charge and discharge cycles in CAISO (steady pattern) vs
-    ERCOT (more volatile) and compare the 1 hour to 4 hour and the different roles they serve, and discuss what PJM may adopt to serve its
-    purpose (largest market, mostly capacity payments in addition to market revenue - energy, ancillary, congestion). Check PJM's volatility
-    too - is it closer to CAISO? ERCOT? Somewhere in between? Model how it would change.
-    Higher volatility requires response to fast changes, steadier patterns require steady discharge for energy shifting.
-    The frequency of extreme price spikes: BESS impact is often highest during these "grid stress" events.
-  </p>
-
-  <!-- Storage chart -->
-  <div class="dual-header" style="margin-top:24px;">
-    <p class="chart-fig" id="storageFig">Fig. X — Average hourly battery net output by quarter, CAISO 2025.</p>
-    <div class="dual-filter">
-      <span style="font-size:0.90rem;font-weight:600;color:#6b7280;">Grid:</span>
-      <button class="df-btn active" data-storage="CAISO" onclick="setStorage('CAISO')">CAISO</button>
-      <button class="df-btn"        data-storage="ERCOT" onclick="setStorage('ERCOT')">ERCOT</button>
-    </div>
-  </div>
-  <div class="chart-wrap">
-    <canvas id="storageChart"></canvas>
-  </div>
-  <div class="custom-legend" id="storageLegend"></div>
-
-
-  </section>
-
+<p>
+  High volatility is the initial driver of BESS growth creating the opportunity for batteries to profit from price spikes.
+  The result of this growth is an endogenous decline in price spreads, raising questions about other revenue streams for
+  battery assets.
+  price volatility across each hour. Prior to buildout CAISO used to
+  experience significant
+  volatility
+  when solar buildout grew before batteries caught up, seeing negative prices during the day. This volatility has decreased as more batteries
+  have been deployed and CAISO now sees less than $13.27 devition across all hours. 
+</p>
+  
   <!--Price Volatility Chart-->
   <div style="margin-top:24px;">
     <div class="dual-header">
@@ -249,15 +175,59 @@ sup a { text-decoration: none; }
   </div>
   <div class="custom-legend" id="volLegend"></div>
 
-  <section class="section">
-  <h2>Implications</h2>
+  <p>
+    CAISO has relativeley steady prices for each hour of the day in Q3 (sdev max $13.42 at 15:00).
+    ERCOT and PJM see much more volatility with a sdev max of $59.94 at 19:00 for ERCOT and $66.10 at 18:00 for PJM.
+  </p> 
+    
+  <p>
+    When the market matures and price spreads shrink, as is starting to be seen in CAISO, new revenue streams need to be explored.
+  </p>
+
+  </section>
+
+<section class="section">  
+<h2>Market Design and Battery Opportunities</h2>
+
+<p>Q1: How does market design affect the investment case for batteries?</p>
+<ul>
+  <li>Revenue certainty</li>
+  <li>Credibility of price signals</li>
+  <li>Capacity markets</li>
+</ul>
+
+<p>Q2: What other opportunities are available for batteries as the market matures (CAISO v important)?</p>
+
+<p>
+  PJM still emerging. Sustained increase in net load from 12:00 onwards suggests longer-duration batteries will be needed.
+  PJM's market structure is similar to CAISO's with a focus on capacity market and reliability. It shows persistent increase
+  in net load which points to the need for longer duration batteries; most queued batteries expected to 
+  have a duration of 4-hours. However PJM's prices currently show volatility similar to ERCOT, suggesting an opportunity for
+  both cyclic load shifting and ancillary services market (fast discharge to keep grid balanced).
+  ERCOT is most volatile with wind and an energy only market meaning no backup capacity.
+</p>
+
+<p>
+  Operational behaviour at the utility scale is influenced by:
+  Renewable generation profile, Market design (capacity/energy-only), duration.
+  Batteries rely on and eiminate price volatility (endogenous). Capacity markets provide payments for available power, and enforce price
+  caps to protect consumers from price spikes. The limitation of this is the credibility trap (PJM linkedin ref).
+</p>
+
+<p>  
+  Differences and similarities in market designs (energy-only, ERCOT, and capacity market, CAISO) present varying opportunities for the integration of
+  battery storage. BESS provide a wide range of services to the grid including energy shifting, frequency regulation and balancing services to buffer 
+  variability from renewables.
+</p>
+
   <p>
     How is PJM's grid expected to change as battery capacity is added?
+    PJM experiences on average longer hours of volatility in comparison to ERCOT, starting from 12:00 to 21:00.
     Given that most queued are 4-hour - how will the grid compare to CAISO's
     4-hour cohort (4 hours for day-night energy shifting)? What about given the increasing load - ERCOT has significant
     battery capacity (1.56 hours, for fast changes e.g. frequency and volatility)
-    but doesn't see the same net load curve due to more volatility (wind) and increasing
-    demand (data centres). PJM needs batteries that serve for reliability and backup services.
+    but doesn't see the same net load curve due to more volatility (wind).
+    PJM needs batteries that discharge for longer periods to supply the more sustained increase in load after 12:00.
   </p>
   <p>
     Batteries pair well with capacity requirements because they can dispatch
@@ -292,7 +262,8 @@ sup a { text-decoration: none; }
     That's FTM. For BTM, transmission savings and credits and capacity value (avoiding peak demand charges)
     are the main value additions.
   </p>
-  </section>
+
+</section>
 
   <section class="section">
   <h2>Data Source</h2>
