@@ -78,11 +78,10 @@ sup a { text-decoration: none; }
 <section class="section">
 <h2>The Duck Curve</h2>
 <p>
-  Increasing renewables have seen a shift in net load profiles, with a drop in demand during the
-  day followed by steep ramping in the evenings, also known as the duck curve. The resulting price swings provide the initial
-  economic incentive for battery storage, which shift energy to when it's needed and make a 
-  profit from the price spread. CAISO, ERCOT and PJM demonstrate this effect with varying degrees
-  of battery penetration.
+  Increasing renewable buildout has seen a shift in net load profiles, with a drop in demand during the
+  day followed by steep ramping in the evenings. The resulting price spreads provide an opportunity for
+  arbitrage where batteries shift energy from cheap to expensive hours.
+  CAISO, ERCOT and PJM demonstrate this effect with varying degrees of battery penetration.
 </p>
 
 <div style="display:grid;grid-template-columns:repeat(3,minmax(0,260px));gap:50px;justify-content:center;margin:27px 0 6px;">
@@ -90,18 +89,22 @@ sup a { text-decoration: none; }
     <div style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.06em;font-weight:600;color:#2563eb;">CAISO · California</div>
     <div style="font-size:1.25rem;font-weight:700;color:#111827;margin-top:3px;">36.1%</div>
     <div style="font-size:0.75rem;color:#6b7280;">peak penetration</div>
+    <div style="font-size:0.8rem;font-weight:600;color:#374151;margin-top:6px;">43.6 GW <span style="font-weight:400;color:#9ca3af;">peak load</span></div>    
     <div style="font-size:0.8rem;font-weight:600;color:#374151;margin-top:6px;">3.8 hr <span style="font-weight:400;color:#9ca3af;">avg duration</span></div>
+
   </div>
   <div style="background:#fafafa;border:1px solid #e0e3e8;border-radius:10px;padding:12px 14px;text-align:center;">
     <div style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.06em;font-weight:600;color:#7c3aed;">ERCOT · Texas</div>
     <div style="font-size:1.25rem;font-weight:700;color:#111827;margin-top:3px;">15.7%</div>
     <div style="font-size:0.75rem;color:#6b7280;">peak penetration</div>
+    <div style="font-size:0.8rem;font-weight:600;color:#374151;margin-top:6px;">83.9 GW <span style="font-weight:400;color:#9ca3af;">peak load</span></div>    
     <div style="font-size:0.8rem;font-weight:600;color:#374151;margin-top:6px;">1.6 hr <span style="font-weight:400;color:#9ca3af;">avg duration</span></div>
   </div>
   <div style="background:#fafafa;border:1px solid #e0e3e8;border-radius:10px;padding:12px 14px;text-align:center;">
     <div style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.06em;font-weight:600;color:#2d7d46;">PJM · Mid-Atlantic</div>
     <div style="font-size:1.25rem;font-weight:700;color:#111827;margin-top:3px;">0.26%</div>
     <div style="font-size:0.75rem;color:#6b7280;">peak penetration</div>
+    <div style="font-size:0.8rem;font-weight:600;color:#374151;margin-top:6px;">160.5 GW <span style="font-weight:400;color:#9ca3af;">peak load</span></div>    
     <div style="font-size:0.8rem;font-weight:600;color:#374151;margin-top:6px;">emerging <span style="font-weight:400;color:#9ca3af;">- 4 hr queued</span></div>
   </div>
 </div>
@@ -118,11 +121,11 @@ sup a { text-decoration: none; }
       </div>
     </div>
     <div style="display:flex;justify-content:flex-end;gap:6px;margin-top:6px;">
-      <span style="font-size:0.72rem;color:#9ca3af;align-self:center;">Quarter:</span>
-      <button class="qbtn"        data-dualq="2025Q1" onclick="setDual(currentDualGrid, '2025Q1')">Q1</button>
-      <button class="qbtn"        data-dualq="2025Q2" onclick="setDual(currentDualGrid, '2025Q2')">Q2</button>
-      <button class="qbtn active" data-dualq="2025Q3" onclick="setDual(currentDualGrid, '2025Q3')">Q3</button>
-      <button class="qbtn"        data-dualq="2025Q4" onclick="setDual(currentDualGrid, '2025Q4')">Q4</button>
+      <!-- <span style="font-size:0.72rem;color:#9ca3af;align-self:center;">Quarter:</span> -->
+      <!-- <button class="qbtn"        data-dualq="2025Q1" onclick="setDual(currentDualGrid, '2025Q1')">Q1</button> -->
+      <!-- <button class="qbtn"        data-dualq="2025Q2" onclick="setDual(currentDualGrid, '2025Q2')">Q2</button> -->
+      <!-- <button class="qbtn active" data-dualq="2025Q3" onclick="setDual(currentDualGrid, '2025Q3')">Q3</button> -->
+      <!-- <button class="qbtn"        data-dualq="2025Q4" onclick="setDual(currentDualGrid, '2025Q4')">Q4</button> -->
     </div>
   </div>
   <div class="chart-wrap">
@@ -130,138 +133,76 @@ sup a { text-decoration: none; }
   </div>
   <div class="custom-legend" id="dualLegend"></div>
   <p class="chart-fig" id="dualFig">Average hourly net load (GW) and price spread ($/MWh above daily min), CAISO Q3 2025.
-     Does not include load from storage charging. Price hubs: CAISO — SP15 &amp; ZP26 (NP15 excluded; less pronounced midday dip).
+     Does not include load from storage charging. Price hubs: CAISO — SP15 &amp; ZP26.
      ERCOT — HB_HOUSTON, HB_NORTH, HB_SOUTH, HB_WEST. PJM — AEP-DAYTON, CHICAGO, DOMINION, EASTERN, WESTERN HUB.
   </p>
-
+<br>
 <p>
-  CAISO's surplus of solar energy is captured by BESS during the cheap midday hours and then
-  discharged for extended hours during peak evening demand.
-  ERCOT's significant growth in BESS is beginning to be reflected in net load profile
-  with a dip observed in the later morning hours. 
-  PJM is still emerging, and has the least share of renewables and bettery deployment,
-  and shows a more traditional net load curve with a steady increase in demand throughout the day. 
+  CAISO demonstrates the strongest duck curve effect, having the largest solar profile of the three regions.
+  Abundant solar generation is captured in the middle of the day and then
+  discharged for extended hours to meet peak evening demand. 
+  ERCOT's renewable buildout is catching up and the net load shows 
+  the price formation beginning to take effect as seen by the drop in net load in
+  the late morning.
+  PJM's battery market is still emerging, with the smallest share of renewable generation of the three. The net load
+  curve shows a more traditional shape with a steady increase throughout the day. 
 </p>
-  
 
-<h2>Price Suppression</h2>
-
-<p>
-  High volatility is the initial driver of BESS growth creating the opportunity for batteries to profit from price spikes.
-  The result of this growth is an endogenous decline in price spreads, raising questions about other revenue streams for
-  battery assets.
-  price volatility across each hour. Prior to buildout CAISO used to
-  experience significant
-  volatility
-  when solar buildout grew before batteries caught up, seeing negative prices during the day. This volatility has decreased as more batteries
-  have been deployed and CAISO now sees less than $13.27 devition across all hours. 
-</p>
-  
-  <!--Price Volatility Chart-->
-  <div style="margin-top:24px;">
-    <div class="dual-header">
-      <p class="chart-fig" id="volFig">Fig. X — Hourly price volatility (std dev $/MWh), Q3 2025.</p>
-      <div style="display:flex;gap:6px;align-items:center;">
-        <span style="font-size:0.72rem;color:#9ca3af;">Quarter:</span>
-        <button class="qbtn"        data-volq="2025Q1" onclick="setVol('2025Q1')">Q1</button>
-        <button class="qbtn"        data-volq="2025Q2" onclick="setVol('2025Q2')">Q2</button>
-        <button class="qbtn active" data-volq="2025Q3" onclick="setVol('2025Q3')">Q3</button>
-        <button class="qbtn"        data-volq="2025Q4" onclick="setVol('2025Q4')">Q4</button>
-      </div>
+<!-- Price Volatility Chart -->
+<div style="margin-top:16px;">
+  <div class="dual-header">
+    <div class="dual-filter">
+      <span style="font-size:0.90rem;font-weight:600;color:#6b7280;">Quarter:</span>
+      <button class="qbtn active" data-volq="2025Q1" onclick="setVol('2025Q1')">Q1</button>
+      <button class="qbtn"        data-volq="2025Q2" onclick="setVol('2025Q2')">Q2</button>
+      <button class="qbtn"        data-volq="2025Q3" onclick="setVol('2025Q3')">Q3</button>
+      <button class="qbtn"        data-volq="2025Q4" onclick="setVol('2025Q4')">Q4</button>
     </div>
   </div>
-  <div class="chart-wrap">
-    <canvas id="volChart"></canvas>
-  </div>
-  <div class="custom-legend" id="volLegend"></div>
+</div>
+<div class="chart-wrap">
+  <canvas id="volChart"></canvas>
+</div>
+<div class="custom-legend" id="volLegend"></div>
+<p class="chart-fig" id="volFig">Hourly price volatility (std dev $/MWh), Q1 2025.</p>
 
-  <p>
-    CAISO has relativeley steady prices for each hour of the day in Q3 (sdev max $13.42 at 15:00).
-    ERCOT and PJM see much more volatility with a sdev max of $59.94 at 19:00 for ERCOT and $66.10 at 18:00 for PJM.
-  </p> 
-    
-  <p>
-    When the market matures and price spreads shrink, as is starting to be seen in CAISO, new revenue streams need to be explored.
-  </p>
-
-  </section>
+</section>
 
 <section class="section">  
 <h2>Market Design and Battery Opportunities</h2>
 
-<p>Q1: How does market design affect the investment case for batteries?</p>
-<ul>
-  <li>Revenue certainty</li>
-  <li>Credibility of price signals</li>
-  <li>Capacity markets</li>
-</ul>
-
-<p>Q2: What other opportunities are available for batteries as the market matures (CAISO v important)?</p>
-
 <p>
-  PJM still emerging. Sustained increase in net load from 12:00 onwards suggests longer-duration batteries will be needed.
-  PJM's market structure is similar to CAISO's with a focus on capacity market and reliability. It shows persistent increase
-  in net load which points to the need for longer duration batteries; most queued batteries expected to 
-  have a duration of 4-hours. However PJM's prices currently show volatility similar to ERCOT, suggesting an opportunity for
-  both cyclic load shifting and ancillary services market (fast discharge to keep grid balanced).
-  ERCOT is most volatile with wind and an energy only market meaning no backup capacity.
-</p>
-
-<p>
-  Operational behaviour at the utility scale is influenced by:
-  Renewable generation profile, Market design (capacity/energy-only), duration.
-  Batteries rely on and eiminate price volatility (endogenous). Capacity markets provide payments for available power, and enforce price
-  caps to protect consumers from price spikes. The limitation of this is the credibility trap (PJM linkedin ref).
-</p>
+  The initial major value of batteries is their ability to respond quickly to 
+  frequency changes. 
+  High-power, short-duration batteries are well suited for this service, similar to ERCOT's ~1.56hr average.
+  With much lower marginal costs compared to alternatives like gas, and a relatively shallow market,
+  prices quickly drop and ancillary services are often saturated first.
+  Britain's context shows this with revenues falling from
+  over £150k/MW in 2022 to £50,000/MW by 2023 due to the rapid increase in 
+  frequency capacity. 
+</p>  
 
 <p>  
-  Differences and similarities in market designs (energy-only, ERCOT, and capacity market, CAISO) present varying opportunities for the integration of
-  battery storage. BESS provide a wide range of services to the grid including energy shifting, frequency regulation and balancing services to buffer 
-  variability from renewables.
+  Energy arbitrage is another opporunity for battery revenue, shifting energy from daytime to evening.
+  This is where battery duration becomes important as it determines how much of the price spread a battery can capture.
+  Longer-duration assets like CAISO's 3.8 hr average are more flexibile given that they are exposed to a wider range
+  of prices and have more options to optimize their returns. 
+  However as battery penetration increases, fewer negative prices and lower premiums result in weaker revenues for stand-alone batteries. 
+  This is currently the case in CAISO where negative pricing hours have decreased by 20% since 2024.
+  As battery penetration grows, value streams tend to evolve and the need for a more diverse revenue
+  strategy increases. The remaining opportunity beyond this point depends heavily on market design and volatility.
 </p>
 
-  <p>
-    How is PJM's grid expected to change as battery capacity is added?
-    PJM experiences on average longer hours of volatility in comparison to ERCOT, starting from 12:00 to 21:00.
-    Given that most queued are 4-hour - how will the grid compare to CAISO's
-    4-hour cohort (4 hours for day-night energy shifting)? What about given the increasing load - ERCOT has significant
-    battery capacity (1.56 hours, for fast changes e.g. frequency and volatility)
-    but doesn't see the same net load curve due to more volatility (wind).
-    PJM needs batteries that discharge for longer periods to supply the more sustained increase in load after 12:00.
-  </p>
-  <p>
-    Batteries pair well with capacity requirements because they can dispatch
-    at full capacity instantly, guaranteeing supply during peak demand. However
-    they are limited to short intervals (1-4 hours currently) and do not replace need for
-    backup generation. They only fill an immediate gap when demand rises quickly, allowing
-    other technologies the time to ramp up.
-  </p>
-  <p>
-    CAISO and PJM are more contract-like, with capacity payments to fulfill resource adequacy
-    obligations (FERC rules - more stable revenue, support underwriting in addition to market revenue),
-    while ERCOT is more trading-like, real-time arbitrage, incentives are more immediate price driven,
-    not capacity payments.
-  </p>
-  <p>
-    Many data centres are building on-site generation and bypassing the grid
-    so in the near term prices are not likely to spike. In ERCOT, the opportunity for
-    batteries is in hedging against worst performing hours
-    (when prices are high, batteries are discharged to ease the price spike).
-  </p>
-  <p>
-    This works in ERCOT because it has more extreme price swings
-    prices to hedge against. But this doesn't work the same way in CAISO because of resource
-    adequacy requirements (batteries can be partially committed ahead of time, reducing ability to
-    optimize around real-time prices).
-    Also revenues become weaker as batteries saturate the market. Not as extreme spikes, smaller
-    price spread; need a different, more diverse revenue strategy. Driver remains the need for resource adequacy.
-  </p>
-  <p>
-    For PJM, the biggest driver is the capacity market (ensure enough supply during peak hours,
-    especially with aging thermal plants, increasing demand, strong reliability rules), but needs underwriting.
-    That's FTM. For BTM, transmission savings and credits and capacity value (avoiding peak demand charges)
-    are the main value additions.
-  </p>
+
+<p>
+  ERCOT operates in an energy-only market with high volatility in prices. Batteries rely on capturing scarcity pricing
+  and volatility, which involves higher upside, but also higher revenue uncertainty. CAISO's capacity market sees
+  much lower volatility, and batteries rely on resource adequacy payments which provides steady revenue with a tradeoff of lower 
+  upside. PJM is still developing but operates in a capacity market and is seeing increasing volatility. It has capacity/revenue 
+  opportunities but also volatility. This reperesents a hybrid battery market where capacity revenues provide security, and growing
+  volatility increase merchant upaside. The optimization problem must balance revenue certainty and volatility upside, and ensure
+  durability of the volatile prices to build confidence for investors.
+</p>
 
 </section>
 
@@ -283,6 +224,22 @@ sup a { text-decoration: none; }
       Available at:
       <a href="https://gridbeyond.com/battery-storage-markets-whats-happening-in-ercot-caiso-pjm-and-japan/" target="_blank">
         https://gridbeyond.com/battery-storage-markets-whats-happening-in-ercot-caiso-pjm-and-japan/
+      </a>
+    </li>
+    <li id="ref2">
+      Aurora Energy Research (2025).
+      <em>Negative Pricing in CAISO</em>
+      Available at:
+      <a href="https://auroraer.com/resources/aurora-insights/market-reports-policy-notes/negative-pricing-in-caiso" target="_blank">
+        https://auroraer.com/resources/aurora-insights/market-reports-policy-notes/negative-pricing-in-caiso
+      </a>
+    </li>
+    <li id="ref3">
+      Modo Energy (2025)
+      <em>German ancillary service saturation: Lessons from Great Britain</em>
+      Available at:
+      <a href="https://modoenergy.com/research/en/october-2025-germany-afrr-saturation-bess-frequency-services">
+        https://modoenergy.com/research/en/october-2025-germany-afrr-saturation-bess-frequency-services
       </a>
     </li>
   </ol>
@@ -357,52 +314,7 @@ sup a { text-decoration: none; }
 })();
 </script>
 
-<!-- Storage chart -->
-<script>
-(async () => {
-  const base = "https://raw.githubusercontent.com/ginasengeri/Electricity-and-the-Economy/main/";
-  const [caiso, ercot] = await Promise.all([
-    d3.csv(base + "energy_systems_CAISO_ERCOT_PJM_caiso_storage_hrly_avg.csv"),
-    d3.csv(base + "energy_systems_CAISO_ERCOT_PJM_ercot_storage_net_hrly_avg.csv"),
-  ]);
-  const hours = caiso.map(d => +d.hour);
-  const gridColors = { CAISO: '#2563eb', ERCOT: '#7c3aed' };
-  const quarters = [
-    { key: '2025Q1', label: 'Q1 2025', dash: [4, 3], muted: true  },
-    { key: '2025Q2', label: 'Q2 2025', dash: [8, 4], muted: true  },
-    { key: '2025Q3', label: 'Q3 2025', dash: [],      muted: false },
-    { key: '2025Q4', label: 'Q4 2025', dash: [2, 2], muted: true  },
-  ];
-  const storageData = { CAISO: caiso, ERCOT: ercot };
-  let storageChart;
-  function buildStorageChart(grid) {
-    if (storageChart) storageChart.destroy();
-    const data = storageData[grid]; const heroColor = gridColors[grid];
-    storageChart = new Chart(document.getElementById('storageChart').getContext('2d'), {
-      type: 'line',
-      data: { labels: hours, datasets: quarters.map(q => ({ label: q.label, data: data.map(d => +d[q.key]), borderColor: q.muted ? '#c0c4cc' : heroColor, borderWidth: q.muted ? 1.2 : 2, borderDash: q.dash, pointRadius: 0, pointHoverRadius: 0, tension: 0.3, fill: false })) },
-      options: {
-        responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
-        plugins: { legend: { display: false }, tooltip: { backgroundColor: '#ffffff', borderColor: '#e0e3e8', borderWidth: 1, titleColor: '#111827', bodyColor: '#374151', padding: 8, displayColors: false, callbacks: { title: items => `Hour ${hours[items[0].dataIndex]}:00`, label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y.toFixed(0)} MW` } } },
-        scales: {
-          x: { grid: { display: false }, border: { color: '#e0e3e8' }, title: { display: true, text: 'Hour of Day', color: '#9ca3af', font: { size: 11 } }, ticks: { color: '#6b7280', font: { size: 11 }, maxRotation: 0, callback: (val, i) => i % 6 === 0 ? `${hours[i]}:00` : '' } },
-          y: { grid: { display: false }, border: { color: '#e0e3e8' }, title: { display: true, text: 'Avg Net Battery Output (MW)', color: '#9ca3af', font: { size: 11 } }, ticks: { color: '#6b7280', font: { size: 11 }, callback: v => v.toFixed(0) } }
-        }
-      }
-    });
-    document.getElementById('storageFig').textContent = `Fig. X — Average hourly battery net output by quarter, ${grid} 2025.`;
-    const legendEl = document.getElementById('storageLegend'); legendEl.innerHTML = '';
-    quarters.forEach(q => {
-      const color = q.muted ? '#c0c4cc' : heroColor; const item = document.createElement('div'); item.className = 'cl-item';
-      const lineStyle = q.dash.length ? `border-top:2px dashed ${color};height:0;width:22px;background:none;flex-shrink:0;align-self:center;` : `background:${color};width:22px;height:2.5px;border-radius:2px;flex-shrink:0;display:block;align-self:center;`;
-      item.innerHTML = `<div style="${lineStyle}"></div><span style="color:${q.muted ? '#9ca3af' : '#374151'}">${q.label}</span>`; legendEl.appendChild(item);
-    });
-  }
-  window.setStorage = function(grid) { document.querySelectorAll('.df-btn[data-storage]').forEach(b => b.classList.toggle('active', b.dataset.storage === grid)); buildStorageChart(grid); };
-  buildStorageChart('CAISO');
-})();
-</script>
-
+<!-- Price Stdev Chart -->
 <script>
 (async () => {
   const base = "https://raw.githubusercontent.com/ginasengeri/Electricity-and-the-Economy/main/";
