@@ -167,11 +167,9 @@ sup a { text-decoration: none; }
 <p>  
   As ancillary services saturate, 
   energy arbitrage becomes the major opportunity for battery revenue, shifting cheap daytime energy to meet tight evening demand.
-  This is where battery duration becomes important, as it determines how much of the intraday price spread a battery can capture.
-  Longer-duration assets like CAISO's 3.8-hour average offer greater flexibility given that they are exposed to a wider range
-  of pricing hours and have more options to optimize returns. 
-</p>
-<p>
+  This is where battery duration becomes important, determining how much of the intraday price spread a battery can capture.
+  Longer-duration assets like CAISO's 3.8-hour average offer greater flexibility with exposure to a wider range
+  of pricing hours, and have more options to optimize returns. 
   However, growth in merchant energy trading eases the negative prices and high premiums over time, resulting in weaker revenues
   for stand-alone batteries. 
   This is currently playing out in CAISO where negative pricing hours have decreased by 20% since 2024.
@@ -195,20 +193,39 @@ sup a { text-decoration: none; }
   <canvas id="volChart"></canvas>
 </div>
 <div class="custom-legend" id="volLegend"></div>
-<p class="chart-fig" id="volFig">Hourly price volatility (std dev $/MWh), Q3 2025.</p>
+<p class="chart-fig" id="volFig">Hourly price variability (std dev $/MWh), Q3 2025.</p>
 
 <p>
-ERCOT operates in an energy-only market and experiences high price volatility. In this environment, batteries rely on capturing scarcity
-pricing and volatility, which offers a higher upside but also brings greater revenue uncertainty. In contrast, CAISO's market design
-results in much lower pricing volatility; batteries rely primarily on Resource Adequacy payments, which provide a steady stream
-of contracted revenue at the opportunity cost of a capped upside. 
+ERCOT operates in an energy-only market and experiences higher volatility in the evening hours.
+In this context, batteries rely on capturing scarcity pricing, offering higher upside but also greater risk and revenue uncertainty.
+In contrast, CAISO's market experiences
+much lower pricing volatility with greater predictability across each hour of the day in Q3. This is due to the structural pattern of
+solar generation which meets up to 82% of demand during the day. 
+With shrinking spreads, future battery development relies primarily on Resource Adequacy payments, providing a cushion of revenue 
+certainty but potentially lower upside if the market remains non-volatile. Co-location with solar assets offer portfolio 
+value, with shared grid connection and decreased curtailment optimizing revenues however necessary grid reform and delays
+in interconnection adds complexity.
 </p>
 <p>
-PJM is unique as it continues to develop, operating a capacity market
-that is experiencing increasing volatility. With capacity auction clearing prices hitting the regulatory price cap and growing merchant
-spreads, PJM may represent hybrid battery market. Here, capacity revenues provide structural security, while growing
-real-time volatility offers merchant upside. The optimization challenge for developers is balancing this revenue 
-certainty against volatility upside, while ensuring that price signals remain durable enough to maintain investor confidence.
+PJM is unique, operating in a capacity market that is experiencing increasing volatility. With capacity auction clearing prices hitting
+the regulatory cap, and rapid growth in demand, increased merchant opportunities position PJM to operate in a hybrid merchant-capacity
+battery market. 
+Capacity revenues provide structural security, while growing
+real-time volatility offers merchant upside. The optimization challenge for developers is in balancing this revenue 
+certainty against upside, while ensuring that price signals remain durable enough to maintain investor confidence.
+</p>
+<p>
+Financing structures and revenue stacking achieve this balance include merchant buffering, tolling, and hybrid contract and floor agreements. 
+A combination of these provide fixed baseline cashflow to support investor confidence while allowing the flexibility needed to take advantage
+of a volatile market.
+</p>
+<p>
+  Optimizer's challenge: reality changes. Merchant and floors are simpler than tolls you can have 80% of an asset floored and 20% fully merchant.
+  Hedging is to protect downside mainly, methods include:
+  floors, tolling 
+  
+</p>
+<p>
 The future for batteries in PJM depends on how asset owners decide to balance contracted capacity revenues against 
 increasingly valuable merchant opportunities.
 </p>
