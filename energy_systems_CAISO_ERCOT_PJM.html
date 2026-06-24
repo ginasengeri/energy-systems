@@ -76,7 +76,7 @@ sup a { text-decoration: none; }
     </header>
 
 <section class="section">
-<h2>The Duck Curve</h2>
+<!-- <h2>The Duck Curve</h2> -->
 <p>
   Increasing renewable buildout has seen a shift in net load profiles, with a drop in demand during the
   day followed by steep ramping in the evenings. The resulting price spreads provide an opportunity for
@@ -141,7 +141,7 @@ sup a { text-decoration: none; }
   CAISO demonstrates the strongest duck curve effect, having the largest share of solar relative to its grid size.
   Abundant solar generation is captured in the middle of the day and then
   discharged for extended hours to meet peak evening demand. 
-  ERCOT's renewable buildout is beginning to show a similar price formation, with the pricing curve dropping
+  ERCOT's renewable buildout is beginning to show a similar price formation, with the curve dropping
   in the late morning hours.
   PJM's battery market is still emerging, and the grid has the smallest share of renewables. Its net load
   curve shows a more traditional shape with a steady increase throughout the day. 
@@ -159,22 +159,18 @@ sup a { text-decoration: none; }
   High-power, short-duration batteries are well suited for this service, as reflected by ERCOT's 1.56-hour fleet average.
   With much lower marginal costs compared to gas alternatives and a relatively shallow market,
   prices quickly drop and ancillary services are often saturated first.
-  Britain illustrates this reality where a rapid increase in 
-  frequency capacity resulted in revenues falling from
-  over £150,000/MW in 2022 to £50,000/MW by 2023. 
 </p>  
 
 <p>  
-  As ancillary services saturate, 
-  energy arbitrage becomes the major opportunity for battery revenue, shifting cheap daytime energy to meet tight evening demand.
+  Energy arbitrage follows as a major source of revenue, shifting cheap daytime energy to meet tight evening demand.
   This is where battery duration becomes important, determining how much of the intraday price spread a battery can capture.
   Longer-duration assets like CAISO's 3.8-hour average offer greater flexibility with exposure to a wider range
   of pricing hours, and have more options to optimize returns. 
   However, growth in merchant energy trading eases the negative prices and high premiums over time, resulting in weaker revenues
   for stand-alone batteries. 
   This is currently playing out in CAISO where negative pricing hours have decreased by 20% since 2024.
-  As battery penetration grows, value streams tend to evolve and the need for a more diverse revenue
-  strategy increases. The remaining opportunity beyond this point depends heavily on market design and volatility.
+  As battery penetration grows, value streams tend to evolve and more diverse revenue
+  strategies are needed. The remaining opportunity beyond this point depends heavily on market design and volatility.
 </p>
 
 <!-- Price Volatility Chart -->
@@ -196,34 +192,46 @@ sup a { text-decoration: none; }
 <p class="chart-fig" id="volFig">Hourly price variability (std dev $/MWh), Q3 2025.</p>
 
 <p>
-ERCOT operates in an energy-only market and experiences higher volatility in the evening hours.
-In this context, batteries rely on capturing scarcity pricing which offers higher upside but also greater revenue uncertainty.
-
-</p>
-<p>
-In contrast, CAISO's market exhibits
-greater predictability across hourly prices given the structural pattern of
+CAISO's market prices are more predictabile across each hour in Q3 given the structural pattern of
 solar generation which meets up to 82% of demand during the day. 
 With shrinking spreads, future battery development relies primarily on Resource Adequacy payments, providing a cushion of revenue 
 certainty but potentially lower upside if the market remains non-volatile. Co-location with solar assets offer portfolio 
-value, with shared grid connection and decreased curtailment optimizing project revenues.
+value, with a shared grid connection and decreased curtailment. The natural offtakers for battery projects become utilities,
+aggregators and other load-serving entities.
 </p>
+
 <p>
-PJM is unique, operating in a capacity market that is experiencing increasing volatility. With capacity auction clearing prices hitting
-the regulatory cap, and rapid growth in demand, PJM is positioned to operate in a hybrid merchant-capacity
-battery market. 
+In contrast, ERCOT operates in an energy-only market and experiences higher volatility in the evening hours.
+In this context, batteries rely on capturing scarcity pricing which offers higher upside but also greater revenue uncertainty.
+While the dominant contract structure in ERCOT remains profit sharing, ancillary saturation and traditional lender pressure have
+seen a shift to more downside protection. Underwriting is provided by merchant operators and trading houses through toll and floor
+agreements. 
+</p>
+
+<p>
+PJM is unique, operating in a capacity market that is experiencing increasing volatility. Capacity is becoming more
+expensive to secure, with capacity auction clearing prices reaching the regulatory cap. Combined with rapid demand growth,
+PJM is positioned to operate in a hybrid merchant-capacity battery market. 
+The value of a battery comes from its flexibility. The more you commit it to meet reliability obligations, the more stable the revenue
+but the less freedom you have to deploy it where prices are highest. 
 Capacity revenues provide structural security, while growing
 real-time volatility offers merchant upside. The optimization challenge for developers is balancing this revenue 
 certainty against upside, while ensuring that price signals remain durable enough to maintain investor confidence.
 </p>
-<p>
-Revenue stacking is required to achieve this balance: merchant buffering, tolling, and hybrid contract and floor agreements. 
-
 
 <p>
-The future for batteries in PJM depends on how asset owners decide to balance contracted capacity revenues against 
-increasingly valuable merchant opportunities.
+As ancillary services saturates and arbitrage shrinks, each revenue stack evolves differently:
 </p>
+<ol>
+  <li>CAISO: Monetizes reliability. Resource Adequacy payments, tolls.</li>
+  <li>ERCOT: Monetizes volatility. Profit sharing, floors.</li>
+  <li>PJM: Mix of both. Likely capacity payments, floors and split tolling with merchant.</li>
+</ol> 
+
+<p>
+The future for batteries in PJM depends on the persistence of scarcity pricing in the capacity market, and 
+how developers balance merchant opportunities against capacity revenues.
+</p> 
 
 
 </section>
@@ -254,14 +262,6 @@ increasingly valuable merchant opportunities.
       Available at:
       <a href="https://auroraer.com/resources/aurora-insights/market-reports-policy-notes/negative-pricing-in-caiso" target="_blank">
         https://auroraer.com/resources/aurora-insights/market-reports-policy-notes/negative-pricing-in-caiso
-      </a>
-    </li>
-    <li id="ref3">
-      Modo Energy (2025)
-      <em>German ancillary service saturation: Lessons from Great Britain</em>
-      Available at:
-      <a href="https://modoenergy.com/research/en/october-2025-germany-afrr-saturation-bess-frequency-services">
-        https://modoenergy.com/research/en/october-2025-germany-afrr-saturation-bess-frequency-services
       </a>
     </li>
   </ol>
