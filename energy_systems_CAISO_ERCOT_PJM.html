@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta property="og:title" content="Electricity Trade in the DE-LU Bidding Zone" />
   <meta property="og:description" content="The roles of generation systems in cross-border electricity trade" />
-  <meta property="og:image" content="https://raw.githubusercontent.com/ginasengeri/Electricity-and-the-Economy/main/energy_systems_entsoe_preview_image.png" />
+  <meta property="og:image" content="https://raw.githubusercontent.com/ginasengeri/Electricity-and-the-Economy/main/energy_systems_CAISO_ERCOT_PJM_preview_image.png" />
   <title>Energy Systems — CAISO / ERCOT / PJM</title>
   <style>
 :root {
@@ -84,7 +84,7 @@ sup a { text-decoration: none; }
   CAISO, ERCOT and PJM demonstrate this effect with varying degrees of battery penetration.
 </p>
 
-<div style="display:grid;grid-template-columns:repeat(3,minmax(0,260px));gap:50px;justify-content:center;margin:27px 0 6px;">
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,260px));gap:50px;justify-content:center;margin:15px 0 6px;">
   <div style="background:#fafafa;border:1px solid #e0e3e8;border-radius:10px;padding:12px 14px;text-align:center;">
     <div style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.06em;font-weight:600;color:#2563eb;">CAISO · California</div>
     <div style="font-size:1.25rem;font-weight:700;color:#111827;margin-top:3px;">36.1%</div>
@@ -158,32 +158,49 @@ sup a { text-decoration: none; }
 </section>
 
 <section class="section">  
+<h2>Battery Value Evolution</h2>
 
-<h2>Battery Value Stream Evolution</h2>
 <p>
-  The initial value for batteries is in their ability to respond quickly to 
+  The initial value for batteries is primarily in their ability to respond quickly to 
   frequency changes. 
   High-power, short-duration batteries are well suited for this service, as reflected by ERCOT's 1.56-hour fleet average.
   With much lower marginal costs compared to gas alternatives and a relatively shallow market,
   prices quickly drop and ancillary services are often saturated first.
 </p>  
-
 <p>  
-  Energy arbitrage follows as a major source of revenue after,
-  and is where battery duration becomes important, determining how much of the intraday price spread a battery can capture.
+  Energy arbitrage follows as a major source of revenue, shifting cheap daytime energy to meet tight evening demand.
+  This is where battery duration becomes important, determining how much of the intraday price spread a battery can capture.
   Longer-duration assets like CAISO's 3.8-hour average offer greater flexibility with exposure to a wider range
   of pricing hours, and have more options to optimize returns. 
-</p>
-<p>
   However, growth in merchant energy trading eases the negative prices and high premiums over time, resulting in weaker revenues
   for stand-alone batteries. 
   This is currently playing out in CAISO where negative pricing hours have decreased by 20% since 2024.
 </p>
+<p>  
+  As battery penetration grows, value streams tend to evolve and more diverse revenue
+  strategies are needed. The remaining opportunity beyond this point depends heavily on market design and volatility.
+</p>
 
 <h2>Market Design and Battery Opportunities</h2>
 <p>
-  As battery penetration grows, value streams evolve and more diverse revenue
-  strategies are needed. The remaining opportunity beyond this point depends heavily on market design and volatility.
+CAISO's market prices remained relatively stable in Q3 2025 due to mild summer conditions and 
+a solar fleet that met up to 82% of daytime demand. 
+With shrinking spreads, future battery value relies primarily on Resource Adequacy (RA) payments, 
+providing increased revenue certainty but less upside than markets driven by volatility. 
+Co-located battery and solar projects benefit from
+a shared grid connection and reduced curtailment,
+increasing portfolio value for developers. 
+</p>
+
+<p>
+ERCOT operates in an energy-only market, where reliability is secured through
+scarcity pricing rather than capacity payments. 
+Resources are rewarded only for meeting real-time 
+demand, providing no incentive for excess capacity to accumulate.
+Scarcity pricing remains persistent and acts a transparent indicator
+of market needs, giving investors confidence in the durability of the battery's value.
+Optimization agreements provide higher upside with revenue sharing and increasing downside protection
+is secured through contracted toll and floor agreements with merchant operators. 
 </p>
 
 <!-- Price Volatility Chart -->
@@ -203,46 +220,11 @@ sup a { text-decoration: none; }
 </div>
 <div class="custom-legend" id="volLegend"></div>
 <p class="chart-fig" id="volFig">Hourly price variability (std dev $/MWh), Q3 2025.</p>
-<h2>CAISO</h2>
-<p>
-CAISO's market prices remained relatively stable in Q3 2025 due to mild summer conditions and 
-a solar fleet that met up to 82% of daytime demand. 
-With shrinking spreads, future battery value relies primarily on Resource Adequacy (RA) payments, 
-providing increased revenue certainty but less upside than markets driven by volatility. 
-</p>
 
-<p>
-This dynamic favours co-located battery and solar projects. Developers benefit from
-a shared grid connection reduced solar curtailment,
-which increases the value of renewable generation. Because RA is typically procured
-by utilities and other load-serving entities, these become the
-long-term offtakers for battery projects in California. 
-</p>
-
-<h2>ERCOT</h2>
-<p>
-ERCOT operates in an energy-only market, where reliability is secured through
-scarcity pricing rather than capacity payments. 
-Unlike capacity markets, ERCOT only rewards resources for meeting real-time 
-demand, providing no incentive for excess capacity to accumulate.
-As a result, scarcity pricing remains persistent and acts a transparent indicator
-of market needs, giving investors confidence that the value of the battery will endure
-as the market matures.
-</p>
-<p>
-This means revenues continute to rely on scarcity events with the 
-dominant contract structure in ERCOT being profit sharing, with higher upside potential.
-
-Market maturity sees a shift toward more downside protection from revenue uncertainty. 
-Toll and floor agreements providing th underwriting from merchant operators/trading houses,
-owners keeping some upside. 
-</p>
-
-<h2>PJM</h2>
 <p>
 PJM represents a hybrid case, operating in a capacity market that is experiencing increasing volatility. Capacity is more
-expensive to secure, clearing at the $329/MWh cap, combined with rapid demand growth,
-batteries in PJM are positioned to monetize both reliability and volatility. Capacity revenues provide stable contracted income, 
+expensive to secure clearing at the $329/MWh cap, and demand is growing rapidly, positioning
+batteries in PJM to monetize both reliability and volatility. Capacity revenues provide stable contracted income, 
 while exposure to market volatility provides merchant opportunities.
 </p>
 <p> 
@@ -265,23 +247,19 @@ As ancillary service markets become saturated and energy arbitrage spreads compr
 revenue stacks are defined by the underlying market design:
 </p>
 <ol>
-  <li>CAISO: Monetizes reliability through Resource Adequacy payments, tolling arrangements and 
-    utility procurement.</li>
-  <li>ERCOT: Monetizes volatility through scarcity pricing, profit-sharing structures and merchant
-    exposure. Downside protection supported by floors or hybrid tolls.</li>
-  <li>PJM: Monetizes both reliability and volatility through a combination of capacity revenues
+  <li>CAISO: monetizes reliability through Resource Adequacy payments and utility procurement.</li>
+  <li>ERCOT: monetizes volatility through scarcity pricing and profit-sharing structures. Downside protection supported
+     by floors and hybrid tolls.</li>
+  <li>PJM: monetizes both reliability and volatility through a combination of capacity revenues
     and merchant opportunities.</li>
 </ol> 
-
 
 </section>
 
   <section class="section">
   <h2>Data Source</h2>
   <p>
-    CAISO, ERCOT, PJM (2025). <em>Grid Operations Data</em>.
-    ERCOT: Historical DAM Load Zone and Hub Prices.
-    Must attribute — include "Powered by Grid Status" or "Data provided by Grid Status" with a link to gridstatus.io, plus their logo on first use.
+    Grid Status (2025). <em> Insights</em>. Available at: <a href="https://www.gridstatus.io/">https://www.gridstatus.io/</a>
   </p>
   </section>
 
@@ -357,7 +335,10 @@ revenue stacks are defined by the underlying market design:
       }
     });
     const qLabel = { '2025Q1':'Q1','2025Q2':'Q2','2025Q3':'Q3','2025Q4':'Q4' }[quarter];
-    document.getElementById('dualFig').textContent = `Fig. X — Average hourly net load (GW) and price spread ($/MWh above daily min), ${grid} ${qLabel} 2025.`;
+    document.getElementById('dualFig').innerHTML = 
+      `Average hourly net load (GW) and price spread ($/MWh above daily min), ${grid} ${qLabel} 2025.
+       Data provided by <a href="https://www.gridstatus.io/" target="_blank">Grid Status</a>
+      <img src="${base}energy_systems_CAISO_ERCOT_PJM_gridstatus_logo.png" style="height:17px; vertical-align:middle;">.`;    
     const legendEl = document.getElementById('dualLegend'); legendEl.innerHTML = '';
     [{ color, label: 'Net Load (GW)', dash: false }, { color: priceColor, label: 'Price Spread ($/MWh above daily min)', dash: true }].forEach(s => {
       const item = document.createElement('div'); item.className = 'cl-item';
@@ -421,7 +402,9 @@ revenue stacks are defined by the underlying market design:
       }
     });
     const qLabel = { '2025Q1':'Q1','2025Q2':'Q2','2025Q3':'Q3','2025Q4':'Q4' }[quarter];
-    document.getElementById('volFig').textContent = `Fig. X — Hourly price volatility (std dev $/MWh), ${qLabel} 2025.`;
+    document.getElementById('volFig').innerHTML =
+      ` Hourly price volatility (std dev $/MWh), ${qLabel} 2025.
+       Data provided by <a href="https://www.gridstatus.io/" target="_blank">Grid Status</a>.`;
     const legendEl = document.getElementById('volLegend'); legendEl.innerHTML = '';
     gridDefs.forEach(g => {
       const item = document.createElement('div'); item.className = 'cl-item';
