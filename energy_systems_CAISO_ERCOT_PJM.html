@@ -70,7 +70,7 @@ sup a { text-decoration: none; }
   <div class="report-container">
     <header>
       <div class="label">Energy Systems</div>
-      <h1>Battery Value across CAISO, ERCOT, and PJM</h1>
+      <h1>How Market Design Shapes Battery Value in CAISO, ERCOT, and PJM</h1>
       <p>Comparing BESS penetration and market incentives across CAISO, ERCOT, and PJM.</p>
       <div class="meta">CAISO · ERCOT · PJM &bull; 2025</div>
     </header>
@@ -132,10 +132,7 @@ sup a { text-decoration: none; }
     <canvas id="dualChart"></canvas>
   </div>
   <div class="custom-legend" id="dualLegend"></div>
-  <p class="chart-fig" id="dualFig">Average hourly net load (GW) and price spread ($/MWh above daily min), CAISO Q3 2025.
-     Does not include load from storage charging. Price hubs: CAISO — SP15 &amp; ZP26.
-     ERCOT — HB_HOUSTON, HB_NORTH, HB_SOUTH, HB_WEST. PJM — AEP-DAYTON, CHICAGO, DOMINION, EASTERN, WESTERN HUB.
-  </p>
+  <p class="chart-fig" id="dualFig"></p>
 <br>
 <p>
   CAISO demonstrates the strongest duck curve effect, having the largest share of solar relative to its grid size.
@@ -338,7 +335,7 @@ revenue stacks are defined by the underlying market design:
     });
     const qLabel = { '2025Q1':'Q1','2025Q2':'Q2','2025Q3':'Q3','2025Q4':'Q4' }[quarter];
     document.getElementById('dualFig').innerHTML = 
-      `Average hourly net load (GW) and price spread ($/MWh above daily min), ${grid} ${qLabel} 2025.
+      `<span style="font-family: system-ui; font-size: 0.8rem;">Average hourly net load (GW) and price spread ($/MWh above daily min), ${grid} ${qLabel} 2025.
        Data provided by <a href="https://www.gridstatus.io/" target="_blank">Grid Status</a>
       <img src="${base}energy_systems_CAISO_ERCOT_PJM_gridstatus_logo.png" style="height:17px; vertical-align:middle;">.`;    
     const legendEl = document.getElementById('dualLegend'); legendEl.innerHTML = '';
@@ -405,7 +402,7 @@ revenue stacks are defined by the underlying market design:
     });
     const qLabel = { '2025Q1':'Q1','2025Q2':'Q2','2025Q3':'Q3','2025Q4':'Q4' }[quarter];
     document.getElementById('volFig').innerHTML =
-      ` Hourly price volatility (std dev $/MWh), ${qLabel} 2025.
+      `<span style="font-family: system-ui; font-size: 0.8rem;">Hourly price volatility (std dev $/MWh), ${qLabel} 2025.
        Data provided by <a href="https://www.gridstatus.io/" target="_blank">Grid Status</a>.`;
     const legendEl = document.getElementById('volLegend'); legendEl.innerHTML = '';
     gridDefs.forEach(g => {
