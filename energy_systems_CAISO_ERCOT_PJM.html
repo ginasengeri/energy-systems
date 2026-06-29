@@ -81,7 +81,7 @@ sup a { text-decoration: none; }
   Increasing renewable buildout has seen a shift in net load profiles, with a drop in demand during the
   day followed by steep ramping in the evenings. The resulting price spreads provide an opportunity for
   arbitrage where batteries shift energy from cheap to expensive hours.
-  CAISO, ERCOT and PJM demonstrate this effect with varying degrees of battery penetration.
+  CAISO, ERCOT and PJM demonstrate this effect with varying degrees of renewable and battery penetration.
 </p>
 
 <div style="display:grid;grid-template-columns:repeat(3,minmax(0,260px));gap:50px;justify-content:center;margin:15px 0 6px;">
@@ -89,23 +89,23 @@ sup a { text-decoration: none; }
     <div style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.06em;font-weight:600;color:#2563eb;">CAISO · California</div>
     <div style="font-size:1.25rem;font-weight:700;color:#111827;margin-top:3px;">36.1%</div>
     <div style="font-size:0.75rem;color:#6b7280;">peak penetration</div>
-    <!-- <div style="font-size:0.8rem;font-weight:600;color:#374151;margin-top:6px;">43.6 GW <span style="font-weight:400;color:#9ca3af;">peak load</span></div>     -->
-    <div style="font-size:0.8rem;font-weight:600;color:#374151;margin-top:6px;">3.8 hr <span style="font-weight:400;color:#9ca3af;">avg duration</span></div>
+    <div style="font-size:0.8rem;font-weight:600;color:#374151;margin-top:6px;">43.6 GW <span style="font-weight:400;color:#9ca3af;">peak load</span></div>    
+    <!-- <div style="font-size:0.8rem;font-weight:600;color:#374151;margin-top:6px;">3.8 hr <span style="font-weight:400;color:#9ca3af;">avg duration</span></div> -->
 
   </div>
   <div style="background:#fafafa;border:1px solid #e0e3e8;border-radius:10px;padding:12px 14px;text-align:center;">
     <div style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.06em;font-weight:600;color:#7c3aed;">ERCOT · Texas</div>
     <div style="font-size:1.25rem;font-weight:700;color:#111827;margin-top:3px;">15.7%</div>
     <div style="font-size:0.75rem;color:#6b7280;">peak penetration</div>
-    <!-- <div style="font-size:0.8rem;font-weight:600;color:#374151;margin-top:6px;">83.9 GW <span style="font-weight:400;color:#9ca3af;">peak load</span></div>     -->
-    <div style="font-size:0.8rem;font-weight:600;color:#374151;margin-top:6px;">1.6 hr <span style="font-weight:400;color:#9ca3af;">avg duration</span></div>
+    <div style="font-size:0.8rem;font-weight:600;color:#374151;margin-top:6px;">83.9 GW <span style="font-weight:400;color:#9ca3af;">peak load</span></div>    
+    <!-- <div style="font-size:0.8rem;font-weight:600;color:#374151;margin-top:6px;">1.6 hr <span style="font-weight:400;color:#9ca3af;">avg duration</span></div> -->
   </div>
   <div style="background:#fafafa;border:1px solid #e0e3e8;border-radius:10px;padding:12px 14px;text-align:center;">
     <div style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.06em;font-weight:600;color:#2d7d46;">PJM · Mid-Atlantic</div>
     <div style="font-size:1.25rem;font-weight:700;color:#111827;margin-top:3px;">0.26%</div>
     <div style="font-size:0.75rem;color:#6b7280;">peak penetration</div>
-    <!-- <div style="font-size:0.8rem;font-weight:600;color:#374151;margin-top:6px;">160.5 GW <span style="font-weight:400;color:#9ca3af;">peak load</span></div>     -->
-    <div style="font-size:0.8rem;font-weight:600;color:#374151;margin-top:6px;">emerging <span style="font-weight:400;color:#9ca3af;">- 4 hr queued</span></div>
+    <div style="font-size:0.8rem;font-weight:600;color:#374151;margin-top:6px;">160.5 GW <span style="font-weight:400;color:#9ca3af;">peak load</span></div>    
+    <!-- <div style="font-size:0.8rem;font-weight:600;color:#374151;margin-top:6px;">emerging <span style="font-weight:400;color:#9ca3af;">- 4 hr queued</span></div> -->
   </div>
 </div>
 <br>
@@ -136,18 +136,20 @@ sup a { text-decoration: none; }
 <br>
 <p>
   CAISO exhibits the strongest duck curve, having the largest share of solar relative to its grid size.
-  ERCOT's renewable and BESS buildout is beginning to show a similar price formation, and
+  ERCOT's renewable and BESS buildout is beginning to show a similar price formation, while
   PJM's battery market is still emerging, showing a more traditional shape with a steady increase throughout the day. 
-  At maturity the battery economics across the grids shift according to each market's design/incentives/ 
-  The three markets see different shifts in battery economics as more come online.
+</p>
+
+<p>
+  Although all three markets follow a similar storage adoption pathway, the revenue opportunities that remain at maturity 
+  depend on market design.
 </p>
 
 <h2>Key Insights</h2>
 <ol>
-  <li>CAISO represents the most mature storage, with arbitrage spreads beginning to shrink.</li>
-  <li>ERCOT follows a similar trajectory with growing deployment in a more volatile market.</li>
-  <li>PJM remains at an earlier stage with significant growth expected ahead.</li>
-  <li>Future of battery value evolves differently across the different markets.</li>
+  <li>CAISO is beginning to show arbitrage compression, with negative pricing hours dropping by 15.5% since 2024.</li>
+  <li>Ancillary Responsive Reserve Service (RRS) prices in ERCOT fell 51.5% between 2024 and 2025, consistent with ancillary service saturation.</li>
+  <li>PJM's battery capacity remains low at <0.3% of peak demand, with a development queue dominated by four-hour systems.</li>
 </ol>
 
 </section>
@@ -156,27 +158,27 @@ sup a { text-decoration: none; }
 <h2>Battery Value Evolution</h2>
 
 <p>
-  As battery penetration grows, developers must capture value from an increasingly diverse set of revenue streams to keep projects bankable.
+  As battery penetration grows, early revenue streams saturate, requiring developers to capture value from a diverse range of services.
 </p>
 <p>
-Early deployment is driven by ancillary services, 
-where fast-response, short-duration batteries 
-are well suited to frequency regulation. 
-Because batteries have lower marginal costs
- than conventional providers, these markets
- tend to saturate quickly as storage capacity
- increases.
+  Early deployment is driven by ancillary services, 
+  where fast-response, short-duration batteries 
+  are well suited to frequency regulation. 
+  Because batteries have lower marginal costs
+  than conventional providers, these markets
+  tend to saturate quickly as storage capacity
+  increases. This is reflected in ERCOT, where average Responsive Reserve Service (RRS) prices fell 51.5% between 2024 and 2025.
 </p>
 <p>
-Value then shifts toward energy arbitrage. 
-Longer-duration assets, such as CAISO’s 3.8-hour
-hour fleet average, allow operators to capture 
-a broader share of intraday price spreads 
-and optimize dispatch over more pricing 
-hours. However, as battery deployment grows, 
-merchant trading reduces negative pricing 
-and compresses arbitrage spreads, weakening 
-standalone revenues, as is currently playing out in CAISO.
+  Value then shifts toward energy arbitrage. 
+  Longer-duration assets, such as CAISO’s 3.8-hour
+  hour fleet average, allow operators to capture 
+  a broader share of intraday price spreads 
+  and optimize dispatch over more pricing 
+  hours. However, as battery deployment grows, 
+  merchant trading reduces negative pricing 
+  and compresses arbitrage spreads, weakening 
+  standalone revenues, as is currently playing out in CAISO.
 </p>
 
 <p>
@@ -185,7 +187,7 @@ Beyond this point, battery economics depend heavily on market design and the rev
 
 <h2>Market Design and Battery Opportunities</h2>
 <P>
-  CAISO's market prices remained relatively stable in Q3 2025 due to mild summer conditions and a solar fleet that met
+  CAISO's energy market prices remained relatively stable in Q3 2025 due to mild summer conditions and a solar fleet that met
   up to 82% of daytime demand, keeping standard deviation under $13/MWh across all hours. With shrinking spreads, future battery value
   relies primarily on Resource Adequacy (RA)
   payments, providing greater revenue certainty but less merchant upside than markets driven by volatility. 
@@ -193,7 +195,7 @@ Beyond this point, battery economics depend heavily on market design and the rev
   and solar projects benefit from a shared grid connection and reduced curtailment, increasing portfolio value for developers. -->
 </P>
 <p> 
-  PJM and ERCOT market prices showed more deviation in the evening hours with standard deviations over $66/MWh and $59/MWh.
+  PJM and ERCOT market prices showed more deviation in the evening hours with standard deviations of over $66/MWh and $59/MWh.
 </p>
 
 <!-- Price Volatility Chart -->
@@ -223,37 +225,47 @@ Beyond this point, battery economics depend heavily on market design and the rev
   Uncertainty around the timing of demand growth and recent periods of lower volatility have increased
   developer interest in downside protection, making partially contracted revenue streams more attractive<sup><a href="ref2">[2]</a></sup>.
 </p>
-
 <p>
   PJM represents a hybrid case, operating in a capacity market that is experiencing increasing volatility. 
   Capacity is more
-  expensive to secure, clearing at the $329/MWh cap, and demand is growing, positioning
-  batteries to monetize both reliability and volatility. Capacity revenues provide stable contracted income, 
-  while exposure to market volatility provides merchant opportunities.
+  expensive to secure, clearing at the $329/MWh cap in 2025. With growing demand, batteries are positioned
+  to earn from both contracted capacity payments and merchant revenues.  
 </p>
-<p> 
-  Capacity payments improve revenue certainty by compensating resources for
-  being available, but as markets mature they can weaken scarcity signals and
-  encourage build-out of excess capacity. For battery investors, this directly affects the investment case
-  because batteries earn from flexibility and spreads, rather than simple energy generation.
-  The more a battery is committed for reliability, the less freedom it has to respond to periods
-  of extreme pricing. 
+<p>  
+  While capacity payments improve revenue certainty, they can weaken scarcity signals as markets mature and
+  make it difficult to justify new storage, despite an increased need for system flexibility.
+  For battery investors, this directly affects the investment case
+  because batteries earn from spreads and quick responses to system changes,
+  rather than simple energy generation.
 </p>
 <p>
-  Future development in PJM depends on whether
-  scarcity signals remain strong enough to preserve battery value, and how developers
+  Unlike CAISO's 15-20 year RA contracts, PJM's capacity revenues are negotiated on a yearly basis, preventing developers
+  from securing long-term revenues.
+  In addition, PJM market reforms now require battery and storage assets with capacity interconnection rights to participate
+  in the annual Reliability Pricing Model (RPM) auctions<sup><a href="ref3">[3]</a></sup>. Previously exempt due to duration limits, batteries are now liable
+  for strict Non-Performance Charges worth millions of dollars if they fail to deliver during emergency events. This makes
+  underwriting more important to ensuring batteries remain commercially viable over their project life.  
+</p>
+<p>
+  With additional price caps (specify), PJM's battery revenue streams appear to be increasingly incentivized toward
+  capacity payments. However ELCC rules continue to reduce the accredited capacity of batteries as storage
+  penetration increases, lowering the capacity revenues each project can earn over time. Merchant profits
+  therefore remain crucial to the current investment case. Further battery development in PJM depends on 
+  whether scarcity signals and capacity incentives remain strong enough to preserve battery value, and how developers
   balance reliability commitments with merchant flexibility.
 </p>
+
 <h2>Outlook</h2>
 <p>
-As ancillary service markets become saturated and energy arbitrage spreads compress, battery 
-revenue stacks are defined by the underlying market design:
+As ancillary service markets become saturated and energy arbitrage spreads compress, long-term battery 
+revenues are heavily influenced by market design:
 </p>
 <ol>
-  <li>CAISO: value remains in reliability through Resource Adequacy payments and utility procurement.</li>
-  <li>ERCOT: major earnings come from volatility through scarcity pricing and revenue sharing structures. Downside protection supported
-     by floors and partial tolls.</li>
-  <li>PJM: value lies in both reliability and volatility, which can be priced through a combination of capacity and merchant structures.</li>
+  <li>CAISO: revenues are supported by Resource Adequacy payments and utility procurement.</li>
+  <li>ERCOT: revenues rely on scarcity pricing, with hybrid agreements balancing merchant 
+    upside and downside protection.</li>
+  <li>PJM: revenues combine capacity payments and merchant earnings, with long-term value
+    depending on the balance between the two.</li>
 </ol> 
 
 </section>
@@ -283,6 +295,13 @@ revenue stacks are defined by the underlying market design:
       <a href="https://gridbeyond.com/battery-storage-markets-whats-happening-in-ercot-caiso-pjm-and-japan/" target="_blank">
         https://gridbeyond.com/battery-storage-markets-whats-happening-in-ercot-caiso-pjm-and-japan/
       </a>
+     </li> 
+    <li id="ref3">
+      2025 Annual State of the Market Report for PJM
+      <em>Capacity Market</em>
+      <a href="https://www.monitoringanalytics.com/reports/PJM_State_of_the_Market/2025/2025-som-pjm-sec5.pdf">
+      https://www.monitoringanalytics.com/reports/PJM_State_of_the_Market/2025/2025-som-pjm-sec5.pdf
+    </a>
     </li>
   </ol>
   </section>
