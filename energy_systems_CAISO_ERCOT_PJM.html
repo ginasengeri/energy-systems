@@ -416,7 +416,7 @@ revenues are heavily influenced by market design:
     });
     const qLabel = { '2025Q1':'Q1','2025Q2':'Q2','2025Q3':'Q3','2025Q4':'Q4' }[quarter];
     document.getElementById('volFig').innerHTML =
-      `<span style="font-family: system-ui; font-size: 0.8rem;">Hourly price volatility (std dev $/MWh), ${qLabel} 2025.
+      `<span style="font-family: system-ui; font-size: 0.8rem;">Hour-on-hour price volatility (std dev $/MWh), ${qLabel} 2025.
        Data provided by <a href="https://www.gridstatus.io/" target="_blank">Grid Status</a>.`;
     const legendEl = document.getElementById('volLegend'); legendEl.innerHTML = '';
     gridDefs.forEach(g => {
