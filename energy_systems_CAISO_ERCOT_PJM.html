@@ -187,7 +187,7 @@ Beyond this point, battery economics depend heavily on market design and the rev
 
 <h2>Market Design and Battery Opportunities</h2>
 <P>
-  CAISO's energy market prices remained relatively stable in Q3 2025 due to mild summer conditions and a solar fleet that met
+  CAISO's hour-on-hour energy market prices remained relatively stable in Q3 2025 due to mild summer conditions and a solar fleet that met
   up to 82% of daytime demand, keeping standard deviation under $13/MWh across all hours. With shrinking spreads, future battery value
   relies primarily on Resource Adequacy (RA)
   payments, providing greater revenue certainty but less merchant upside than markets driven by volatility. 
@@ -195,7 +195,7 @@ Beyond this point, battery economics depend heavily on market design and the rev
   and solar projects benefit from a shared grid connection and reduced curtailment, increasing portfolio value for developers. -->
 </P>
 <p> 
-  PJM and ERCOT market prices showed more deviation in the evening hours with standard deviations of over $66/MWh and $59/MWh.
+  PJM and ERCOT market prices showed more deviation in the evening hours with standard deviations of over $66/MWh and $59/MWh respectively.
 </p>
 
 <!-- Price Volatility Chart -->
@@ -214,7 +214,7 @@ Beyond this point, battery economics depend heavily on market design and the rev
   <canvas id="volChart"></canvas>
 </div>
 <div class="custom-legend" id="volLegend"></div>
-<p class="chart-fig" id="volFig">Hourly price variability (std dev $/MWh), Q3 2025.</p>
+<p class="chart-fig" id="volFig">Hour-on-hour price variability (std dev $/MWh), Q3 2025.</p>
 
 <p>
   ERCOT secures reliability through scarcity pricing rather than capacity payments. 
@@ -410,7 +410,7 @@ revenues are heavily influenced by market design:
         }},
         scales: {
           x: { grid: { display: false }, border: { color: '#e0e3e8' }, title: { display: true, text: 'Hour of Day', color: '#9ca3af', font: { size: 11 } }, ticks: { color: '#6b7280', font: { size: 11 }, maxRotation: 0, callback: (val, i) => i % 6 === 0 ? `${hours[i]}:00` : '' } },
-          y: { grid: { display: false }, border: { color: '#e0e3e8' }, title: { display: true, text: 'Price Std Dev ($/MWh)', color: '#9ca3af', font: { size: 11 } }, ticks: { color: '#6b7280', font: { size: 11 }, callback: v => '$' + v.toFixed(0) } }
+          y: { grid: { display: false }, border: { color: '#e0e3e8' }, title: { display: true, text: 'Hour-on-hour price std dev ($/MWh)', color: '#9ca3af', font: { size: 11 } }, ticks: { color: '#6b7280', font: { size: 11 }, callback: v => '$' + v.toFixed(0) } }
         }
       }
     });
