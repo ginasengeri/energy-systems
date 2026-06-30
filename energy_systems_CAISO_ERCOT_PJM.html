@@ -89,23 +89,19 @@ sup a { text-decoration: none; }
     <div style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.06em;font-weight:600;color:#2563eb;">CAISO · California</div>
     <div style="font-size:1.25rem;font-weight:700;color:#111827;margin-top:3px;">36.1%</div>
     <div style="font-size:0.75rem;color:#6b7280;">peak penetration</div>
-    <div style="font-size:0.8rem;font-weight:600;color:#374151;margin-top:6px;">43.6 GW <span style="font-weight:400;color:#9ca3af;">peak load</span></div>    
-    <!-- <div style="font-size:0.8rem;font-weight:600;color:#374151;margin-top:6px;">3.8 hr <span style="font-weight:400;color:#9ca3af;">avg duration</span></div> -->
-
+    <div style="font-size:0.8rem;font-weight:600;color:#374151;margin-top:6px;">43.6 GW <span style="font-weight:400;color:#9ca3af;">peak load</span></div>
   </div>
   <div style="background:#fafafa;border:1px solid #e0e3e8;border-radius:10px;padding:12px 14px;text-align:center;">
     <div style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.06em;font-weight:600;color:#7c3aed;">ERCOT · Texas</div>
     <div style="font-size:1.25rem;font-weight:700;color:#111827;margin-top:3px;">15.7%</div>
     <div style="font-size:0.75rem;color:#6b7280;">peak penetration</div>
-    <div style="font-size:0.8rem;font-weight:600;color:#374151;margin-top:6px;">83.9 GW <span style="font-weight:400;color:#9ca3af;">peak load</span></div>    
-    <!-- <div style="font-size:0.8rem;font-weight:600;color:#374151;margin-top:6px;">1.6 hr <span style="font-weight:400;color:#9ca3af;">avg duration</span></div> -->
+    <div style="font-size:0.8rem;font-weight:600;color:#374151;margin-top:6px;">83.9 GW <span style="font-weight:400;color:#9ca3af;">peak load</span></div>
   </div>
   <div style="background:#fafafa;border:1px solid #e0e3e8;border-radius:10px;padding:12px 14px;text-align:center;">
     <div style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.06em;font-weight:600;color:#2d7d46;">PJM · Mid-Atlantic</div>
     <div style="font-size:1.25rem;font-weight:700;color:#111827;margin-top:3px;">0.26%</div>
     <div style="font-size:0.75rem;color:#6b7280;">peak penetration</div>
-    <div style="font-size:0.8rem;font-weight:600;color:#374151;margin-top:6px;">160.5 GW <span style="font-weight:400;color:#9ca3af;">peak load</span></div>    
-    <!-- <div style="font-size:0.8rem;font-weight:600;color:#374151;margin-top:6px;">emerging <span style="font-weight:400;color:#9ca3af;">- 4 hr queued</span></div> -->
+    <div style="font-size:0.8rem;font-weight:600;color:#374151;margin-top:6px;">160.5 GW <span style="font-weight:400;color:#9ca3af;">peak load</span></div>
   </div>
 </div>
 <br>
@@ -120,13 +116,6 @@ sup a { text-decoration: none; }
         <button class="df-btn"        data-dual="PJM"   onclick="setDual('PJM',   currentDualQ)">PJM</button>
       </div>
     </div>
-    <div style="display:flex;justify-content:flex-end;gap:6px;margin-top:6px;">
-      <!-- <span style="font-size:0.72rem;color:#9ca3af;align-self:center;">Quarter:</span> -->
-      <!-- <button class="qbtn"        data-dualq="2025Q1" onclick="setDual(currentDualGrid, '2025Q1')">Q1</button> -->
-      <!-- <button class="qbtn"        data-dualq="2025Q2" onclick="setDual(currentDualGrid, '2025Q2')">Q2</button> -->
-      <!-- <button class="qbtn active" data-dualq="2025Q3" onclick="setDual(currentDualGrid, '2025Q3')">Q3</button> -->
-      <!-- <button class="qbtn"        data-dualq="2025Q4" onclick="setDual(currentDualGrid, '2025Q4')">Q4</button> -->
-    </div>
   </div>
   <div class="chart-wrap">
     <canvas id="dualChart"></canvas>
@@ -139,17 +128,12 @@ sup a { text-decoration: none; }
   ERCOT's renewable and BESS buildout is beginning to show a similar price formation, while
   PJM's battery market is still emerging, showing a more traditional shape with a steady increase throughout the day. 
 </p>
-<!-- 
-<p>
-  Although all three markets follow a similar storage adoption pathway, the revenue opportunities that remain at maturity 
-  depend on market design.
-</p> -->
 
 <h2>Key Insights</h2>
 <ol>
   <li>CAISO is beginning to show arbitrage compression, with negative pricing hours dropping by 15.5% since 2024.</li>
   <li>Ancillary Responsive Reserve Service (RRS) prices in ERCOT fell by 48% from Q3 2024 to Q3 2025, consistent with ancillary service saturation.</li>
-  <li>PJM's battery capacity remains low at <0.3% of peak demand, with a development queue of mostly four-hour systems.</li>
+  <li>PJM's battery capacity remains low at &lt;0.3% of peak demand, with a development queue dominated by four-hour systems.</li>
 </ol>
 
 </section>
@@ -167,11 +151,11 @@ sup a { text-decoration: none; }
   Because batteries have lower marginal costs
   than conventional providers, these markets
   tend to saturate quickly as storage capacity
-  increases, as reflected in ERCOT's 48% drop in RRS prices.
+  increase, as reflected in ERCOT's 48% drop in RRS prices.
 </p>
 <p>
   Value then shifts toward energy arbitrage. 
-  Longer-duration assets, such as CAISO’s 3.8-hour
+  Longer-duration assets, such as CAISO's 3.8-hour
   hour fleet average, allow operators to capture 
   a broader share of intraday price spreads 
   and optimize dispatch over more pricing 
@@ -186,14 +170,12 @@ Beyond this point, battery economics depend heavily on market design and the rev
 </p>
 
 <h2>Market Design and Battery Opportunities</h2>
-<P>
+<p>
   CAISO's hour-on-hour prices remained relatively stable in Q3 2025 due to mild summer conditions and a solar fleet that met
   up to 82% of daytime demand, keeping standard deviation under $13/MWh. With shrinking spreads, future battery value
   relies primarily on Resource Adequacy (RA)
   payments, providing greater revenue certainty but less merchant upside than markets driven by volatility. 
-  <!-- Co-located battery
-  and solar projects benefit from a shared grid connection and reduced curtailment, increasing portfolio value for developers. -->
-</P>
+</p>
 <p> 
   PJM and ERCOT market prices showed more deviation in the evening hours with standard deviations of over $66/MWh and $59/MWh respectively.
 </p>
@@ -201,13 +183,7 @@ Beyond this point, battery economics depend heavily on market design and the rev
 <!-- Price Volatility Chart -->
 <div style="margin-top:16px;">
   <div class="dual-header">
-    <div class="dual-filter">
-      <!-- <span style="font-size:0.90rem;font-weight:600;color:#6b7280;">Quarter:</span>
-      <button class="qbtn active" data-volq="2025Q1" onclick="setVol('2025Q1')">Q1</button>
-      <button class="qbtn"        data-volq="2025Q2" onclick="setVol('2025Q2')">Q2</button>
-      <button class="qbtn"        data-volq="2025Q3" onclick="setVol('2025Q3')">Q3</button>
-      <button class="qbtn"        data-volq="2025Q4" onclick="setVol('2025Q4')">Q4</button> -->
-    </div>
+    <div class="dual-filter"></div>
   </div>
 </div>
 <div class="chart-wrap">
@@ -216,10 +192,21 @@ Beyond this point, battery economics depend heavily on market design and the rev
 <div class="custom-legend" id="volLegend"></div>
 <p class="chart-fig" id="volFig">Hour-on-hour price variability (std dev $/MWh), Q3 2025.</p>
 
+<br>
+<p>
+  Looking at the maximum daily price spread, PJM's merchant storage opportunity continues to rise with spreads consistently above ERCOT throughout most of 
+  July and into September.
+</p>
+
+<!-- Daily Max-Min Spread Chart -->
+<div class="chart-wrap">
+  <canvas id="spreadChart"></canvas>
+</div>
+<div class="custom-legend" id="spreadLegend"></div>
+<p class="chart-fig" id="spreadFig"></p>
+
 <p>
   ERCOT secures reliability through scarcity pricing rather than capacity payments. 
-  <!-- Resources are only rewarded for meeting real-time demand,
-  providing no incentive for excess capacity to accumulate. -->
   Optimization agreements allow developers to retain exposure to market volatility while
   transferring part of the downside risk to contracted operators.
   Uncertainty around the timing of demand growth and recent periods of lower volatility have increased
@@ -431,6 +418,60 @@ revenues are heavily influenced by market design:
     buildVolChart(quarter);
   };
   buildVolChart('2025Q3');
+})();
+</script>
+
+<!-- Daily Max-Min Spread Chart -->
+<script>
+(async () => {
+  const base = "https://raw.githubusercontent.com/ginasengeri/Electricity-and-the-Economy/main/";
+  const [caiso, ercot, pjm] = await Promise.all([
+    d3.csv(base + "energy_systems_CAISO_ERCOT_PJM_CAISO_daily_spread_q3_2025.csv"),
+    d3.csv(base + "energy_systems_CAISO_ERCOT_PJM_ERCOT_daily_spread_q3_2025.csv"),
+    d3.csv(base + "energy_systems_CAISO_ERCOT_PJM_PJM_daily_spread_q3_2025.csv"),
+  ]);
+  const gridDefs = [
+    { label: 'CAISO', color: '#2563eb', data: caiso },
+    { label: 'ERCOT', color: '#7c3aed', data: ercot },
+    { label: 'PJM',   color: '#2d7d46', data: pjm   },
+  ];
+  const dates = caiso.map(d => d[""]);
+
+  new Chart(document.getElementById('spreadChart').getContext('2d'), {
+    type: 'line',
+    data: { labels: dates, datasets: gridDefs.map(g => ({
+      label: g.label,
+      data: g.data.map(d => +d.daily_spread),
+      borderColor: g.color, borderWidth: 1.5,
+      pointRadius: 0, pointHoverRadius: 0, tension: 0.3, fill: false,
+    }))},
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: { legend: { display: false }, tooltip: {
+        backgroundColor: '#ffffff', borderColor: '#e0e3e8', borderWidth: 1,
+        titleColor: '#111827', bodyColor: '#374151', padding: 8, displayColors: false,
+        callbacks: {
+          title: items => items[0].label,
+          label: ctx => ` ${ctx.dataset.label}: $${ctx.parsed.y.toFixed(2)}/MWh`,
+        }
+      }},
+      scales: {
+        x: { grid: { display: false }, border: { color: '#e0e3e8' }, title: { display: true, text: 'Date', color: '#9ca3af', font: { size: 11 } }, ticks: { color: '#6b7280', font: { size: 11 }, maxRotation: 0, maxTicksLimit: 8 } },
+        y: { grid: { display: false }, border: { color: '#e0e3e8' }, title: { display: true, text: 'Daily Max-Min Spread ($/MWh)', color: '#9ca3af', font: { size: 11 } }, ticks: { color: '#6b7280', font: { size: 11 }, callback: v => '$' + v.toFixed(0) } }
+      }
+    }
+  });
+
+  document.getElementById('spreadFig').innerHTML =
+    `<span style="font-family: system-ui; font-size: 0.8rem;">Daily max-min price spread ($/MWh), Q3 2025. Data provided by <a href="https://www.gridstatus.io/" target="_blank">Grid Status</a>.`;
+
+  const legendEl = document.getElementById('spreadLegend');
+  gridDefs.forEach(g => {
+    const item = document.createElement('div'); item.className = 'cl-item';
+    item.innerHTML = `<div class="cl-line" style="background:${g.color};width:22px;height:2.5px;border-radius:2px;flex-shrink:0;display:block;align-self:center;"></div><span>${g.label}</span>`;
+    legendEl.appendChild(item);
+  });
 })();
 </script>
 
