@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta property="og:title" content="How Market Design Shapes Battery Economics in CAISO, ERCOT, and PJM" />
   <meta property="og:description" content="Comparing BESS penetration and market incentives across CAISO, ERCOT, and PJM." />
-  <meta property="og:image" content="https://raw.githubusercontent.com/ginasengeri/Electricity-and-the-Economy/main/energy_systems_CAISO_ERCOT_PJM_preview_image.png" />
+  <meta property="og:image" content="https://raw.githubusercontent.com/ginasengeri/energy-systems/main/energy_systems_analysis/CAISO_ERCOT_PJM/images/preview_image.png" />
   <title>Energy Systems — CAISO / ERCOT / PJM</title>
   <style>
 :root {
@@ -300,14 +300,14 @@ revenues are heavily influenced by market design:
 <!-- Load Price Dual axis chart -->
 <script>
 (async () => {
-  const base = "https://raw.githubusercontent.com/ginasengeri/Electricity-and-the-Economy/main/";
+  const base = "https://raw.githubusercontent.com/ginasengeri/energy-systems/main/";
   const [caisoLoad, ercotLoad, pjmLoad, caisoPrice, ercotPrice, pjmPrice] = await Promise.all([
-    d3.csv(base + "energy_systems_CAISO_ERCOT_PJM_CAISO_net_load_hrly_avg.csv"),
-    d3.csv(base + "energy_systems_CAISO_ERCOT_PJM_ERCOT_net_load_hrly_avg.csv"),
-    d3.csv(base + "energy_systems_CAISO_ERCOT_PJM_PJM_net_load_hrly_avg.csv"),
-    d3.csv(base + "energy_systems_CAISO_ERCOT_PJM_caiso_lmp_2025.csv"),
-    d3.csv(base + "energy_systems_CAISO_ERCOT_PJM_ercot_lmp_2025.csv"),
-    d3.csv(base + "energy_systems_CAISO_ERCOT_PJM_pjm_lmp_2025.csv"),
+    d3.csv(base + "energy_systems_analysis/CAISO_ERCOT_PJM/data/CAISO_net_load_hrly_avg.csv"),
+    d3.csv(base + "energy_systems_analysis/CAISO_ERCOT_PJM/data/ERCOT_net_load_hrly_avg.csv"),
+    d3.csv(base + "energy_systems_analysis/CAISO_ERCOT_PJM/data/PJM_net_load_hrly_avg.csv"),
+    d3.csv(base + "energy_systems_analysis/CAISO_ERCOT_PJM/data/CAISO_lmp_2025.csv"),
+    d3.csv(base + "energy_systems_analysis/CAISO_ERCOT_PJM/data/ERCOT_lmp_2025.csv"),
+    d3.csv(base + "energy_systems_analysis/CAISO_ERCOT_PJM/data/PJM_lmp_2025.csv"),
   ]);
   const hours = caisoLoad.map(d => +d.hour);
   const gridColors = { CAISO: '#2563eb', ERCOT: '#7c3aed', PJM: '#2d7d46' };
@@ -340,7 +340,7 @@ revenues are heavily influenced by market design:
     document.getElementById('dualFig').innerHTML = 
       `<span style="font-family: system-ui; font-size: 0.8rem;">Average hourly net load (GW) and price spread ($/MWh above daily min), ${grid} ${qLabel} 2025.
        Data provided by <a href="https://www.gridstatus.io/" target="_blank">Grid Status</a>
-      <img src="${base}energy_systems_CAISO_ERCOT_PJM_gridstatus_logo.png" style="height:17px; vertical-align:middle;">.`;    
+      <img src="${base}energy_systems_analysis/CAISO_ERCOT_PJM/images/gridstatus_logo.png" style="height:17px; vertical-align:middle;">.`;    
     const legendEl = document.getElementById('dualLegend'); legendEl.innerHTML = '';
     [{ color, label: 'Net Load (GW)', dash: false }, { color: priceColor, label: 'Price Spread ($/MWh above daily min)', dash: true }].forEach(s => {
       const item = document.createElement('div'); item.className = 'cl-item';
@@ -362,11 +362,11 @@ revenues are heavily influenced by market design:
 <!-- Price Stdev Chart -->
 <script>
 (async () => {
-  const base = "https://raw.githubusercontent.com/ginasengeri/Electricity-and-the-Economy/main/";
+  const base = "https://raw.githubusercontent.com/ginasengeri/energy-systems/main/";
   const [caiso, ercot, pjm] = await Promise.all([
-    d3.csv(base + "energy_systems_CAISO_ERCOT_PJM_caiso_hourly_volatility.csv"),
-    d3.csv(base + "energy_systems_CAISO_ERCOT_PJM_ercot_hourly_volatility.csv"),
-    d3.csv(base + "energy_systems_CAISO_ERCOT_PJM_pjm_hourly_volatility.csv"),
+    d3.csv(base + "energy_systems_analysis/CAISO_ERCOT_PJM/data/CAISO_hourly_volatility.csv"),
+    d3.csv(base + "energy_systems_analysis/CAISO_ERCOT_PJM/data/ERCOT_hourly_volatility.csv"),
+    d3.csv(base + "energy_systems_analysis/CAISO_ERCOT_PJM/data/PJM_hourly_volatility.csv"),
   ]);
   const hours = caiso.map(d => +d.hour);
   const gridDefs = [
@@ -426,11 +426,11 @@ revenues are heavily influenced by market design:
 <!-- Daily Max-Min Spread Chart -->
 <script>
 (async () => {
-  const base = "https://raw.githubusercontent.com/ginasengeri/Electricity-and-the-Economy/main/";
+  const base = "https://raw.githubusercontent.com/ginasengeri/energy-systems/main/";
   const [caiso, ercot, pjm] = await Promise.all([
-    d3.csv(base + "energy_systems_CAISO_ERCOT_PJM_CAISO_daily_spread_q3_2025.csv"),
-    d3.csv(base + "energy_systems_CAISO_ERCOT_PJM_ERCOT_daily_spread_q3_2025.csv"),
-    d3.csv(base + "energy_systems_CAISO_ERCOT_PJM_PJM_daily_spread_q3_2025.csv"),
+    d3.csv(base + "energy_systems_analysis/CAISO_ERCOT_PJM/data/CAISO_daily_spread_q3_2025.csv"),
+    d3.csv(base + "energy_systems_analysis/CAISO_ERCOT_PJM/data/ERCOT_daily_spread_q3_2025.csv"),
+    d3.csv(base + "energy_systems_analysis/CAISO_ERCOT_PJM/data/PJM_daily_spread_q3_2025.csv"),
   ]);
   const gridDefs = [
     { label: 'CAISO', color: '#2563eb', data: caiso },
