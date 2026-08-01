@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta property="og:title" content="Electricity Trade in the DE-LU Bidding Zone" />
   <meta property="og:description" content="The roles of generation systems in cross-border electricity trade" />
-  <meta property="og:image" content="https://raw.githubusercontent.com/ginasengeri/Electricity-and-the-Economy/main/energy_systems_entsoe_preview_image.png" />
+  <meta property="og:image" content="https://raw.githubusercontent.com/ginasengeri/energy-systems/main/energy_systems_analysis/ENTSOE/preview_image.png" />
   <title>ENSTSO-E — Energy Systems</title>
   <style>
 :root {
@@ -313,14 +313,14 @@ sup a { text-decoration: none; }
 <p>
   ENTSO-E Data Pipeline.
   Available at:
-  <a href="https://ginasengeri.github.io/Electricity-and-the-Economy/technical_appendix_entsoe.html" target="_blank">
+  <a href="https://ginasengeri.github.io/energy-systems/energy_systems_analysis/ENTSOE/technical_appendix.html" target="_blank">
     technical_appendix_entsoe.html
   </a>
 </p>
 <p>
   Ember Data Pipeline.
   Available at:
-  <a href="https://ginasengeri.github.io/Electricity-and-the-Economy/technical_appendix_ember.html" target="_blank">
+  <a href="https://ginasengeri.github.io/energy-systems/energy_systems_analysis/ENTSOE/technical_appendix.html" target="_blank">
     technical_appendix_ember.html
   </a>
 </p>
@@ -400,10 +400,10 @@ sup a { text-decoration: none; }
 
 <script>
 (async () => {
-  const base = "https://raw.githubusercontent.com/ginasengeri/Electricity-and-the-Economy/main/";
+  const base = "https://raw.githubusercontent.com/ginasengeri/energy-systems/main/";
   const [flows, spreads] = await Promise.all([
-    d3.csv(base + "energy_systems_entsoe_quarterly_net_flows.csv"),
-    d3.csv(base + "energy_systems_entsoe_quarterly_price_spreads.csv"),
+    d3.csv(base + "energy_systems_analysis/ENSTOE/data/quarterly_net_flows.csv"),
+    d3.csv(base + "energy_systems_analysis/ENSTOE/data/quarterly_price_spreads.csv"),
   ]);
 
   const quarters = flows.map(d => {
@@ -444,7 +444,7 @@ sup a { text-decoration: none; }
 
   <script>
   (async () => {
-    const flowData = await d3.csv("https://raw.githubusercontent.com/ginasengeri/Electricity-and-the-Economy/main/energy_systems_entsoe_weekly_net_flows.csv");
+    const flowData = await d3.csv("https://raw.githubusercontent.com/ginasengeri/energy-systems/main/energy_systems_analysis/ENSTOE/data/weekly_net_flows.csv");
     const rawFR  = flowData.map(d => +d["DE-LU->FR"]);
     const rawNO2 = flowData.map(d => +d["DE-LU->NO2"]);
     const rawNL  = flowData.map(d => +d["DE-LU->NL"]);
@@ -563,7 +563,7 @@ sup a { text-decoration: none; }
 
   <script>
   (async () => {
-    const CSV_URL = 'https://raw.githubusercontent.com/ginasengeri/Electricity-and-the-Economy/main/energy_systems_entsoe_net_yearly_balance.csv';
+    const CSV_URL = 'https://raw.githubusercontent.com/ginasengeri/energy-systems/main/energy_systems_analysis/ENTSOE/data/net_yearly_balance.csv';
 
     const HIGHLIGHTS = {
       FR:  { color: '#dc6030', country: 'France',      sub: 'nuclear',    lat: 46.2, lon: 2.3  },
@@ -762,8 +762,8 @@ sup a { text-decoration: none; }
 
   <script>
   (async () => {
-  const flowData = await d3.csv("https://raw.githubusercontent.com/ginasengeri/Electricity-and-the-Economy/main/energy_systems_entsoe_weekly_net_flows.csv");
-  const spreads  = await d3.csv("https://raw.githubusercontent.com/ginasengeri/Electricity-and-the-Economy/main/energy_systems_entsoe_weekly_price_spreads.csv");
+  const flowData = await d3.csv("https://raw.githubusercontent.com/ginasengeri/energy-systems/main/energy_systems_analysis/ENSTOE/data/weekly_net_flows.csv");
+  const spreads  = await d3.csv("https://raw.githubusercontent.com/ginasengeri/energy-systems/main/energy_systems_analysis/ENSTOE/data/weekly_price_spreads.csv");
 
   const dualWeeks = Array.from({length:52}, (_,i) => i+1);
   const ZONE_COLORS = { FR: '#dc6030', NL: '#2563eb', NO2: '#2d7d46' };
@@ -836,7 +836,7 @@ sup a { text-decoration: none; }
 
 <script>
 (async () => {
-  const genRaw = await d3.csv("https://raw.githubusercontent.com/ginasengeri/Electricity-and-the-Economy/main/energy_systems_entsoe_generation_mix.csv");
+  const genRaw = await d3.csv("https://raw.githubusercontent.com/ginasengeri/energy-systems/main/energy_systems_analysis/ENSTOE/data/generation_mix.csv");
 
   const zoneOrder = [
     { code: 'FRA',  label: 'FR · France',                color: '#dc6030', price: '€62.33/MWh' },
