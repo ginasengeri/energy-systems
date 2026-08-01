@@ -38,20 +38,22 @@ header p {
   padding: 0 24px;
 }
 
+/* Desktop: three equally sized cards across */
 .cards-grid {
   display: grid;
-  gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
   margin: 10px auto 80px;
 }
 
-/* Main card design */
+/* Main card */
 .card {
   background: rgba(55, 65, 81, 0.10);
-  border: 1px solid rgba(55, 65, 81, 0.18);
-  border-left: 4px solid #2563eb;
+  border: 1.5px solid #2563eb;
   border-radius: 16px;
   padding: 28px 30px;
-  min-height: 90px;
+  min-height: 110px;
+  box-sizing: border-box;
 
   box-shadow:
     0 8px 24px rgba(15, 23, 42, 0.06),
@@ -91,13 +93,13 @@ header p {
   font-size: 0.8rem;
 }
 
-/* Accent colours */
+/* Full coloured borders */
 .card.brief {
-  border-left-color: #10b981;
+  border-color: #10b981;
 }
 
 .card.tech {
-  border-left-color: #7c3aed;
+  border-color: #7c3aed;
 }
 
 .card-link {
@@ -140,8 +142,15 @@ footer {
   margin-right: 12px;
 }
 
-/* Mobile */
+
+/* --------------------------------
+   PHONE
+   Two cards on top,
+   Documentation underneath
+-------------------------------- */
+
 @media (max-width: 600px) {
+
   header {
     padding: 48px 20px 24px;
   }
@@ -162,7 +171,7 @@ footer {
   .card {
     min-height: 120px;
     padding: 20px 18px;
-    border-left-width: 3px;
+    border-width: 1.5px;
     border-radius: 13px;
   }
 
@@ -173,16 +182,36 @@ footer {
   .card .tagline {
     font-size: 0.84rem;
   }
+
+  /* Documentation spans both columns */
+  .card.tech {
+    grid-column: 1 / -1;
+  }
 }
+
 
 /* Very small phones */
 @media (max-width: 420px) {
   .cards-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .card {
+    padding: 18px 15px;
+  }
+
+  .card h2 {
+    font-size: 0.98rem;
+  }
+
+  .card .tagline {
+    font-size: 0.8rem;
   }
 }
 </style>
+
 </head>
+  
 <body>
   <header>
     <h1>Energy Systems</h1>
