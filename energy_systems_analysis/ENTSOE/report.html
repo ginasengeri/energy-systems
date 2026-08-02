@@ -402,8 +402,8 @@ sup a { text-decoration: none; }
 (async () => {
   const base = "https://raw.githubusercontent.com/ginasengeri/energy-systems/main/";
   const [flows, spreads] = await Promise.all([
-    d3.csv(base + "energy_systems_analysis/ENSTOE/data/quarterly_net_flows.csv"),
-    d3.csv(base + "energy_systems_analysis/ENSTOE/data/quarterly_price_spreads.csv"),
+    d3.csv(base + "energy_systems_analysis/ENTSOE/data/quarterly_net_flows.csv"),
+    d3.csv(base + "energy_systems_analysis/ENTSOE/data/quarterly_price_spreads.csv"),
   ]);
 
   const quarters = flows.map(d => {
@@ -444,7 +444,7 @@ sup a { text-decoration: none; }
 
   <script>
   (async () => {
-    const flowData = await d3.csv("https://raw.githubusercontent.com/ginasengeri/energy-systems/main/energy_systems_analysis/ENSTOE/data/weekly_net_flows.csv");
+    const flowData = await d3.csv("https://raw.githubusercontent.com/ginasengeri/energy-systems/main/energy_systems_analysis/ENTSOE/data/weekly_net_flows.csv");
     const rawFR  = flowData.map(d => +d["DE-LU->FR"]);
     const rawNO2 = flowData.map(d => +d["DE-LU->NO2"]);
     const rawNL  = flowData.map(d => +d["DE-LU->NL"]);
@@ -762,8 +762,8 @@ sup a { text-decoration: none; }
 
   <script>
   (async () => {
-  const flowData = await d3.csv("https://raw.githubusercontent.com/ginasengeri/energy-systems/main/energy_systems_analysis/ENSTOE/data/weekly_net_flows.csv");
-  const spreads  = await d3.csv("https://raw.githubusercontent.com/ginasengeri/energy-systems/main/energy_systems_analysis/ENSTOE/data/weekly_price_spreads.csv");
+  const flowData = await d3.csv("https://raw.githubusercontent.com/ginasengeri/energy-systems/main/energy_systems_analysis/ENTSOE/data/weekly_net_flows.csv");
+  const spreads  = await d3.csv("https://raw.githubusercontent.com/ginasengeri/energy-systems/main/energy_systems_analysis/ENTSOE/data/weekly_price_spreads.csv");
 
   const dualWeeks = Array.from({length:52}, (_,i) => i+1);
   const ZONE_COLORS = { FR: '#dc6030', NL: '#2563eb', NO2: '#2d7d46' };
@@ -836,7 +836,7 @@ sup a { text-decoration: none; }
 
 <script>
 (async () => {
-  const genRaw = await d3.csv("https://raw.githubusercontent.com/ginasengeri/energy-systems/main/energy_systems_analysis/ENSTOE/data/generation_mix.csv");
+  const genRaw = await d3.csv("https://raw.githubusercontent.com/ginasengeri/energy-systems/main/energy_systems_analysis/ENTSOE/data/generation_mix.csv");
 
   const zoneOrder = [
     { code: 'FRA',  label: 'FR · France',                color: '#dc6030', price: '€62.33/MWh' },
