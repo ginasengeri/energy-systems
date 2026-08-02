@@ -28,9 +28,11 @@ header h1 {
 }
 
 header p {
-  margin: 0;
+  margin: 0 auto;
+  max-width: 440px;
   color: #6b7280;
   font-size: 0.97rem;
+  line-height: 1.55;
 }
 
 .section-wrap {
@@ -43,7 +45,7 @@ header p {
   display: grid;
   gap: 28px;
   grid-template-columns: repeat(3, 1fr);
-  margin: 10px auto 80px;
+  margin: 10px auto 60px;
 }
 
 /* Main card design */
@@ -63,13 +65,25 @@ header p {
   text-align: center;
 
   box-shadow:
-    0 6px 18px rgba(15, 23, 42, 0.05),
+    0 6px 18px rgba(37, 99, 235, 0.07),
     inset 0 1px 0 rgba(255, 255, 255, 0.35);
 
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease,
     background 0.2s ease;
+}
+
+.card.brief {
+  box-shadow:
+    0 6px 18px rgba(16, 185, 129, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.card.tech {
+  box-shadow:
+    0 6px 18px rgba(124, 58, 237, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 
 /* Elegant variable-weight coloured border, softened */
@@ -126,8 +140,35 @@ header p {
   transform: translateY(-4px);
   background: rgba(55, 65, 81, 0.12);
   box-shadow:
-    0 16px 32px rgba(15, 23, 42, 0.09),
+    0 16px 32px rgba(37, 99, 235, 0.14),
     inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.card.brief:hover {
+  box-shadow:
+    0 16px 32px rgba(16, 185, 129, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.card.tech:hover {
+  box-shadow:
+    0 16px 32px rgba(124, 58, 237, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.card .icon {
+  width: 34px;
+  height: 34px;
+  margin-bottom: 16px;
+  color: #2563eb;
+}
+
+.card.brief .icon { color: #10b981; }
+.card.tech .icon { color: #7c3aed; }
+
+.card .icon svg {
+  width: 100%;
+  height: 100%;
 }
 
 .card h2 {
@@ -144,27 +185,24 @@ header p {
   line-height: 1.55;
 }
 
-.card .meta {
-  margin: 0 0 14px;
-  color: #9ca3af;
-  font-size: 0.8rem;
-}
-
 .card-link {
   text-decoration: none;
   color: inherit;
   display: block;
+  border-radius: 18px;
 }
 
-.card a {
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 0.9rem;
-  color: #2563eb;
+.card-link:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 3px;
 }
 
-.card a:hover {
-  text-decoration: underline;
+.card-link:nth-child(2):focus-visible {
+  outline-color: #10b981;
+}
+
+.card-link:nth-child(3):focus-visible {
+  outline-color: #7c3aed;
 }
 
 footer {
@@ -174,20 +212,20 @@ footer {
   padding-bottom: 30px;
 }
 
-/* Pills */
-.meta .pill {
-  display: inline-block;
-  padding: 3px 8px;
-  border-radius: 999px;
-  background: #f5f6f8;
-  color: #6b7280;
-  margin-right: 6px;
-  font-weight: 650;
-  font-size: 0.75rem;
+footer .links {
+  margin-bottom: 10px;
 }
 
-.links a {
-  margin-right: 12px;
+footer .links a {
+  color: #6b7280;
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: 600;
+}
+
+footer .links a:hover {
+  color: #2563eb;
+  text-decoration: underline;
 }
 
 /* Mobile */
@@ -241,6 +279,7 @@ footer {
 <body>
   <header>
     <h1>Energy Systems</h1>
+    <p>Models, market designs, and technical notes on the transition to modern power grids.</p>
 
 <main>
 
@@ -250,6 +289,19 @@ footer {
     
 <a class="card-link" href="energy_systems_analysis/energy_systems_analysis.html">
     <article class="card">
+      <span class="icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"></circle>
+          <circle cx="4" cy="6" r="1.6"></circle>
+          <circle cx="20" cy="6" r="1.6"></circle>
+          <circle cx="4" cy="18" r="1.6"></circle>
+          <circle cx="20" cy="18" r="1.6"></circle>
+          <line x1="9.8" y1="10.3" x2="5.3" y2="7"></line>
+          <line x1="14.2" y1="10.3" x2="18.7" y2="7"></line>
+          <line x1="9.8" y1="13.7" x2="5.3" y2="17"></line>
+          <line x1="14.2" y1="13.7" x2="18.7" y2="17"></line>
+        </svg>
+      </span>
       <h2>Energy Systems Analysis</h2>
       <p class="tagline">Energy systems and market designs.</p>
     </article>
@@ -257,14 +309,26 @@ footer {
     
 <a class="card-link" href="energy_modelling/energy_modelling.html">
     <article class="card brief">
+      <span class="icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="3,17 9,10 13,14 21,5"></polyline>
+          <polyline points="15,5 21,5 21,11"></polyline>
+        </svg>
+      </span>
       <h2>Energy Modelling</h2>
       <p class="tagline">Optimization models for energy markets.</p>
     </article>
     </a>
 
-<!-- You can add this later if you want a documentation card in your index. You'll need to add a documentation.html pointing to the other .htmls -->
 <a class="card-link" href="documentation/documentation.html">
     <article class="card tech">
+      <span class="icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 3h9l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"></path>
+          <line x1="8.5" y1="12" x2="15.5" y2="12"></line>
+          <line x1="8.5" y1="16" x2="15.5" y2="16"></line>
+        </svg>
+      </span>
       <h2>Documentation</h2>
       <p class="tagline">Technical appendices, model computation, and methodology notes.</p>
     </article>
@@ -275,7 +339,12 @@ footer {
 </main>
 
   <footer>
-    &copy; <!--2026--> .
+    <div class="links">
+      <a href="#">Home</a>
+      <a href="#">Contact</a>
+      <a href="#">Data source</a>
+    </div>
+    &copy; 2026
   </footer>
 </body>
 </html>
