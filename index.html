@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Energy, Finance and Economics – Data Reports</title>
+  <title>Energy Systems – Data Reports</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <style>
@@ -15,21 +15,22 @@ body {
 
 header {
   text-align: center;
-  padding: 70px 20px 30px;
+  padding: 76px 20px 32px;
   background: #f4f5f7;
   position: relative;
 }
 
 header h1 {
-  font-size: 2.4rem;
+  font-size: 2.5rem;
   font-weight: 800;
-  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+  margin: 0 0 10px;
 }
 
 header p {
   margin: 0;
   color: #6b7280;
-  font-size: 0.95rem;
+  font-size: 0.97rem;
 }
 
 .section-wrap {
@@ -38,44 +39,100 @@ header p {
   padding: 0 24px;
 }
 
-/* Desktop: three equally sized cards across */
 .cards-grid {
   display: grid;
+  gap: 28px;
   grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
   margin: 10px auto 80px;
 }
 
-/* Main card */
+/* Main card design */
 .card {
-  background: rgba(55, 65, 81, 0.10);
-  border: 1.5px solid #2563eb;
-  border-radius: 16px;
-  padding: 28px 30px;
-  min-height: 110px;
+  position: relative;
+  background: rgba(55, 65, 81, 0.08);
+  border: none;
+  border-radius: 18px;
+  padding: 34px 36px;
+  min-height: 280px;
   box-sizing: border-box;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
   box-shadow:
-    0 8px 24px rgba(15, 23, 42, 0.06),
+    0 6px 18px rgba(15, 23, 42, 0.05),
     inset 0 1px 0 rgba(255, 255, 255, 0.35);
 
   transition:
-    transform 0.18s ease,
-    box-shadow 0.18s ease,
-    background 0.18s ease;
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+/* Elegant variable-weight coloured border, softened */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  padding: 1.5px;
+  background: linear-gradient(
+    135deg,
+    #2563eb 0%,
+    rgba(37, 99, 235, 0.55) 20%,
+    rgba(37, 99, 235, 0.12) 50%,
+    rgba(37, 99, 235, 0.55) 80%,
+    #2563eb 100%
+  );
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  pointer-events: none;
+}
+
+/* Green border */
+.card.brief::before {
+  background: linear-gradient(
+    135deg,
+    #10b981 0%,
+    rgba(16, 185, 129, 0.55) 20%,
+    rgba(16, 185, 129, 0.12) 50%,
+    rgba(16, 185, 129, 0.55) 80%,
+    #10b981 100%
+  );
+}
+
+/* Purple border */
+.card.tech::before {
+  background: linear-gradient(
+    135deg,
+    #7c3aed 0%,
+    rgba(124, 58, 237, 0.55) 20%,
+    rgba(124, 58, 237, 0.12) 50%,
+    rgba(124, 58, 237, 0.55) 80%,
+    #7c3aed 100%
+  );
 }
 
 .card:hover {
-  transform: translateY(-3px);
-  background: rgba(55, 65, 81, 0.14);
+  transform: translateY(-4px);
+  background: rgba(55, 65, 81, 0.12);
   box-shadow:
-    0 14px 34px rgba(15, 23, 42, 0.10),
+    0 16px 32px rgba(15, 23, 42, 0.09),
     inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 .card h2 {
-  margin: 0 0 7px;
-  font-size: 1.25rem;
+  margin: 0 0 9px;
+  font-size: 1.28rem;
   font-weight: 750;
   letter-spacing: -0.01em;
 }
@@ -83,23 +140,14 @@ header p {
 .card .tagline {
   margin: 0;
   color: #6b7280;
-  font-size: 0.92rem;
-  line-height: 1.5;
+  font-size: 0.93rem;
+  line-height: 1.55;
 }
 
 .card .meta {
   margin: 0 0 14px;
   color: #9ca3af;
   font-size: 0.8rem;
-}
-
-/* Full coloured borders */
-.card.brief {
-  border-color: #10b981;
-}
-
-.card.tech {
-  border-color: #7c3aed;
 }
 
 .card-link {
@@ -142,15 +190,8 @@ footer {
   margin-right: 12px;
 }
 
-
-/* --------------------------------
-   PHONE
-   Two cards on top,
-   Documentation underneath
--------------------------------- */
-
+/* Mobile */
 @media (max-width: 600px) {
-
   header {
     padding: 48px 20px 24px;
   }
@@ -165,13 +206,16 @@ footer {
 
   .cards-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
+    gap: 16px;
   }
 
   .card {
-    min-height: 120px;
-    padding: 20px 18px;
-    border-width: 1.5px;
+    min-height: 150px;
+    padding: 28px 18px;
+    border-radius: 13px;
+  }
+
+  .card::before {
     border-radius: 13px;
   }
 
@@ -182,33 +226,15 @@ footer {
   .card .tagline {
     font-size: 0.84rem;
   }
-
-  /* Documentation spans both columns */
-  .card.tech {
-    grid-column: 1 / -1;
-  }
 }
-
 
 /* Very small phones */
 @media (max-width: 420px) {
   .cards-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .card {
-    padding: 18px 15px;
-  }
-
-  .card h2 {
-    font-size: 0.98rem;
-  }
-
-  .card .tagline {
-    font-size: 0.8rem;
+    grid-template-columns: 1fr;
   }
 }
-</style>
+</style> 
 
 </head>
   
@@ -244,13 +270,12 @@ footer {
     </article>
     </a>
     
-
   </div>
 </section>
 </main>
 
   <footer>
-    &copy; <!--2026--> Gina Sengeri. 
+    &copy; <!--2026--> .
   </footer>
 </body>
 </html>
