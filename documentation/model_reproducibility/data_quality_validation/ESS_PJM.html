@@ -1,1 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PJM Energy Storage System Model – Data Quality &amp; Validation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<style>
+
+body{
+font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+margin:0;
+background:#f4f5f7;
+color:#111827;
+line-height:1.65;
+}
+
+header{
+text-align:center;
+padding:70px 20px 30px;
+background:#f4f5f7;
+}
+
+header h1{
+font-size:2rem;
+margin:0 0 10px;
+font-weight:800;
+}
+
+header p{
+margin:0;
+color:#6b7280;
+font-size:0.95rem;
+}
+
+main{
+max-width:820px;
+margin:0 auto;
+padding:0 20px 20px;
+}
+
+h2{
+margin-top:30px;
+font-size:1.1rem;
+font-weight:750;
+}
+
+h3{
+margin-top:22px;
+margin-bottom:4px;
+font-size:0.98rem;
+font-weight:700;
+}
+
+p{
+margin:12px 0;
+}
+
+ul{
+margin:10px 0 0 20px;
+}
+
+li{
+margin-bottom:4px;
+}
+
+code{
+font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+line-height: 1.5;
+font-size: 0.9rem;
+background: #f3f4f6;
+border-radius: 4px;
+padding: 1px 5px;
+}
+
+.dq-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 4px;
+  font-size: 0.88rem;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.dq-table th, .dq-table td {
+  border-bottom: 1px solid #e5e7eb;
+  padding: 8px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.dq-table th {
+  background: #f9fafb;
+  font-weight: 650;
+  color: #374151;
+}
+
+.dq-table tr:last-child td {
+  border-bottom: none;
+}
+
+.dataset-block {
+  border-top: 1px solid #e0e3e8;
+  padding-top: 14px;
+  margin-top: 18px;
+}
+
+.dq-placeholder {
+  color: #9ca3af;
+  font-style: italic;
+}
+
+.note {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 0.88rem;
+  color: #4b5563;
+  margin: 14px 0;
+}
+
+/* Sources section */
+.sources-section ol {
+  margin: 10px 0 0 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.sources-section li {
+  margin-bottom: 6px;
+  word-break: break-word;
+}
+
+.sources-section a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.sources-section a:hover {
+  text-decoration: underline;
+}
+
+footer {
+margin-top: 28px;
+padding-top: 16px;
+border-top: 1px solid #e0e3e8;
+text-align: center;
+font-size: 0.75rem;
+color: #9ca3af;
+}
+
+footer a {
+color: #2563eb;
+text-decoration: none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>PJM Energy Storage System Model</h1>
+<p>Data quality &amp; validation notes for the energy storage system (ESS) optimization model, PJM grid.</p>
+</header>
+
+<main>
+
+<p>
+This page documents data quality details for the PJM ESS optimization model, queried via
+the Energy Analytics API.
+</p>
+
+<h2>Model notes</h2>
+
+<p>
+A missing row in the regulation-details dataset resulted in NaN values in the final merged
+<code>ess-model</code> dataset, at 2025-08-22 03:00:00 UTC (2025-08-21 23:00:00 local time). This data is
+missing from PJM's 
+(<a href="https://dataminer2.pjm.com/feed/reg_market_results" target="_blank">public database</a>) and was excluded from the model's input data.
+</p>
+
+<p>
+The model simulates a battery's operations from July 1st to October 1st, prior to the unifying of the
+RegA and RegD in PJM's market. This means mileage ratios represent the ratio
+between RegD and RegA, per the market rules prior to the change on October 1st.
+</p>
+
+<p>
+RMCCPs and RMPCPs are used to determine prices for committed regulation. For regulation service revenues,
+only the RegA product is considered due to data-permission limitations.
+</p>
+
+<h2>Data quality summary</h2>
+
+<div class="dataset-block">
+<h3><code>lmp</code></h3>
+<p>Hub locational marginal prices (LMPs).</p>
+<table class="dq-table">
+<thead><tr><th>Field</th><th>Missing observations</th><th>Notes</th></tr></thead>
+<tbody><tr><td colspan="3" class="dq-placeholder">Data quality summary to be added.</td></tr></tbody>
+</table>
+</div>
+
+<div class="dataset-block">
+<h3><code>reg-prices</code></h3>
+<p>RTO-wide regulation prices (RegA service price, prior to its retirement on October 1st, 2025).</p>
+<table class="dq-table">
+<thead><tr><th>Field</th><th>Missing observations</th><th>Notes</th></tr></thead>
+<tbody><tr><td colspan="3" class="dq-placeholder">Data quality summary to be added.</td></tr></tbody>
+</table>
+</div>
+
+<div class="dataset-block">
+<h3><code>reg-details</code></h3>
+<p>Regulation MW procured, regulation mileage, and performance scores.</p>
+<table class="dq-table">
+<thead><tr><th>Field</th><th>Missing observations</th><th>Notes</th></tr></thead>
+<tbody><tr><td colspan="3" class="dq-placeholder">Data quality summary to be added.</td></tr></tbody>
+</table>
+</div>
+
+<div class="dataset-block">
+<h3><code>reg-signal</code></h3>
+<p>AGC signal data was inaccessible. Instead, normalized signal data for one day (October 3rd, 2025) is applied across Q3 2025.</p>
+<table class="dq-table">
+<thead><tr><th>Field</th><th>Missing observations</th><th>Notes</th></tr></thead>
+<tbody><tr><td colspan="3" class="dq-placeholder">Data quality summary to be added.</td></tr></tbody>
+</table>
+</div>
+
+<div class="dataset-block">
+<h3><code>mileage-ratio</code></h3>
+<p>Mileage ratios for real-time regulation.</p>
+<table class="dq-table">
+<thead><tr><th>Field</th><th>Missing observations</th><th>Notes</th></tr></thead>
+<tbody><tr><td colspan="3" class="dq-placeholder">Data quality summary to be added.</td></tr></tbody>
+</table>
+</div>
+
+<div class="dataset-block">
+<h3><code>rmccp</code></h3>
+<p>Regulation Market Capability Clearing Prices. This credits MW available for regulation, scaled by performance — how closely the resource follows the AGC signal.</p>
+</div>
+
+<div class="dataset-block">
+<h3><code>rmpcp</code></h3>
+<p>Regulation Market Performance Clearing Prices. This pays a premium for faster-response movements of energy (RegD/RegA ratio), also scaled by close tracking of the AGC signal.</p>
+</div>
+
+<div class="dataset-block">
+<h3><code>ess-model</code></h3>
+<p>The five datasets above are merged into one dataset, passed as input data for the ESS optimization model.</p>
+<table class="dq-table">
+<thead><tr><th>Field</th><th>Missing observations</th><th>Notes</th></tr></thead>
+<tbody><tr><td colspan="3" class="dq-placeholder">Data quality summary to be added.</td></tr></tbody>
+</table>
+</div>
+
+<section class="sources-section">
+  <h2>Sources</h2>
+  <ol>
+    <li>PJM Data Miner 2 – Regulation Market Results – <a href="https://dataminer2.pjm.com/feed/reg_market_results" target="_blank">dataminer2.pjm.com/feed/reg_market_results</a></li>
+  </ol>
+</section>
+
+<footer>
+  <p>Data source: PJM Interconnection · ESS Model</p>
+  <a href="index.html">← Back to Data Pipelines</a>
+</footer>
+
+</main>
+
+</body>
+</html>
