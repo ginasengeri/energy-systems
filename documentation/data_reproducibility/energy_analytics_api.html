@@ -1,0 +1,80 @@
+Energy Analytics API Documentation
+
+The Energy Analytics API provides access to metadata and data-quality information for datasets used in energy-system modelling. 
+This documentation provides transparency and reproducibility of the model by identifying missing or incomplete observations in input data.
+
+ESS PJM:
+--------
+A missing row in the regulation-details dataset resulted in NAN values in the final merged ess-model dataset, on 2025-08-22 at 03:00:00 UTC / 2025-08-21 at 23:00:00
+local time. This data is missing from PJM's public database: https://dataminer2.pjm.com/feed/reg_market_results. The row was excluded from input data for the ESS 
+optimization model.
+
+The model simulates a battery's operations from 1st July to 1st October, prior to the unifying of the RegA and RegD signals into one unified signal.
+
+This means mileage ratios represent the ratio between RegD and RegA, as per market rules prior to the change on October 1st.
+
+In addition, and RMCCPs and RMPCPs are used to determine prices for commited regulation. 
+
+For regulation service revenues, only the RegA product is considered due to data accessibility limitations. 
+
+
+1. Data Quality Endpoint
+-------------------------
+The API endpoint returns a JSON data quality report for a specified energy market dataset. The route uses following parameters:
+
+GET /{grid}/{dataset}/{quarter}/{year}/
+
+---------------------------------------------------------------------------------
+Example Request:
+http://127.0.0.1:8000/pjm/ess-model/Q3/2025/
+
+In Python:                                                                      # consider only including this if you will bring attention to your API clearly on linkedin, showing that you built it or
+{                                                                               # teaching/encouraging others to learn how to use an API or something of the sort. Otherwise maybe leave it out? 
+    grid = "pjm"                                                                # or reduce transparency? only include the example request? think about it.
+    dataset = "ess-model"                                                       # consider having a loaded view page that allows dynamic selection of dataset and data quality summary.
+    quarter = "Q3"
+    year = "2025"
+
+    url = f"http://127.0.0.1:8000/{grid}/{dataset}/{quarter}/{year}/"
+
+    response = requests.get(url)
+
+    data = response.json()
+
+    pjm_ess-model_Q3_2025 = pd.DataFrame(data)
+
+    pjm_ess-model_Q3_2025
+}
+----------------------------------------------------------------------------------
+
+Parameters:
+    - grid: only PJM for now
+    - dataset: ess-model
+    - quarter: only Q3 for now
+    - year: only 2025 for now
+
+
+Data Qulaity Summary & Validation                                                             
+    - lmp: Hub locational marginal prices (LMPs) prices.
+    [insert data quality summary table]
+
+    - reg-prices: RTO-wide regulation prices (RegA service price, prior to retiration on Oct 1 2025). 
+    [insert data quality summary table]
+
+    - reg-details: regulation MW procured, regulation mileage and performance scores.
+    [insert data quality summary table]
+
+    - reg-signal: AGC signal data was inaccessible. Instead, normalized signal data for one day (Oct 3 2025) is applied across Q3 2025.
+    [insert data quality summary table]
+
+    - mileage-ratio: Mileage ratios for real-time regulation 
+    [insert data quality summary table]
+
+    - rmccp: Regulation Market Capability Clearing prices. This credits MW available for regulation, scaled by perormance - how closely the resource follows the AGC signal.
+
+    - rmpcp: Regulation Market Performance Clearing prices. This pays a premium to faster-response movements of energy (RegD/RegA ratio), also scaled by close tracking of the AGC signal.
+
+    - ess-model: the four above are merged into one dataset to be passed as input data for the ESS model
+    [insert data quality summary table]
+
+
