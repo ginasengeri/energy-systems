@@ -206,9 +206,9 @@ individual datasets before merging can also be found further down in this docume
 <thead><tr><th>Metric</th><th>Value</th></tr></thead>
 <tbody>
 <tr><td>Rows</td><td>2,208</td></tr>
-<tr><td>Columns</td><td><code>interval_start_utc</code>, <code>interval_start_local</code>, <code>AEP-DAYTON HUB</code>, <code>CHICAGO HUB</code>, <code>DOMINION HUB</code>, <code>EASTERN HUB</code>, <code>WESTERN HUB</code>, <code>PJM_RTO-Regulation</code>, <code>mileage</code>, <code>performance</code>, <code>signal_SOC</code>, <code>signal_cycling</code></td></tr>
+<tr><td>Columns</td><td><code>interval_start_utc</code>, <code>interval_start_local</code>, <code>AEP-DAYTON HUB</code>, <code>CHICAGO HUB</code>, <code>DOMINION HUB</code>, <code>EASTERN HUB</code>, <code>WESTERN HUB</code>, <code>PJM_RTO-Regulation</code>, <code>mileage</code>, <code>performance</code>, <code>sigc</code>, <code>sigd</code>, <code>rmccp</code>, <code>rmpcp</code></td></tr>
 <tr><td>Missing hours</td><td>None</td></tr>
-<tr><td>Rows with NaNs</td><td>2025-08-22 03:00 UTC — <code>mileage</code>, <code>performance</code></td></tr>
+<tr><td>Rows with NaNs</td><td>2025-08-22 03:00 UTC — <code>performance</code></td></tr>
 </tbody>
 </table>
 </div>
@@ -229,21 +229,26 @@ individual datasets before merging can also be found further down in this docume
 
 <div class="dataset-block">
 <h3><code>reg-prices</code></h3>
-<p>RTO-wide regulation prices (RegA service price, prior to its retirement on October 1st, 2025).</p>
+<p>RTO-wide regulation prices (RegA service price, prior to retirement on October 1st, 2025).</p>
 <table class="dq-table">
-<thead><tr><th>Field</th><th>Missing observations</th><th>Notes</th></tr></thead>
-<tbody><tr><td colspan="3" class="dq-placeholder">Data quality summary to be added.</td></tr></tbody>
+<thead><tr><th>Metric</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Rows</td><td>2,208</td></tr>
+<tr><td>Columns</td><td><code>interval_start_utc</code>, <code>PJM_RTO-Regulation</code></td></tr>
+<tr><td>Missing hours</td><td>None</td></tr>
+<tr><td>Rows with NaNs</td><td>None</td></tr>
+</tbody>
 </table>
 </div>
 
 <div class="dataset-block">
 <h3><code>reg-details</code></h3>
-<p>Regulation MW procured, regulation mileage, and performance scores.</p>
+<p>Regulation performance scores.</p>
 <table class="dq-table">
 <thead><tr><th>Metric</th><th>Value</th></tr></thead>
 <tbody>
 <tr><td>Rows</td><td>2,207</td></tr>
-<tr><td>Columns</td><td><code>interval_start_utc</code>, <code>mileage</code>, <code>performance</code></td></tr>
+<tr><td>Columns</td><td><code>interval_start_utc</code>, <code>performance</code></td></tr>
 <tr><td>Missing hours</td><td>2025-08-22 03:00 UTC (2025-08-21 23:00 local)</td></tr>
 <tr><td>Rows with NaNs</td><td>None</td></tr>
 </tbody>
@@ -257,7 +262,7 @@ individual datasets before merging can also be found further down in this docume
 <thead><tr><th>Metric</th><th>Value</th></tr></thead>
 <tbody>
 <tr><td>Rows</td><td>2,208</td></tr>
-<tr><td>Columns</td><td><code>interval_start_utc</code>, <code>signal_SOC</code>, <code>signal_cycling</code></td></tr>
+<tr><td>Columns</td><td><code>interval_start_utc</code>, <code>sigd</code>, <code>sigc</code></td></tr>
 <tr><td>Missing hours</td><td>None</td></tr>
 <tr><td>Rows with NaNs</td><td>None</td></tr>
 </tbody>
