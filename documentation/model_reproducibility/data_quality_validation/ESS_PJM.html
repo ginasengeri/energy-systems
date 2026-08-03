@@ -172,7 +172,8 @@ text-decoration: none;
 
 <p>
 This page documents data quality details for the PJM ESS optimization model, queried via
-the Energy Analytics API.
+the <a href="https://ginasengeri.github.io/energy-systems/documentation/model_reproducibility/energy_analytics_api.html" Energy Analytics API> </a>
+(<code>grid=pjm</code>, <code>dataset=ess-model</code>).
 </p>
 
 <h2>Model notes</h2>
@@ -194,11 +195,26 @@ between RegD and RegA, per the market rules prior to the change on October 1st.
 RMCCPs and RMPCPs are used to determine prices for committed regulation. For regulation service revenues,
 only the RegA product is considered due to data-permission limitations. The regulation signal uses
 normalized sample data for one day, October 3, 2025, repeated across hours for the models period Q3 2025. 
-This is due to data permission limitations (I was unable/not licensed to access signal data).
+This is due to data-accessibility limitations.
 </p>
 
-<h2>Data quality summary</h2>
+<h2>Data Quality summary</h2>
 
+<div class="dataset-block">
+<h3><code>ess-model</code></h3>
+<p>The table below shows data quality information for the merged dataset that is passed as input data for the ESS optimization model. Specific information for
+individual datasets before merging can also be found further down in this document.</p>
+<table class="dq-table">
+<thead><tr><th>Metric</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Rows</td><td>2,208</td></tr>
+<tr><td>Columns</td><td><code>interval_start_utc</code>, <code>interval_start_local</code>, <code>AEP-DAYTON HUB</code>, <code>CHICAGO HUB</code>, <code>DOMINION HUB</code>, <code>EASTERN HUB</code>, <code>WESTERN HUB</code>, <code>PJM_RTO-Regulation</code>, <code>mileage</code>, <code>performance</code>, <code>signal_SOC</code>, <code>signal_cycling</code></td></tr>
+<tr><td>Missing hours</td><td>None</td></tr>
+<tr><td>Rows with NaNs</td><td>2025-08-22 03:00 UTC — <code>mileage</code>, <code>performance</code></td></tr>
+</tbody>
+</table>
+</div>
+  
 <div class="dataset-block">
 <h3><code>lmp</code></h3>
 <p>Hub locational marginal prices (LMPs).</p>
@@ -287,20 +303,6 @@ This is due to data permission limitations (I was unable/not licensed to access 
 <tr><td>Columns</td><td><code>interval_start_utc</code>, <code>rmpcp</code></td></tr>
 <tr><td>Missing hours</td><td>None</td></tr>
 <tr><td>Rows with NaNs</td><td>None</td></tr>
-</tbody>
-</table>
-</div>
-
-<div class="dataset-block">
-<h3><code>ess-model</code></h3>
-<p>The datasets above are merged into one dataset, passed as input data for the ESS optimization model.</p>
-<table class="dq-table">
-<thead><tr><th>Metric</th><th>Value</th></tr></thead>
-<tbody>
-<tr><td>Rows</td><td>2,208</td></tr>
-<tr><td>Columns</td><td><code>interval_start_utc</code>, <code>interval_start_local</code>, <code>AEP-DAYTON HUB</code>, <code>CHICAGO HUB</code>, <code>DOMINION HUB</code>, <code>EASTERN HUB</code>, <code>WESTERN HUB</code>, <code>PJM_RTO-Regulation</code>, <code>mileage</code>, <code>performance</code>, <code>signal_SOC</code>, <code>signal_cycling</code></td></tr>
-<tr><td>Missing hours</td><td>None</td></tr>
-<tr><td>Rows with NaNs</td><td>2025-08-22 03:00 UTC — <code>mileage</code>, <code>performance</code></td></tr>
 </tbody>
 </table>
 </div>
