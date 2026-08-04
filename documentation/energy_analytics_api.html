@@ -66,25 +66,16 @@ pre {
   font-size: 0.85rem;
 }
 
+pre .method {
+  color: #2563eb;
+  font-weight: 700;
+  margin-right: 8px;
+}
+
 code{
 font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
 line-height: 1.5;
 font-size: 0.9rem;
-}
-
-.endpoint {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  padding: 14px 18px;
-  font-size: 0.9rem;
-  margin: 14px 0;
-}
-
-.endpoint .method {
-  color: #2563eb;
-  font-weight: 700;
-  margin-right: 8px;
 }
 
 .params-table {
@@ -189,7 +180,7 @@ or incomplete observations in the input data.
 
 <p>The API endpoint returns a JSON data quality report for a specified energy market dataset.</p>
 
-<div class="endpoint"><span class="method">GET</span><code>/{grid}/{dataset}/{quarter}/{year}/</code></div>
+<pre><span class="method">GET</span><code>/{grid}/{dataset}/{quarter}/{year}/</code></pre>
 
 <p>Example request:</p>
 <pre><code>http://127.0.0.1:8000/pjm/ess-model/Q3/2025/</code></pre>
