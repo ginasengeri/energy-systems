@@ -173,25 +173,27 @@ text-decoration: none;
 <p>
 This page documents data quality details for the PJM ESS optimization model, queried via
 the <a href="https://ginasengeri.github.io/energy-systems/documentation/energy_analytics_api.html" target="_blank">Energy Analytics API</a>
-(<code>grid=pjm</code>, <code>dataset=ess-model</code>).
+(<code>grid=pjm</code>, <code>dataset=ess-model</code>). 
+The model simulates a battery's operations from July 1st to October 1st, prior to the unifying of the
+RegA and RegD in PJM's market. 
 </p>
 
+<h2>Important Notes</h2>
+
 <p>
-A missing row in the regulation-details dataset resulted in NaN values in the final merged
+A missing row in the performance dataset resulted in NaN values in the final merged
 <code>ess-model</code> dataset, at 2025-08-22 03:00:00 UTC (2025-08-21 23:00:00 local time). This data is
 missing from PJM's 
 <a href="https://dataminer2.pjm.com/feed/reg_market_results" target="_blank">public database</a> and was excluded from the model's input data.
 </p>
 
 <p>
-The model simulates a battery's operations from July 1st to October 1st, prior to the unifying of the
-RegA and RegD in PJM's market. This means mileage ratios represent the ratio
-between RegD and RegA, per the market rules prior to the change on October 1st.
+RMCCPs and RMPCPs are used to determine prices for committed regulation as per manual 11/28 (link to PJM doc). For regulation service revenues,
+only the RegA product is considered due to data-permission limitations. 
 </p>
 
-<p>
-RMCCPs and RMPCPs are used to determine prices for committed regulation. For regulation service revenues,
-only the RegA product is considered due to data-permission limitations. The regulation signal uses
+<p>  
+The regulation signal uses
 normalized sample data for one day, October 3, 2025, repeated across hours for the models period Q3 2025. 
 This is due to data-accessibility limitations.
 </p>
@@ -206,7 +208,7 @@ individual datasets before merging can also be found further down in this docume
 <thead><tr><th>Metric</th><th>Value</th></tr></thead>
 <tbody>
 <tr><td>Rows</td><td>2,208</td></tr>
-<tr><td>Columns</td><td><code>interval_start_utc</code>, <code>interval_start_local</code>, <code>AEP-DAYTON HUB</code>, <code>CHICAGO HUB</code>, <code>DOMINION HUB</code>, <code>EASTERN HUB</code>, <code>WESTERN HUB</code>, <code>PJM_RTO-Regulation</code>, <code>mileage</code>, <code>performance</code>, <code>sigc</code>, <code>sigd</code>, <code>rmccp</code>, <code>rmpcp</code></td></tr>
+<tr><td>Columns</td><td><code>interval_start_utc</code>, <code>interval_start_local</code>, <code>AEP-DAYTON HUB</code>, <code>CHICAGO HUB</code>, <code>DOMINION HUB</code>, <code>EASTERN HUB</code>, <code>WESTERN HUB</code>, <code>mileage</code>, <code>perf</code>, <code>sigc</code>, <code>sigd</code>, <code>rmccp</code>, <code>rmpcp</code></td></tr>
 <tr><td>Missing hours</td><td>None</td></tr>
 <tr><td>Rows with NaNs</td><td>2025-08-22 03:00 UTC — <code>performance</code></td></tr>
 </tbody>
@@ -228,21 +230,7 @@ individual datasets before merging can also be found further down in this docume
 </div>
 
 <div class="dataset-block">
-<h3><code>reg-prices</code></h3>
-<p>RTO-wide regulation prices (RegA service price, prior to retirement on October 1st, 2025).</p>
-<table class="dq-table">
-<thead><tr><th>Metric</th><th>Value</th></tr></thead>
-<tbody>
-<tr><td>Rows</td><td>2,208</td></tr>
-<tr><td>Columns</td><td><code>interval_start_utc</code>, <code>PJM_RTO-Regulation</code></td></tr>
-<tr><td>Missing hours</td><td>None</td></tr>
-<tr><td>Rows with NaNs</td><td>None</td></tr>
-</tbody>
-</table>
-</div>
-
-<div class="dataset-block">
-<h3><code>reg-details</code></h3>
+<h3><code>perf</code></h3>
 <p>Regulation performance scores.</p>
 <table class="dq-table">
 <thead><tr><th>Metric</th><th>Value</th></tr></thead>
@@ -270,8 +258,12 @@ individual datasets before merging can also be found further down in this docume
 </div>
 
 <div class="dataset-block">
-<h3><code>mileage-ratio</code></h3>
-<p>Mileage ratios for real-time regulation.</p>
+<h3><code>mileage</code></h3>
+<p>Mileage ratios for real-time regulation.
+This represents the ratio
+between RegD and RegA, per the market rules prior to the change on October 1st.
+</p>
+
 <table class="dq-table">
 <thead><tr><th>Metric</th><th>Value</th></tr></thead>
 <tbody>
