@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PJM Regulation Market Redesign  — ESS Model</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+:root {
+  --bg-page: #f4f5f7; --bg-card: #ffffff; --border-soft: #e0e3e8;
+  --accent: #2563eb; --accent-soft: #dbeafe; --text-main: #111827;
+  --text-muted: #6b7280; --table-header: #f3f4f6; --chip: #eef2ff;
+}
+* { box-sizing: border-box; }
+body { margin: 0; padding: 32px 16px; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background-color: var(--bg-page); color: var(--text-main); }
+.report-container { max-width: 1100px; margin: 0 auto; background: var(--bg-card); border-radius: 12px; padding: 28px 32px 36px; box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12); }
+header { text-align: center; padding: 20px 0 10px; }
+header .label { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: #6b7280; margin-bottom: 12px; }
+header h1 { font-size: 1.4rem; font-weight: 800; margin: 0 0 12px; line-height: 1.25; }
+header p { margin: 0 auto; color: #6b7280; font-size: 0.94rem; }
+.meta { text-align: center; font-size: 0.8rem; color: #9ca3af; margin-top: 10px; margin-bottom: 0; font-weight: 600; }
+h2 { margin-top: 24px; margin-bottom: 8px; font-size: 1.05rem; font-weight: 700; border-bottom: 1px solid var(--border-soft); padding-bottom: 4px; }
+h3 {font-size: 1.05rem; line-height: 1.3; margin-top: 18px; margin-bottom: 8px;}
+h4 {margin-bottom: 0;}
+.section p { font-size: 0.95rem; line-height: 1.7; color: #374151; margin: 0 0 12px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0px 0 16px; justify-content: center; }
+.chip { background: var(--chip); border: 1px solid rgba(37, 99, 235, 0.15); color: #1f2a5a; padding: 6px 10px; border-radius: 999px; font-size: 0.82rem; font-weight: 650; white-space: nowrap; }
+.kpi-grid {display: grid; grid-template-columns: repeat(3, minmax(100px, 300px)); justify-content: center; gap: 14px; margin-top: 16px; margin-bottom: 18px;}
+.kpi-card {
+    background: #f1f6ff; border: 1px solid #d9dde5; border-radius: 10px; padding: 14px 16px 13px; min-height: 120px; 
+    display: flex; flex-direction: column; justify-content: space-between; align-items: center; text-align: center; 
+    box-shadow: 0 3px 10px rgba(15, 23, 42, 0.05);
+}
+.kpi-label {font-size: 0.82rem; font-weight: 600; letter-spacing: 0.01em; line-height: 1.35; color: #374151; margin-bottom: 12px;}
+.kpi-value { font-size: 1.65rem; font-weight: 750; line-height: 1; color: #111827; }
+.kpi-period { margin-top: 8px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; color: #6b7280; }
+.kpi-note { margin-top: 5px; font-size: 0.76rem; color: #9ca3af; }
+table { width: 100%; border-collapse: collapse; font-size: 0.85rem; min-width: unset; }
+th, td { border: 1px solid var(--border-soft); padding: 6px 8px; text-align: left; white-space: nowrap; }
+th { background-color: var(--table-header); font-weight: 600; }
+ul { margin-left: 20px; margin-top: 6px; margin-bottom: 8px; }
+ol { margin-left: 20px; }
+li { font-size: 0.95rem; line-height: 1.7; color: #374151; }
+footer { margin-top: 28px; padding-top: 16px; border-top: 1px solid #e0e3e8; text-align: center; font-size: 0.75rem; color: #9ca3af; }
+footer a { color: #2563eb; text-decoration: none; }
+a, a:visited, a:hover, a:active { color: #2563eb; }
+footer a:hover { text-decoration: underline; }
+h2 + ol, p + ol { margin-top: 14px; margin-bottom: 18px; }
+ol li { margin-bottom: 8px; }
+sup { font-size: 0.75em; }
+sup a { text-decoration: none; }
+.chart-wrap { position: relative; width: 65%; margin: 12px auto 0; height: 380px; }
+.chart-wrap canvas { display: block; }
+.section p.chart-fig { font-size: 0.85rem; color: #9ca3af; text-align: left; margin-bottom: 6px; margin-top: 16px; }
+.placeholder { color: #b0b6c0; font-style: italic; }
+.todo { background: #EFEFEF; border: 1px dashed #9ca3af; border-radius: 8px; padding: 8px 12px; font-size: 0.82rem; margin: 8px 0; }
+.dispatch-visual { margin: 18px auto 24px; max-width: 920px; background: #f8fafc; border: 1px solid #dfe5ec; border-radius: 12px; padding: 20px; } .dispatch-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+.dispatch-kicker { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: #6b7280; font-weight: 700; }
+.dispatch-hour { font-size: 1.25rem; font-weight: 750; margin-top: 3px; }
+.dispatch-controls { display: flex; gap: 7px; }
+.dispatch-controls button { border: 1px solid #d1d5db; background: white; border-radius: 7px; padding: 6px 11px; font-size: 0.8rem; cursor: pointer; }
+.dispatch-controls button:hover { background: #f3f4f6; }
+.dispatch-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.dispatch-card { background: white; border: 1px solid #e1e5ea; border-radius: 9px; padding: 14px; }
+.dispatch-card-title { font-size: 0.78rem; font-weight: 750; text-transform: uppercase; letter-spacing: 0.04em; color: #6b7280; margin-bottom: 13px; }
+.metric-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 6px 0; border-bottom: 1px solid #f0f1f3; font-size: 0.78rem; }
+.metric-row:last-child { border-bottom: none; }
+.metric-row strong { font-size: 0.85rem; }
+.soc-value { font-size: 2rem; font-weight: 800; text-align: center; margin: 5px 0 14px; }
+.soc-track { height: 18px; background: #e5e7eb; border-radius: 999px; overflow: hidden; position: relative; }
+.soc-fill { height: 100%; width: 50%; background: #2563eb; transition: width 0.35s ease; }
+.soc-labels { display: flex; justify-content: space-between; margin-top: 6px; font-size: 0.68rem; color: #9ca3af; }
+.power-panel { background: white; border: 1px solid #e1e5ea; border-radius: 9px; margin-top: 12px; padding: 15px; }
+.power-title { font-size: 0.78rem; font-weight: 750; color: #6b7280; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 12px; }
+.power-bar { position: relative; height: 26px; background: #f1f3f5; border-radius: 5px; overflow: hidden; }
+.power-center { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: #9ca3af; z-index: 2; }
+.power-flow { position: absolute; top: 3px; bottom: 3px; left: 50%; width: 0; border-radius: 4px; background: #2563eb; transition: all 0.35s ease; }
+.power-labels { display: flex; justify-content: space-between; margin-top: 5px; font-size: 0.68rem; color: #9ca3af; }
+.dispatch-revenue { display: flex; justify-content: space-between; gap: 20px; margin-top: 12px; background: #f1f6ff; border: 1px solid #d7e3f5; border-radius: 9px; padding: 13px 16px; }
+.dispatch-revenue div { display: flex; flex-direction: column; gap: 3px; }
+.dispatch-revenue span { font-size: 0.72rem; color: #6b7280; } .dispatch-revenue strong { font-size: 1rem; }
+.hour-slider { width: 100%; margin-top: 18px; }
+.slider-labels { display: flex; justify-content: space-between; font-size: 0.68rem; color: #9ca3af; }
+@media (max-width: 700px) { .dispatch-grid { grid-template-columns: 1fr; } .dispatch-header { align-items: flex-start; } }
+</style>
+
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['\\(', '\\)']],
+      displayMath: [['\\[', '\\]']]
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+<div class="report-container">
+
+  <header>
+    <p class="label">PJM ESS Model</p>
+    <h1>PJM Regulation Market Redesign  — ESS Model</h1>
+    <p><!-- One–two sentence description of what the model does and what this write-up covers --></p>
+    <p class="meta">PJM · AEP-Dayton Hub · Q3 - Q4 2025</p> 
+  </header>
+
+
+
+
+<div class="kpi-grid">
+
+  <div class="kpi-card">
+    <div class="kpi-label">Real-Time Energy Prices (LMPs)</div>
+    <div class="kpi-value">+5.4%</div>
+    <div class="kpi-period">Q3 → Q4</div>
+    <div class="kpi-note">Stable</div>
+  </div>
+
+  <div class="kpi-card">
+    <div class="kpi-label">Regulation Capability Prices (RMCCPs)</div>
+    <div class="kpi-value">+130.0%</div>
+    <div class="kpi-period">Q3 → Q4</div>
+    <div class="kpi-note">Significant increase</div>
+  </div>
+
+  <div class="kpi-card">
+    <div class="kpi-label">Area Control Error (ACE)</div>
+    <div class="kpi-value">+30.7%</div>
+    <div class="kpi-period">Q3 → Q4</div>
+    <div class="kpi-note">Notable increase</div>
+  </div>
+
+</div>
+
+  <div class="section">
+    <h2>PJM Market Resdesign</h2>
+    
+    <p>
+        PJM's Regulation Market underwent a redesign in October 2025, with the implementation of a unified regulation signal. 
+        The previous design divided participation between technologies with two separate signals:
+        Traditional slow-ramping resources followed a low-pass filtered RegA signal, and faster-responding resources, majorly batteries, followed the high-pass RegD signal. 
+        Beginning October 1st, the two signals were merged into one bidirectional signal, allowing all technologies to compete and respond uniformly to grid balancing needs.
+    </p>
+    <p> 
+        Brief clarification of what improvements/achievements were made by the redesign thus far.
+    </p>
+    <p>
+        Despite an insignificant difference in LMPs across the two quarters, co-optimized regulation prices more than doubled in Q4, pointing to a cause independent
+        of market stability/lack of volatility. Some of this is explainable by the increase in accessible market share for batteries.
+        As participation of batteries in the RM grows, these prices are expected to come down. 
+    </p>
+    <p>
+        The model explores revenue earnings before and after the redesign. Different contract structures are modeled for Q4 to show the results of varying degrees of
+        market exposure and the risks involved.
+    </p>
+
+    
+                
+  </div>
+
+  <div class="section">
+    <h2>Model Formulation</h2>
+    <p>
+        The model estimates gross revenue for a 100MW/400MWh battery operating in PJM, AEP-Dayton trading hub.
+        The formulation is based on the BESS model developed by Alharbi, Alsaidan and Gao, with the following adaptations made 
+        for compatibility with available data: 
+    </p>
+     
+
+    <ol>
+        <li>
+            <strong>AGC signal.</strong> The regulation signal is constructed from ACE. For the pre-redesign period, a filter is applied to ACE before normalization,
+            to approximate the faster RegD signal [link]. For the post-redesign period, ACE is normalized without this filtering, producing a slower signal than RegD but 
+            faster than RegA [link].
+        </li>
+        <li>
+            <strong>Post-redesign settlement.</strong> RMPCP is replaced by RMMCP in the post-redesign revenue calculation, as per PJM Manual [number] updates [link].
+        </li>
+        <li>
+            <strong>Time resolution.</strong> Publically available market and signal data are hourly. The sub-hourly interval index used in the reference model is replaced
+            with an hourly basis instead.
+        </li>
+    </ol>
+
+    <h3>Objective</h3>
+    <p>
+        The model maximizes gross revenue from energy arbitrage and regulation:
+    </p>
+    <div class="equation">
+        \[
+        \max R =
+        \sum_{t\in T}
+        \left(
+            R^{arb}_t + R^{reg,cap}_t + R^{reg,mil}_t
+        \right)
+        \tag{1}
+        \]
+    </div>
+
+  <p>
+    where \(R^{arb}_t\) is the product of net arbitrage and the 
+    AEP-Dayton LMP, \(R^{reg, cap}_t\) is the product of the RMCCP, 
+    regulation capacity committed and performance factor, and \(R^{reg,mil}_t\) is the product of RMMCP, 
+    regulation capacity moved (commited*mileage), and the performance factor.
+  </p>
+
+  <h3>Key Constraints</h3>
+  <p>
+    The model represents three aspects of battery operation: (1) the allocation of 
+    power between arbitrage and regulation, (2) the physical response to the regulation 
+    signal and its resulting SOC, and (3) a limit on battery cycling.
+  </p>
+
+  <h4>1. Battery dispatch</h4>
+  <p>
+      Energy arbitrage and regulation compete for the battery's available power capability; the dispatch is bounded by the 100 MW power rating. 
+      In addition, the battery can not simultaneously charge and discharge:
+  </p>
+
+  <div class="equation">
+    \[
+    0 \leq P^{arb,d}_t \leq P^{max}u^d_t,
+    \qquad
+    -P^{max}u^c_t \leq P^{arb,c}_t \leq 0
+    \tag{2}
+    \]
+  </div>
+
+  <p>
+    Binary variables \(u^d_t\) and \(u^d_t\) take values 0 and 1, preventing simultaneous charge and discharge.
+    Regulation capacity is similarly limited by the remaining battery headroom, accounting
+    for the arbitrage position and regulation state. 
+  </p>
+
+    <p>
+    Products of binary and continuous variables are required throughout this model. To preserve the MILP structure, Fortet and McCormick linearizations are applied
+    to these products.
+  </p>
+
+  <h4>2. Regulation signal, actual response and SOC</h4>
+  <p>
+    The regulation bid represents capacity made available to the market, while the actual
+    regulation power moved by the battery is determined by the normalized regulation signal.
+    The actual regulation response is represented by:
+  </p>
+
+    <div class="equation">
+    \[
+    J_t =
+    J_{t-1}
+    +
+    P^{reg,act,d}_t
+    +
+    P^{reg,act,c}_t
+    \tag{3}
+    \]
+  </div>
+
+  <p> 
+    where \(J_t\) represents the accumulated regulation movement, carrying forward the regulation 
+    movement from the previous interval. In this model's convention,
+    charging is negative and discharging is positive, so a positive \(J_t\) represents a net regulation 
+    discharge (RegUp) position, and negative represents a net regulation charge (RegDown) position.
+  </p>
+
+  <p>
+    The resulting battery SOC is then determined by both scheduled arbitrage and actual regulation 
+    movement:
+  </p>
+
+    <div class="equation">
+    \[
+    SOC_t =
+    SOC_{t-1}
+    -
+    \frac{
+      P^{arb,d}_t
+      + P^{arb,c}_t
+      + J_t
+    }{E^{max}}
+    \Delta t
+    \tag{4}
+    \]
+  </div>
+
+  <p>
+    subject to:
+  </p>
+
+  <div class="equation">
+    \[
+    SOC^{min} \leq SOC_t \leq SOC^{max}.
+    \tag{5}
+    \]
+  </div>
+
+  <h4>3. Cycling limit</h4>
+  <p>
+    Battery use is additionally restricted by a maximum cycling limit of 1.5 cycles per day:
+  </p>
+
+  <div class="equation">
+    \[
+    C_t \leq C^{max}.
+    \tag{6}
+    \]
+  </div>
+
+  <section class="section">
+  <h2>Q4 Representative Battery Dispatch</h2>
+
+  <p>
+    The animation below illustrates how the optimized market position,
+    regulation response, and battery state evolve over a representative
+    24-hour period.
+  </p>
+
+  <div class="dispatch-visual">
+
+    <div class="dispatch-header">
+      <div>
+        <span class="dispatch-kicker">Q4 · Day 2</span>
+        <div id="dispatch-hour" class="dispatch-hour">Hour 0</div>
+      </div>
+
+      <div class="dispatch-controls">
+        <button id="play-btn">▶ Play</button>
+        <button id="reset-btn">↺ Reset</button>
+      </div>
+    </div>
+
+    <div class="dispatch-grid">
+
+      <!-- MARKET POSITION -->
+      <div class="dispatch-card">
+        <div class="dispatch-card-title">Market bid</div>
+
+        <div class="metric-row">
+          <span>Arbitrage discharge</span>
+          <strong id="arb-d">0 MW</strong>
+        </div>
+
+        <div class="metric-row">
+          <span>Arbitrage charge</span>
+          <strong id="arb-c">0 MW</strong>
+        </div>
+
+        <div class="metric-row">
+          <span>Regulation bid</span>
+          <strong id="reg">0 MW</strong>
+        </div>
+      </div>
+
+      <!-- REGULATION -->
+      <div class="dispatch-card">
+        <div class="dispatch-card-title">Regulation response</div>
+
+        <div class="metric-row">
+          <span>Regulation up</span>
+          <strong id="reg-ad">0 MW</strong>
+        </div>
+
+        <div class="metric-row">
+          <span>Regulation down</span>
+          <strong id="reg-ac">0 MW</strong>
+        </div>
+
+        <div class="metric-row">
+          <span>Actual regulation</span>
+          <strong id="j-value">0 MW</strong>
+        </div>
+      </div>
+
+      <!-- BATTERY -->
+      <div class="dispatch-card battery-card">
+        <div class="dispatch-card-title">Battery state</div>
+
+        <div class="soc-value" id="soc-value">50.0%</div>
+
+        <div class="soc-track">
+          <div class="soc-fill" id="soc-fill"></div>
+        </div>
+
+        <div class="soc-labels">
+          <span>10%</span>
+          <span>SOC</span>
+          <span>90%</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- POWER FLOW -->
+    <div class="power-panel">
+      <div class="power-title">Battery power balance</div>
+
+      <div class="power-bar">
+        <div class="power-center"></div>
+        <div id="power-flow" class="power-flow"></div>
+      </div>
+
+      <div class="power-labels">
+        <span>Charging</span>
+        <span>0 MW</span>
+        <span>Discharging</span>
+      </div>
+    </div>
+
+    <!-- REVENUE -->
+    <div class="dispatch-revenue">
+      <div>
+        <span>Hourly revenue</span>
+        <strong id="hourly-revenue">$0</strong>
+      </div>
+
+      <div>
+        <span>Cumulative revenue</span>
+        <strong id="cumulative-revenue">$0</strong>
+      </div>
+    </div>
+
+    <input
+      id="hour-slider"
+      class="hour-slider"
+      type="range"
+      min="0"
+      max="23"
+      value="0"
+    >
+
+    <div class="slider-labels">
+      <span>Hour 0</span>
+      <span>Hour 23</span>
+    </div>
+
+  </div>
+</section>
+
+  <div class="section">
+    <h2>Contracts</h2>
+    
+    <p>
+        I suggest: maybe keep this piece as more of a modelling piece. Decide that you are showcasing a model you built, its formulation, a nice visual, and the contract 
+        structures. With maybe brief discussion of how regulation will saturate eventually. Lay off the MMU, LOC,  etc. Just show you modelled this, and these are the findings
+        as of now, and briefly this is what is to come. 
+    </p>
+
+    <p>
+        [Model Q3 and Q4 fully merchant. Just remember that Q3 and Q4 actually had similar market conditions. *3 increase because RMCCP increased because perhaps 
+        technologies hadn't qualified to participate in the RM.
+        But ptcption will increase and those will come down. Or LOC will be corrected. Whatever the case, those will come down. Not much of a finding there to discuss.
+        Still useful to model Q3 and Q4 pre and post design fully merchant and show the *3 increase in revenues maybe even just in writing. 
+        Then model diff contracts for Q4 and conceptually discuss the risk. When or if the market performs poorly.. xyz.
+    </p>
+    <p>
+        Models are formulated to optimize revenues from the offtaker's perspective, and then project company's revenues are compared under the different structures.
+        Most significant losses in upside are seen in Q4 because of higher average and spread rmccps.   
+    </p>
+    
+    <ol>
+        <li>Merchant: full market exposure, owner is paid what the battery earns from participating in the wholesale electricity market. Q4s total revenue increased 
+            by almost 3 times with most of that increase coming from the regulation market (Modo source).
+        </li>    
+        <li>Toll: owner hands over the asset to be operated by an offtaker, in exchange for a fixed rate plus a variable operations fee. Capacity payment: chosen 
+            $12/kW-month = $16.31173539/MW-hr. Variable tolling fee: chosen $9/MWh. 
+        </li>
+        <li>
+            Index PPA: merchant revenue with a floor. Floor rate = $9.52 $/kW-month (from source). Revenue earned wholesale market is shared, and a floor for protection. 
+            Same optimum dispatch solution across splits since offtaker incentivize to maximize energy and regulation is unaffected by the revenue share. And a consistent 
+            base floor fee is paid. Total revenue climbs linearly with merchant revenue share.  
+        </li>
+    </ol>
+    <p class="chart-fig"><!-- figure caption --></p>
+    <div class="chart-wrap">
+      <!-- <canvas id="resultsChart"></canvas> -->
+    </div>
+    <p>
+        Source: [https://energy-optima.com/blog/ppa-structuring-solar-storage.html]
+    </p>
+
+    
+
+   <table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Q4</th>
+      <th>Q3</th>
+      <th>Difference</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Index PPA — 40%</td>
+      <td>$9,063,919.46</td>
+      <td>$4,866,957.06</td>
+      <td>$4,196,962.40</td>
+    </tr>
+    <tr>
+      <td>Merchant</td>
+      <td>$17,443,053.75</td>
+      <td>$6,899,046.32</td>
+      <td>$10,544,007.43</td>
+    </tr>
+    <tr>
+      <td>Toll</td>
+      <td>$3,709,791.17</td>
+      <td>$3,814,853.71</td>
+      <td>-$105,062.54</td>
+    </tr>
+  </tbody>
+</table>
+
+
+    <p>
+        However this is not only due to the unification of signals and increase in access to market (more market open, more MW to be offered, more revenues). Clearing
+        prices per MW also increased drastically.
+    </p>
+
+    <p>
+        Contracts tell you how robust to market design changes batteries are when revenues are a result of a policy change as opposed to fundamental market condition change:
+        1. Merchant produced highest revenues across the three constract structures.
+        2. Even with Q3 rmccps (Q4 Counterfactual), revenues were ~3 mil for merchant higher post-redesign, despite fairly stable lmps - show the lmp stats.
+        3. So the impact of PJM Regulation Market Redesign on Battery Contract Earnings is: it increased the revenues.
+        4. This is because of increased reg committment. And some players may have not been able to meet test requirements on time, causing scaricity in those 
+        qualified to provide regulation. With time, as participation grows, these high prices may fade. That's Modo. Aside, MMU found issue with the LOC calculation,
+        inflating the value of 1MW in the reg vs energy market (increasing MWs that can be bidded into reg such that 1MW into energy costs you ? see MMU doc.)
+    </p>
+
+  </div>
+
+  <div class="section">
+    <h2>Outlook</h2>
+    <p class="placeholder">How batteries are likely to operate in PJM, any additional policy changes that may move developer decisions for contract structures.</p>
+    <p>
+        Upcoming RegUp RegDown as Phase 2 of the redesign coming up. Implications of that.
+    </p>
+    <p>
+        Since 2025 energy prices have significantly risen in PJM (source). How this interacts with Phase 2s implications and contract structure findings.
+    </p>
+
+  
+
+
+  </div>
+
+ <section class="section">
+    <h2 id="dataminer2">Data Source</h2>
+    <p>
+        Data Miner 2 PJM (2025). <em>Regulation Market Data</em>. Available at: <a href="https://dataminer2.pjm.com/feed/reg_market_results/definition">https://dataminer2.pjm.com/</a>
+    </p>
+  </section>
+
+  <div class="section">
+    <h2>References</h2>
+    <ol>
+        <li id="ref1">
+            2022 IEEE Green Technologies Conference 
+            <em>GreenTech</em>
+            <a href="https://par.nsf.gov/servlets/purl/10345577" target="_blank">
+                https://par.nsf.gov/servlets/purl/10345577
+            </a>
+        </li>
+
+        <li id="modo_2026">
+            PJM battery storage in 2026: 8 things owners, lenders, and operators need to watch 
+            <em>Modo Energy</em>
+            <a href="https://modoenergy.com/research/en/pjm-battery-storage-2026-things-to-watch" target="_blank">
+                https://modoenergy.com/research/en/pjm-battery-storage-2026-things-to-watch
+            </a>
+        </li>
+
+        <li id="mmu_redesign_extension">
+            Answer and Motion for Leave to Answer of the Independent Market Monitor for PJM 
+            <em>2026 Monitoring Analytics, LLC</em>
+            <a href="https://www.monitoringanalytics.com/filings/2026/IMM_Answer_Supporting_P3_Comments_Docket_No_ER26-2446_20260602.pdf" target="_blank">
+                https://www.monitoringanalytics.com/filings/2026/IMM_Answer_Supporting_P3_Comments.pdf
+            </a>
+        </li>
+
+        <li id="modo_2025">
+            November 2025: Volatility, fuel prices, and Regulation lift PJM battery revenues 
+            <em>Modo Energy</em>
+            <a href="https://modoenergy.com/research/en/pjm-battery-revenues-benchmark-november-2025" target="_blank">
+                https://modoenergy.com/research/en/pjm-battery-revenues-benchmark-november-2025
+            </a>
+        </li>
+        
+        
+
+    </ol>
+  </div>
+
+
+  <footer>
+    <p><!-- e.g. PJM Interconnection · DataMiner2 · GridStatus.io --></p>
+  </footer>
+
+</div>
+
+<script>
+const csvPath = "./q4_day2_results.csv";
+
+let dispatchData = [];
+let currentHour = 0;
+let playTimer = null;
+
+function parseCSV(text) {
+  const lines = text.trim().split(/\r?\n/);
+  const headers = lines[0].split(",").map(h => h.trim());
+
+  return lines.slice(1).map(line => {
+    const values = line.split(",");
+
+    const row = {};
+
+    headers.forEach((header, i) => {
+      row[header] = values[i] !== undefined
+        ? values[i].trim()
+        : "";
+    });
+
+    return row;
+  });
+}
+
+function number(value) {
+  return parseFloat(value) || 0;
+}
+
+function money(value) {
+  return "$" + Math.round(value).toLocaleString();
+}
+
+function updateVisual(index) {
+  if (!dispatchData.length) return;
+
+  const row = dispatchData[index];
+
+  const arbC = number(row.arb_c);
+  const arbD = number(row.arb_d);
+  const reg = number(row.reg);
+  const regAd = number(row.reg_ad);
+  const regAc = number(row.reg_ac);
+  const J = number(row.J);
+  const soc = number(row.soc);
+
+  document.getElementById("dispatch-hour").textContent =
+    `Hour ${row.hour}`;
+
+  document.getElementById("arb-d").textContent =
+    `${arbD.toFixed(1)} MW`;
+
+  document.getElementById("arb-c").textContent =
+    `${arbC.toFixed(1)} MW`;
+
+  document.getElementById("reg").textContent =
+    `${reg.toFixed(1)} MW`;
+
+  document.getElementById("reg-ad").textContent =
+    `${regAd.toFixed(1)} MW`;
+
+  document.getElementById("reg-ac").textContent =
+    `${regAc.toFixed(1)} MW`;
+
+  document.getElementById("j-value").textContent =
+    `${J.toFixed(1)} MW`;
+
+  const socPercent = soc * 100;
+
+  document.getElementById("soc-value").textContent =
+    `${socPercent.toFixed(1)}%`;
+
+  /*
+   * SOC visual is scaled to the physical operating range:
+   * 10% = empty
+   * 90% = full
+   */
+  const socVisual =
+    Math.max(0, Math.min(100, ((soc - 0.10) / 0.80) * 100));
+
+  document.getElementById("soc-fill").style.width =
+    `${socVisual}%`;
+
+  /*
+   * Net battery movement.
+   * Positive = discharge
+   * Negative = charge
+   */
+  const netPower = arbD + arbC + J;
+
+  const flow = document.getElementById("power-flow");
+
+  const width = Math.min(Math.abs(netPower) / 100 * 50, 50);
+
+  if (netPower >= 0) {
+    flow.style.left = "50%";
+    flow.style.width = `${width}%`;
+  } else {
+    flow.style.left = `${50 - width}%`;
+    flow.style.width = `${width}%`;
+  }
+
+  const hourlyRevenue =
+    number(row.lmp_rev) +
+    number(row.rmccp_rev) +
+    number(row.rmmcp_rev);
+
+  document.getElementById("hourly-revenue").textContent =
+    money(hourlyRevenue);
+
+  let cumulative = 0;
+
+  for (let i = 0; i <= index; i++) {
+    cumulative +=
+      number(dispatchData[i].lmp_rev) +
+      number(dispatchData[i].rmccp_rev) +
+      number(dispatchData[i].rmmcp_rev);
+  }
+
+  document.getElementById("cumulative-revenue").textContent =
+    money(cumulative);
+
+  document.getElementById("hour-slider").value = index;
+}
+
+function play() {
+  if (playTimer) return;
+
+  playTimer = setInterval(() => {
+    currentHour++;
+
+    if (currentHour >= dispatchData.length) {
+      currentHour = 0;
+    }
+
+    updateVisual(currentHour);
+  }, 1000);
+}
+
+function pause() {
+  clearInterval(playTimer);
+  playTimer = null;
+}
+
+fetch(csvPath)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`Could not load ${csvPath}`);
+    }
+
+    return response.text();
+  })
+  .then(csv => {
+    dispatchData = parseCSV(csv);
+
+    document.getElementById("hour-slider").max =
+      dispatchData.length - 1;
+
+    updateVisual(0);
+  })
+  .catch(error => {
+    console.error(error);
+    document.getElementById("dispatch-hour").textContent =
+      "Could not load Q4 results";
+  });
+
+document.getElementById("play-btn").addEventListener("click", () => {
+  if (playTimer) {
+    pause();
+    document.getElementById("play-btn").textContent = "▶ Play";
+  } else {
+    play();
+    document.getElementById("play-btn").textContent = "Ⅱ Pause";
+  }
+});
+
+document.getElementById("reset-btn").addEventListener("click", () => {
+  pause();
+  currentHour = 0;
+  updateVisual(0);
+  document.getElementById("play-btn").textContent = "▶ Play";
+});
+
+document.getElementById("hour-slider").addEventListener("input", event => {
+  pause();
+  currentHour = Number(event.target.value);
+  updateVisual(currentHour);
+  document.getElementById("play-btn").textContent = "▶ Play";
+});
+</script>
+</body>
+</html>
