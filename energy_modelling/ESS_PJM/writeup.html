@@ -647,7 +647,7 @@ function updateVisual(index) {
   const soc = number(row.soc);
 
   document.getElementById("dispatch-hour").textContent =
-    `Hour ${Number(row.hour) - 48}`;
+    `Hour ${Number(row.hour)}`;
 
   document.getElementById("arb-d").textContent =
     `${arbD.toFixed(1)} MW`;
