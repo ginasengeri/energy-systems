@@ -65,12 +65,12 @@ sup a { text-decoration: none; }
 .metric-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 6px 0; border-bottom: 1px solid #f0f1f3; font-size: 0.78rem; }
 .metric-row:last-child { border-bottom: none; }
 .metric-row strong { font-size: 0.85rem; }
-.soc-value { font-size: 2rem; font-weight: 800; text-align: center; margin: 5px 0 14px; }
+.soc-value { font-size: 1.5rem; font-weight: 700; text-align: center; margin: 0px 0 14px; }
 .soc-track { height: 18px; background: #e5e7eb; border-radius: 999px; overflow: hidden; position: relative; }
 .soc-fill { height: 100%; width: 50%; background: #2563eb; transition: width 0.35s ease; }
 .soc-labels { display: flex; justify-content: space-between; margin-top: 6px; font-size: 0.68rem; color: #9ca3af; }
 .power-panel { background: white; border: 1px solid #e1e5ea; border-radius: 9px; margin-top: 12px; padding: 15px; }
-.power-title { font-size: 0.78rem; font-weight: 750; color: #6b7280; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 12px; }
+.power-title { font-size: 0.78rem; font-weight: 750; color: #6b7280; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0px; }
 .power-bar { position: relative; height: 26px; background: #f1f3f5; border-radius: 5px; overflow: hidden; }
 .power-center { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: #9ca3af; z-index: 2; }
 .power-flow { position: absolute; top: 3px; bottom: 3px; left: 50%; width: 0; border-radius: 4px; background: #2563eb; transition: all 0.35s ease; }
@@ -80,6 +80,7 @@ sup a { text-decoration: none; }
 .dispatch-revenue span { font-size: 0.72rem; color: #6b7280; } .dispatch-revenue strong { font-size: 1rem; }
 .hour-slider { width: 100%; margin-top: 18px; }
 .slider-labels { display: flex; justify-content: space-between; font-size: 0.68rem; color: #9ca3af; }
+.soc-chart { width: 100%; height: 100px; display: block; margin: 8px 0; }
 @media (max-width: 700px) { .dispatch-grid { grid-template-columns: 1fr; } .dispatch-header { align-items: flex-start; } }
 </style>
 
@@ -307,126 +308,95 @@ sup a { text-decoration: none; }
     \]
   </div>
 
-  <div class="dispatch-visual">
+  <div class="dispatch-grid">
 
-    <div class="dispatch-header">
-      <div>
-        <span class="dispatch-kicker">Q4 · Day 2</span>
-        <div id="dispatch-hour" class="dispatch-hour">Hour 0</div>
-      </div>
-
-      <div class="dispatch-controls">
-        <button id="play-btn">▶ Play</button>
-        <button id="reset-btn">↺ Reset</button>
-      </div>
+  <div class="dispatch-card">
+    <div class="dispatch-card-title">Market bid</div>
+    <div class="metric-row">
+      <span>Arbitrage discharge</span>
+      <strong id="arb-d">0 MW</strong>
     </div>
-
-    <div class="dispatch-grid">
-
-      <!-- MARKET POSITION -->
-      <div class="dispatch-card">
-        <div class="dispatch-card-title">Market bid</div>
-
-        <div class="metric-row">
-          <span>Arbitrage discharge</span>
-          <strong id="arb-d">0 MW</strong>
-        </div>
-
-        <div class="metric-row">
-          <span>Arbitrage charge</span>
-          <strong id="arb-c">0 MW</strong>
-        </div>
-
-        <div class="metric-row">
-          <span>Regulation bid</span>
-          <strong id="reg">0 MW</strong>
-        </div>
-      </div>
-
-      <!-- REGULATION -->
-      <div class="dispatch-card">
-        <div class="dispatch-card-title">Regulation response</div>
-
-        <div class="metric-row">
-          <span>Regulation up</span>
-          <strong id="reg-ad">0 MW</strong>
-        </div>
-
-        <div class="metric-row">
-          <span>Regulation down</span>
-          <strong id="reg-ac">0 MW</strong>
-        </div>
-
-        <div class="metric-row">
-          <span>Actual regulation</span>
-          <strong id="j-value">0 MW</strong>
-        </div>
-      </div>
-
-      <!-- BATTERY -->
-      <div class="dispatch-card battery-card">
-        <div class="dispatch-card-title">Battery state</div>
-
-        <div class="soc-value" id="soc-value">50.0%</div>
-
-        <div class="soc-track">
-          <div class="soc-fill" id="soc-fill"></div>
-        </div>
-
-        <div class="soc-labels">
-          <span>10%</span>
-          <span>SOC</span>
-          <span>90%</span>
-        </div>
-      </div>
-
+    <div class="metric-row">
+      <span>Arbitrage charge</span>
+      <strong id="arb-c">0 MW</strong>
     </div>
-
-    <!-- POWER FLOW -->
-    <div class="power-panel">
-      <div class="power-title">Battery power balance</div>
-
-      <div class="power-bar">
-        <div class="power-center"></div>
-        <div id="power-flow" class="power-flow"></div>
-      </div>
-
-      <div class="power-labels">
-        <span>Charging</span>
-        <span>0 MW</span>
-        <span>Discharging</span>
-      </div>
+    <div class="metric-row">
+      <span>Regulation bid</span>
+      <strong id="reg">0 MW</strong>
     </div>
-
-    <!-- REVENUE -->
-    <div class="dispatch-revenue">
-      <div>
-        <span>Hourly revenue</span>
-        <strong id="hourly-revenue">$0</strong>
-      </div>
-
-      <div>
-        <span>Cumulative revenue</span>
-        <strong id="cumulative-revenue">$0</strong>
-      </div>
-    </div>
-
-    <input
-      id="hour-slider"
-      class="hour-slider"
-      type="range"
-      min="0"
-      max="23"
-      value="0"
-    >
-
-    <div class="slider-labels">
-      <span>Hour 0</span>
-      <span>Hour 23</span>
-    </div>
-
   </div>
-</section>
+
+  <div class="dispatch-card">
+    <div class="dispatch-card-title">Regulation response</div>
+    <div class="metric-row">
+      <span>Regulation up</span>
+      <strong id="reg-ad">0 MW</strong>
+    </div>
+    <div class="metric-row">
+      <span>Regulation down</span>
+      <strong id="reg-ac">0 MW</strong>
+    </div>
+    <div class="metric-row">
+      <span>Actual regulation</span>
+      <strong id="j-value">0 MW</strong>
+    </div>
+  </div>
+
+  <div class="dispatch-card">
+    <div class="dispatch-card-title">Battery power balance</div>
+    <div class="power-bar">
+      <div class="power-center"></div>
+      <div id="power-flow" class="power-flow"></div>
+    </div>
+    <div class="power-labels">
+      <span>Charging</span>
+      <span>Discharging</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="power-panel battery-panel">
+  <div class="power-title">Battery state</div>
+
+  <div class="soc-value" id="soc-value">50.0%</div>
+
+  <svg class="soc-chart" viewBox="0 0 230 100" preserveAspectRatio="none">
+    <path id="soc-curve" d="" fill="none" stroke="currentColor" stroke-width="2" />
+  </svg>
+
+  <div class="soc-labels">
+    <span>10%</span>
+    <span>SOC</span>
+    <span>90%</span>
+  </div>
+</div>
+
+<div class="dispatch-revenue">
+  <div>
+    <span>Hourly revenue</span>
+    <strong id="hourly-revenue">$0</strong>
+  </div>
+  <div>
+    <span>Cumulative revenue</span>
+    <strong id="cumulative-revenue">$0</strong>
+  </div>
+</div>
+
+<input
+  id="hour-slider"
+  class="hour-slider"
+  type="range"
+  min="0"
+  max="23"
+  value="0"
+>
+
+<div class="slider-labels">
+  <span id="slider-label-start">Hour 0</span>
+  <span id="slider-label-end">Hour 23</span>
+</div>
+
 
  <section class="section">
     <h2 id="dataminer2">Data Source</h2>
@@ -481,10 +451,7 @@ sup a { text-decoration: none; }
   </footer>
 
 </div>
-
 <script>
-const csvPath = "./q4_visual.csv";
-
 let dispatchData = [];
 let currentHour = 0;
 let playTimer = null;
@@ -495,7 +462,6 @@ function parseCSV(text) {
 
   return lines.slice(1).map(line => {
     const values = line.split(",");
-
     const row = {};
 
     headers.forEach((header, i) => {
@@ -516,6 +482,22 @@ function money(value) {
   return "$" + Math.round(value).toLocaleString();
 }
 
+function getDateTime(hour) {
+  const totalHours = Number(hour);
+  const day = Math.floor(totalHours / 24);
+  const hourOfDay = totalHours % 24;
+
+  const date = new Date(2024, 9, 1 + day);
+
+  return {
+    date: date.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric"
+    }),
+    time: `${String(hourOfDay).padStart(2, "0")}:00`
+  };
+}
+
 function updateVisual(index) {
   if (!dispatchData.length) return;
 
@@ -529,8 +511,10 @@ function updateVisual(index) {
   const J = number(row.J);
   const soc = number(row.soc);
 
+  const { date, time } = getDateTime(row.hour);
+
   document.getElementById("dispatch-hour").textContent =
-    `Hour ${Number(row.hour)}`;
+    `${date} — ${time}`;
 
   document.getElementById("arb-d").textContent =
     `${arbD.toFixed(1)} MW`;
@@ -555,22 +539,31 @@ function updateVisual(index) {
   document.getElementById("soc-value").textContent =
     `${socPercent.toFixed(1)}%`;
 
-  /*
-   * SOC visual is scaled to the physical operating range:
-   * 10% = empty
-   * 90% = full
-   */
-  const socVisual =
-    Math.max(0, Math.min(100, ((soc - 0.10) / 0.80) * 100));
+  const socCurve = document.getElementById("soc-curve");
 
-  document.getElementById("soc-fill").style.width =
-    `${socVisual}%`;
+  if (socCurve) {
+    const points = dispatchData
+      .slice(0, index + 1)
+      .map((r, i) => {
+        const x = i * 10;
+        const y =
+          100 - Math.max(
+            0,
+            Math.min(
+              100,
+              ((number(r.soc) - 0.10) / 0.80) * 100
+            )
+          );
 
-  /*
-   * Net battery movement.
-   * Positive = discharge
-   * Negative = charge
-   */
+        return `${x},${y}`;
+      });
+
+    socCurve.setAttribute(
+      "d",
+      `M ${points.join(" L ")}`
+    );
+  }
+
   const netPower = arbD + arbC + J;
 
   const flow = document.getElementById("power-flow");
@@ -627,6 +620,8 @@ function pause() {
   playTimer = null;
 }
 
+const csvPath = "./q4_visual.csv";
+
 fetch(csvPath)
   .then(response => {
     if (!response.ok) {
@@ -640,6 +635,14 @@ fetch(csvPath)
 
     document.getElementById("hour-slider").max =
       dispatchData.length - 1;
+
+    const startDT = getDateTime(dispatchData[0].hour);
+    const endDT = getDateTime(dispatchData[dispatchData.length - 1].hour);
+
+    document.getElementById("slider-label-start").textContent =
+      `${startDT.date}, ${startDT.time}`;
+    document.getElementById("slider-label-end").textContent =
+      `${endDT.date}, ${endDT.time}`;
 
     updateVisual(0);
   })
