@@ -308,93 +308,124 @@ sup a { text-decoration: none; }
     \]
   </div>
 
+<div class="dispatch-visual">
+
+  <div class="dispatch-header">
+    <div>
+      <span class="dispatch-kicker">Q4 · Day 2</span>
+      <div id="dispatch-hour" class="dispatch-hour">Hour 0</div>
+    </div>
+
+    <div class="dispatch-controls">
+      <button id="play-btn">▶ Play</button>
+      <button id="reset-btn">↺ Reset</button>
+    </div>
+  </div>
+
   <div class="dispatch-grid">
 
-  <div class="dispatch-card">
-    <div class="dispatch-card-title">Market bid</div>
-    <div class="metric-row">
-      <span>Arbitrage discharge</span>
-      <strong id="arb-d">0 MW</strong>
+    <!-- MARKET POSITION -->
+    <div class="dispatch-card">
+      <div class="dispatch-card-title">Market bid</div>
+
+      <div class="metric-row">
+        <span>Arbitrage discharge</span>
+        <strong id="arb-d">0 MW</strong>
+      </div>
+
+      <div class="metric-row">
+        <span>Arbitrage charge</span>
+        <strong id="arb-c">0 MW</strong>
+      </div>
+
+      <div class="metric-row">
+        <span>Regulation bid</span>
+        <strong id="reg">0 MW</strong>
+      </div>
     </div>
-    <div class="metric-row">
-      <span>Arbitrage charge</span>
-      <strong id="arb-c">0 MW</strong>
+
+    <!-- REGULATION -->
+    <div class="dispatch-card">
+      <div class="dispatch-card-title">Regulation response</div>
+
+      <div class="metric-row">
+        <span>Regulation up</span>
+        <strong id="reg-ad">0 MW</strong>
+      </div>
+
+      <div class="metric-row">
+        <span>Regulation down</span>
+        <strong id="reg-ac">0 MW</strong>
+      </div>
+
+      <div class="metric-row">
+        <span>Actual regulation</span>
+        <strong id="j-value">0 MW</strong>
+      </div>
     </div>
-    <div class="metric-row">
-      <span>Regulation bid</span>
-      <strong id="reg">0 MW</strong>
+
+    <!-- BATTERY -->
+    <div class="dispatch-card battery-card">
+      <div class="dispatch-card-title">Battery state</div>
+
+      <div class="soc-value" id="soc-value">50.0%</div>
+
+      <div class="soc-track">
+        <div class="soc-fill" id="soc-fill"></div>
+      </div>
+
+      <div class="soc-labels">
+        <span>10%</span>
+        <span>SOC</span>
+        <span>90%</span>
+      </div>
     </div>
+
   </div>
 
-  <div class="dispatch-card">
-    <div class="dispatch-card-title">Regulation response</div>
-    <div class="metric-row">
-      <span>Regulation up</span>
-      <strong id="reg-ad">0 MW</strong>
-    </div>
-    <div class="metric-row">
-      <span>Regulation down</span>
-      <strong id="reg-ac">0 MW</strong>
-    </div>
-    <div class="metric-row">
-      <span>Actual regulation</span>
-      <strong id="j-value">0 MW</strong>
-    </div>
-  </div>
+  <!-- POWER FLOW -->
+  <div class="power-panel">
+    <div class="power-title">Battery power balance</div>
 
-  <div class="dispatch-card">
-    <div class="dispatch-card-title">Battery power balance</div>
     <div class="power-bar">
       <div class="power-center"></div>
       <div id="power-flow" class="power-flow"></div>
     </div>
+
     <div class="power-labels">
       <span>Charging</span>
+      <span>0 MW</span>
       <span>Discharging</span>
     </div>
   </div>
 
-</div>
+  <!-- REVENUE -->
+  <div class="dispatch-revenue">
+    <div>
+      <span>Hourly revenue</span>
+      <strong id="hourly-revenue">$0</strong>
+    </div>
 
-<div class="power-panel battery-panel">
-  <div class="power-title">Battery state</div>
-
-  <div class="soc-value" id="soc-value">50.0%</div>
-
-  <svg class="soc-chart" viewBox="0 0 230 100" preserveAspectRatio="none">
-    <path id="soc-curve" d="" fill="none" stroke="currentColor" stroke-width="2" />
-  </svg>
-
-  <div class="soc-labels">
-    <span>10%</span>
-    <span>SOC</span>
-    <span>90%</span>
+    <div>
+      <span>Cumulative revenue</span>
+      <strong id="cumulative-revenue">$0</strong>
+    </div>
   </div>
-</div>
 
-<div class="dispatch-revenue">
-  <div>
-    <span>Hourly revenue</span>
-    <strong id="hourly-revenue">$0</strong>
+  <input
+    id="hour-slider"
+    class="hour-slider"
+    type="range"
+    min="0"
+    max="23"
+    value="0"
+  >
+
+  <div class="slider-labels">
+    <span>Hour 0</span>
+    <span>Hour 23</span>
   </div>
-  <div>
-    <span>Cumulative revenue</span>
-    <strong id="cumulative-revenue">$0</strong>
-  </div>
-</div>
 
-<input
-  id="hour-slider"
-  class="hour-slider"
-  type="range"
-  min="0"
-  max="23"
-  value="0"
->
-
-<div class="slider-labels">
-  <span id="slider-label-start">Hour 0</span>
-  <span id="slider-label-end">Hour 23</span>
 </div>
 
 
@@ -452,6 +483,8 @@ sup a { text-decoration: none; }
 
 </div>
 <script>
+const csvPath = "./q4_visual.csv";
+
 let dispatchData = [];
 let currentHour = 0;
 let playTimer = null;
@@ -482,6 +515,10 @@ function money(value) {
   return "$" + Math.round(value).toLocaleString();
 }
 
+/* Actual date and time.
+   Day 1 = October 1.
+   Hour 0 = 00:00 on October 1.
+*/
 function getDateTime(hour) {
   const totalHours = Number(hour);
   const day = Math.floor(totalHours / 24);
@@ -539,6 +576,18 @@ function updateVisual(index) {
   document.getElementById("soc-value").textContent =
     `${socPercent.toFixed(1)}%`;
 
+  /*
+   * SOC visual is scaled to the physical operating range:
+   * 10% = empty
+   * 90% = full
+   */
+  const socVisual =
+    Math.max(0, Math.min(100, ((soc - 0.10) / 0.80) * 100));
+
+  /*
+   * Smooth SOC curve.
+   * Requires an SVG path with id="soc-curve".
+   */
   const socCurve = document.getElementById("soc-curve");
 
   if (socCurve) {
@@ -564,6 +613,11 @@ function updateVisual(index) {
     );
   }
 
+  /*
+   * Net battery movement.
+   * Positive = discharge
+   * Negative = charge
+   */
   const netPower = arbD + arbC + J;
 
   const flow = document.getElementById("power-flow");
@@ -620,8 +674,6 @@ function pause() {
   playTimer = null;
 }
 
-const csvPath = "./q4_visual.csv";
-
 fetch(csvPath)
   .then(response => {
     if (!response.ok) {
@@ -635,14 +687,6 @@ fetch(csvPath)
 
     document.getElementById("hour-slider").max =
       dispatchData.length - 1;
-
-    const startDT = getDateTime(dispatchData[0].hour);
-    const endDT = getDateTime(dispatchData[dispatchData.length - 1].hour);
-
-    document.getElementById("slider-label-start").textContent =
-      `${startDT.date}, ${startDT.time}`;
-    document.getElementById("slider-label-end").textContent =
-      `${endDT.date}, ${endDT.time}`;
 
     updateVisual(0);
   })
