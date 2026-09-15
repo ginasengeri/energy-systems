@@ -9,8 +9,9 @@
   --bg-page: #f4f5f7; --bg-card: #ffffff; --border-soft: #e0e3e8;
   --accent: #2563eb; --accent-soft: #dbeafe; --text-main: #111827;
   --text-muted: #6b7280; --table-header: #f3f4f6; --chip: #eef2ff;
+  --energy-line: #2563eb; --reg-line: #b91c1c;
 }
-* { box-sizing: border-box; }
+
 body { margin: 0; padding: 32px 16px; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background-color: var(--bg-page); color: var(--text-main); }
 .report-container { max-width: 1100px; margin: 0 auto; background: var(--bg-card); border-radius: 12px; padding: 28px 32px 36px; box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12); }
 header { text-align: center; padding: 20px 0 10px; }
@@ -18,23 +19,21 @@ header .label { font-size: 0.75rem; letter-spacing: 2px; text-transform: upperca
 header h1 { font-size: 1.4rem; font-weight: 800; margin: 0 0 12px; line-height: 1.25; }
 header p { margin: 0 auto; color: #6b7280; font-size: 0.94rem; }
 .meta { text-align: center; font-size: 0.8rem; color: #9ca3af; margin-top: 10px; margin-bottom: 0; font-weight: 600; }
-h2 { margin-top: 24px; margin-bottom: 8px; font-size: 1.05rem; font-weight: 700; border-bottom: 1px solid var(--border-soft); padding-bottom: 4px; }
-h3 {font-size: 1.05rem; line-height: 1.3; margin-top: 18px; margin-bottom: 8px;}
-h4 {margin-bottom: 0;}
+h2 { margin-top: 24px; margin-bottom: 8px; font-size: 1.1rem; font-weight: 700; border-bottom: 1px solid var(--border-soft); padding-bottom: 4px; }
+h3 { margin-top: 24px; margin-bottom: 8px; font-size: 1.05rem; font-weight: 700; color: var(--text-main); }
+h4 { margin-top: 20px; margin-bottom: 6px; font-size: 0.97rem; font-weight: 700; color: #4b5563; text-transform: uppercase; letter-spacing: 0.04em; }
 .section p { font-size: 0.95rem; line-height: 1.7; color: #374151; margin: 0 0 12px; }
-.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0px 0 16px; justify-content: center; }
-.chip { background: var(--chip); border: 1px solid rgba(37, 99, 235, 0.15); color: #1f2a5a; padding: 6px 10px; border-radius: 999px; font-size: 0.82rem; font-weight: 650; white-space: nowrap; }
-.kpi-grid {display: grid; grid-template-columns: repeat(3, minmax(100px, 300px)); justify-content: center; gap: 14px; margin-top: 16px; margin-bottom: 18px;}
-.kpi-card {
-    background: #f1f6ff; border: 1px solid #d9dde5; border-radius: 10px; padding: 14px 16px 13px; min-height: 120px; 
-    display: flex; flex-direction: column; justify-content: space-between; align-items: center; text-align: center; 
-    box-shadow: 0 3px 10px rgba(15, 23, 42, 0.05);
-}
-.kpi-label {font-size: 0.82rem; font-weight: 600; letter-spacing: 0.01em; line-height: 1.35; color: #374151; margin-bottom: 12px;}
-.kpi-value { font-size: 1.65rem; font-weight: 750; line-height: 1; color: #111827; }
-.kpi-period { margin-top: 8px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; color: #6b7280; }
-.kpi-note { margin-top: 5px; font-size: 0.76rem; color: #9ca3af; }
-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; min-width: unset; }
+.market-summary { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 5px 120px; padding: 15px; background: #F5F5F5; border: 1px solid #e6e6e6; border-radius: 10px; }
+.market-summary > div { display: flex; flex-direction: column; gap: 2px; }
+.market-summary > div + div { border-left: 1px solid #cbd5e1; padding-left: 24px; }
+.market-summary strong { color: #374151; font-size: 0.9rem; text-align: center; }
+.market-summary span { font-size: 1.4rem; font-weight: 700; color: #111827; text-align: center; }
+.market-summary > div:last-child span { color: #b91c1c; }
+.market-summary small { color: #6b7280; font-weight: 600; text-align: center; }
+@media (max-width: 600px) { 
+    .market-summary { grid-template-columns: 1fr; }
+    .market-summary > div + div { border-left: 0; border-top: 1px solid #cbd5e1; padding-left: 0; padding-top: 20px; } 
+    }
 th, td { border: 1px solid var(--border-soft); padding: 6px 8px; text-align: left; white-space: nowrap; }
 th { background-color: var(--table-header); font-weight: 600; }
 ul { margin-left: 20px; margin-top: 6px; margin-bottom: 8px; }
@@ -53,35 +52,48 @@ sup a { text-decoration: none; }
 .section p.chart-fig { font-size: 0.85rem; color: #9ca3af; text-align: left; margin-bottom: 6px; margin-top: 16px; }
 .placeholder { color: #b0b6c0; font-style: italic; }
 .todo { background: #EFEFEF; border: 1px dashed #9ca3af; border-radius: 8px; padding: 8px 12px; font-size: 0.82rem; margin: 8px 0; }
-.dispatch-visual { margin: 18px auto 24px; max-width: 920px; background: #f8fafc; border: 1px solid #dfe5ec; border-radius: 12px; padding: 20px; } .dispatch-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
-.dispatch-kicker { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: #6b7280; font-weight: 700; }
-.dispatch-hour { font-size: 1.25rem; font-weight: 750; margin-top: 3px; }
-.dispatch-controls { display: flex; gap: 7px; }
-.dispatch-controls button { border: 1px solid #d1d5db; background: white; border-radius: 7px; padding: 6px 11px; font-size: 0.8rem; cursor: pointer; }
-.dispatch-controls button:hover { background: #f3f4f6; }
-.dispatch-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-.dispatch-card { background: white; border: 1px solid #e1e5ea; border-radius: 9px; padding: 14px; }
-.dispatch-card-title { font-size: 0.78rem; font-weight: 750; text-transform: uppercase; letter-spacing: 0.04em; color: #6b7280; margin-bottom: 13px; }
-.metric-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 6px 0; border-bottom: 1px solid #f0f1f3; font-size: 0.78rem; }
-.metric-row:last-child { border-bottom: none; }
-.metric-row strong { font-size: 0.85rem; }
-.soc-value { font-size: 1.5rem; font-weight: 700; text-align: center; margin: 0px 0 14px; }
-.soc-track { height: 18px; background: #e5e7eb; border-radius: 999px; overflow: hidden; position: relative; }
-.soc-fill { height: 100%; width: 50%; background: #2563eb; transition: width 0.35s ease; }
-.soc-labels { display: flex; justify-content: space-between; margin-top: 6px; font-size: 0.68rem; color: #9ca3af; }
-.power-panel { background: white; border: 1px solid #e1e5ea; border-radius: 9px; margin-top: 12px; padding: 15px; }
-.power-title { font-size: 0.78rem; font-weight: 750; color: #6b7280; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0px; }
-.power-bar { position: relative; height: 26px; background: #f1f3f5; border-radius: 5px; overflow: hidden; }
-.power-center { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: #9ca3af; z-index: 2; }
-.power-flow { position: absolute; top: 3px; bottom: 3px; left: 50%; width: 0; border-radius: 4px; background: #2563eb; transition: all 0.35s ease; }
-.power-labels { display: flex; justify-content: space-between; margin-top: 5px; font-size: 0.68rem; color: #9ca3af; }
-.dispatch-revenue { display: flex; justify-content: space-between; gap: 20px; margin-top: 12px; background: #f1f6ff; border: 1px solid #d7e3f5; border-radius: 9px; padding: 13px 16px; }
-.dispatch-revenue div { display: flex; flex-direction: column; gap: 3px; }
-.dispatch-revenue span { font-size: 0.72rem; color: #6b7280; } .dispatch-revenue strong { font-size: 1rem; }
-.hour-slider { width: 100%; margin-top: 18px; }
+
+.rev-visual { margin: 0 auto; max-width: 1040px; background: #f8fafc; border: 1px solid #dfe5ec; border-radius: 12px; padding: 20px; overflow: hidden; }
+
+.rev-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 10px; }
+.chart-legend { display: flex; gap: 14px; margin-top: 8px; font-size: 0.76rem; color: var(--text-muted); margin-bottom: 10px;}
+
+.rev-title { font-size: 1.1rem; font-weight: 750; margin-top: 3px; }
+.rev-controls { display: flex; gap: 7px; align-items: center; }
+.rev-controls button { border: 1px solid #d1d5db; background: white; border-radius: 7px; padding: 6px 11px; font-size: 0.8rem; cursor: pointer; }
+.rev-controls button:hover { background: #f3f4f6; }
+
+.quarter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 720px) { .quarter-grid { grid-template-columns: 1fr; } }
+
+.quarter-card { background: white; border: 1px solid #e1e5ea; border-radius: 9px; padding: 14px 16px 16px; overflow: hidden; }
+.quarter-card-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+.quarter-card-title { font-size: 0.78rem; font-weight: 750; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-muted); }
+.quarter-date { font-size: 0.85rem; font-weight: 650; color: var(--text-main); }
+
+.chart-svg { width: 100%; max-width: 100%; height: 260px; display: block; overflow: hidden; }
+.axis-line { stroke: #c7ccd3; stroke-width: 1; }
+.chart-grid-line { stroke: #eef0f3; stroke-width: 1; }
+.axis-tick { stroke: #c7ccd3; stroke-width: 1; }
+.axis-label { fill: #9ca3af; font-size: 11px; font-family: system-ui, sans-serif; }
+.energy-path { fill: none; stroke: var(--energy-line); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.reg-path { fill: none; stroke: var(--reg-line); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+.chart-legend span { display: inline-flex; align-items: center; gap: 5px; }
+.chart-legend i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+.leg-energy { background: var(--energy-line); }
+.leg-reg { background: var(--reg-line); }
+
+.rev-slider { width: 100%; margin-top: 16px; -webkit-appearance: none; appearance: none; height: 3px; border-radius: 999px; background: #e5e7eb; outline: none; }
+.rev-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 11px; height: 11px; border-radius: 50%; background: #9ca3af; cursor: pointer; border: none;   transition: transform 0.12s ease;}
+.rev-slider::-moz-range-thumb { width: 11px; height: 11px; border-radius: 50%; background: #9ca3af; cursor: pointer; border: none; }
+.rev-slider::-moz-range-track { height: 3px; border-radius: 999px; background: #e5e7eb;   transition: transform 0.12s ease;}
 .slider-labels { display: flex; justify-content: space-between; font-size: 0.68rem; color: #9ca3af; }
-.soc-chart { width: 100%; height: 100px; display: block; margin: 8px 0; }
-@media (max-width: 700px) { .dispatch-grid { grid-template-columns: 1fr; } .dispatch-header { align-items: flex-start; } }
+.rev-slider::-webkit-slider-thumb:active { transform: scale(1.3); }
+.rev-slider::-moz-range-thumb:active { transform: scale(1.3); }
+
+.zero-line { stroke: #9ca3af; stroke-width: 1; stroke-dasharray: 4 3; }
+.scale-popup-text { font-size: 24px; font-weight: 800; fill: #111827; opacity: 0; transition: opacity 0.25s ease; } .scale-popup-text.visible { opacity: 1; }
 </style>
 
 <script>
@@ -107,65 +119,94 @@ sup a { text-decoration: none; }
   </header>
 
 
-
-
-<div class="kpi-grid">
-
-  <div class="kpi-card">
-    <div class="kpi-label">Real-Time Energy Prices (LMPs)</div>
-    <div class="kpi-value">+5.4%</div>
-    <div class="kpi-period">Q3 → Q4</div>
-    <div class="kpi-note">Stable</div>
+<div class="market-summary">
+  <div>
+    <strong>Real-Time Energy Prices (LMPs)</strong>
+    <span>+5.4%</span>
+    <small>Relatively stable</small>
   </div>
 
-  <div class="kpi-card">
-    <div class="kpi-label">Regulation Capability Prices (RMCCPs)</div>
-    <div class="kpi-value">+130.0%</div>
-    <div class="kpi-period">Q3 → Q4</div>
-    <div class="kpi-note">Significant increase</div>
+  <div>
+    <strong>Regulation Capability Prices (RMCCPs)</strong>
+    <span>+130.0%</span>
+    <small>Significant increase</small>
   </div>
-
-  <div class="kpi-card">
-    <div class="kpi-label">Area Control Error (ACE)</div>
-    <div class="kpi-value">+30.7%</div>
-    <div class="kpi-period">Q3 → Q4</div>
-    <div class="kpi-note">Notable increase</div>
-  </div>
-
 </div>
 
   <div class="section">
     <h2>PJM Market Resdesign</h2>
     
     <p>
-        PJM's Regulation Market underwent a redesign in October 2025, with the implementation of a unified regulation signal. 
-        The previous design divided participation between technologies with two separate signals:
-        Traditional slow-ramping resources followed a low-pass filtered RegA signal, and faster-responding resources, majorly batteries, followed the high-pass RegD signal. 
-        Beginning October 1st, the two signals were merged into one bidirectional signal, allowing all technologies to compete and respond uniformly to grid balancing needs.
-    </p>
-    <p> 
-        Brief clarification of what improvements/achievements were made by the redesign thus far.
+        PJM's Regulation Market underwent Phase 1 of a redesign in October 2025, implementing a unified bidirectional regulation signal. 
+        The previous design procured regulation using two separate signals:
+        a low-pass filtered RegA signal followed by slow-ramping resources, and a high-pass RegD signal followed by faster-responding resources—majorly batteries. 
+        Beginning October 1st, the two signals were merged into one, allowing all technologies to compete and respond uniformly to grid balancing needs.
     </p>
     <p>
-        Despite an insignificant difference in LMPs across the two quarters, co-optimized regulation prices more than doubled in Q4, pointing to a cause independent
-        of market stability/lack of volatility. Some of this is explainable by the increase in accessible market share for batteries.
-        As participation of batteries in the RM grows, these prices are expected to come down. 
+        The redesign was followed by a significant increase in regulation prices. Despite relatively stable LMPs across the two quarters, co-optimized regulation prices more than
+        doubled post-redesign, increasing revenue opportunities for batteries. 
     </p>
     <p>
-        The model explores revenue earnings before and after the redesign. Different contract structures are modeled for Q4 to show the results of varying degrees of
-        market exposure and the risks involved.
+        Phase 2 of the redesign is scheduled for 2027. 
+        Changing market rules require battery operaters to closely monitor and anticipate how best to position their asset to capture opportunity 
+        in the market. Selecting the right contract structures that balance risk and stable cashflow are key to a financially performing asset.
     </p>
-
     
                 
   </div>
 
   <div class="section">
-    <h2>Model Formulation</h2>
+    <h2>An ESS Model in PJM</h2>
     <p>
-        The model estimates gross revenue for a 100MW/400MWh battery operating in PJM, AEP-Dayton trading hub.
-        The formulation is based on the BESS model developed by Alharbi, Alsaidan and Gao, with the following adaptations made 
-        for compatibility with available data: 
+        In PJM's current market, batteries' merchant revenues have grown significantly, raised almost soley by the increased regulation prices. 
+        A model of a battery operating in PJM's AEP-Dayton trading hub illustrates the jump in upside opportunity after the redesign.
+        A battery earned $ 23.00 kW-month in Q3 and $ 58.14 kW-month in Q4 (x2.53, monthly average).
+    </p>
+
+    <div class="rev-visual">
+  <div class="rev-header">
+    <div>
+      <div class="rev-title">The highest earning hour modelled in Q4 was x5.76 times higher than Q3</div>
+    </div>
+    <div class="rev-controls">
+      <button id="play-btn">▶ Play</button>
+      <button id="reset-btn">↺ Reset</button>
+    </div>
+  </div>
+
+   <div class="chart-legend">
+      <span><i class="leg-energy"></i>Energy revenue</span>
+      <span><i class="leg-reg"></i>Regulation revenue</span>
+    </div>
+
+  <div class="quarter-grid">
+   
+    <div class="quarter-card">
+      <div class="quarter-card-top">
+        <span class="quarter-card-title">Q3</span>
+        <span class="quarter-date" id="q3-date">—</span>
+      </div>
+      <svg class="chart-svg" id="q3-svg" viewBox="0 0 400 230" preserveAspectRatio="none"></svg>
+
+    </div>
+
+    <div class="quarter-card">
+      <div class="quarter-card-top">
+        <span class="quarter-card-title">Q4</span>
+        <span class="quarter-date" id="q4-date">—</span>
+      </div>
+      <svg class="chart-svg" id="q4-svg" viewBox="0 0 400 230" preserveAspectRatio="none"></svg>
+    </div>
+  </div>
+
+  <input type="range" class="rev-slider" id="rev-slider" min="0" max="1000" value="0" step="any">
+  <div class="slider-labels"><span>Start of quarter</span><span>End of quarter</span></div>
+</div>
+
+<br>
+    <p>
+        The model estimates gross revenue for a 100MW/400MWh battery using a reference formulation developed by Alharbi, Alsaidan and Gao [link]. 
+        The following adaptations are made for compatibility with available data: 
     </p>
      
 
@@ -184,9 +225,10 @@ sup a { text-decoration: none; }
         </li>
     </ol>
 
+
     <h3>Objective</h3>
     <p>
-        The model maximizes gross revenue from energy arbitrage and regulation:
+        Gross revenue from energy arbitrage and regulation is maximized:
     </p>
     <div class="equation">
         \[
@@ -229,13 +271,13 @@ sup a { text-decoration: none; }
   </div>
 
   <p>
-    Binary variables \(u^d_t\) and \(u^d_t\) take values 0 and 1, preventing simultaneous charge and discharge.
+    Binary variables \(u^d_t\) and \(u^d_t\) take values 0 or 1, preventing simultaneous charge and discharge.
     Regulation capacity is similarly limited by the remaining battery headroom, accounting
     for the arbitrage position and regulation state. 
   </p>
 
     <p>
-    Products of binary and continuous variables are required throughout this model. To preserve the MILP structure, Fortet and McCormick linearizations are applied
+    *Model implementation note* Products of binary and continuous variables are required throughout this model. To preserve the MILP structure, Fortet and McCormick linearizations are applied
     to these products.
   </p>
 
@@ -262,7 +304,7 @@ sup a { text-decoration: none; }
     where \(J_t\) represents the accumulated regulation movement, carrying forward the regulation 
     movement from the previous interval. In this model's convention,
     charging is negative and discharging is positive, so a positive \(J_t\) represents a net regulation 
-    discharge (RegUp) position, and negative represents a net regulation charge (RegDown) position.
+    discharge, and negative represents a net regulation charge position.
   </p>
 
   <p>
@@ -308,126 +350,37 @@ sup a { text-decoration: none; }
     \]
   </div>
 
-<div class="dispatch-visual">
+    <p>
+        However changing rules and market conditions can decrease the revenues over time and 
+        optimizers must closely monitor and anticipate which structure best suites their asset.
+  </p>
 
-  <div class="dispatch-header">
-    <div>
-      <span class="dispatch-kicker">Q4 · Day 2</span>
-      <div id="dispatch-hour" class="dispatch-hour">Hour 0</div>
-    </div>
+</section>
 
-    <div class="dispatch-controls">
-      <button id="play-btn">▶ Play</button>
-      <button id="reset-btn">↺ Reset</button>
-    </div>
-  </div>
-
-  <div class="dispatch-grid">
-
-    <!-- MARKET POSITION -->
-    <div class="dispatch-card">
-      <div class="dispatch-card-title">Market bid</div>
-
-      <div class="metric-row">
-        <span>Arbitrage discharge</span>
-        <strong id="arb-d">0 MW</strong>
-      </div>
-
-      <div class="metric-row">
-        <span>Arbitrage charge</span>
-        <strong id="arb-c">0 MW</strong>
-      </div>
-
-      <div class="metric-row">
-        <span>Regulation bid</span>
-        <strong id="reg">0 MW</strong>
-      </div>
-    </div>
-
-    <!-- REGULATION -->
-    <div class="dispatch-card">
-      <div class="dispatch-card-title">Regulation response</div>
-
-      <div class="metric-row">
-        <span>Regulation up</span>
-        <strong id="reg-ad">0 MW</strong>
-      </div>
-
-      <div class="metric-row">
-        <span>Regulation down</span>
-        <strong id="reg-ac">0 MW</strong>
-      </div>
-
-      <div class="metric-row">
-        <span>Actual regulation</span>
-        <strong id="j-value">0 MW</strong>
-      </div>
-    </div>
-
-    <!-- BATTERY -->
-    <div class="dispatch-card battery-card">
-      <div class="dispatch-card-title">Battery state</div>
-
-      <div class="soc-value" id="soc-value">50.0%</div>
-
-      <div class="soc-track">
-        <div class="soc-fill" id="soc-fill"></div>
-      </div>
-
-      <div class="soc-labels">
-        <span>10%</span>
-        <span>SOC</span>
-        <span>90%</span>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- POWER FLOW -->
-  <div class="power-panel">
-    <div class="power-title">Battery power balance</div>
-
-    <div class="power-bar">
-      <div class="power-center"></div>
-      <div id="power-flow" class="power-flow"></div>
-    </div>
-
-    <div class="power-labels">
-      <span>Charging</span>
-      <span>0 MW</span>
-      <span>Discharging</span>
-    </div>
-  </div>
-
-  <!-- REVENUE -->
-  <div class="dispatch-revenue">
-    <div>
-      <span>Hourly revenue</span>
-      <strong id="hourly-revenue">$0</strong>
-    </div>
-
-    <div>
-      <span>Cumulative revenue</span>
-      <strong id="cumulative-revenue">$0</strong>
-    </div>
-  </div>
-
-  <input
-    id="hour-slider"
-    class="hour-slider"
-    type="range"
-    min="0"
-    max="23"
-    value="0"
-  >
-
-  <div class="slider-labels">
-    <span>Hour 0</span>
-    <span>Hour 23</span>
-  </div>
-
+<div class="section">
+    <h2>Implications</h2>
+    <p>  
+        RegD was designed to be a fast-moving signal that ensures power balance, suited to fast-responding batteries with duration-limit protection.
+        The redesign highlights the market's priority: to maintain a competitive market that efficiently procures the resources it requires, removing crafted market mechanisms
+        that favour individual technologies.
+        Resources are rewarded for precise correction of energy imbalances in the market, and individually work around operational limits, while respecting market rules. 
+        This effectively clears technologies that operate uncompetitively for a service from the market, allowing room for more efficient
+        technologies to grow. Asset operators are responsible for discovering the combination of services they are most efficient at providing, and 
+        discovering their true value in the market.
+        
+    </p>
 </div>
 
+<div class="section">
+    <h2>Outlook</h2>
+    <p> 
+        While it is expected that growing 
+        participation will saturate the market over time, the heightened regulation prices have persisted and grown into 2026, peaking in Feb 2026. 
+        Further inspection from the MMU reveal a structural design flaw in regulation price calculations that are inflating prices unfairly.
+        The MMU has recommended a delay of Phase 2 of the redesign to 2027, which will split the
+        bidirectional signal into a RegUp and RegDown parts, prioritizing the correction of this calculation flaw [link].
+    </p>
+</div>
 
  <section class="section">
     <h2 id="dataminer2">Data Source</h2>
@@ -482,243 +435,590 @@ sup a { text-decoration: none; }
   </footer>
 
 </div>
-<script>
-const csvPath = "./q4_visual.csv";
 
-let dispatchData = [];
-let currentHour = 0;
-let playTimer = null;
+
+<!-- <script>
+const CONFIG = {
+  q3: { csvPath: "./q3_max_rev.csv", label: "Q3" },
+  q4: { csvPath: "./q4_max_rev.csv", label: "Q4" },
+  ANIMATION_MS: 12000,
+  MAX_RENDER_POINTS: 200,
+  ZOOM_TRANSITION_MS: 1100,
+  POPUP_DURATION_MS: 1000,
+  ZOOM_LEAD_MS: 1200
+}; -->
+
+<script>
+const CONFIG = {
+  q3: { csvPath: "https://raw.githubusercontent.com/ginasengeri/energy-systems/main/energy_modelling/ESS_PJM/q3_max_rev.csv", label: "Q3" },
+  q4: { csvPath: "https://raw.githubusercontent.com/ginasengeri/energy-systems/main/energy_modelling/ESS_PJM/q4_max_rev.csv", label: "Q4" },
+  ANIMATION_MS: 12000,
+  MAX_RENDER_POINTS: 200,
+  ZOOM_TRANSITION_MS: 1100,
+  POPUP_DURATION_MS: 1000,
+  ZOOM_LEAD_MS: 1200
+};
 
 function parseCSV(text) {
   const lines = text.trim().split(/\r?\n/);
-  const headers = lines[0].split(",").map(h => h.trim());
-
+  const delim = lines[0].includes("\t") ? "\t" : ",";
+  const headers = lines[0].split(delim).map(h => h.trim());
   return lines.slice(1).map(line => {
-    const values = line.split(",");
+    const values = line.split(delim);
     const row = {};
-
-    headers.forEach((header, i) => {
-      row[header] = values[i] !== undefined
-        ? values[i].trim()
-        : "";
-    });
-
+    headers.forEach((h, i) => { row[h] = values[i] !== undefined ? values[i].trim() : ""; });
     return row;
   });
 }
+function num(v) { return parseFloat(v) || 0; }
 
-function number(value) {
-  return parseFloat(value) || 0;
+function formatDate(dateStr) {
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) return dateStr;
+  return d.toLocaleDateString("en-US", { month: "short", day: "numeric" }) +
+    " — " + d.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false });
 }
 
-function money(value) {
-  return "$" + Math.round(value).toLocaleString();
-}
+function buildSeries(rows) {
+  const n = rows.length;
+  let energyCum = 0, regCum = 0;
+  const energyAll = [], regAll = [], dateAll = [], hourAll = [];
+  let peakRawIdx = 0, peakRawValue = -Infinity;
 
-/* Actual date and time.
-   Day 1 = October 1.
-   Hour 0 = 00:00 on October 1.
-*/
-function getDateTime(hour) {
-  const totalHours = Number(hour);
-  const day = Math.floor(totalHours / 24);
-  const hourOfDay = totalHours % 24;
+  rows.forEach((row, i) => {
+    const e = num(row.lmp_rev);
+    const r = num(row.reg_rev);
+    energyCum += e;
+    regCum += r;
+    energyAll.push(energyCum);
+    regAll.push(regCum);
+    dateAll.push(row.date);
+    hourAll.push(i);
+    const total = e + r;
+    if (total > peakRawValue) { peakRawValue = total; peakRawIdx = i; }
+  });
 
-  const date = new Date(2024, 9, 1 + day);
+  const maxPoints = CONFIG.MAX_RENDER_POINTS;
+  let energy, reg, dates, hours, peakRenderIdx;
+
+  if (n <= maxPoints) {
+    energy = energyAll; reg = regAll; dates = dateAll; hours = hourAll;
+    peakRenderIdx = peakRawIdx;
+  } else {
+    const bucketSize = n / maxPoints;
+    energy = []; reg = []; dates = []; hours = [];
+    for (let b = 0; b < maxPoints; b++) {
+      const start = Math.floor(b * bucketSize);
+      const end = Math.max(start + 1, Math.floor((b + 1) * bucketSize));
+      const lastIdx = end - 1;
+      energy.push(energyAll[lastIdx]);
+      reg.push(regAll[lastIdx]);
+      dates.push(dateAll[lastIdx]);
+      hours.push(hourAll[lastIdx]);
+    }
+    peakRenderIdx = Math.min(maxPoints - 1, Math.floor(peakRawIdx / bucketSize));
+  }
 
   return {
-    date: date.toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric"
-    }),
-    time: `${String(hourOfDay).padStart(2, "0")}:00`
+    energy, reg, dates, hours, sourceLength: n,
+    peakRenderIdx, peakValue: peakRawValue, peakHour: peakRawIdx
   };
 }
 
-function updateVisual(index) {
-  if (!dispatchData.length) return;
-
-  const row = dispatchData[index];
-
-  const arbC = number(row.arb_c);
-  const arbD = number(row.arb_d);
-  const reg = number(row.reg);
-  const regAd = number(row.reg_ad);
-  const regAc = number(row.reg_ac);
-  const J = number(row.J);
-  const soc = number(row.soc);
-
-  const { date, time } = getDateTime(row.hour);
-
-  document.getElementById("dispatch-hour").textContent =
-    `${date} — ${time}`;
-
-  document.getElementById("arb-d").textContent =
-    `${arbD.toFixed(1)} MW`;
-
-  document.getElementById("arb-c").textContent =
-    `${arbC.toFixed(1)} MW`;
-
-  document.getElementById("reg").textContent =
-    `${reg.toFixed(1)} MW`;
-
-  document.getElementById("reg-ad").textContent =
-    `${regAd.toFixed(1)} MW`;
-
-  document.getElementById("reg-ac").textContent =
-    `${regAc.toFixed(1)} MW`;
-
-  document.getElementById("j-value").textContent =
-    `${J.toFixed(1)} MW`;
-
-  const socPercent = soc * 100;
-
-  document.getElementById("soc-value").textContent =
-    `${socPercent.toFixed(1)}%`;
-
-  /*
-   * SOC visual is scaled to the physical operating range:
-   * 10% = empty
-   * 90% = full
-   */
-  const socVisual =
-    Math.max(0, Math.min(100, ((soc - 0.10) / 0.80) * 100));
-
-  /*
-   * Smooth SOC curve.
-   * Requires an SVG path with id="soc-curve".
-   */
-  const socCurve = document.getElementById("soc-curve");
-
-  if (socCurve) {
-    const points = dispatchData
-      .slice(0, index + 1)
-      .map((r, i) => {
-        const x = i * 10;
-        const y =
-          100 - Math.max(
-            0,
-            Math.min(
-              100,
-              ((number(r.soc) - 0.10) / 0.80) * 100
-            )
-          );
-
-        return `${x},${y}`;
-      });
-
-    socCurve.setAttribute(
-      "d",
-      `M ${points.join(" L ")}`
-    );
-  }
-
-  /*
-   * Net battery movement.
-   * Positive = discharge
-   * Negative = charge
-   */
-  const netPower = arbD + arbC + J;
-
-  const flow = document.getElementById("power-flow");
-
-  const width = Math.min(Math.abs(netPower) / 100 * 50, 50);
-
-  if (netPower >= 0) {
-    flow.style.left = "50%";
-    flow.style.width = `${width}%`;
-  } else {
-    flow.style.left = `${50 - width}%`;
-    flow.style.width = `${width}%`;
-  }
-
-  const hourlyRevenue =
-    number(row.lmp_rev) +
-    number(row.rmccp_rev) +
-    number(row.rmmcp_rev);
-
-  document.getElementById("hourly-revenue").textContent =
-    money(hourlyRevenue);
-
-  let cumulative = 0;
-
-  for (let i = 0; i <= index; i++) {
-    cumulative +=
-      number(dispatchData[i].lmp_rev) +
-      number(dispatchData[i].rmccp_rev) +
-      number(dispatchData[i].rmmcp_rev);
-  }
-
-  document.getElementById("cumulative-revenue").textContent =
-    money(cumulative);
-
-  document.getElementById("hour-slider").value = index;
+async function loadQuarter(cfg) {
+  const res = await fetch(cfg.csvPath);
+  if (!res.ok) throw new Error(`Could not load ${cfg.csvPath}`);
+  const rows = parseCSV(await res.text());
+  if (!rows.length) throw new Error(`${cfg.csvPath} is empty`);
+  return rows;
 }
 
-function play() {
-  if (playTimer) return;
+const VB_W = 440, VB_H = 260, PAD_L = 64, PAD_R = 14, PAD_T = 14, PAD_B = 28;
 
-  playTimer = setInterval(() => {
-    currentHour++;
+function moneyShort(v) {
+  const sign = v < 0 ? "-" : "";
+  return sign + "$" + Math.round(Math.abs(v)).toLocaleString();
+}
+function moneyCompact(v) {
+  const sign = v < 0 ? "-" : "";
+  const abs = Math.abs(v);
+  if (abs >= 10000) return sign + "$" + Math.round(abs / 1000) + "k";
+  if (abs >= 1000) return sign + "$" + (abs / 1000).toFixed(1) + "k";
+  return sign + "$" + Math.round(abs);
+}
 
-    if (currentHour >= dispatchData.length) {
-      currentHour = 0;
+function easeInOutCubic(t) {
+  return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+}
+
+function makeChart(svgEl) {
+  svgEl.innerHTML = "";
+  svgEl.setAttribute("viewBox", `0 0 ${VB_W} ${VB_H}`);
+  const ns = "http://www.w3.org/2000/svg";
+  const gridGroup = document.createElementNS(ns, "g");
+  const axisGroup = document.createElementNS(ns, "g");
+  const energyPath = document.createElementNS(ns, "path");
+  const regPath = document.createElementNS(ns, "path");
+  const hoverGroup = document.createElementNS(ns, "g");
+  hoverGroup.style.display = "none";
+  const peakGroup = document.createElementNS(ns, "g");
+  peakGroup.style.display = "none";
+
+
+  energyPath.setAttribute("class", "energy-path");
+  regPath.setAttribute("class", "reg-path");
+
+  svgEl.appendChild(gridGroup);
+  svgEl.appendChild(axisGroup);
+  svgEl.appendChild(energyPath);
+  svgEl.appendChild(regPath);
+  svgEl.appendChild(hoverGroup);
+  svgEl.appendChild(peakGroup);
+
+  return {
+    svgEl, gridGroup, axisGroup, energyPath, regPath, hoverGroup, peakGroup,
+    yMin: 0, yMax: 1,
+    scalePhases: [], scalePhaseIndex: 0,
+    transitioning: false, transStart: 0, fromRange: null, toRange: null,
+    popupStart: null,
+    tickValues: null,
+    peakShown: false
+  };
+}
+
+function computeRange(values) {
+  const dataMax = Math.max(...values);
+  const dataMin = Math.min(...values, 0);
+  const span = dataMax - dataMin || 1;
+  return { max: dataMax + span * 0.12, min: dataMin - span * 0.12 };
+}
+
+function buildSmoothPath(values, xAt, yAt, uptoFloat) {
+  const n = values.length;
+  const idx = Math.min(Math.floor(uptoFloat), n - 1);
+  const frac = uptoFloat - idx;
+  const pts = [];
+  for (let i = 0; i <= idx; i++) pts.push({ x: xAt(i), y: yAt(values[i]) });
+  if (idx < n - 1 && frac > 0) {
+    const interpVal = values[idx] + (values[idx + 1] - values[idx]) * frac;
+    pts.push({ x: xAt(idx + frac), y: yAt(interpVal) });
+  }
+  if (pts.length === 0) return "";
+  if (pts.length === 1) return `M ${pts[0].x} ${pts[0].y}`;
+
+  let d = `M ${pts[0].x} ${pts[0].y}`;
+  const last = pts.length - 1;
+  for (let i = 0; i < last; i++) {
+    const p0 = pts[Math.max(0, i - 1)];
+    const p1 = pts[i];
+    const p2 = pts[i + 1];
+    const p3 = pts[Math.min(last, i + 2)];
+    const cp1x = p1.x + (p2.x - p0.x) / 6;
+    const cp1y = p1.y + (p2.y - p0.y) / 6;
+    const cp2x = p2.x - (p3.x - p1.x) / 6;
+    const cp2y = p2.y - (p3.y - p1.y) / 6;
+    d += ` C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${p2.x} ${p2.y}`;
+  }
+  return d;
+}
+
+function drawAxes(chart, series) {
+  const ns = "http://www.w3.org/2000/svg";
+  chart.gridGroup.innerHTML = "";
+  chart.axisGroup.innerHTML = "";
+
+  const plotH = VB_H - PAD_T - PAD_B;
+  const plotW = VB_W - PAD_L - PAD_R;
+  const n = series.energy.length;
+  const range = chart.yMax - chart.yMin;
+  const tickValues = chart.tickValues || computeTicks({ min: chart.yMin, max: chart.yMax });
+  const popupProgress = getPopupProgress(chart);
+
+  for (let t = 0; t <= 4; t++) {
+    const value = tickValues[t];
+    const rawY = PAD_T + (1 - (value - chart.yMin) / range) * plotH;
+    const y = Math.max(PAD_T, Math.min(VB_H - PAD_B, rawY));
+    const line = document.createElementNS(ns, "line");
+    line.setAttribute("x1", PAD_L); line.setAttribute("x2", VB_W - PAD_R);
+    line.setAttribute("y1", y); line.setAttribute("y2", y);
+    line.setAttribute("class", "chart-grid-line");
+    chart.gridGroup.appendChild(line);
+
+    const isTop = t === 4;
+    const pt = isTop ? popupProgress : 0;
+    const fontSize = lerp(11, 14, pt);
+    const fontWeight = Math.round(lerp(500, 700, pt));
+    const fillColor = lerpColor("#9ca3af", "#111827", pt);
+
+    const label = document.createElementNS(ns, "text");
+    label.setAttribute("x", PAD_L - 6);
+    label.setAttribute("y", y + lerp(3, 4, pt));
+    label.setAttribute("text-anchor", "end");
+    label.setAttribute("class", "axis-label");
+    label.style.fontSize = fontSize + "px";
+    label.style.fontWeight = fontWeight;
+    label.style.fill = fillColor;
+    label.textContent = moneyCompact(value);
+    chart.axisGroup.appendChild(label);
+  }
+
+  const yAxisLine = document.createElementNS(ns, "line");
+  yAxisLine.setAttribute("x1", PAD_L); yAxisLine.setAttribute("x2", PAD_L);
+  yAxisLine.setAttribute("y1", PAD_T); yAxisLine.setAttribute("y2", VB_H - PAD_B);
+  yAxisLine.setAttribute("class", "axis-line");
+  chart.axisGroup.appendChild(yAxisLine);
+
+  if (chart.yMin < 0 && chart.yMax > 0) {
+    const zeroY = PAD_T + (1 - (0 - chart.yMin) / range) * plotH;
+    const zeroLine = document.createElementNS(ns, "line");
+    zeroLine.setAttribute("x1", PAD_L); zeroLine.setAttribute("x2", VB_W - PAD_R);
+    zeroLine.setAttribute("y1", zeroY); zeroLine.setAttribute("y2", zeroY);
+    zeroLine.setAttribute("class", "zero-line");
+    chart.axisGroup.appendChild(zeroLine);
+
+    const zeroLabel = document.createElementNS(ns, "text");
+    zeroLabel.setAttribute("x", PAD_L - 6);
+    zeroLabel.setAttribute("y", zeroY + 3);
+    zeroLabel.setAttribute("text-anchor", "end");
+    zeroLabel.setAttribute("class", "axis-label");
+    zeroLabel.textContent = "$0";
+    chart.axisGroup.appendChild(zeroLabel);
+  }
+
+  for (let t = 0; t <= 4; t++) {
+    const idx = Math.round((t / 4) * (n - 1));
+    const x = PAD_L + (idx / (n - 1)) * plotW;
+
+    const tick = document.createElementNS(ns, "line");
+    tick.setAttribute("x1", x); tick.setAttribute("x2", x);
+    tick.setAttribute("y1", VB_H - PAD_B); tick.setAttribute("y2", VB_H - PAD_B + 4);
+    tick.setAttribute("class", "axis-tick");
+    chart.axisGroup.appendChild(tick);
+
+    const label = document.createElementNS(ns, "text");
+    label.setAttribute("x", x);
+    label.setAttribute("y", VB_H - PAD_B + 15);
+    label.setAttribute("text-anchor", t === 0 ? "start" : t === 4 ? "end" : "middle");
+    label.setAttribute("class", "axis-label");
+    label.textContent = `${series.hours[idx]}:00`;
+    chart.axisGroup.appendChild(label);
+  }
+
+  const yAxisLabel = document.createElementNS(ns, "text");
+  const yLabelCenter = PAD_T + plotH / 2;
+  yAxisLabel.setAttribute("x", 12);
+  yAxisLabel.setAttribute("y", yLabelCenter);
+  yAxisLabel.setAttribute("text-anchor", "middle");
+  yAxisLabel.setAttribute("class", "axis-label");
+  yAxisLabel.setAttribute("font-size", "12px");
+  yAxisLabel.setAttribute("font-weight", "600");
+  yAxisLabel.setAttribute("transform", `rotate(-90, 12, ${yLabelCenter})`);
+  yAxisLabel.textContent = "Cumulative revenue ($)";
+  chart.axisGroup.appendChild(yAxisLabel);
+}
+
+function updateChart(chart, series, progressFloat) {
+  const n = series.energy.length;
+  const plotW = VB_W - PAD_L - PAD_R;
+  const plotH = VB_H - PAD_T - PAD_B;
+  const range = chart.yMax - chart.yMin;
+  const xAt = i => PAD_L + (i / (n - 1)) * plotW;
+  const yAt = v => PAD_T + (1 - (v - chart.yMin) / range) * plotH;
+
+  chart.energyPath.setAttribute("d", buildSmoothPath(series.energy, xAt, yAt, progressFloat));
+  chart.regPath.setAttribute("d", buildSmoothPath(series.reg, xAt, yAt, progressFloat));
+
+  chart._xAt = xAt;
+  chart._yAt = yAt;
+  chart._n = n;
+  chart._maxVisibleIdx = Math.min(n - 1, progressFloat);
+}
+
+
+/* Reveals a small dot + guide line + label at the single highest-earning
+   hour once playback reaches it. All sizing is set inline as SVG
+   attributes so it can never inherit an unexpected default font size. */
+function showPeakMarker(chart, series) {
+  if (chart.peakShown) return;
+  if (chart._xAt === undefined) return;
+  chart.peakShown = true;
+  drawPeakMarker(chart, series);
+}
+
+function drawPeakMarker(chart, series) {
+  const ns = "http://www.w3.org/2000/svg";
+  const idx = series.peakRenderIdx;
+  const x = chart._xAt(idx);
+  const yE = chart._yAt(series.energy[idx]);
+  const yR = chart._yAt(series.reg[idx]);
+  const y = Math.min(yE, yR);
+
+  chart.peakGroup.innerHTML = "";
+
+  const guide = document.createElementNS(ns, "line");
+  guide.setAttribute("x1", x); guide.setAttribute("x2", x);
+  guide.setAttribute("y1", PAD_T); guide.setAttribute("y2", VB_H - PAD_B);
+  guide.setAttribute("stroke", "#d1d5db");
+  guide.setAttribute("stroke-width", "1");
+  guide.setAttribute("stroke-dasharray", "3 2");
+  chart.peakGroup.appendChild(guide);
+
+  const dot = document.createElementNS(ns, "circle");
+  dot.setAttribute("cx", x); dot.setAttribute("cy", y);
+  dot.setAttribute("r", "3");
+  dot.setAttribute("fill", "#111827");
+  dot.setAttribute("stroke", "white");
+  dot.setAttribute("stroke-width", "1.2");
+  chart.peakGroup.appendChild(dot);
+
+  const anchor = "end";
+  const labelX = x - 8;
+  const labelY = Math.max(PAD_T + 8, y - 6);
+
+  const hourOfDay = series.peakHour % 24;
+  const timeLabel = `${String(hourOfDay).padStart(2, "0")}:00`;
+
+  const label = document.createElementNS(ns, "text");
+  label.setAttribute("x", labelX);
+  label.setAttribute("y", labelY);
+  label.setAttribute("text-anchor", anchor);
+  label.setAttribute("font-family", "system-ui, sans-serif");
+  label.setAttribute("font-size", "10.5px");
+  label.setAttribute("font-weight", "700");
+  label.setAttribute("fill", "#111827");
+  label.textContent = `Peak: ${moneyCompact(series.peakValue)}`;
+  chart.peakGroup.appendChild(label);
+
+  chart.peakGroup.style.display = "block";
+}
+
+function computeTicks(range) {
+  const vals = [];
+  for (let t = 0; t <= 4; t++) vals.push(range.min + (t / 4) * (range.max - range.min));
+  return vals;
+}
+
+function flagScalePopup(chart) {
+  chart.popupStart = performance.now();
+}
+
+function easeInOutSine(t) {
+  return -(Math.cos(Math.PI * t) - 1) / 2;
+}
+
+function getPopupProgress(chart) {
+  if (!chart.popupStart) return 0;
+  const elapsed = performance.now() - chart.popupStart;
+  const growMs = 260, shrinkMs = 320;
+  const holdMs = Math.max(0, CONFIG.POPUP_DURATION_MS - growMs - shrinkMs);
+  if (elapsed >= CONFIG.POPUP_DURATION_MS) return 0;
+  if (elapsed < growMs) return easeInOutSine(elapsed / growMs);
+  if (elapsed < growMs + holdMs) return 1;
+  return easeInOutSine(1 - (elapsed - growMs - holdMs) / shrinkMs);
+}
+
+function lerp(a, b, t) { return a + (b - a) * t; }
+function lerpColor(hexA, hexB, t) {
+  const pa = [1, 3, 5].map(i => parseInt(hexA.slice(i, i + 2), 16));
+  const pb = [1, 3, 5].map(i => parseInt(hexB.slice(i, i + 2), 16));
+  const rgb = pa.map((v, i) => Math.round(lerp(v, pb[i], t)));
+  return `rgb(${rgb[0]},${rgb[1]},${rgb[2]})`;
+}
+
+function findTriggerIndex(series, thresholdValue) {
+  for (let i = 0; i < series.energy.length; i++) {
+    if (series.energy[i] >= thresholdValue || series.reg[i] >= thresholdValue) return i;
+  }
+  return series.energy.length - 1;
+}
+
+function triggerZoomIfNeeded(chart, q4Idx) {
+  if (chart.transitioning) return;
+  if (chart.scalePhaseIndex >= chart.scalePhases.length) return;
+  const triggerIdx = chart.scaleTriggers[chart.scalePhaseIndex];
+  if (q4Idx >= triggerIdx) {
+    const nextPhase = chart.scalePhases[chart.scalePhaseIndex];
+    chart.transitioning = true;
+    chart.transStart = performance.now();
+    chart.fromRange = { max: chart.yMax, min: chart.yMin };
+    chart.toRange = nextPhase;
+    chart.scalePhaseIndex++;
+    chart.tickValues = computeTicks(nextPhase);
+    flagScalePopup(chart);
+  }
+}
+
+function updateZoomTransition(chart) {
+  if (!chart.transitioning) return;
+  const elapsed = performance.now() - chart.transStart;
+  const t = Math.min(1, elapsed / CONFIG.ZOOM_TRANSITION_MS);
+  const eased = easeInOutCubic(t);
+  chart.yMax = chart.fromRange.max + (chart.toRange.max - chart.fromRange.max) * eased;
+  chart.yMin = chart.fromRange.min + (chart.toRange.min - chart.fromRange.min) * eased;
+  if (t >= 1) chart.transitioning = false;
+}
+
+(async function init() {
+  const [q3Rows, q4Rows] = await Promise.all([
+    loadQuarter(CONFIG.q3),
+    loadQuarter(CONFIG.q4)
+  ]);
+
+  const q3Series = buildSeries(q3Rows);
+  const q4Series = buildSeries(q4Rows);
+
+  const q3Chart = makeChart(document.getElementById("q3-svg"));
+  const q4Chart = makeChart(document.getElementById("q4-svg"));
+
+  const q3Range = computeRange([...q3Series.energy, ...q3Series.reg]);
+  const q4FinalRange = computeRange([...q4Series.energy, ...q4Series.reg]);
+  const overallMax = Math.max(q3Range.max, q4FinalRange.max);
+  const overallMin = Math.min(q3Range.min, q4FinalRange.min);
+
+  const finalPhase = { max: overallMax, min: overallMin };
+
+  q3Chart.yMax = q3Range.max;
+  q3Chart.yMin = q3Range.min;
+
+  q4Chart.yMax = q3Range.max;
+  q4Chart.yMin = q3Range.min;
+  q4Chart.scalePhases = [finalPhase];
+  q4Chart.scalePhaseIndex = 0;
+  q4Chart.transitioning = false;
+
+  const zoomHit = findTriggerIndex(q4Series, q3Range.max);
+  const leadPoints = Math.round((CONFIG.ZOOM_LEAD_MS / CONFIG.ANIMATION_MS) * q4Series.energy.length);
+  const zoomTrigger = Math.max(0, zoomHit - leadPoints);
+  q4Chart.scaleTriggers = [zoomTrigger];
+
+  drawAxes(q3Chart, q3Series);
+  drawAxes(q4Chart, q4Series);
+
+  const maxN = Math.max(q3Series.energy.length, q4Series.energy.length);
+  const slider = document.getElementById("rev-slider");
+  slider.max = maxN - 1;
+
+  const q3DateEl = document.getElementById("q3-date");
+  const q4DateEl = document.getElementById("q4-date");
+  let lastIntHour = -1;
+
+  function render(progressFloat) {
+    const q3Idx = Math.min(progressFloat, q3Series.energy.length - 1);
+    const q4Idx = Math.min(progressFloat, q4Series.energy.length - 1);
+
+    const q4VisIdx = Math.floor(q4Idx);
+    triggerZoomIfNeeded(q4Chart, q4VisIdx);
+    updateZoomTransition(q4Chart);
+    drawAxes(q4Chart, q4Series);
+
+    updateChart(q3Chart, q3Series, q3Idx);
+    updateChart(q4Chart, q4Series, q4Idx);
+
+    if (Math.floor(q3Idx) >= q3Series.peakRenderIdx) showPeakMarker(q3Chart, q3Series);
+    if (Math.floor(q4Idx) >= q4Series.peakRenderIdx) showPeakMarker(q4Chart, q4Series);
+
+    const intHour = Math.floor(progressFloat);
+    if (intHour !== lastIntHour) {
+      lastIntHour = intHour;
+      const q3i = Math.min(q3Series.dates.length - 1, Math.floor(q3Idx));
+      const q4i = Math.min(q4Series.dates.length - 1, Math.floor(q4Idx));
+      q3DateEl.textContent = formatDate(q3Series.dates[q3i]);
+      q4DateEl.textContent = formatDate(q4Series.dates[q4i]);
     }
+    slider.value = progressFloat;
+  }
 
-    updateVisual(currentHour);
-  }, 1000);
-}
-
-function pause() {
-  clearInterval(playTimer);
-  playTimer = null;
-}
-
-fetch(csvPath)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(`Could not load ${csvPath}`);
+  /* Manual scrubs jump instantly rather than animating — snap the scale
+     straight to whichever state matches the target position. */
+  function setScaleForScrub(target) {
+    if (target >= zoomTrigger) {
+      q4Chart.yMax = finalPhase.max;
+      q4Chart.yMin = finalPhase.min;
+      q4Chart.scalePhaseIndex = 1;
+      q4Chart.tickValues = computeTicks(finalPhase);
+    } else {
+      q4Chart.yMax = q3Range.max;
+      q4Chart.yMin = q3Range.min;
+      q4Chart.scalePhaseIndex = 0;
+      q4Chart.tickValues = null;
     }
+    q4Chart.transitioning = false;
+    q4Chart.popupStart = null;
+  }
 
-    return response.text();
-  })
-  .then(csv => {
-    dispatchData = parseCSV(csv);
+  render(0);
 
-    document.getElementById("hour-slider").max =
-      dispatchData.length - 1;
+  let rafId = null, startTime = null, startProgress = 0, lastRenderedProgress = 0;
+  const playBtn = document.getElementById("play-btn");
 
-    updateVisual(0);
-  })
-  .catch(error => {
-    console.error(error);
-    document.getElementById("dispatch-hour").textContent =
-      "Could not load Q4 results";
+  function step(ts) {
+    if (startTime === null) startTime = ts;
+    const elapsed = ts - startTime;
+    let progress = startProgress + (elapsed / CONFIG.ANIMATION_MS) * (maxN - 1);
+
+    if (progress >= maxN - 1) {
+      progress = maxN - 1;
+      render(progress);
+      lastRenderedProgress = progress;
+      pause();
+      return;
+    }
+    render(progress);
+    lastRenderedProgress = progress;
+    rafId = requestAnimationFrame(step);
+  }
+
+  function play() {
+    if (rafId) return;
+    startTime = null;
+    startProgress = lastRenderedProgress;
+    playBtn.textContent = "Ⅱ Pause";
+    rafId = requestAnimationFrame(step);
+  }
+  function pause() {
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = null;
+    playBtn.textContent = "▶ Play";
+  }
+
+  playBtn.addEventListener("click", () => (rafId ? pause() : play()));
+  document.getElementById("reset-btn").addEventListener("click", () => {
+    pause();
+    lastIntHour = -1;
+    lastRenderedProgress = 0;
+    q4Chart.yMax = q3Range.max;
+    q4Chart.yMin = q3Range.min;
+    q4Chart.scalePhaseIndex = 0;
+    q4Chart.transitioning = false;
+    q4Chart.popupStart = null;
+    q4Chart.tickValues = null;
+    q3Chart.peakShown = false;
+    q3Chart.peakGroup.style.display = "none";
+    q4Chart.peakShown = false;
+    q4Chart.peakGroup.style.display = "none";
+    render(0);
   });
 
-document.getElementById("play-btn").addEventListener("click", () => {
-  if (playTimer) {
+  slider.addEventListener("input", e => {
     pause();
-    document.getElementById("play-btn").textContent = "▶ Play";
-  } else {
-    play();
-    document.getElementById("play-btn").textContent = "Ⅱ Pause";
-  }
-});
+    lastIntHour = -1;
+    const target = parseFloat(e.target.value);
+    setScaleForScrub(target);
+    [[q3Chart, q3Series], [q4Chart, q4Series]].forEach(([chart, series]) => {
+      if (target >= series.peakRenderIdx) {
+        chart.peakShown = true;
+        drawPeakMarker(chart, series);
+      } else {
+        chart.peakShown = false;
+        chart.peakGroup.style.display = "none";
+      }
+    });
+    render(target);
+    lastRenderedProgress = target;
+  });
 
-document.getElementById("reset-btn").addEventListener("click", () => {
-  pause();
-  currentHour = 0;
-  updateVisual(0);
-  document.getElementById("play-btn").textContent = "▶ Play";
-});
-
-document.getElementById("hour-slider").addEventListener("input", event => {
-  pause();
-  currentHour = Number(event.target.value);
-  updateVisual(currentHour);
-  document.getElementById("play-btn").textContent = "▶ Play";
-});
+  play();
+})();
 </script>
 </body>
 </html>
