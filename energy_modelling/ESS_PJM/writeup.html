@@ -3,81 +3,120 @@
 <head>
 <meta charset="UTF-8">
 <title>PJM Regulation Market Redesign  — ESS Model</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-:root { --bg-page:#f4f5f7; --bg-card:#fff; --border-soft:#e0e3e8; --accent:#2563eb; --accent-soft:#dbeafe; --text-main:#111827; --text-muted:#6b7280; --table-header:#f3f4f6; --chip:#eef2ff; --energy-line:#2563eb; --reg-line:#b91c1c; }
-* { box-sizing:border-box; }
-body { margin:0; padding:32px 16px; font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; background-color:var(--bg-page); color:var(--text-main); }
-.report-container { max-width:1100px; margin:0 auto; background:var(--bg-card); border-radius:12px; padding:28px 32px 36px; box-shadow:0 18px 45px rgba(15,23,42,.12); }
-header { text-align:center; padding:20px 0 10px; }
-header .label { font-size:.75rem; letter-spacing:2px; text-transform:uppercase; color:#6b7280; margin-bottom:12px; }
-header h1 { font-size:1.4rem; font-weight:800; margin:0 0 12px; line-height:1.25; }
-header p { margin:0 auto; color:#6b7280; font-size:.94rem; }
-.meta { text-align:center; font-size:.8rem; color:#9ca3af; margin-top:10px; margin-bottom:0; font-weight:600; }
-h2 { margin-top:24px; margin-bottom:8px; font-size:1.05rem; font-weight:700; border-bottom:1px solid var(--border-soft); padding-bottom:4px; }
-h3 { margin-top:24px; margin-bottom:8px; font-size:1.05rem; font-weight:700; color:var(--text-main); }
-h4 { margin-top:20px; margin-bottom:6px; font-size:.97rem; font-weight:700; color:#4b5563; text-transform:uppercase; letter-spacing:.04em; }
-.section p { font-size:.95rem; line-height:1.7; color:#374151; margin:0 0 12px; }
-.market-summary { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:5px 120px; padding:15px; background:#f5f5f5; border:1px solid #e6e6e6; border-radius:10px; }
-.market-summary > div { display:flex; flex-direction:column; gap:2px; }
-.market-summary > div + div { border-left:1px solid #cbd5e1; padding-left:24px; }
-.market-summary strong { color:#374151; font-size:.9rem; text-align:center; }
-.market-summary span { font-size:1.4rem; font-weight:700; color:#111827; text-align:center; }
-.market-summary > div:last-child span { color:#b91c1c; }
-.market-summary small { color:#6b7280; font-weight:600; text-align:center; }
-table { width:100%; border-collapse:collapse; font-size:.85rem; min-width:unset; }
-th,td { border:1px solid var(--border-soft); padding:6px 8px; text-align:left; white-space:nowrap; }
-th { background-color:var(--table-header); font-weight:600; }
-ul { margin-left:20px; margin-top:6px; margin-bottom:8px; }
-ol { margin-left:20px; }
-li { font-size:.95rem; line-height:1.7; color:#374151; overflow-wrap: break-word; word-break: break-word; }
-footer { margin-top:28px; padding-top:16px; border-top:1px solid #e0e3e8; text-align:center; font-size:.75rem; color:#9ca3af; }
-footer a { color:#2563eb; text-decoration:none; }
-a,a:visited,a:hover,a:active { color:#2563eb; }
-footer a:hover { text-decoration:underline; }
-h2 + ol,p + ol { margin-top:14px; margin-bottom:18px; }
-ol li { margin-bottom:8px; }
-sup { font-size:.75em; }
-sup a { text-decoration:none; }
-.chart-wrap { position:relative; width:65%; margin:12px auto 0; height:380px; }
-.chart-wrap canvas { display:block; }
-.section p.chart-fig { font-size:.85rem; color:#9ca3af; text-align:left; margin-bottom:6px; margin-top:16px; }
-.placeholder { color:#b0b6c0; font-style:italic; }
-.todo { background:#efefef; border:1px dashed #9ca3af; border-radius:8px; padding:8px 12px; font-size:.82rem; margin:8px 0; }
-.rev-visual { margin:0 auto; max-width:1040px; background:#f8fafc; border:1px solid #dfe5ec; border-radius:12px; padding:20px; overflow:hidden; }
-.rev-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; flex-wrap:wrap; gap:10px; }
-.chart-legend { display:flex; flex-wrap:wrap; gap:6px 24px; justify-content:center; margin-bottom:12px; margin-top:12px; font-size:.9rem; color:#374151; }
-.rev-title { font-size:1.1rem; font-weight:750; margin-top:3px; }
-.rev-controls { display:flex; gap:7px; align-items:center; }
-.rev-controls button { border:1px solid #d1d5db; background:white; border-radius:7px; padding:6px 11px; font-size:.8rem; cursor:pointer; }
-.rev-controls button:hover { background:#f3f4f6; }
-.quarter-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; width:100%; }
-.quarter-card { background:white; border:1px solid #e1e5ea; border-radius:9px; padding:14px 16px 16px; overflow:hidden; min-width:0; }
-.quarter-card-top { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px; gap:5px; }
-.quarter-card-title { font-size:.78rem; font-weight:750; text-transform:uppercase; letter-spacing:.04em; color:var(--text-muted); }
-.quarter-date { font-size:.85rem; font-weight:650; color:var(--text-main); white-space:nowrap; }
-.chart-svg { width:100%; max-width:100%; height:260px; display:block; overflow:hidden; }
-.axis-line { stroke:#c7ccd3; stroke-width:1; }
-.chart-grid-line { stroke:#eef0f3; stroke-width:1; }
-.axis-tick { stroke:#c7ccd3; stroke-width:1; }
-.axis-label { fill:#9ca3af; font-size:11px; font-family:system-ui,sans-serif; }
-.energy-path { fill:none; stroke:var(--energy-line); stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; }
-.reg-path { fill:none; stroke:var(--reg-line); stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; }
-.chart-legend span { display:inline-flex; align-items:center; gap:5px; }
-.chart-legend i { width:10px; height:10px; border-radius:2px; display:inline-block; }
-.leg-energy { background:var(--energy-line); }
-.leg-reg { background:var(--reg-line); }
-.rev-slider { width:100%; margin-top:16px; -webkit-appearance:none; appearance:none; height:3px; border-radius:999px; background:#e5e7eb; outline:none; }
-.rev-slider::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; width:11px; height:11px; border-radius:50%; background:#9ca3af; cursor:pointer; border:none; transition:transform .12s ease; }
-.rev-slider::-moz-range-thumb { width:11px; height:11px; border-radius:50%; background:#9ca3af; cursor:pointer; border:none; }
-.rev-slider::-moz-range-track { height:3px; border-radius:999px; background:#e5e7eb; }
-.slider-labels { display:flex; justify-content:space-between; font-size:.68rem; color:#9ca3af; }
-.rev-slider::-webkit-slider-thumb:active { transform:scale(1.3); }
-.rev-slider::-moz-range-thumb:active { transform:scale(1.3); }
-.zero-line { stroke:#9ca3af; stroke-width:1; stroke-dasharray:4 3; }
-.scale-popup-text { font-size:24px; font-weight:800; fill:#111827; opacity:0; transition:opacity .25s ease; }
-.scale-popup-text.visible { opacity:1; }
+:root {
+  --bg-page: #f4f5f7; --bg-card: #ffffff; --border-soft: #e0e3e8;
+  --accent: #2563eb; --accent-soft: #dbeafe; --text-main: #111827;
+  --text-muted: #6b7280; --table-header: #f3f4f6; --chip: #eef2ff;
+  --energy-line: #2563eb; --reg-line: #b91c1c;
+}
+
+body { margin: 0; padding: 32px 16px; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background-color: var(--bg-page); color: var(--text-main); }
+.report-container { max-width: 1100px; margin: 0 auto; background: var(--bg-card); border-radius: 12px; padding: 28px 32px 36px; box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12); }
+header { text-align: center; padding: 20px 0 10px; }
+header .label { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: #6b7280; margin-bottom: 12px; }
+header h1 { font-size: 1.4rem; font-weight: 800; margin: 0 0 12px; line-height: 1.25; }
+header p { margin: 0 auto; color: #6b7280; font-size: 0.94rem; }
+.meta { text-align: center; font-size: 0.8rem; color: #9ca3af; margin-top: 10px; margin-bottom: 0; font-weight: 600; }
+h2 { margin-top: 24px; margin-bottom: 8px; font-size: 1.1rem; font-weight: 700; border-bottom: 1px solid var(--border-soft); padding-bottom: 4px; }
+h3 { margin-top: 24px; margin-bottom: 8px; font-size: 1.05rem; font-weight: 700; color: var(--text-main); }
+h4 { margin-top: 20px; margin-bottom: 6px; font-size: 0.97rem; font-weight: 700; color: #4b5563; text-transform: uppercase; letter-spacing: 0.04em; }
+.section p { font-size: 0.95rem; line-height: 1.7; color: #374151; margin: 0 0 12px; }
+
+.market-summary { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 5px 120px; padding: 15px; background: #F5F5F5; border: 1px solid #e6e6e6; border-radius: 10px; }
+.market-summary > div { display: flex; flex-direction: column; gap: 2px; }
+.market-summary > div + div { border-left: 1px solid #cbd5e1; padding-left: 24px; }
+.market-summary strong { color: #374151; font-size: 0.9rem; text-align: center; }
+.market-summary span { font-size: 1.4rem; font-weight: 700; color: #111827; text-align: center; }
+.market-summary > div:last-child span { color: #b91c1c; }
+.market-summary small { color: #6b7280; font-weight: 600; text-align: center; }
+
+th, td { border: 1px solid var(--border-soft); padding: 6px 8px; text-align: left; white-space: nowrap; }
+th { background-color: var(--table-header); font-weight: 600; }
+ul { margin-left: 20px; margin-top: 6px; margin-bottom: 8px; }
+ol { margin-left: 20px; }
+li { font-size: 0.95rem; line-height: 1.7; color: #374151; }
+footer { margin-top: 28px; padding-top: 16px; border-top: 1px solid #e0e3e8; text-align: center; font-size: 0.75rem; color: #9ca3af; }
+footer a { color: #2563eb; text-decoration: none; }
+a, a:visited, a:hover, a:active { color: #2563eb; }
+footer a:hover { text-decoration: underline; }
+h2 + ol, p + ol { margin-top: 14px; margin-bottom: 18px; }
+ol li { margin-bottom: 8px; }
+sup { font-size: 0.75em; }
+sup a { text-decoration: none; }
+.chart-wrap { position: relative; width: 65%; margin: 12px auto 0; height: 380px; }
+.chart-wrap canvas { display: block; }
+.section p.chart-fig { font-size: 0.85rem; color: #9ca3af; text-align: left; margin-bottom: 6px; margin-top: 16px; }
+.placeholder { color: #b0b6c0; font-style: italic; }
+.todo { background: #EFEFEF; border: 1px dashed #9ca3af; border-radius: 8px; padding: 8px 12px; font-size: 0.82rem; margin: 8px 0; }
+
+.rev-visual { margin: 0 auto; max-width: 1040px; background: #f8fafc; border: 1px solid #dfe5ec; border-radius: 12px; padding: 20px; overflow: hidden; }
+
+.rev-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 10px; }
+.chart-legend { display: flex; gap: 14px; margin-top: 8px; font-size: 0.76rem; color: var(--text-muted); margin-bottom: 10px;}
+
+.rev-title { font-size: 1.1rem; font-weight: 750; margin-top: 3px; }
+.rev-controls { display: flex; gap: 7px; align-items: center; }
+.rev-controls button { border: 1px solid #d1d5db; background: white; border-radius: 7px; padding: 6px 11px; font-size: 0.8rem; cursor: pointer; }
+.rev-controls button:hover { background: #f3f4f6; }
+
+.quarter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.quarter-card { background: white; border: 1px solid #e1e5ea; border-radius: 9px; padding: 14px 16px 16px; overflow: hidden; }
+.quarter-card-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+.quarter-card-title { font-size: 0.78rem; font-weight: 750; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-muted); }
+.quarter-date { font-size: 0.85rem; font-weight: 650; color: var(--text-main); }
+
+.chart-svg { width: 100%; max-width: 100%; height: 260px; display: block; overflow: hidden; }
+.axis-line { stroke: #c7ccd3; stroke-width: 1; }
+.chart-grid-line { stroke: #eef0f3; stroke-width: 1; }
+.axis-tick { stroke: #c7ccd3; stroke-width: 1; }
+.axis-label { fill: #9ca3af; font-size: 11px; font-family: system-ui, sans-serif; }
+.energy-path { fill: none; stroke: var(--energy-line); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.reg-path { fill: none; stroke: var(--reg-line); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+.chart-legend span { display: inline-flex; align-items: center; gap: 5px; }
+.chart-legend i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+.leg-energy { background: var(--energy-line); }
+.leg-reg { background: var(--reg-line); }
+
+.rev-slider { width: 100%; margin-top: 16px; -webkit-appearance: none; appearance: none; height: 3px; border-radius: 999px; background: #e5e7eb; outline: none; }
+.rev-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 11px; height: 11px; border-radius: 50%; background: #9ca3af; cursor: pointer; border: none;   transition: transform 0.12s ease;}
+.rev-slider::-moz-range-thumb { width: 11px; height: 11px; border-radius: 50%; background: #9ca3af; cursor: pointer; border: none; }
+.rev-slider::-moz-range-track { height: 3px; border-radius: 999px; background: #e5e7eb;   transition: transform 0.12s ease;}
+.slider-labels { display: flex; justify-content: space-between; font-size: 0.68rem; color: #9ca3af; }
+.rev-slider::-webkit-slider-thumb:active { transform: scale(1.3); }
+.rev-slider::-moz-range-thumb:active { transform: scale(1.3); }
+
+.zero-line { stroke: #9ca3af; stroke-width: 1; stroke-dasharray: 4 3; }
+.scale-popup-text { font-size: 24px; font-weight: 800; fill: #111827; opacity: 0; transition: opacity 0.25s ease; } .scale-popup-text.visible { opacity: 1; }
+
+@media (max-width: 720px) {
+  .quarter-grid { grid-template-columns: 1fr; }
+}
+ 
+@media (max-width: 600px) {
+  body { padding: 16px 8px; }
+  .report-container { padding: 20px 16px 24px; }
+ 
+  .market-summary { grid-template-columns: 1fr; margin: 5px 0; }
+  .market-summary > div + div { border-left: 0; border-top: 1px solid #cbd5e1; padding-left: 0; padding-top: 20px; }
+ 
+  header h1 { font-size: 1.2rem; }
+ 
+  .rev-visual { padding: 14px; }
+  .rev-header { flex-direction: column; align-items: flex-start; }
+  .rev-title { font-size: 1rem; }
+  .quarter-card { padding: 12px; }
+  .chart-svg { height: 220px; }
+ 
+  .chart-wrap, .price-wrap { width: 100%; }
+ 
+  table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+}
 </style>
+
 <script>
   window.MathJax = {
     tex: {
@@ -341,6 +380,25 @@ sup a { text-decoration:none; }
 
 <div class="section">
     <h2>Implications</h2>
+    
+    <p>  
+        RegD was designed to be a fast-moving signal that ensures power balance, suited to fast-responding batteries with duration-limit protection.
+        The redesign highlights the market's priority: to maintain a competitive market that efficiently procures the resources it requires, removing crafted market mechanisms
+        that favour individual technologies.
+    </p>
+
+    <div class="section">
+    <h2>Implications</h2>
+
+    <div class="rev-visual" style="max-width: 800px; margin: 16px auto;">
+      <div class="rev-header">
+        <div class="rev-title">Contracts Summary — Q3 vs Q4</div>
+      </div>
+      <div class="chart-wrap" style="height: 500px; width: 100%;">
+        <canvas id="contractsChart"></canvas>
+      </div>
+    </div>
+
     <p>  
         RegD was designed to be a fast-moving signal that ensures power balance, suited to fast-responding batteries with duration-limit protection.
         The redesign highlights the market's priority: to maintain a competitive market that efficiently procures the resources it requires, removing crafted market mechanisms
@@ -418,6 +476,8 @@ sup a { text-decoration:none; }
 
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 
 <!-- <script>
 const CONFIG = {
@@ -427,7 +487,7 @@ const CONFIG = {
   MAX_RENDER_POINTS: 200,
   ZOOM_TRANSITION_MS: 1100,
   POPUP_DURATION_MS: 1000,
-  ZOOM_LEAD_MS: 1500
+  ZOOM_LEAD_MS: 1200
 }; -->
 
 <script>
@@ -436,9 +496,9 @@ const CONFIG = {
   q4: { csvPath: "./q4_max_rev.csv", label: "Q4" },
   ANIMATION_MS: 12000,
   MAX_RENDER_POINTS: 200,
-  ZOOM_TRANSITION_MS: 1100,
-  POPUP_DURATION_MS: 1000,
-  ZOOM_LEAD_MS: 1200
+  ZOOM_TRANSITION_MS: 5500,
+  POPUP_DURATION_MS: 4500,
+  ZOOM_LEAD_MS: 1500
 };
 
 function parseCSV(text) {
@@ -1001,6 +1061,232 @@ function updateZoomTransition(chart) {
 
   play();
 })();
+
+
+
+
+
+
+
+const CSV_URL = "./contracts_summary.csv";
+
+const rootStyles = getComputedStyle(document.documentElement);
+const cssVar = name => rootStyles.getPropertyValue(name).trim();
+
+const accent = cssVar('--accent') || '#2563eb';
+const accentSoft = cssVar('--accent-soft') || '#dbeafe';
+const regLine = cssVar('--reg-line') || '#b91c1c';
+const textMain = cssVar('--text-main') || '#111827';
+const textMuted = cssVar('--text-muted') || '#6b7280';
+const borderSoft = cssVar('--border-soft') || '#e0e3e8';
+
+Chart.defaults.font.family = "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+Chart.defaults.color = textMuted;
+
+const componentColors = {
+  "Total": accent,
+  "Merchant revenue": accent,
+  "Floor revenue": accentSoft,
+  "Capacity revenue": regLine,
+  "Variable revenue": "#f3b3ad"
+};
+
+const CAPACITY_KW = 100 * 1000; // 100 MW battery in kW
+const MONTHS = 3;                // per quarter
+const toKwMonth = val => val / (CAPACITY_KW * MONTHS);  
+
+fetch(CSV_URL)
+  .then(res => res.text())
+  .then(csvText => {
+    const parsed = Papa.parse(csvText, { header: true, dynamicTyping: true, skipEmptyLines: true });
+    buildChart(parsed.data, parsed.meta.fields);
+  });
+
+function buildChart(rows, fields) {
+  const rowLabelKey = fields[0];
+  const columns = fields.slice(1);
+
+  const contracts = [];
+  const quarterOf = {};
+  const contractOf = {};
+
+  columns.forEach(col => {
+    const match = col.match(/^(q\d)\s+(.*)$/i);
+    if (!match) return;
+    const [, quarter, contract] = match;
+    const quarterKey = quarter.toUpperCase();
+    quarterOf[col] = quarterKey;
+    contractOf[col] = contract;
+    if (!contracts.includes(contract)) contracts.push(contract);
+  });
+
+  const quarters = [...new Set(Object.values(quarterOf))];
+
+  const data = {};
+  quarters.forEach(q => data[q] = {});
+  contracts.forEach(c => quarters.forEach(q => data[q][c] = {}));
+
+  rows.forEach(row => {
+    const component = row[rowLabelKey];
+    columns.forEach(col => {
+      const val = row[col];
+      if (val === null || val === undefined || val === "" || val === "NaN") return;
+      if (!quarterOf[col] || !contractOf[col]) return;
+      data[quarterOf[col]][contractOf[col]][component] = val;
+    });
+  });
+
+  function buildDatasets(quarter) {
+    const seen = [];
+    contracts.forEach(c => {
+      Object.keys(data[quarter][c]).forEach(k => { if (!seen.includes(k)) seen.push(k); });
+    });
+    return seen.map(component => ({
+      label: `${quarter} ${component}`,
+      data: contracts.map(c => toKwMonth(data[quarter][c][component] ?? 0)),
+      backgroundColor: componentColors[component] || "#9ca3af",
+      stack: quarter,
+      grouped: true,
+      barPercentage: 0.85,
+      categoryPercentage: 0.65,
+      borderRadius: 3,
+      borderSkipped: false
+    }));
+
+  }
+
+  const datasets = quarters.flatMap(q => buildDatasets(q));
+
+  const totalLabelPlugin = {
+    id: "totalLabelPlugin",
+    afterDatasetsDraw(chart) {
+      const { ctx } = chart;
+      contracts.forEach((contract, i) => {
+        quarters.forEach(quarter => {
+          const total = toKwMonth(Object.values(data[quarter][contract]).reduce((a, b) => a + b, 0));
+          let topY = null, barX = null;
+          chart.data.datasets.forEach((ds, dsIndex) => {
+            if (ds.stack !== quarter) return;
+            const meta = chart.getDatasetMeta(dsIndex);
+            const bar = meta.data[i];
+            if (!bar) return;
+            if (topY === null || bar.y < topY) { topY = bar.y; barX = bar.x; }
+          });
+          if (topY !== null) {
+            ctx.save();
+            ctx.font = "700 11px system-ui, sans-serif";
+            ctx.fillStyle = textMain;
+            ctx.textAlign = "center";
+            ctx.fillText(
+              `$${total.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`,
+              barX,
+              topY - 10
+            );
+            ctx.restore();
+          }
+        });
+      });
+    }
+  };
+
+  const quarterLabelPlugin = {
+    id: "quarterLabelPlugin",
+    afterDraw(chart) {
+      const { ctx, chartArea } = chart;
+      contracts.forEach((contract, i) => {
+        quarters.forEach(quarter => {
+          let barX = null;
+          chart.data.datasets.forEach((ds, dsIndex) => {
+            if (ds.stack !== quarter) return;
+            const meta = chart.getDatasetMeta(dsIndex);
+            const bar = meta.data[i];
+            if (bar && barX === null) barX = bar.x;
+          });
+          if (barX !== null) {
+            ctx.save();
+            ctx.font = "600 10px system-ui, sans-serif";
+            ctx.fillStyle = textMuted;
+            ctx.textAlign = "center";
+            ctx.fillText(quarter, barX, chartArea.bottom + 13);
+            ctx.restore();
+          }
+        });
+      });
+    }
+  };
+
+  new Chart(document.getElementById("contractsChart"), {
+    type: "bar",
+    data: { labels: contracts, datasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      layout: { padding: { bottom: 20 } },
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+          labels: {
+            generateLabels: (chart) => {
+              const seen = new Set();
+              const items = [];
+              chart.data.datasets.forEach(ds => {
+                const component = ds.label.replace(/^Q\d\s+/, '');
+                if (component === 'Total') return;
+                if (seen.has(component)) return;
+                seen.add(component);
+                items.push({
+                  text: component,
+                  fillStyle: componentColors[component] || '#9ca3af',
+                  strokeStyle: componentColors[component] || '#9ca3af',
+                  fontColor: textMuted
+                });
+              });
+              return items;
+            },
+            color: textMuted,
+            font: { size: 11 },
+            boxWidth: 12,
+            padding: 12
+          }
+        },
+        tooltip: {
+          backgroundColor: '#ffffff',
+          titleColor: textMain,
+          bodyColor: textMuted,
+          borderColor: borderSoft,
+          borderWidth: 1,
+          padding: 10,
+          titleFont: { weight: '700', size: 12 },
+          bodyFont: { size: 11.5 },
+          callbacks: {
+            label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}/kW-mo`
+          }
+        }
+      },
+      scales: {
+        x: {
+          stacked: true,
+          grid: { display: false },
+          ticks: { font: { size: 12, weight: '600' }, color: textMain, padding: 18 }
+        },
+        y: {
+          stacked: true,
+          title: { display: true, text: '$/kW-month', color: textMuted, font: { size: 11, weight: '600' } },
+          grid: { color: '#eef0f3' },
+          border: { display: false },
+          ticks: {
+            callback: v => `$${v.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 })}`,
+            font: { size: 11 }
+          }
+          
+        }
+      }
+    },
+    plugins: [totalLabelPlugin, quarterLabelPlugin]
+  });
+}
+
 </script>
 </body>
 </html>
