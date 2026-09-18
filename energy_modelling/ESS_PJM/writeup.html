@@ -487,8 +487,8 @@ const CONFIG = {
 
 <script>
 const CONFIG = {
-  q3: { csvPath: "./ESS_PJM/q3_max_rev.csv", label: "Q3" },
-  q4: { csvPath: "./ESS_PJM/q4_max_rev.csv", label: "Q4" },
+  q3: { csvPath: "./q3_max_rev.csv", label: "Q3" },
+  q4: { csvPath: "./q4_max_rev.csv", label: "Q4" },
   ANIMATION_MS: 12000,
   MAX_RENDER_POINTS: 200,
   ZOOM_TRANSITION_MS: 5500,
@@ -1065,7 +1065,7 @@ function updateZoomTransition(chart) {
 
 
 
-const CSV_URL = "./ESS_PJM/contracts_summary.csv";
+const CSV_URL = "./contracts_summary.csv";
 
 const rootStyles = getComputedStyle(document.documentElement);
 const cssVar = name => rootStyles.getPropertyValue(name).trim();
