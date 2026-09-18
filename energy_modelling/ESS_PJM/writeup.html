@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>PJM Regulation Market Redesign  — ESS Model</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style>
 :root {
   --bg-page: #f4f5f7; --bg-card: #ffffff; --border-soft: #e0e3e8;
@@ -92,29 +92,6 @@ sup a { text-decoration: none; }
 .zero-line { stroke: #9ca3af; stroke-width: 1; stroke-dasharray: 4 3; }
 .scale-popup-text { font-size: 24px; font-weight: 800; fill: #111827; opacity: 0; transition: opacity 0.25s ease; } .scale-popup-text.visible { opacity: 1; }
 
-@media (max-width: 720px) {
-  .quarter-grid { grid-template-columns: 1fr; }
-}
- 
-@media (max-width: 600px) {
-  body { padding: 16px 8px; }
-  .report-container { padding: 20px 16px 24px; }
- 
-  .market-summary { grid-template-columns: 1fr; margin: 5px 0; }
-  .market-summary > div + div { border-left: 0; border-top: 1px solid #cbd5e1; padding-left: 0; padding-top: 20px; }
- 
-  header h1 { font-size: 1.2rem; }
- 
-  .rev-visual { padding: 14px; }
-  .rev-header { flex-direction: column; align-items: flex-start; }
-  .rev-title { font-size: 1rem; }
-  .quarter-card { padding: 12px; }
-  .chart-svg { height: 220px; }
- 
-  .chart-wrap, .price-wrap { width: 100%; }
- 
-  table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-}
 </style>
 
 <script>
