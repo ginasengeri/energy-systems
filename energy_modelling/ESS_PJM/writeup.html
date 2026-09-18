@@ -491,9 +491,9 @@ const CONFIG = {
   q4: { csvPath: "https://raw.githubusercontent.com/ginasengeri/energy-systems/main/energy_modelling/ESS_PJM/q4_max_rev.csv", label: "Q4" },
   ANIMATION_MS: 12000,
   MAX_RENDER_POINTS: 200,
-  ZOOM_TRANSITION_MS: 5500,
+  ZOOM_TRANSITION_MS: 4500,
   POPUP_DURATION_MS: 4500,
-  ZOOM_LEAD_MS: 1500
+  ZOOM_LEAD_MS: 800
 };
 
 function parseCSV(text) {
@@ -681,36 +681,54 @@ function drawAxes(chart, series) {
     line.setAttribute("class", "chart-grid-line");
     chart.gridGroup.appendChild(line);
 
-    const isTop = t === 4;
-    const pt = isTop ? popupProgress : 0;
-    const fontSize = lerp(11, 14, pt);
-    const fontWeight = Math.round(lerp(500, 700, pt));
-    const fillColor = lerpColor("#9ca3af", "#111827", pt);
+    const label = document.createElementNS(ns, "text");
+    label.setAttribute("x", PAD_L - 6);
+    label.setAttribute("y", y + 4);
+    label.setAttribute("text-anchor", "end");
+    label.setAttribute("class", "axis-label");
+    label.style.fontSize = "11px";
+    label.style.fontWeight = 500;
+    label.style.fill = "#9ca3af";
+    label.textContent = moneyCompact(value);
+    chart.axisGroup.appendChild(label);
+  }
 
-    if (isTop && pt > 0.01) {
-      const text = moneyCompact(value);
-      const approxW = text.length * fontSize * 0.62;  // rough width estimate for a background box
-      const boxH = fontSize + 6;
-      const highlight = document.createElementNS(ns, "rect");
-      highlight.setAttribute("x", PAD_L - 6 - approxW - 4);
-      highlight.setAttribute("y", y - boxH / 2);
-      highlight.setAttribute("width", approxW + 8);
-      highlight.setAttribute("height", boxH);
-      highlight.setAttribute("rx", 3);
-      highlight.setAttribute("fill", "#fde047");
-      highlight.setAttribute("opacity", pt);
-      chart.axisGroup.appendChild(highlight);
-    }    
+  // Highlight the true highest cumulative value reached
+  const actualPeak = Math.max(...series.energy, ...series.reg);
+  const rawPeakY = PAD_T + (1 - (actualPeak - chart.yMin) / range) * plotH;
+  const peakY = Math.max(PAD_T, Math.min(VB_H - PAD_B, rawPeakY));
+
+  const isFinalScale = chart.scalePhases.length > 0 &&
+    chart.scalePhaseIndex >= chart.scalePhases.length;
+
+  if (popupProgress > 0.01 || isFinalScale) {
+    const pt = popupProgress;
+    const fontSize = lerp(11, 14, pt);
+    const fontWeight = isFinalScale ? 700 : Math.round(lerp(500, 700, pt));
+    const fillColor = isFinalScale ? "#111827" : lerpColor("#9ca3af", "#111827", pt);
+    const text = moneyCompact(actualPeak);
+    const approxW = text.length * fontSize * 0.62;
+    const boxH = fontSize + 6;
+
+    const highlight = document.createElementNS(ns, "rect");
+    highlight.setAttribute("x", PAD_L - 6 - approxW - 4);
+    highlight.setAttribute("y", peakY - boxH / 2);
+    highlight.setAttribute("width", approxW + 8);
+    highlight.setAttribute("height", boxH);
+    highlight.setAttribute("rx", 3);
+    highlight.setAttribute("fill", "#fde047");
+    highlight.setAttribute("opacity", isFinalScale ? 0.75 : pt * 0.75);
+    chart.axisGroup.appendChild(highlight);
 
     const label = document.createElementNS(ns, "text");
     label.setAttribute("x", PAD_L - 6);
-    label.setAttribute("y", y + lerp(3, 4, pt));
+    label.setAttribute("y", peakY + lerp(3, 4, pt));
     label.setAttribute("text-anchor", "end");
     label.setAttribute("class", "axis-label");
     label.style.fontSize = fontSize + "px";
     label.style.fontWeight = fontWeight;
     label.style.fill = fillColor;
-    label.textContent = moneyCompact(value);
+    label.textContent = text;
     chart.axisGroup.appendChild(label);
   }
 
@@ -797,6 +815,7 @@ function showPeakMarker(chart, series) {
   drawPeakMarker(chart, series);
 }
 
+
 function drawPeakMarker(chart, series) {
   const ns = "http://www.w3.org/2000/svg";
   const idx = series.peakRenderIdx;
@@ -839,7 +858,7 @@ function drawPeakMarker(chart, series) {
   label.setAttribute("font-size", "10.5px");
   label.setAttribute("font-weight", "700");
   label.setAttribute("fill", "#111827");
-  label.textContent = `Peak: ${moneyCompact(series.peakValue)}`;
+  label.textContent = `Peak hr: ${moneyCompact(series.peakValue)}`;
   chart.peakGroup.appendChild(label);
 
   chart.peakGroup.style.display = "block";
@@ -1005,10 +1024,24 @@ function updateZoomTransition(chart) {
   let rafId = null, startTime = null, startProgress = 0, lastRenderedProgress = 0;
   const playBtn = document.getElementById("play-btn");
 
+  let lastStepTs = null;
+
+  function getSpeedMultiplier(idx) {
+    // Slow down through Q4's climb window 
+    if (idx >= zoomTrigger && idx <= zoomHit) return 0.35; 
+    return 1;
+  }
+
   function step(ts) {
-    if (startTime === null) startTime = ts;
-    const elapsed = ts - startTime;
-    let progress = startProgress + (elapsed / CONFIG.ANIMATION_MS) * (maxN - 1);
+    if (startTime === null) {
+      startTime = ts;
+      lastStepTs = ts;
+    }
+    const dt = ts - lastStepTs;
+    lastStepTs = ts;
+
+    const speedMultiplier = getSpeedMultiplier(Math.floor(lastRenderedProgress));
+    let progress = lastRenderedProgress + (dt / CONFIG.ANIMATION_MS) * (maxN - 1) * speedMultiplier;
 
     if (progress >= maxN - 1) {
       progress = maxN - 1;
@@ -1025,10 +1058,10 @@ function updateZoomTransition(chart) {
   function play() {
     if (rafId) return;
     startTime = null;
-    startProgress = lastRenderedProgress;
     playBtn.textContent = "Ⅱ Pause";
     rafId = requestAnimationFrame(step);
   }
+
   function pause() {
     if (rafId) cancelAnimationFrame(rafId);
     rafId = null;
