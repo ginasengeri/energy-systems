@@ -181,7 +181,7 @@ sup a { text-decoration: none; }
     <p>
         In PJM's current market, batteries' merchant revenues have grown significantly, raised almost soley by the increased regulation prices. 
         A model of a battery operating in PJM's AEP-Dayton trading hub illustrates the jump in upside opportunity after the redesign.
-        A battery earned $ 23.00 kW-month in Q3 and $ 58.14 kW-month in Q4 (x2.53, monthly average).
+        
     </p>
 
     <div class="rev-visual">
@@ -371,54 +371,73 @@ sup a { text-decoration: none; }
     \]
   </div>
 
-    <p>
-        However changing rules and market conditions can decrease the revenues over time and 
-        optimizers must closely monitor and anticipate which structure best suites their asset.
-  </p>
 
 </section>
 
 <div class="section">
     <h2>Implications</h2>
-    
-    <p>  
-        RegD was designed to be a fast-moving signal that ensures power balance, suited to fast-responding batteries with duration-limit protection.
-        The redesign highlights the market's priority: to maintain a competitive market that efficiently procures the resources it requires, removing crafted market mechanisms
-        that favour individual technologies.
+    <p>
+      Merchant earned the most in both quarters, but significant increase in upside was seen in Q4, soley due to regulation prices.
+      Energy prices remained relatively stable across both quarters, and regulation capability prices more than doubled. The result:
+      A battery earned $ 23.00 kW-month in Q3 and $ 58.14 kW-month in Q4 (x2.53, monthly average).
+    </p>
+    <p>
+      The risk: the opposite effect can happen at the same magnitude. 
+    </p>
+    <p>
+      The heightened regulation prices have persisted and grown into 2026, peaking in Feb 2026. 
+      Further inspection from the MMU reveal a structural design flaw in regulation price calculations that are inflating prices unfairly.
+      Initially scheduled for October 2026, phase 2 of the redesign has been re-scheduled/delad to 2027, with MMU recommending ammendments to 
+      the rmccp calculation (the LOC) to first be implemented before phase 2, aiming to reduce the extremity of the post-phase-1 prices/
+      The MMU has recommended alterations to the calculation for these clearing prices to remove the falsely 
+      inflated and growing rmccps.
+    </p>
+    <p>
+      If regulation prices fall closer to pre-redesign levels, the majority source of merchant upside would be suppressed, leaving
+      spreads thin while retaining the same risk level of full merchant exposure. Fluctuation of energy prices below the average level would
+      put the asset at greater financial risk with these thinner spreads. It is vital for owners to closely monitor and anticipate how the MMU's
+      proposed changes will impact the returns of their revenue stacking/contract structure/earnings. 
     </p>
 
-    <div class="section">
-    <h2>Implications</h2>
+    <p>
+      Asset owners need to monitor and anticipate how these changes will affect their revenues and determine whether changes will be required in the structure
+      of their revenue stacks.
+    </p>
+
 
     <div class="rev-visual" style="max-width: 800px; margin: 16px auto;">
       <div class="rev-header">
-        <div class="rev-title">Contracts Summary — Q3 vs Q4</div>
+        <div class="rev-title">A fully merchant battery earned x2.53 times more (monthly average) in Q4, post-redesign 
+</div>
       </div>
       <div class="chart-wrap" style="height: 500px; width: 100%;">
         <canvas id="contractsChart"></canvas>
       </div>
     </div>
 
-    <p>  
-        RegD was designed to be a fast-moving signal that ensures power balance, suited to fast-responding batteries with duration-limit protection.
-        The redesign highlights the market's priority: to maintain a competitive market that efficiently procures the resources it requires, removing crafted market mechanisms
-        that favour individual technologies.
-        Resources are rewarded for precise correction of energy imbalances in the market, and individually work around operational limits, while respecting market rules. 
-        This effectively clears technologies that operate uncompetitively for a service from the market, allowing room for more efficient
-        technologies to grow. Asset operators are responsible for discovering the combination of services they are most efficient at providing, and 
-        discovering their true value in the market.
-        
-    </p>
 </div>
 
 <div class="section">
-    <h2>Outlook</h2>
-    <p> 
-        While it is expected that growing 
-        participation will saturate the market over time, the heightened regulation prices have persisted and grown into 2026, peaking in Feb 2026. 
-        Further inspection from the MMU reveal a structural design flaw in regulation price calculations that are inflating prices unfairly.
-        The MMU has recommended a delay of Phase 2 of the redesign to 2027, which will split the
-        bidirectional signal into a RegUp and RegDown parts, prioritizing the correction of this calculation flaw [link].
+    <h2>Bottom line/Outlook/What to look out for</h2>
+    <p>  
+      The redesign highlights the market's priority: to maintain a competitive market that efficiently procures the resources it requires,
+      removing mechanisms that favour individual technologies.
+      RegD was designed to be a fast-moving signal that ensures power balance, suited to fast-responding batteries with duration-limit protection.
+      The redesign removed these alterations in design to purely reflect what the market needs and allow available resources to meet those needs.
+    </p>
+    <p>
+      Resources are rewarded for precise correction of energy imbalances in the market, and individually work around operational limits, while respecting market rules. 
+      This effectively clears technologies that operate uncompetitively for a service from the market, allowing room for more efficient
+      technologies to grow. Asset operators are responsible for discovering the combination of services they are most efficient at providing, and 
+      discovering their true value in the market. 
+    </p>
+
+    <p>
+      Changing rules and market conditions (growing participation will saturate regulation over time, energy prices will change market scarcity/volatility levels)
+      to achieve the market's goals will continue to shift profit margins and risk/will affect revenues.
+      The upcoming Phase 2 of the redesign in scheduled for 2027, splitting the bidirectional signal into a RegUp and RegDown parts.  
+      Optimizers must closely monitor and anticipate how their route-to-market strategies hold as the market rules change to align with their priorities.
+      They must choose the structure that best suites their asset.
     </p>
 </div>
 
@@ -481,8 +500,8 @@ sup a { text-decoration: none; }
 
 <!-- <script>
 const CONFIG = {
-  q3: { csvPath: "./q3_max_rev.csv", label: "Q3" },
-  q4: { csvPath: "./q4_max_rev.csv", label: "Q4" },
+  q3: { csvPath: "./ESS_PJM/q3_max_rev.csv", label: "Q3" },
+  q4: { csvPath: "./ESS_PJM/q4_max_rev.csv", label: "Q4" },
   ANIMATION_MS: 12000,
   MAX_RENDER_POINTS: 200,
   ZOOM_TRANSITION_MS: 1100,
@@ -492,8 +511,8 @@ const CONFIG = {
 
 <script>
 const CONFIG = {
-  q3: { csvPath: "./q3_max_rev.csv", label: "Q3" },
-  q4: { csvPath: "./q4_max_rev.csv", label: "Q4" },
+  q3: { csvPath: "./ESS_PJM/q3_max_rev.csv", label: "Q3" },
+  q4: { csvPath: "./ESS_PJM/q4_max_rev.csv", label: "Q4" },
   ANIMATION_MS: 12000,
   MAX_RENDER_POINTS: 200,
   ZOOM_TRANSITION_MS: 5500,
@@ -795,6 +814,7 @@ function drawPeakMarker(chart, series) {
   const yR = chart._yAt(series.reg[idx]);
   const y = Math.min(yE, yR);
 
+
   chart.peakGroup.innerHTML = "";
 
   const guide = document.createElementNS(ns, "line");
@@ -952,6 +972,7 @@ function updateZoomTransition(chart) {
     triggerZoomIfNeeded(q4Chart, q4VisIdx);
     updateZoomTransition(q4Chart);
     drawAxes(q4Chart, q4Series);
+    if (q4Chart.peakShown) drawPeakMarker(q4Chart, q4Series);   
 
     updateChart(q3Chart, q3Series, q3Idx);
     updateChart(q4Chart, q4Series, q4Idx);
@@ -1068,7 +1089,7 @@ function updateZoomTransition(chart) {
 
 
 
-const CSV_URL = "./contracts_summary.csv";
+const CSV_URL = "./ESS_PJM/contracts_summary.csv";
 
 const rootStyles = getComputedStyle(document.documentElement);
 const cssVar = name => rootStyles.getPropertyValue(name).trim();
@@ -1139,9 +1160,12 @@ function buildChart(rows, fields) {
   function buildDatasets(quarter) {
     const seen = [];
     contracts.forEach(c => {
-      Object.keys(data[quarter][c]).forEach(k => { if (!seen.includes(k)) seen.push(k); });
-    });
-    return seen.map(component => ({
+      Object.keys(data[quarter][c])
+      .filter(k => k !== "Total")
+      .forEach(k => { if (!seen.includes(k)) seen.push(k); });
+      });
+  
+    const datasets = seen.map(component => ({
       label: `${quarter} ${component}`,
       data: contracts.map(c => toKwMonth(data[quarter][c][component] ?? 0)),
       backgroundColor: componentColors[component] || "#9ca3af",
@@ -1153,6 +1177,27 @@ function buildChart(rows, fields) {
       borderSkipped: false
     }));
 
+    const totalOnly = contracts.map(c =>
+    Object.keys(data[quarter][c]).filter(k => k !== "Total").length === 0 &&
+    data[quarter][c]["Total"] !== undefined
+    );
+
+    if (totalOnly.some(Boolean)) {
+      datasets.push({
+        label: `${quarter} Total`,
+        data: contracts.map((c, i) => totalOnly[i] ? toKwMonth(data[quarter][c]["Total"]) : 0),
+        backgroundColor: componentColors["Total"] || accent,
+        stack: quarter,
+        grouped: true,
+        barPercentage: 0.85,
+        categoryPercentage: 0.65,
+        borderRadius: 3,
+        borderSkipped: false
+      });
+    }
+
+    return datasets;
+
   }
 
   const datasets = quarters.flatMap(q => buildDatasets(q));
@@ -1163,7 +1208,7 @@ function buildChart(rows, fields) {
       const { ctx } = chart;
       contracts.forEach((contract, i) => {
         quarters.forEach(quarter => {
-          const total = toKwMonth(Object.values(data[quarter][contract]).reduce((a, b) => a + b, 0));
+          const total = toKwMonth(data[quarter][contract]["Total"] ?? 0);
           let topY = null, barX = null;
           chart.data.datasets.forEach((ds, dsIndex) => {
             if (ds.stack !== quarter) return;
