@@ -63,7 +63,7 @@ sup a { text-decoration: none; }
 
 .quarter-card { background: white; border: 1px solid #e1e5ea; border-radius: 9px; padding: 14px 16px 16px; overflow: hidden; }
 .quarter-card-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
-.quarter-card-title { font-size: 0.78rem; font-weight: 750; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-muted); }
+.quarter-card-title { font-size: 0.78rem; font-weight: 750; letter-spacing: 0.04em; color: var(--text-muted); }
 .quarter-date { font-size: 0.85rem; font-weight: 650; color: var(--text-main); }
 
 .chart-svg { width: 100%; max-width: 100%; height: 260px; display: block; overflow: hidden; }
@@ -141,12 +141,13 @@ sup a { text-decoration: none; }
     </p>
     <p>
         The redesign was followed by a significant increase in regulation prices. Despite relatively stable LMPs across the two quarters, co-optimized regulation prices more than
-        doubled post-redesign, increasing revenue opportunities for batteries. 
+        doubled post-redesign, increasing revenue opportunities for batteries. A battery earned $ 23.00 kW-month in Q3 and $ 58.14 kW-month in Q4 (monthly average), 
+        post-redesign.
     </p>
     <p>
         Phase 2 of the redesign is scheduled for 2027. 
         Changing market rules require battery operaters to closely monitor and anticipate how best to position their asset to capture opportunity 
-        in the market. Selecting the right contract structures that balance risk and stable cashflow are key to a financially performing asset.
+        in the market.
     </p>
     
                 
@@ -155,9 +156,8 @@ sup a { text-decoration: none; }
   <div class="section">
     <h2>An ESS Model in PJM</h2>
     <p>
-        In PJM's current market, batteries' merchant revenues have grown significantly, raised almost soley by the increased regulation prices. 
-        A model of a battery operating in PJM's AEP-Dayton trading hub illustrates the jump in upside opportunity after the redesign.
-        
+        Merchant revenues have grown significantly, raised almost soley by the increased regulation prices. 
+        A model of a fully merchant battery operating in PJM's AEP-Dayton trading hub illustrates the jump in upside opportunity after the redesign.    
     </p>
 
     <div class="rev-visual">
@@ -180,7 +180,7 @@ sup a { text-decoration: none; }
    
     <div class="quarter-card">
       <div class="quarter-card-top">
-        <span class="quarter-card-title">Q3</span>
+        <span class="quarter-card-title">Q3, merchant</span>
         <span class="quarter-date" id="q3-date">—</span>
       </div>
       <svg class="chart-svg" id="q3-svg" viewBox="0 0 400 230" preserveAspectRatio="none"></svg>
@@ -189,7 +189,7 @@ sup a { text-decoration: none; }
 
     <div class="quarter-card">
       <div class="quarter-card-top">
-        <span class="quarter-card-title">Q4</span>
+        <span class="quarter-card-title">Q4, merchant</span>
         <span class="quarter-date" id="q4-date">—</span>
       </div>
       <svg class="chart-svg" id="q4-svg" viewBox="0 0 400 230" preserveAspectRatio="none"></svg>
@@ -238,6 +238,7 @@ sup a { text-decoration: none; }
         \]
     </div>
 
+    
   <p>
     where \(R^{arb}_t\) is the product of net arbitrage and the 
     AEP-Dayton LMP, \(R^{reg, cap}_t\) is the product of the RMCCP, 
@@ -245,16 +246,44 @@ sup a { text-decoration: none; }
     regulation capacity moved (commited*mileage), and the performance factor.
   </p>
 
+    <p>
+      Three contract structures are modelled, and the objective shifts for each: 
+    </p>
+  
+  <ol>
+    <li>
+      <strong>Toll: </strong>the battery is operated and dispatched by a third-party offtaker in exchange for a fixed capacity fee and
+      a variable discharge fee. 
+      Risk is allocated fully to the optimizer.
+      The fees were chosen to be $12/kW-month capacity rate, $9/MWh variable tolling fee [https://energy-optima.com/blog/ppa-structuring-solar-storage.htm].
+    </li>
+
+    <li>
+    <strong>Index PPA: </strong>a third party operates the asset and the project owner receives a fixed floor payment in addition to a share of merchant earnings.
+      The model assumes a 40% split share to the asset owner and a base payment of $7/kW-month [https://energy-optima.com/blog/ppa-structuring-solar-storage.htm].
+    </li>
+
+    <li>
+      <strong>Merchant: </strong>Full merchant exposure. The project owner assumes merchant risk and takes earnings directly from the market's conditions. 
+    </li>
+  </ol>
+
+  <p>
+    The model's objective optimizes the third-party's revenues as the party in control of the battery's operations, and then reports the asset
+    owner's earnings from the results.
+  </p>
+
+
   <h3>Key Constraints</h3>
   <p>
     The model represents three aspects of battery operation: (1) the allocation of 
     power between arbitrage and regulation, (2) the physical response to the regulation 
-    signal and its resulting SOC, and (3) a limit on battery cycling.
+    signal and its resulting SOC, and (3) a limit on battery cycling:
   </p>
 
   <h4>1. Battery dispatch</h4>
   <p>
-      Energy arbitrage and regulation compete for the battery's available power capability; the dispatch is bounded by the 100 MW power rating. 
+      Energy arbitrage and regulation compete for the battery's available power capability; dispatch is bounded by the 100 MW power rating. 
       In addition, the battery can not simultaneously charge and discharge:
   </p>
 
@@ -273,8 +302,8 @@ sup a { text-decoration: none; }
     for the arbitrage position and regulation state. 
   </p>
 
-    <p>
-    *Model implementation note* Products of binary and continuous variables are required throughout this model. To preserve the MILP structure, Fortet and McCormick linearizations are applied
+  <p>
+    Products of binary and continuous variables are required throughout this model. To preserve the MILP structure, Fortet and McCormick linearizations are applied
     to these products.
   </p>
 
@@ -347,74 +376,60 @@ sup a { text-decoration: none; }
     \]
   </div>
 
-
 </section>
 
 <div class="section">
-    <h2>Implications</h2>
-    <p>
-      Merchant earned the most in both quarters, but significant increase in upside was seen in Q4, soley due to regulation prices.
-      Energy prices remained relatively stable across both quarters, and regulation capability prices more than doubled. The result:
-      A battery earned $ 23.00 kW-month in Q3 and $ 58.14 kW-month in Q4 (x2.53, monthly average).
-    </p>
-    <p>
-      The risk: the opposite effect can happen at the same magnitude. 
-    </p>
-    <p>
-      The heightened regulation prices have persisted and grown into 2026, peaking in Feb 2026. 
-      Further inspection from the MMU reveal a structural design flaw in regulation price calculations that are inflating prices unfairly.
-      Initially scheduled for October 2026, phase 2 of the redesign has been re-scheduled/delad to 2027, with MMU recommending ammendments to 
-      the rmccp calculation (the LOC) to first be implemented before phase 2, aiming to reduce the extremity of the post-phase-1 prices/
-      The MMU has recommended alterations to the calculation for these clearing prices to remove the falsely 
-      inflated and growing rmccps.
-    </p>
-    <p>
-      If regulation prices fall closer to pre-redesign levels, the majority source of merchant upside would be suppressed, leaving
-      spreads thin while retaining the same risk level of full merchant exposure. Fluctuation of energy prices below the average level would
-      put the asset at greater financial risk with these thinner spreads. It is vital for owners to closely monitor and anticipate how the MMU's
-      proposed changes will impact the returns of their revenue stacking/contract structure/earnings. 
-    </p>
+  <h2>Risk and revenue continue to grow together</h2>
 
-    <p>
-      Asset owners need to monitor and anticipate how these changes will affect their revenues and determine whether changes will be required in the structure
-      of their revenue stacks.
+  <p>
+      Of the contracts modelled, merchant had the highest returns in both quarters. Significant increase in upside was seen in Q4, corresponding to the 130% growth in regulation prices.
+      Energy prices remained relatively stable across both quarters.
     </p>
-
 
     <div class="rev-visual" style="max-width: 800px; margin: 16px auto;">
       <div class="rev-header">
-        <div class="rev-title">A fully merchant battery earned x2.53 times more (monthly average) in Q4, post-redesign 
-</div>
+        <div class="rev-title">A fully merchant battery earned x2.53 times more in Q4, post-redesign 
+    </div>
       </div>
       <div class="chart-wrap" style="height: 500px; width: 100%;">
         <canvas id="contractsChart"></canvas>
       </div>
     </div>
 
+    <p>
+      The risk: the opposite effect can happen at the same magnitude. 
+      If regulation prices fall closer to pre-redesign levels, the majority source of merchant upside will be suppressed, leaving
+      spreads thin while retaining the same risk of full merchant exposure. A drop in energy prices below the average level would
+      put the asset at greater financial risk with these thinner spreads. 
+    </p>
+
 </div>
 
 <div class="section">
-    <h2>Bottom line/Outlook/What to look out for</h2>
+    <h2>More market redesigns changes to come</h2>
     <p>  
       The redesign highlights the market's priority: to maintain a competitive market that efficiently procures the resources it requires,
       removing mechanisms that favour individual technologies.
-      RegD was designed to be a fast-moving signal that ensures power balance, suited to fast-responding batteries with duration-limit protection.
+      RegD was originally designed to be a fast-moving signal that ensures power balance, suited to fast-responding batteries with duration-limit protection.
       The redesign removed these alterations in design to purely reflect what the market needs and allow available resources to meet those needs.
     </p>
-    <p>
+    <!-- <p>
       Resources are rewarded for precise correction of energy imbalances in the market, and individually work around operational limits, while respecting market rules. 
       This effectively clears technologies that operate uncompetitively for a service from the market, allowing room for more efficient
       technologies to grow. Asset operators are responsible for discovering the combination of services they are most efficient at providing, and 
       discovering their true value in the market. 
-    </p>
+    </p> -->
+
 
     <p>
-      Changing rules and market conditions (growing participation will saturate regulation over time, energy prices will change market scarcity/volatility levels)
-      to achieve the market's goals will continue to shift profit margins and risk/will affect revenues.
-      The upcoming Phase 2 of the redesign in scheduled for 2027, splitting the bidirectional signal into a RegUp and RegDown parts.  
-      Optimizers must closely monitor and anticipate how their route-to-market strategies hold as the market rules change to align with their priorities.
-      They must choose the structure that best suites their asset.
+      Phase 2 of the redesign has been re-scheduled/delayed to 2027, with the MMU recommending ammendments a calculation error prior to implementation of phase 2. 
+      The redesign will split the bidirectional signal into a RegUp and RegDown parts.
     </p>
+    <p>
+      The changing rules will continue to shift revenue profiles and risk allocation in energy storage system contracts.
+      Optimizers must closely monitor and anticipate how their route-to-market strategies hold as the market rules change to align with their priorities.
+    </p>
+
 </div>
 
  <section class="section">
@@ -493,7 +508,7 @@ const CONFIG = {
   MAX_RENDER_POINTS: 200,
   ZOOM_TRANSITION_MS: 4500,
   POPUP_DURATION_MS: 4500,
-  ZOOM_LEAD_MS: 800
+  ZOOM_LEAD_MS: 500 // was 800 with speed slow down at 0.35 (35%)
 };
 
 function parseCSV(text) {
@@ -1028,7 +1043,7 @@ function updateZoomTransition(chart) {
 
   function getSpeedMultiplier(idx) {
     // Slow down through Q4's climb window 
-    if (idx >= zoomTrigger && idx <= zoomHit) return 0.35; 
+    if (idx >= zoomTrigger && idx <= zoomHit) return 0.2; // was 0.35 with zoom lead of 800ms
     return 1;
   }
 
