@@ -116,14 +116,14 @@ sup a { text-decoration: none; }
 
 <div class="market-summary">
   <div>
-    <strong>Real-Time Energy Prices (LMPs)</strong>
+    <strong>Real-Time Energy Prices (LMPs, avg)</strong>
     <small><span style="font-size: 0.8em; color: #6b7280;">Q3 → Q4</span></small>
     <span>+5.4%</span>
     <small>Relatively stable</small>
   </div>
 
   <div>
-    <strong>Regulation Capability Prices (RMCCPs)</strong>
+    <strong>Regulation Capability Prices (RMCCPs, avg)</strong>
     <small><span style="font-size: 0.8em; color: #6b7280;">Q3 → Q4</span></small>
     <span style="color: #b91c1c";>+130.0%</span>
     <small>Significant increase</small>
@@ -139,10 +139,22 @@ sup a { text-decoration: none; }
         a low-pass filtered RegA signal followed by slow-ramping resources, and a high-pass RegD signal followed by faster-responding resources—majorly batteries. 
         Beginning October 1st, the two signals were merged into one, allowing all technologies to compete and respond uniformly to grid balancing needs.
     </p>
+    <p>  
+      The redesign highlights the market's priority: to maintain a competitive market that efficiently procures the resources it requires,
+      removing mechanisms that favour individual technologies.
+      RegD was originally designed to be a fast-moving signal that ensures power balance, suited to fast-responding batteries with duration-limit protection.
+      The redesign removed these alterations in design to purely reflect what the market needs and allow available resources to meet those needs.
+    </p>
+        <!-- <p>
+      Resources are rewarded for precise correction of energy imbalances in the market, and individually work around operational limits, while respecting market rules. 
+      This effectively clears technologies that operate uncompetitively for a service from the market, allowing room for more efficient
+      technologies to grow. Asset operators are responsible for discovering the combination of services they are most efficient at providing, and 
+      discovering their true value in the market. 
+    </p> -->
     <p>
         The redesign was followed by a significant increase in regulation prices. Despite relatively stable LMPs across the two quarters, co-optimized regulation prices more than
-        doubled post-redesign, increasing revenue opportunities for batteries. A battery earned $ 23.00 kW-month in Q3 and $ 58.14 kW-month in Q4 (monthly average), 
-        post-redesign.
+        doubled post-redesign, increasing revenue opportunities for batteries. A merchant energy storage system (ESS) earned $ 23.00 kW-month in Q3 and $ 58.14 kW-month in Q4 
+        (monthly average), post-redesign.
     </p>
     <p>
         Phase 2 of the redesign is scheduled for 2027. 
@@ -150,14 +162,9 @@ sup a { text-decoration: none; }
         in the market.
     </p>
     
-                
-  </div>
-
-  <div class="section">
-    <h2>An ESS Model in PJM</h2>
     <p>
-        Merchant revenues have grown significantly, raised almost soley by the increased regulation prices. 
-        A model of a fully merchant battery operating in PJM's AEP-Dayton trading hub illustrates the jump in upside opportunity after the redesign.    
+        Merchant revenues have grown significantly, raised almost soley by increased regulation prices. 
+        A model of a fully merchant battery operating in PJM's AEP-Dayton trading hub illustrates the rise in upside opportunity after the redesign.    
     </p>
 
     <div class="rev-visual">
@@ -199,10 +206,9 @@ sup a { text-decoration: none; }
   <input type="range" class="rev-slider" id="rev-slider" min="0" max="1000" value="0" step="any">
   <div class="slider-labels"><span>Start of quarter</span><span>End of quarter</span></div>
 </div>
-
-<br>
+  <h2>An ESS Model in PJM</h2>
     <p>
-        The model estimates gross revenue for a 100MW/400MWh battery using a reference formulation developed by Alharbi, Alsaidan and Gao [link]. 
+        A MILP formulation model estimates gross revenue for a 100MW/400MWh battery using a reference formulation developed by Alharbi, Alsaidan and Gao [link]. 
         The following adaptations are made for compatibility with available data: 
     </p>
      
@@ -240,10 +246,8 @@ sup a { text-decoration: none; }
 
     
   <p>
-    where \(R^{arb}_t\) is the product of net arbitrage and the 
-    AEP-Dayton LMP, \(R^{reg, cap}_t\) is the product of the RMCCP, 
-    regulation capacity committed and performance factor, and \(R^{reg,mil}_t\) is the product of RMMCP, 
-    regulation capacity moved (commited*mileage), and the performance factor.
+    where \(R^{arb}_t\) is the revenue earned from net arbitrage, \(R^{reg, cap}_t\) is the revenue earned from capacity
+    committed into the regulation market, and \(R^{reg,mil}_t\) is revenue earned from actual power moved in the regulation market.
   </p>
 
     <p>
@@ -255,7 +259,7 @@ sup a { text-decoration: none; }
       <strong>Toll: </strong>the battery is operated and dispatched by a third-party offtaker in exchange for a fixed capacity fee and
       a variable discharge fee. 
       Risk is allocated fully to the optimizer.
-      The fees were chosen to be $12/kW-month capacity rate, $9/MWh variable tolling fee [https://energy-optima.com/blog/ppa-structuring-solar-storage.htm].
+      The capacity rate is set at $12/kW-month and the variable tolling fee at $9/MWh  [https://energy-optima.com/blog/ppa-structuring-solar-storage.htm].
     </li>
 
     <li>
@@ -268,17 +272,11 @@ sup a { text-decoration: none; }
     </li>
   </ol>
 
-  <p>
-    The model's objective optimizes the third-party's revenues as the party in control of the battery's operations, and then reports the asset
-    owner's earnings from the results.
-  </p>
-
-
   <h3>Key Constraints</h3>
   <p>
-    The model represents three aspects of battery operation: (1) the allocation of 
+    Three aspects of battery operation are represented in the model: (1) the allocation of 
     power between arbitrage and regulation, (2) the physical response to the regulation 
-    signal and its resulting SOC, and (3) a limit on battery cycling:
+    signal and its resulting state of charge (SOC), and (3) a limit on battery cycling:
   </p>
 
   <h4>1. Battery dispatch</h4>
@@ -299,12 +297,8 @@ sup a { text-decoration: none; }
   <p>
     Binary variables \(u^d_t\) and \(u^d_t\) take values 0 or 1, preventing simultaneous charge and discharge.
     Regulation capacity is similarly limited by the remaining battery headroom, accounting
-    for the arbitrage position and regulation state. 
-  </p>
-
-  <p>
-    Products of binary and continuous variables are required throughout this model. To preserve the MILP structure, Fortet and McCormick linearizations are applied
-    to these products.
+    for the arbitrage position and regulation state. To preserve the MILP structure, linearizations are applied
+    to binary and continuous variable products.
   </p>
 
   <h4>2. Regulation signal, actual response and SOC</h4>
@@ -327,14 +321,14 @@ sup a { text-decoration: none; }
   </div>
 
   <p> 
-    where \(J_t\) represents the accumulated regulation movement, carrying forward the regulation 
+    where \(J_t\) represents the accumulated regulation movement, carrying forward 
     movement from the previous interval. In this model's convention,
-    charging is negative and discharging is positive, so a positive \(J_t\) represents a net regulation 
-    discharge, and negative represents a net regulation charge position.
+    charging is negative and discharging is positive, so a positive \(J_t\) represents a net 
+    discharge position, and negative represents a net charge position.
   </p>
 
   <p>
-    The resulting battery SOC is then determined by both scheduled arbitrage and actual regulation 
+    The resulting battery SOC is determined by both scheduled arbitrage and actual regulation 
     movement:
   </p>
 
@@ -366,7 +360,7 @@ sup a { text-decoration: none; }
 
   <h4>3. Cycling limit</h4>
   <p>
-    Battery use is additionally restricted by a maximum cycling limit of 1.5 cycles per day:
+    The battery is additionally restricted by a maximum cycling limit of 1.5 cycles per day:
   </p>
 
   <div class="equation">
@@ -379,11 +373,11 @@ sup a { text-decoration: none; }
 </section>
 
 <div class="section">
-  <h2>Risk and revenue continue to grow together</h2>
+  <h2>Merchant: highest risk, highest reward</h2>
 
-  <p>
-      Of the contracts modelled, merchant had the highest returns in both quarters. Significant increase in upside was seen in Q4, corresponding to the 130% growth in regulation prices.
-      Energy prices remained relatively stable across both quarters.
+    <p>
+      Of the contracts modelled, a fully merchant battery had the highest returns in both quarters. The significant increase in upside seen in Q4 was a direct result 
+      of the 130% growth in regulation prices.
     </p>
 
     <div class="rev-visual" style="max-width: 800px; margin: 16px auto;">
@@ -395,39 +389,21 @@ sup a { text-decoration: none; }
         <canvas id="contractsChart"></canvas>
       </div>
     </div>
-
+    
     <p>
       The risk: the opposite effect can happen at the same magnitude. 
-      If regulation prices fall closer to pre-redesign levels, the majority source of merchant upside will be suppressed, leaving
-      spreads thin while retaining the same risk of full merchant exposure. A drop in energy prices below the average level would
-      put the asset at greater financial risk with these thinner spreads. 
     </p>
-
-</div>
-
-<div class="section">
-    <h2>More market redesigns changes to come</h2>
+    <p>
+      Regulation prices are expected to settle closer to pre-redesign levels or lower as participation grows, suppressing the major source of merchant
+      spreads seen in Q4 2025.
+      Retaining the same risk level at full merchant exposure with thinner spreads would leave the battery with little cushioning in the case of unfavourable market
+      conditions. 
+    </p>
     <p>  
-      The redesign highlights the market's priority: to maintain a competitive market that efficiently procures the resources it requires,
-      removing mechanisms that favour individual technologies.
-      RegD was originally designed to be a fast-moving signal that ensures power balance, suited to fast-responding batteries with duration-limit protection.
-      The redesign removed these alterations in design to purely reflect what the market needs and allow available resources to meet those needs.
-    </p>
-    <!-- <p>
-      Resources are rewarded for precise correction of energy imbalances in the market, and individually work around operational limits, while respecting market rules. 
-      This effectively clears technologies that operate uncompetitively for a service from the market, allowing room for more efficient
-      technologies to grow. Asset operators are responsible for discovering the combination of services they are most efficient at providing, and 
-      discovering their true value in the market. 
-    </p> -->
-
-
-    <p>
-      Phase 2 of the redesign has been re-scheduled/delayed to 2027, with the MMU recommending ammendments a calculation error prior to implementation of phase 2. 
-      The redesign will split the bidirectional signal into a RegUp and RegDown parts.
-    </p>
-    <p>
-      The changing rules will continue to shift revenue profiles and risk allocation in energy storage system contracts.
-      Optimizers must closely monitor and anticipate how their route-to-market strategies hold as the market rules change to align with their priorities.
+      PJM's market is still in the middle of its redesign, with Phase 2 scheduled for 2027.
+      The MMU has recommended ammendments to the calculation for regulatation clearing prices, prior to implementation of Phase 2. 
+      The changing rules will require close monitoring as optimizers anticipate the resulting impact on revenue profiles and risk allocation decisions/
+      which route-to-market strategy holds.
     </p>
 
 </div>
