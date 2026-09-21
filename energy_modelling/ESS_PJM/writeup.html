@@ -201,7 +201,7 @@ sup a { text-decoration: none; }
 </div>
   <h2>An ESS Model in PJM</h2>
     <p>
-        This model estimates gross revenue for a 100MW/400MWh battery using a reference MILP formulation<sup><a href="ref1">[1]</a></sup>. 
+        This model estimates gross revenue for a 100MW/400MWh battery using a reference MILP formulation<sup><a href="greentech">[1]</a></sup>. 
         The following adaptations are made for compatibility with available data: 
     </p>
      
@@ -213,7 +213,7 @@ sup a { text-decoration: none; }
             faster than RegA [link].
         </li>
         <li>
-            <strong>Post-redesign settlement.</strong> RMPCP is replaced by RMMCP in the post-redesign revenue calculation, as per PJM Manual [number] updates [link].
+            <strong>Post-redesign settlement.</strong> RMPCP is replaced by RMMCP in the post-redesign revenue calculation, as per PJM Manual 28 updates <sup><a href="m28">[2]</a></sup>.
         </li>
         <li>
             <strong>Time resolution.</strong> Publically available market and signal data are hourly. The sub-hourly interval index used in the reference model is replaced
@@ -252,12 +252,12 @@ sup a { text-decoration: none; }
       <strong>Toll: </strong>the battery is operated and dispatched by a third-party offtaker in exchange for a fixed capacity fee and
       a variable discharge fee. 
       Risk is allocated fully to the optimizer.
-      The capacity rate is set at $12/kW-month and the variable tolling fee at $9/MWh  [https://energy-optima.com/blog/ppa-structuring-solar-storage.htm].
+      The capacity rate is set at $12/kW-month and the variable tolling fee at $9/MWh<sup><a href="ppa">[3]</a></sup>.
     </li>
 
     <li>
     <strong>Index PPA: </strong>a third party operates the asset and the project owner receives a fixed floor payment in addition to a share of merchant earnings.
-      The model assumes a 40% split share to the asset owner and a base payment of $7/kW-month [https://energy-optima.com/blog/ppa-structuring-solar-storage.htm].
+      The model assumes a 40% split share to the asset owner and a base payment of $7/kW-month<sup><a href="ppa">[3]</a></sup>.
     </li>
 
     <li>
@@ -395,7 +395,7 @@ sup a { text-decoration: none; }
     <p>  
       PJM's market is still in the middle of its redesign, with Phase 2 scheduled for 2027.
       The MMU has recommended ammendments to the calculation for regulatation clearing prices, prior to implementation of Phase 2, expected to reduce the extremity
-      of the current regulation price spikes. 
+      of the current regulation price spikes <sup> <a href="mmu">[4]</a></sup>. 
       The changing rules require operaters to closely monitor and anticipate how best to position their asset in the market.
     </p>
 
@@ -411,38 +411,35 @@ sup a { text-decoration: none; }
   <div class="section">
     <h2>References</h2>
     <ol>
-        <li id="ref1">
+        <li id="greentech">
             2022 IEEE Green Technologies Conference 
             <em>GreenTech</em>
             <a href="https://par.nsf.gov/servlets/purl/10345577" target="_blank">
                 https://par.nsf.gov/servlets/purl/10345577
             </a>
         </li>
-
-        <li id="modo_2026">
-            PJM battery storage in 2026: 8 things owners, lenders, and operators need to watch 
-            <em>Modo Energy</em>
-            <a href="https://modoenergy.com/research/en/pjm-battery-storage-2026-things-to-watch" target="_blank">
-                https://modoenergy.com/research/en/pjm-battery-storage-2026-things-to-watch
-            </a>
+        
+        <li id="m28">
+          PJM Manual 28: Operating Agreement Accounting
+          <a href="https://www.pjm.com/-/media/DotCom/documents/manuals/m28.pdf" target=""_blank>
+            https://www.pjm.com/-/media/DotCom/documents/manuals/m28.pdf
+          </a>
         </li>
 
-        <li id="mmu_redesign_extension">
+        <li id="ppa">
+          PPA Structuring for Solar-Plus-Storage: Tolling Agreements, Hybrid PPAs, and Revenue Stacking
+          <a href="https://energy-optima.com/blog/ppa-structuring-solar-storage.htm" target="_blank">
+            https://energy-optima.com/blog/ppa-structuring-solar-storage.html
+          </a>
+        </li>
+
+        <li id="mmu">
             Answer and Motion for Leave to Answer of the Independent Market Monitor for PJM 
             <em>2026 Monitoring Analytics, LLC</em>
             <a href="https://www.monitoringanalytics.com/filings/2026/IMM_Answer_Supporting_P3_Comments_Docket_No_ER26-2446_20260602.pdf" target="_blank">
                 https://www.monitoringanalytics.com/filings/2026/IMM_Answer_Supporting_P3_Comments.pdf
             </a>
-        </li>
-
-        <li id="modo_2025">
-            November 2025: Volatility, fuel prices, and Regulation lift PJM battery revenues 
-            <em>Modo Energy</em>
-            <a href="https://modoenergy.com/research/en/pjm-battery-revenues-benchmark-november-2025" target="_blank">
-                https://modoenergy.com/research/en/pjm-battery-revenues-benchmark-november-2025
-            </a>
-        </li>
-        
+        </li>        
         
 
     </ol>
