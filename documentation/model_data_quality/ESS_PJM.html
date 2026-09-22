@@ -364,7 +364,7 @@ prior to and after the unifying of the RegA and RegD signals in PJM's market.
 
       <ol>
         <li>
-          Q3: The performance, <code>perf</code>, and regulation procured, <code>regd_procured</code> dataset is missing an observation at
+          Q3: The performance, <code>perf</code>, and regulation procured, <code>regd-procured</code> dataset is missing an observation at
         <strong>03:00 UTC</strong> on <strong>August 22</strong>. This row was excluded to ensure the model receives complete data for every hour.
       </li>
       <br>
@@ -397,13 +397,13 @@ prior to and after the unifying of the RegA and RegD signals in PJM's market.
 <h2>Dataset Validation</h2>
 
 <p>
-  Q3 merged datasets: <code>ess-model</code>, <code>lmp</code>, <code>regd_procured</code>, <code>perf</code>, <code>mileage</code>, <code>rmccp</code>, 
+  Q3 merged datasets: <code>ess-model</code>, <code>lmp</code>, <code>regd-procured</code>, <code>perf</code>, <code>mileage</code>, <code>rmccp</code>, 
   <code>rmpcp</code>, <code>signal</code>. 
 </p>
 
 <p>
   There are a total of 2208 hours in Q3.
-  There is one NaN row is in the <code>regd_procured</code> and <code>perf</code> (performance) datasets. This is 
+  There is one NaN row is in the <code>regd-procured</code> and <code>perf</code> (performance) datasets. This is 
   dropped from the final merged dataset to ensure a complete set for the model to optimize over, resulting in final 
   input set of 2207 hours.
 </p>
@@ -429,7 +429,7 @@ prior to and after the unifying of the RegA and RegD signals in PJM's market.
         <td>2,207</td>
         <td>1 row:<br>
           <code>2025-08-22 03:00:00+00:00</code></td>
-        <td><code>regd_procured, perf</code><br></td>
+        <td><code>regd-procured, perf</code><br></td>
       </tr>
 
     </tbody>
@@ -439,11 +439,11 @@ prior to and after the unifying of the RegA and RegD signals in PJM's market.
 </div>
 
     <p>
-        Q4 merged datasets: <code>ess_model</code>, <code>lmp</code>, <code>reg_metrics</code>, <code>reg_prices</code>, <code>signal</code>. 
+        Q4 merged datasets: <code>ess-model</code>, <code>lmp</code>, <code>reg-metrics</code>, <code>reg-prices</code>, <code>signal</code>. 
     </p>
     <p>
       The switch to daylight savings results in a repeated hour local time at 1 AM Nov 2nd, and a total of 2,209 hours from Oct 1 to Dec 31 2025. 
-      Within reg_metrics, there are three columns: rega_procure, performance and mileage, each with 4 NaN rows in this dataset.
+      Within reg-metrics, there are three columns: rega-procure, performance and mileage, each with 4 NaN rows in this dataset.
       These rows with are dropped from the final input dataset resulting in 2205 hours of data for Q4.
     </p>
 
@@ -476,7 +476,7 @@ prior to and after the unifying of the RegA and RegD signals in PJM's market.
           <code>2025-12-04 05:00:00+00:00</code>
         </td>
         <td>
-            <code>rega_procure, perf, mileage</code>
+            <code>rega-procure, perf, mileage</code>
         </td>
       </tr>
 
