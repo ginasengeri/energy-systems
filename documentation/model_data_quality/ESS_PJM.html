@@ -67,11 +67,11 @@ p {
 
 code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
-  font-size: 0.88em;
-  background: #f1f3f5;
-  border-radius: 4px;
-  padding: 2px 5px;
+  "Liberation Mono", "Courier New", monospace;
+  font-size: 0.9em;
+  background: #f5f5f4;
+  border-radius: 2px;
+  padding: 1px 4px;
 }
 
 /* Intro */
@@ -350,16 +350,13 @@ footer p {
 
 <main>
 
-  <!-- Introduction -->
-
 <p>
 This page summarizes data quality details for the PJM ESS optimization model, queried via
 the <a href="https://ginasengeri.github.io/energy-systems/documentation/energy_analytics_api.html" target="_blank">Energy Analytics API</a>
-(<code>grid=pjm</code>, <code>dataset=ess-model</code>). 
-The model optimizes revenue for a 100 MW / 400 MWh battery from July 1st to October 1st, prior to the unifying of the
-RegA and RegD in PJM's market. 
+(<code a>grid=pjm</code>, <code>dataset=ess-model</code>). 
+The model optimizes revenue for a 100 MW / 400 MWh battery from July 1st to September 30th, Q3, and October 1st to December 31st, Q4. This shows earnings both
+prior to and after the unifying of the RegA and RegD signals in PJM's market. 
 </p>
-
 
   <section>
 
@@ -367,21 +364,25 @@ RegA and RegD in PJM's market.
 
       <ol>
         <li>
-          The performance, <code>perf</code>, dataset is missing an observation at
-        <strong>2025-08-22 03:00 UTC</strong>
-        (2025-08-21 23:00 local time). This row was excluded to ensure the model receives complete data for every hour.
+          Q3: The performance, <code>perf</code>, and regulation procured, <code>regd_procured</code> dataset is missing an observation at
+        <strong>03:00 UTC</strong> on <strong>August 22</strong>. This row was excluded to ensure the model receives complete data for every hour.
       </li>
       <br>
         <li>
-        The regulation signal uses normalized sample data from
-        <strong>October 3, 2025</strong>. This is repeated
-        across the Q3 2025 modeling period because the required AGC signal
-        data was inaccessible.
+            Q4: The regulation procurement, mileage, and performance dataset contains 4 missing obsevations at <strong>20:00 UTC</strong> on <strong>October 10, 
+            15 and 23</strong> and <strong>05:00 UTC</strong> on <strong>December 4.</strong> 
+            These rows were excluded from Q4's model input data.
+        </li>
+        <br>
+        <li>
+        The regulation signal is constructed through normalization of the Area Control Error (ACE) for both quarters, due to data accessibility limitations.
+        To construct the RegD signal, a a Butterworth high-pass filter is applied to the ACE before normalization. No filter is applied to Q4s ACE to create a signal 
+        slower than RegD but faster than RegA, as described in PJM Regulation Redesign documentation <sup><a href="faq">[1]</a></sup>.
         </li>
     <br>
       <li>
         RMCCP and RMPCP are used to determine regulation prices in accordance
-        with PJM Manual 11/28.
+        with PJM Manual 28 <sup><a href="m28">[2]</a></sup>.
       </li>
       </ol>
     </div>
@@ -393,78 +394,97 @@ RegA and RegD in PJM's market.
 
   <section>
 
-    <h2>Dataset Validation</h2>
+<h2>Dataset Validation</h2>
 
-    <div class="table-container">
+<p>
+  Q3 merged datasets: <code>ess-model</code>, <code>lmp</code>, <code>regd_procured</code>, <code>perf</code>, <code>mileage</code>, <code>rmccp</code>, 
+  <code>rmpcp</code>, <code>signal</code>. 
+</p>
 
-      <table>
+<p>
+  There are a total of 2208 hours in Q3.
+  There is one NaN row is in the <code>regd_procured</code> and <code>perf</code> (performance) datasets. This is 
+  dropped from the final merged dataset to ensure a complete set for the model to optimize over, resulting in final 
+  input set of 2207 hours.
+</p>
 
-        <thead>
-          <tr>
-            <th>Dataset</th>
-            <th>Hours</th>
-            <th>Missing hours</th>
-            <th>NaN values</th>
-          </tr>
-        </thead>
+<div class="table-container">
 
-        <tbody>
+  <table>
 
-          <tr>
-            <td class="dataset-name"><code class="merged-dataset">ess-model</code>         
-            <span class="merged-label">Merged input data</span></td> 
-            <td>2,207</td>
-            <td>1 - <code>perf</code></td>
-            <td>None</td>
-          </tr>
+    <thead>
+      <tr>
+        <th>Dataset</th>
+        <th>Hours</th>
+        <th>NaN hours</th>
+        <th>NaN columns</th>
+      </tr>
+    </thead>
 
-          <tr>
-            <td class="dataset-name"><code>lmp</code></td>
-            <td>2,208</td>
-            <td>None</td>
-            <td>None</td>
-          </tr>
+    <tbody>
 
-          <tr>
-            <td class="dataset-name"><code>perf</code></td>
-            <td>2,207</td>
-            <td>1</td>
-            <td>None</td>
-          </tr>
+      <tr>
+        <td class="dataset-name"><code class="merged-dataset">ess-model</code>
+        <span class="merged-label">Q3 input data</span></td>
+        <td>2,207</td>
+        <td>1 row:<br>
+          <code>2025-08-22 03:00:00+00:00</code></td>
+        <td><code>regd_procured, perf</code><br></td>
+      </tr>
 
-          <tr>
-            <td class="dataset-name"><code>reg-signal</code></td>
-            <td>2,208</td>
-            <td>None</td>
-            <td>None</td>
-          </tr>
+    </tbody>
 
-          <tr>
-            <td class="dataset-name"><code>mileage</code></td>
-            <td>2,208</td>
-            <td>None</td>
-            <td>None</td>
-          </tr>
+  </table>
 
-          <tr>
-            <td class="dataset-name"><code>rmccp</code></td>
-            <td>2,208</td>
-            <td>None</td>
-            <td>None</td>
-          </tr>
+</div>
 
-          <tr>
-            <td class="dataset-name"><code>rmpcp</code></td>
-            <td>2,208</td>
-            <td>None</td>
-            <td>None</td>
-          </tr>
+    <p>
+        Q4 merged datasets: <code>ess_model</code>, <code>lmp</code>, <code>reg_metrics</code>, <code>reg_prices</code>, <code>signal</code>. 
+    </p>
+    <p>
+      The switch to daylight savings results in a repeated hour local time at 1 AM Nov 2nd, and a total of 2,209 hours from Oct 1 to Dec 31 2025. 
+      Within reg_metrics, there are three columns: rega_procure, performance and mileage, each with 4 NaN rows in this dataset.
+      These rows with are dropped from the final input dataset resulting in 2205 hours of data for Q4.
+    </p>
 
-        </tbody>
 
-      </table>
 
-    </div>
+<div class="table-container">
+
+  <table>
+
+    <thead>
+      <tr>
+        <th>Dataset</th>
+        <th>Hours</th>
+        <th>NaN hours</th>
+        <th>NaN columns</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr>
+        <td class="dataset-name"><code class="merged-dataset">ess-model</code>
+        <span class="merged-label">Q4 input data</span></td>
+        <td>2,205</td>
+        <td>
+          4 rows:<br>
+          <code>2025-10-10 20:00:00+00:00</code><br>
+          <code>2025-10-15 20:00:00+00:00</code><br>
+          <code>2025-10-23 20:00:00+00:00</code><br>
+          <code>2025-12-04 05:00:00+00:00</code>
+        </td>
+        <td>
+            <code>rega_procure, perf, mileage</code>
+        </td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>
 
   </section>
 
@@ -486,13 +506,27 @@ RegA and RegD in PJM's market.
       </li>
 
       <li>
-        PJM Manual 11/28 –
-        <em>link</em>
+        Grid Status
+        <a href="https://www.gridstatus.io/"
+          target="_blank">
+        Insights
+        </a>
       </li>
 
-      <li>
-        Signal Data –
-        <em>link</em>
+      <li id="faq">
+        Regulation Redesign Phase 1 –
+        <a href="https://www.pjm.com/-/media/DotCom/markets-ops/ancillary/regulation-redesign-phase-1-faq.ashx"
+          target="_blank">
+          Frequently Asked Questions (FAQ)
+        </a>
+      </li>
+
+      <li id="m28">
+          PJM Manual 28: 
+          <a href="https://www.pjm.com/-/media/DotCom/documents/manuals/m28.pdf" 
+            target=""_blank>
+            Operating Agreement Accounting
+          </a>
       </li>
 
     </ol>
