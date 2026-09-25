@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>PJM Regulation Market Redesign  — ESS Model</title>
+<title>PJM Regulation Market Redesign  — an ESS Model</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style>
 :root {
@@ -50,6 +50,7 @@ sup a { text-decoration: none; }
 .todo { background: #EFEFEF; border: 1px dashed #9ca3af; border-radius: 8px; padding: 8px 12px; font-size: 0.82rem; margin: 8px 0; }
 
 .rev-visual { margin: 0 auto; max-width: 1040px; background: #f8fafc; border: 1px solid #dfe5ec; border-radius: 12px; padding: 20px; overflow: hidden; }
+.rev-visual p { font-size: 0.8rem; color: #374151; }
 
 .rev-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 10px; }
 .chart-legend { display: flex; gap: 14px; margin-top: 8px; font-size: 0.76rem; color: var(--text-muted); margin-bottom: 10px;}
@@ -109,7 +110,7 @@ sup a { text-decoration: none; }
 
   <header>
     <p class="label">PJM ESS Model</p>
-    <h1>PJM Regulation Market Redesign  — ESS Model</h1>
+    <h1>Working: PJM Regulation Market Redesign  — an ESS Model</h1>
     <p><!-- One–two sentence description of what the model does and what this write-up covers --></p>
     <p class="meta">PJM · AEP-Dayton Hub · Q3 → Q4 2025</p> 
   </header>
@@ -139,18 +140,6 @@ sup a { text-decoration: none; }
         a low-pass filtered RegA signal followed by slow-ramping resources, and a high-pass RegD signal followed by faster-responding resources—majorly batteries. 
         Beginning October 1st, the two signals were merged into one, allowing all technologies to compete and respond uniformly to grid balancing needs.
     </p>
-    <!-- <p>  
-      The redesign highlights the market's priority: to maintain a competitive market that efficiently procures the resources it requires,
-      removing mechanisms that favour individual technologies.
-      RegD was originally designed to be a fast-moving signal that ensures power balance, suited to fast-responding batteries with duration-limit protection.
-      The redesign removed these alterations in design to purely reflect what the market needs and allow available resources to meet those needs.
-    </p> -->
-        <!-- <p>
-      Resources are rewarded for precise correction of energy imbalances in the market, and individually work around operational limits, while respecting market rules. 
-      This effectively clears technologies that operate uncompetitively for a service from the market, allowing room for more efficient
-      technologies to grow. Asset operators are responsible for discovering the combination of services they are most efficient at providing, and 
-      discovering their true value in the market. 
-    </p> -->
     <p>
         The redesign was followed by a significant increase in regulation prices. Despite relatively stable LMPs across the two quarters, co-optimized regulation prices more than
         doubled post-redesign, increasing revenue opportunities for batteries. 
@@ -201,7 +190,7 @@ sup a { text-decoration: none; }
 </div>
   <h2>An ESS Model in PJM</h2>
     <p>
-        This model estimates gross revenue for a 100MW/400MWh battery using a reference MILP formulation<sup><a href="greentech">[1]</a></sup>. 
+        This model estimates gross revenue for a 100MW/400MWh battery using a reference MILP formulation<sup><a href="#greentech">[1]</a></sup>. 
         The following adaptations are made for compatibility with available data: 
     </p>
      
@@ -209,11 +198,11 @@ sup a { text-decoration: none; }
     <ol>
         <li>
             <strong>AGC signal.</strong> The regulation signal is constructed from ACE. For the pre-redesign period, a filter is applied to ACE before normalization,
-            to approximate the faster RegD signal [link]. For the post-redesign period, ACE is normalized without this filtering, producing a slower signal than RegD but 
-            faster than RegA [link].
+            to approximate the faster RegD signal <sup><a href="#m12">[2]</a></sup>. For the post-redesign period, ACE is normalized without this filtering, producing a slower signal than RegD but 
+            faster than RegA <sup><a href="#faq">[3]</a></sup>.
         </li>
         <li>
-            <strong>Post-redesign settlement.</strong> RMPCP is replaced by RMMCP in the post-redesign revenue calculation, as per PJM Manual 28 updates <sup><a href="m28">[2]</a></sup>.
+            <strong>Post-redesign settlement.</strong> RMPCP is replaced by RMMCP in the post-redesign revenue calculation, as per PJM Manual 28 updates <sup><a href="#m28">[4]</a></sup>.
         </li>
         <li>
             <strong>Time resolution.</strong> Publically available market and signal data are hourly. The sub-hourly interval index used in the reference model is replaced
@@ -252,16 +241,16 @@ sup a { text-decoration: none; }
       <strong>Toll: </strong>the battery is operated and dispatched by a third-party offtaker in exchange for a fixed capacity fee and
       a variable discharge fee. 
       Risk is allocated fully to the optimizer.
-      The capacity rate is set at $12/kW-month and the variable tolling fee at $9/MWh<sup><a href="ppa">[3]</a></sup>.
+      The capacity rate is set at $12/kW-month and the variable tolling fee at $9/MWh<sup><a href="#ppa">[5]</a></sup>.
     </li>
 
     <li>
     <strong>Index PPA: </strong>a third party operates the asset and the project owner receives a fixed floor payment in addition to a share of merchant earnings.
-      The model assumes a 40% split share to the asset owner and a base payment of $7/kW-month<sup><a href="ppa">[3]</a></sup>.
+      The model assumes a 40% split share to the asset owner and a base payment of $7/kW-month<sup><a href="#ppa">[5]</a></sup>.
     </li>
 
     <li>
-      <strong>Merchant: </strong>Full merchant exposure. The project owner assumes merchant risk and takes earnings directly from the market's conditions. 
+      <strong>Merchant: </strong>Full merchant exposure. The project owner assumes merchant risk and takes earnings directly from market conditions. 
     </li>
   </ol>
 
@@ -381,22 +370,47 @@ sup a { text-decoration: none; }
       <div class="chart-wrap" style="height: 500px; width: 100%;">
         <canvas id="contractsChart"></canvas>
       </div>
+      <p>
+      Some discrepancies in total earnings (e.g. the toll agreement) are due to differences in hours of available data. See 
+      <a href="https://ginasengeri.github.io/energy-systems/documentation/model_data_quality/ESS_PJM.html"
+      target="_blank">
+      Data Validation</a> for more information.
+      </p>
     </div>
     
     <p>
-      The opposite effect can happen at the same magnitude. 
+      A merchant structure can produce very attractive revenues at elevated regulation prices, but also leaves the battery exposed to any changes in those prices. 
+      The lack of baseline cash flow makes this structure more expensive to finance due to the increased risk and volatility in revenues.
     </p>
+    <p>  
+      Index PPA and Toll structures manage revenue uncertainty by providing baseline cash flows that are independent of real market conditions,
+      but tolling agreements give up more of the upside opportunity in markets like PJM with reliable price spreads. To benefit from some merchant
+      earnings while providing strucutred cash flows, an Index PPA is preferred.
+    </p>
+    
     <p>
       Regulation prices are expected to settle closer to pre-redesign levels or lower as participation grows, suppressing the major source of merchant
       spreads seen in Q4 2025.
       Retaining the same risk level at full merchant exposure with thinner spreads would leave the battery more vulnerable to unfavourable market
       conditions. 
     </p>
+
+  </div>
+
+  <div class="section">
+    <h2>Outlook</h2>
     <p>  
-      PJM's market is still in the middle of its redesign, with Phase 2 scheduled for 2027.
-      The MMU has recommended ammendments to the calculation for regulatation clearing prices, prior to implementation of Phase 2, expected to reduce the extremity
-      of the current regulation price spikes <sup> <a href="mmu">[4]</a></sup>. 
-      The changing rules require operaters to closely monitor and anticipate how best to position their asset in the market.
+      RegD was originally designed to be a fast-moving signal that ensures power balance, suited to fast-responding batteries with duration-limit protection.
+      The redesign highlights the market's priority: to maintain a competitive market that efficiently procures the resources it requires
+      without the use of mechanisms that favour individual technologies.
+      The redesign aims to transparently reflect what the market needs and allow available resources to meet those needs.
+    </p>
+    <p>
+      The current market shows reliable spreads following the redesign, but does not yet reflect the baseline state of the market. Phase 2 of the redesign is now 
+      scheduled for Dec 2026, with the MMU recommending ammendments to the calculation for regulatation clearing prices prior to Phase 2's implementation.
+      The corrections are expected to reduce the extremity
+      of the current regulation price spikes <sup> <a href="#mmu">[5]</a></sup>, and the changing rules require operators to closely monitor and anticipate the 
+      market's response and its subsequent impact on their earnings.
     </p>
 
 </div>
@@ -406,6 +420,24 @@ sup a { text-decoration: none; }
     <p>
         Data Miner 2 PJM (2025). <em>Regulation Market Data</em>. Available at: <a href="https://dataminer2.pjm.com/feed/reg_market_results/definition">https://dataminer2.pjm.com/</a>
     </p>
+    <p>
+        Grid Status (2025). <em> Insights</em>. Available at: 
+        <a href="https://www.gridstatus.io/"
+        target="_blank">
+        https://www.gridstatus.io/
+        </a>
+    </p>
+  </section>
+
+   <section class="section">
+    <h2 id="dataminer2">Data Validation</h2>
+    <p>
+        PJM Energy Storage System Model: 
+        <a href="https://ginasengeri.github.io/energy-systems/documentation/model_data_quality/ESS_PJM.html"
+        target="_blank">
+        https://ginasengeri.github.io/model_data_quality/ESS_PJM.html
+      </a>
+    </p>
   </section>
 
   <div class="section">
@@ -414,30 +446,54 @@ sup a { text-decoration: none; }
         <li id="greentech">
             2022 IEEE Green Technologies Conference 
             <em>GreenTech</em>
-            <a href="https://par.nsf.gov/servlets/purl/10345577" target="_blank">
-                https://par.nsf.gov/servlets/purl/10345577
+            <a href="https://par.nsf.gov/servlets/purl/10345577" 
+            target="_blank">
+            https://par.nsf.gov/servlets/purl/10345577
             </a>
+        </li>
+
+        <li id="m12">
+            PJM Manual 12:
+            <em>Balancing Operations (2024)</em>
+            <a href="https://www.pjm.com/-/media/DotCom/documents/manuals/archive/m12/m12v52-balancing-operations-03-20-2024.pdf" 
+            target="_blank">
+            https://www.pjm.com/m12/m12v52-balancing-operations-03-20-2024.pdf
+            </a>
+        </li>
+        
+        <li id="faq">
+          Regulation Redesign Phase 1 – Frequently Asked Questions (FAQ)
+          <em>PJM (2026)</em>
+          <a href="https://www.pjm.com/-/media/DotCom/markets-ops/ancillary/regulation-redesign-phase-1-faq.ashx"
+            target="_blank">
+            https://www.pjm.com/regulation-redesign-phase-1-faq.ashx
+          </a>
         </li>
         
         <li id="m28">
           PJM Manual 28: Operating Agreement Accounting
-          <a href="https://www.pjm.com/-/media/DotCom/documents/manuals/m28.pdf" target=""_blank>
-            https://www.pjm.com/-/media/DotCom/documents/manuals/m28.pdf
+          <em>Operating Agreement Accounting (2026)</em>
+          <a href="https://www.pjm.com/-/media/DotCom/documents/manuals/m28.pdf" 
+          target=""_blank>
+          https://www.pjm.com/-/media/DotCom/documents/manuals/m28.pdf
           </a>
         </li>
 
         <li id="ppa">
           PPA Structuring for Solar-Plus-Storage: Tolling Agreements, Hybrid PPAs, and Revenue Stacking
-          <a href="https://energy-optima.com/blog/ppa-structuring-solar-storage.htm" target="_blank">
-            https://energy-optima.com/blog/ppa-structuring-solar-storage.html
+          <em>Energy Optima (2026)</em>
+          <a href="https://energy-optima.com/blog/ppa-structuring-solar-storage.html" 
+          target="_blank">
+          https://energy-optima.com/blog/ppa-structuring-solar-storage.html
           </a>
         </li>
 
         <li id="mmu">
             Answer and Motion for Leave to Answer of the Independent Market Monitor for PJM 
             <em>2026 Monitoring Analytics, LLC</em>
-            <a href="https://www.monitoringanalytics.com/filings/2026/IMM_Answer_Supporting_P3_Comments_Docket_No_ER26-2446_20260602.pdf" target="_blank">
-                https://www.monitoringanalytics.com/filings/2026/IMM_Answer_Supporting_P3_Comments.pdf
+            <a href="https://www.monitoringanalytics.com/filings/2026/IMM_Answer_Supporting_P3_Comments_Docket_No_ER26-2446_20260602.pdf" 
+            target="_blank">
+            https://www.monitoringanalytics.com/filings/2026/IMM_Answer_Supporting_P3_Comments.pdf
             </a>
         </li>        
         
@@ -445,12 +501,15 @@ sup a { text-decoration: none; }
     </ol>
   </div>
 
-
-  <footer>
-    <p><!-- e.g. PJM Interconnection · DataMiner2 · GridStatus.io --></p>
-  </footer>
-
 </div>
+</div>
+
+
+<footer>
+  <p>Data source: Data Miner 2 PJM · Grid Status · 2025</p>
+  <a href="energy_modelling.html">← Back to Energy Modelling</a>
+</footer>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
