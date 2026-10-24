@@ -238,7 +238,7 @@ sup a { text-decoration: none; }
   
   <ol>
     <li>
-      <strong>Toll: </strong>the battery is operated and dispatched by a third-party offtaker in exchange for a fixed capacity fee and
+      <strong>Physical toll: </strong>the battery is operated and dispatched by a third-party offtaker in exchange for a fixed capacity fee and
       a variable discharge fee. 
       Risk is allocated fully to the optimizer.
       The capacity rate is set at $12/kW-month and the variable tolling fee at $9/MWh<sup><a href="#ppa">[5]</a></sup>.
@@ -358,8 +358,13 @@ sup a { text-decoration: none; }
   <h2>Merchant: highest risk, highest reward</h2>
 
     <p>
-      Of the contracts modelled, a fully merchant battery had the highest returns in both quarters. The significant increase in revenues seen in Q4 was a direct result 
-      of the 130% growth in regulation prices, earning a battery $ 58.14 kW-month in Q4 (monthly average), post-redesign.
+      Battery earnings are highly variable with location in a market. The AEP-DAYTON hubs reported the second highest average real time energy price in 2025
+       <sup> <a href="#aep">[5]</a></sup>.
+    </p>
+
+    <p>
+      Of the contracts modelled, a fully merchant battery had the highest returns in both quarters. The significant increase in revenues seen in Q4 was a 
+      direct result of the 130% growth in regulation prices, earning a battery $58.14 kW-month in Q4 (monthly average), post-redesign.
     </p>
 
     <div class="rev-visual" style="max-width: 800px; margin: 16px auto;">
@@ -371,21 +376,26 @@ sup a { text-decoration: none; }
         <canvas id="contractsChart"></canvas>
       </div>
       <p>
-      Some discrepancies in total earnings (e.g. the toll agreement) are due to differences in hours of available data. See 
+      Some discrepancies in total earnings (e.g. the physical toll agreement) are due to differences in hours of available data. See 
       <a href="https://ginasengeri.github.io/energy-systems/documentation/model_data_quality/ESS_PJM.html"
       target="_blank">
       Data Validation</a> for more information.
       </p>
     </div>
+
     
     <p>
-      A merchant structure can produce very attractive revenues at elevated regulation prices, but also leaves the battery exposed to any changes in those prices. 
-      The lack of baseline cash flow makes this structure more expensive to finance due to the increased risk and volatility in revenues.
+      A merchant structure can produce very attractive revenues at elevated regulation prices, but also leaves the battery exposed to any changes in those prices.
+      Merchant operation can also lead to aggressive cycling 
+      of the battery which is unsustainable in volatile market, increasing battery degradation and damaging the battery's long-term health. 
+      The increased risk and volatility in revenues makes this structure more expensive to finance, and
+      because larger projects require more capital, some fixed revenue is often required. Floors are more attractive in this case.
     </p>
+    
     <p>  
-      Index PPA and Toll structures manage revenue uncertainty by providing baseline cash flows that are independent of real market conditions,
-      but tolling agreements give up more of the upside opportunity in markets like PJM with reliable price spreads. To benefit from some merchant
-      earnings while providing strucutred cash flows, an Index PPA is preferred.
+      Index PPA and physical toll structures manage revenue uncertainty by providing baseline cash flows that are independent of real market conditions,
+      however tolling agreements give up all upside opportunity, making them less prefered in markets with reliable price spreads like PJM. To benefit from
+      some merchant earnings while providing strucutred cash flows, an Index PPA is more suitable. 
     </p>
     
     <p>
@@ -409,7 +419,7 @@ sup a { text-decoration: none; }
       The current market shows reliable spreads following the redesign, but does not yet reflect the baseline state of the market. Phase 2 of the redesign is now 
       scheduled for Dec 2026, with the MMU recommending ammendments to the calculation for regulatation clearing prices prior to Phase 2's implementation.
       The corrections are expected to reduce the extremity
-      of the current regulation price spikes <sup> <a href="#mmu">[5]</a></sup>, and the changing rules require operators to closely monitor and anticipate the 
+      of the current regulation price spikes <sup> <a href="#mmu">[6]</a></sup>, and the changing rules require operators to closely monitor and anticipate the 
       market's response and its subsequent impact on their earnings.
     </p>
 
@@ -496,6 +506,15 @@ sup a { text-decoration: none; }
             https://www.monitoringanalytics.com/filings/2026/IMM_Answer_Supporting_P3_Comments.pdf
             </a>
         </li>        
+
+        <li id="aep">
+            2025 Annual State of the Market Report for PJM
+            <em>2026 Monitoring Analytics, LLC</em>
+          <a href="https://www.monitoringanalytics.com/reports/PJM_State_of_the_Market/2025/2025-som-pjm-sec3.pdf"
+          target="_blank">
+          https://www.monitoringanalytics.com/reports/PJM_State_of_the_Market/2025/2025-som-pjm-sec3.pdf
+          </a>
+        </li>
         
 
     </ol>
